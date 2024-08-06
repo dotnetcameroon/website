@@ -1,0 +1,51 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": ".NET Cameroon Community",
+    "url": "https://dotnetcameroon.azurewebsites.net",
+    "logo": "https://dotnetcameroon.azurewebsites.net/assets/logo.png",
+    "description": "The .NET Cameroon Community is a group of passionate .NET developers in Cameroon committed to sharing knowledge, hosting events, and fostering a collaborative environment for learning and growth in .NET technologies.",
+    "foundingDate": "2022-01-15",
+    "founders": [
+        {
+            "@type": "Person",
+            "name": "Djoufson Che Bene",
+            "url": "https://linkedin.com/in/djoufson"
+        },
+        {
+            "@type": "Person",
+            "name": "Jaures Beinjamin",
+            "url": "https://www.linkedin.com/in/jaures-beinjamin-✅%EF%B8%8F-297069211"
+        }
+    ],
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+237 699 254 549",
+        "contactType": "customer support",
+        "email": "djouflegran@gmail.com",
+        "url": "https://dotnetcameroon.azurewebsites.net/contact"
+    },
+    "sameAs": [
+        "https://www.facebook.com/dotnetcameroon",
+        "https://twitter.com/dotnetcameroon",
+        "https://www.linkedin.com/company/dotnetcameroon",
+        "https://github.com/dotnetcameroon"
+    ],
+    "memberOf": {
+        "@type": "Organization",
+        "name": ".NET Foundation",
+        "url": "https://dotnetfoundation.org"
+    },
+    "knowsAbout": [
+        ".NET Core",
+        "C#",
+        "ASP.NET",
+        "MVC",
+        "Razor Pages",
+        "SQL Server",
+        "Azure",
+        "Blazor",
+        "Xamarin",
+        "MAUI"
+    ]
+}
