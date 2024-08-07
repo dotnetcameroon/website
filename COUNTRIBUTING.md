@@ -15,10 +15,11 @@ We welcome feature suggestions. Please create an issue detailing your idea and w
 ### Submitting Pull Requests
 
 1. Fork the repository.
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4. Push to the branch (`git push origin feature/AmazingFeature`).
-5. Open a pull request.
+2. Head on the website documentation [here](./docs/description.md) and read it
+3. Create your feature branch (`git checkout -b feature/AmazingFeature`).
+4. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+5. Push to the branch (`git push origin feature/AmazingFeature`).
+6. Open a pull request.
 
 ### Coding Standards
 

@@ -1,0 +1,18 @@
+# robots.txt file for .NET Community Cameroon
+
+User-agent: *
+Disallow: /admin/
+Disallow: /login/
+Disallow: /register/
+Disallow: /private/
+Disallow: /user/
+Disallow: /api/
+
+# Allow crawling of all content in the following directories
+Allow: /events/
+Allow: /blog/
+Allow: /resources/
+Allow: /contact/
+
+# Sitemap location
+# Sitemap: https://dotnetcameroon.azurewebsites.net/sitemap.xml
