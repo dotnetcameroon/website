@@ -64,3 +64,10 @@ npm install
 ```sh
 dotnet run --project app
 ```
+
+## Credits
+
+We were greatly inspired by the following resources
+
+- [.NET Foundation's website](https://dotnetfoundation.org)
+- [LARAVEL Cameroon's website](https://laravel.cm)
