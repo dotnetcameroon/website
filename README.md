@@ -62,7 +62,15 @@ npm install
 #### 4. Run the application
 
 ```sh
-dotnet run --project app
+npm start
+```
+
+The application is running on <localhost:8000>.
+
+Once you are all set up, you can start the Tailwindcss listening server by runnning the command
+
+```sh
+npm run tailwind
 ```
 
 ## Credits

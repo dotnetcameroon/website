@@ -1,0 +1,28 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "The official website repository of the .NET Cameroon Community!",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "dotnet test",
+    "start": "dotnet run --project ./app",
+    "watch": "dotnet watch --project ./app",
+    "tailwind": "npx tailwindcss -i ./app/styles/input.css -o ./app/wwwroot/app.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dotnetcameroon/website.git"
+  },
+  "author": ".NET Cameroon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dotnetcameroon/website/issues"
+  },
+  "homepage": "https://github.com/dotnetcameroon/website#readme",
+  "dependencies": {
+    "tailwindcss": "^3.4.9"
+  }
+}
