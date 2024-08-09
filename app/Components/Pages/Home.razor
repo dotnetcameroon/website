@@ -20,6 +20,48 @@
 
     <!-- What we do -->
     <section>
-        <div class="container mx-auto h-[2500px]"></div>
+        <div class="section container mx-auto">
+            <h1 class="heading heading-1">What we do ?</h1>
+            <p class="md:w-2/3">At .NET Community Cameroon, we’re all about innovation, learning, and collaboration. Join us to sharpen your skills, connect with fellow developers, and make an impact through our dynamic activities.</p>
+            <div class="flex gap-6 items-center justify-center md:justify-start flex-wrap mt-6">
+                <ActivityCard ImageName="activity-1.jpg" Title="Live Codings" Description="Join our live coding sessions to collaborate, learn, and solve coding challenges in real-time."/>
+                <ActivityCard ImageName="activity-2.jpeg" Title="Conferences and Meetups" Description="Connect with fellow developers through insightful talks, workshops, and networking opportunities."/>
+                <ActivityCard ImageName="activity-3.png" Link="https://github.com/dotnetcameroon" LinkText="Visit on GitHub" Title="Open Source Projects" Description="Contribute to impactful open source projects and collaborate with developers to make a difference."/>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="relative">
+        <div class="absolute z-10 top-0 left-0 w-full h-full bg-secondary md:bg-transparent md:bg-gradient-to-r md:from-secondary md:via-secondary/70 md:to-transparent"></div>
+        <div class="relative z-20 section container mx-auto">
+            <h1 class="heading heading-1 text-white">Benefits of membership</h1>
+            <p class="md:w-2/3 text-white">The .NET ecosystem is rapidly evolving, bringing cutting-edge innovations and exciting opportunities for developers. By joining our community, you’ll be at the forefront of these changes, connecting with fellow enthusiasts who share your passion for .NET. Whether you're looking to grow your skills, collaborate on projects, or stay updated on the latest trends, becoming a member opens the door to endless possibilities.</p>
+
+            <div class="mt-6 w-[500px] flex flex-col gap-7">
+                <div class="flex gap-6">
+                    <div class="w-1/2">
+                        <h3 class="heading heading-3 text-white">600+</h3>
+                        <p class="text-white">Members in our <span class="font-bold">community groups</span></p>
+                    </div>
+                    <div class="w-1/2">
+                        <h3 class="heading heading-3 text-white">2k+</h3>
+                        <p class="text-white"><span class="font-bold">Followers</span> on our social media platforms</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="w-1/2">
+                        <h3 class="heading heading-3 text-white">60+</h3>
+                        <p class="text-white">Events, meetups and conferences</p>
+                    </div>
+                    <div class="w-1/2">
+                        <h3 class="heading heading-3 text-white">6+</h3>
+                        <p class="text-white">Active open source projects and libraries</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="/" class="btn btn-outline-white mt-6 block size-fit">Become a member</a>
+        </div>
     </section>
 </div>
