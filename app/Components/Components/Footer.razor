@@ -1,0 +1,48 @@
+<section>
+    <div class="section container mx-auto">
+        <div class="flex flex-col gap-6 md:flex-row md:items-start md:gap-0 md:justify-between">
+            <div>
+                <a href="/" class="flex items-center heading heading-2 w-fit">
+                    .NET Cameroon
+                </a>
+                <!-- Newsletter form -->
+            </div>
+            <div>
+                <h2 class="heading heading-4">Resources</h2>
+                <ul class="">
+                    <li class="flex w-fit items-center hover:translate-x-2 transition-all"><a href="/" class="py-1"><i class="fa-solid fa-arrow-right"></i> Home</a></li>
+                    <li class="flex w-fit items-center hover:translate-x-2 transition-all"><a href="/" class="py-1"><i class="fa-solid fa-arrow-right"></i> Events <span class="ml-2 text-[10px] py-1 px-2 rounded-full bg-primary text-white">Soon</span></a></li>
+                    <li class="flex w-fit items-center hover:translate-x-2 transition-all"><a href="/" class="py-1"><i class="fa-solid fa-arrow-right"></i> About <span class="ml-2 text-[10px] py-1 px-2 rounded-full bg-primary text-white">Soon</span></a></li>
+                    <li class="flex w-fit items-center hover:translate-x-2 transition-all"><a href="/" class="py-1"><i class="fa-solid fa-arrow-right"></i> Projects <span class="ml-2 text-[10px] py-1 px-2 rounded-full bg-primary text-white">Soon</span></a></li>
+                    <li class="flex w-fit items-center hover:translate-x-2 transition-all"><a href="/" class="py-1"><i class="fa-solid fa-arrow-right"></i> Resources</a></li>
+                    <li class="flex w-fit items-center hover:translate-x-2 transition-all"><a href="/" class="py-1"><i class="fa-solid fa-arrow-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="heading heading-4">Contact</h2>
+                <ul>
+                    <li class="py-1"><i class="fa-solid fa-location-dot"></i> Douala, Cameroon</li>
+                    <li class="py-1"><a href="mailto:dotnetcameroon@outlook.com" class="link link-secondary"><i class="fa-regular fa-envelope"></i> dotnetcameroon@outlook.com</a></li>
+                    <li class="py-1"<i class="fa-solid fa-phone"></i> +237 699254549, +237 653953452</li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="heading heading-4">Join us</h2>
+                <p>Join us on our different platforms</p>
+                <ul class="flex gap-2 mt-3">
+                    <li><a href="/" class="btn btn-primary"><i class="fa-brands fa-discord"></i></a></li>
+                    <li><a href="/" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i></a></li>
+                    <li><a href="/" class="btn btn-primary"><i class="fa-brands fa-linkedin"></i></a></li>
+                    <li><a href="/" class="btn btn-primary"><i class="fa-brands fa-github"></i></a></li>
+                    <li><a href="/" class="btn btn-primary"><i class="fa-brands fa-telegram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="text-center mt-8">Copyright &copy; .NET Cameroon @Year</p>
+    </div>
+    
+</section>
+
+@code{
+    public int Year => DateTime.Now.Year;
+}

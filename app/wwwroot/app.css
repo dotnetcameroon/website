@@ -653,8 +653,32 @@ video {
   margin-top: 2rem;
 }
 
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
+.ml-4 {
+  margin-left: 1rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
 .block {
   display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.inline {
+  display: inline;
 }
 
 .flex {
@@ -721,13 +745,21 @@ video {
   width: 100%;
 }
 
-.grow {
-  flex-grow: 1;
+.w-\[100px\] {
+  width: 100px;
 }
 
-.translate-y-\[-\] {
-  --tw-translate-y: -;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+.w-\[70px\] {
+  width: 70px;
+}
+
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.grow {
+  flex-grow: 1;
 }
 
 .translate-y-\[-80px\] {
@@ -745,6 +777,10 @@ video {
 
 .items-center {
   align-items: center;
+}
+
+.justify-start {
+  justify-content: flex-start;
 }
 
 .justify-center {
@@ -775,12 +811,20 @@ video {
   gap: 2rem;
 }
 
+.gap-3 {
+  gap: 0.75rem;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
 
 .rounded-lg {
   border-radius: 0.5rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
 }
 
 .bg-secondary {
@@ -793,8 +837,41 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-\[url\] {
-  background-color: url;
+.bg-primary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(10 133 95 / var(--tw-bg-opacity));
+}
+
+.bg-slate-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 250 252 / var(--tw-bg-opacity));
+}
+
+.bg-slate-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+}
+
+.bg-slate-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+}
+
+.bg-orange-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(253 186 116 / var(--tw-bg-opacity));
+}
+
+.bg-opacity-15 {
+  --tw-bg-opacity: 0.15;
+}
+
+.bg-opacity-75 {
+  --tw-bg-opacity: 0.75;
+}
+
+.bg-\[url\(\/assets\/activities\/membership\.jpeg\)\] {
+  background-image: url(/assets/activities/membership.jpeg);
 }
 
 .bg-\[url\(\/assets\/carousel-1\.png\)\] {
@@ -803,22 +880,6 @@ video {
 
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
-}
-
-.bg-\[url\(\/assets\/\)\] {
-  background-image: url(/assets/);
-}
-
-.bg-\[url\(\/assets\/activitie\)\] {
-  background-image: url(/assets/activitie);
-}
-
-.bg-\[url\(\/assets\/activities\/\)\] {
-  background-image: url(/assets/activities/);
-}
-
-.bg-\[url\(\/assets\/activities\/membership\.jpeg\)\] {
-  background-image: url(/assets/activities/membership.jpeg);
 }
 
 .from-black {
@@ -833,10 +894,6 @@ video {
 
 .bg-cover {
   background-size: cover;
-}
-
-.bg-contain {
-  background-size: contain;
 }
 
 .bg-fixed {
@@ -860,13 +917,40 @@ video {
   padding: 1.5rem;
 }
 
+.p-2 {
+  padding: 0.5rem;
+}
+
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
 
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.pt-1 {
+  padding-top: 0.25rem;
+}
+
 .text-center {
   text-align: center;
+}
+
+.font-\[\] {
+  font-family: ;
 }
 
 .text-5xl {
@@ -874,8 +958,28 @@ video {
   line-height: 1;
 }
 
+.text-\[8px\] {
+  font-size: 8px;
+}
+
+.text-\[5px\] {
+  font-size: 5px;
+}
+
+.text-\[6px\] {
+  font-size: 6px;
+}
+
+.text-\[10px\] {
+  font-size: 10px;
+}
+
 .font-bold {
   font-weight: 700;
+}
+
+.font-\[8px\] {
+  font-weight: 8px;
 }
 
 .leading-\[35px\] {
@@ -1350,6 +1454,11 @@ video {
   transition-duration: 150ms;
 }
 
+.hover\:translate-x-2:hover {
+  --tw-translate-x: 0.5rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 @media (min-width: 768px) {
   .md\:relative {
     position: relative;
@@ -1357,6 +1466,10 @@ video {
 
   .md\:top-0 {
     top: 0px;
+  }
+
+  .md\:flex {
+    display: flex;
   }
 
   .md\:h-auto {
@@ -1379,12 +1492,24 @@ video {
     flex-direction: row;
   }
 
+  .md\:items-start {
+    align-items: flex-start;
+  }
+
   .md\:justify-start {
     justify-content: flex-start;
   }
 
+  .md\:justify-between {
+    justify-content: space-between;
+  }
+
   .md\:gap-4 {
     gap: 1rem;
+  }
+
+  .md\:gap-0 {
+    gap: 0px;
   }
 
   .md\:bg-transparent {
