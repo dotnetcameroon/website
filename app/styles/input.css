@@ -56,6 +56,22 @@
     @apply bg-tertiary hover:bg-tertiary-accentuation transition-all active:bg-tertiary text-white;
 }
 
+.btn.btn-outline-primary{
+    @apply border border-primary bg-transparent hover:bg-primary transition-all active:bg-primary-accentuation text-primary hover:text-white;
+}
+
+.btn.btn-outline-secondary{
+    @apply border border-secondary bg-transparent hover:bg-secondary transition-all active:bg-secondary-accentuation text-secondary hover:text-white;
+}
+
+.btn.btn-outline-tertiary{
+    @apply border border-tertiary bg-transparent hover:bg-tertiary transition-all active:bg-tertiary-accentuation text-tertiary hover:text-white;
+}
+
+.btn.btn-outline-white{
+    @apply border border-white bg-transparent hover:bg-white transition-all active:bg-slate-100 text-white hover:text-secondary;
+}
+
 /* Links */
 .link{
     @apply underline transition-all;
@@ -81,9 +97,24 @@
     max-width: 1200px;
 }
 
+/* Sections */
+.section{
+    @apply p-4 py-20 relative mt-2;
+}
+
+.section::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    @apply bg-primary opacity-20;
+}
+
 /* NAVBAR */
 #navbar{
-    @apply bg-primary;
+    @apply bg-secondary shadow-xl;
 }
 
 #navbar.transparent{
@@ -95,7 +126,7 @@
     animation-name: expand-nav;
     animation-duration: .3s;
     overflow: hidden;
-    @apply bg-primary pt-0 transition-all shadow-sm;
+    @apply bg-secondary pt-0 transition-all shadow-sm;
 }
 
 @keyframes expand-nav {
@@ -184,7 +215,7 @@
 }
 
 #back-to-top.active{
-    z-index: initial;
+    z-index: 100;
     transform: translateY(0px);
     opacity: 1;
     @apply transition-all;

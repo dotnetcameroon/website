@@ -1,0 +1,30 @@
+<div class="rounded-lg overflow-hidden shadow w-[350px]">
+    <img src="/assets/@ImageName" alt=".NET Cameroon @Title" class="h-[200px] w-full object-cover">
+    <div class="p-6 h-[150px]">
+        <h2 class="heading heading-3 text-secondary">@Title</h2>
+        <p>@Description</p>
+    </div>
+    <div class="p-6 h-[100px]">
+        @if(!string.IsNullOrWhiteSpace(Link) && !string.IsNullOrWhiteSpace(LinkText))
+        {
+            <a href="@Link" target="_blank" class="link link-secondary">@LinkText</a>
+        }
+    </div>
+</div>
+
+@code{
+    [Parameter]
+    public string Title { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Description { get; set; } = string.Empty;
+
+    [Parameter]
+    public string ImageName { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Link { get; set; } = string.Empty;
+
+    [Parameter]
+    public string LinkText { get; set; } = string.Empty;
+}
