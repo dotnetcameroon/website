@@ -1,7 +1,25 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
-<div class="flex flex-col gap-4 items-start container mx-auto p-4">
-    <h1 class="heading heading-1">Welcome to .NET Cameroon 🇨🇲</h1>
-    <p>This is the official website of the .NET Community in Cameroon.</p>
+<PageTitle>.NET Cameroon 🇨🇲 | Home</PageTitle>
+<div>
+    <!-- Hero Section -->
+    <section class="relative h-[100svh] bg-[url(/assets/carousel-1.png)] bg-cover">
+        <NavBar Type=@NavType.Transparent />
+        <div class="absolute z-10 top-0 left-0 w-full h-full bg-gradient-to-r from-black to-transparent opacity-70"></div>
+        <div class="relative z-20 h-full container mx-auto p-4">
+            <div class="md:w-1/2 h-full flex flex-col justify-center gap-6">            
+                <h1 class="text-white text-center md:text-start heading font-bold text-5xl md:text-7xl md:leading-[80px]">Community.<br>Open Source.<br>Innovative.<br>Continent 🇨🇲</h1>
+                <p class="text-white text-center md:text-start leading-[35px]">.NET Cameroon is a group of passionate .NET enthusiasts based in Cameroon, committed to promoting Microsoft technologies and fostering interest in the local community.</p>
+                <div class="flex gap-4 justify-center md:justify-start">
+                    <a href="/" class="btn btn-primary">Learn more</a>
+                    <a href="/" class="btn btn-secondary">Join us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What we do -->
+    <section>
+        <div class="container mx-auto h-[2500px]"></div>
+    </section>
 </div>
