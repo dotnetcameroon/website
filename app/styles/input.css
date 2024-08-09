@@ -68,3 +68,76 @@
 .link.link-white{
     @apply text-white hover:text-white;
 }
+
+/* Hamburger */
+#hamburger{
+    width: 40px;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+@media (min-width: 768px) {
+    #hamburger {
+        display: none;
+    }
+}
+
+#hamburger span, #hamburger span::after{
+    position: relative;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 50px;
+    transform: translateY(5px);
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+#hamburger span::after{
+    content: '';
+    left: 0;
+    top: 0;
+    position: absolute;
+    transform: translateY(-10px);
+}
+
+#hamburger.active{
+    transform: rotate(45deg);
+}
+
+#hamburger.active span::after{
+    transform: rotate(-90deg);
+}
+
+/* Navigation Links */
+#nav-links{
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+#nav-links.active{
+    max-height: 100vh;
+    @apply p-4;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+@media (min-width: 768px) {
+    #nav-links {
+        @apply p-4;
+        max-height: initial;
+    }
+}
