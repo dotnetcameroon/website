@@ -1,6 +1,8 @@
-# .NET Community Cameroon Website
+# .NET Cameroon Community Website
 
 Welcome to the official website repository of the .NET Community in Cameroon! This website serves as a hub for our community, providing information about events, resources, and news related to .NET technologies.
+
+![HomePage](./docs/assets/homepage.png)
 
 ## Table of Contents
 
@@ -14,7 +16,7 @@ Welcome to the official website repository of the .NET Community in Cameroon! Th
 
 ## Introduction
 
-The .NET Community Cameroon Website is an open source project aimed at fostering collaboration and knowledge sharing among .NET developers in Cameroon. We welcome contributions from everyone, whether you're a seasoned developer or just getting started with .NET.
+The .NET Cameroon Community Website is an open source project aimed at fostering collaboration and knowledge sharing among .NET developers in Cameroon. We welcome contributions from everyone, whether you're a seasoned developer or just getting started with .NET.
 
 ## Features
 
