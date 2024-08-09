@@ -114,7 +114,7 @@
 
 /* NAVBAR */
 #navbar{
-    @apply bg-primary;
+    @apply bg-secondary shadow-xl;
 }
 
 #navbar.transparent{
@@ -126,7 +126,7 @@
     animation-name: expand-nav;
     animation-duration: .3s;
     overflow: hidden;
-    @apply bg-primary pt-0 transition-all shadow-sm;
+    @apply bg-secondary pt-0 transition-all shadow-sm;
 }
 
 @keyframes expand-nav {

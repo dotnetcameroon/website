@@ -13,7 +13,7 @@ window.addEventListener('scroll', (e) => {
         collapseNavbar();
         hideBackToTop();
     }
-    if (window.scrollY >= navbarThreshold && window.scrollY < navbarThreshold + 100) {
+    if (window.scrollY >= navbarThreshold) {
         expandNavbar();
         showBackToTop();
     }

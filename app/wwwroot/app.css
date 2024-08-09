@@ -649,6 +649,10 @@ video {
   margin-top: 1.5rem;
 }
 
+.mt-8 {
+  margin-top: 2rem;
+}
+
 .block {
   display: block;
 }
@@ -701,6 +705,10 @@ video {
   width: 50%;
 }
 
+.w-\[200px\] {
+  width: 200px;
+}
+
 .w-\[350px\] {
   width: 350px;
 }
@@ -715,6 +723,16 @@ video {
 
 .grow {
   flex-grow: 1;
+}
+
+.translate-y-\[-\] {
+  --tw-translate-y: -;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.translate-y-\[-80px\] {
+  --tw-translate-y: -80px;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .flex-col {
@@ -753,6 +771,10 @@ video {
   gap: 1.75rem;
 }
 
+.gap-8 {
+  gap: 2rem;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
@@ -771,12 +793,32 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-\[url\] {
+  background-color: url;
+}
+
 .bg-\[url\(\/assets\/carousel-1\.png\)\] {
   background-image: url(/assets/carousel-1.png);
 }
 
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.bg-\[url\(\/assets\/\)\] {
+  background-image: url(/assets/);
+}
+
+.bg-\[url\(\/assets\/activitie\)\] {
+  background-image: url(/assets/activitie);
+}
+
+.bg-\[url\(\/assets\/activities\/\)\] {
+  background-image: url(/assets/activities/);
+}
+
+.bg-\[url\(\/assets\/activities\/membership\.jpeg\)\] {
+  background-image: url(/assets/activities/membership.jpeg);
 }
 
 .from-black {
@@ -791,6 +833,18 @@ video {
 
 .bg-cover {
   background-size: cover;
+}
+
+.bg-contain {
+  background-size: contain;
+}
+
+.bg-fixed {
+  background-attachment: fixed;
+}
+
+.bg-no-repeat {
+  background-repeat: no-repeat;
 }
 
 .object-cover {
@@ -1163,7 +1217,10 @@ video {
 
 #navbar {
   --tw-bg-opacity: 1;
-  background-color: rgb(10 133 95 / var(--tw-bg-opacity));
+  background-color: rgb(81 43 212 / var(--tw-bg-opacity));
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 #navbar.transparent {
@@ -1177,7 +1234,7 @@ video {
   animation-duration: .3s;
   overflow: hidden;
   --tw-bg-opacity: 1;
-  background-color: rgb(10 133 95 / var(--tw-bg-opacity));
+  background-color: rgb(81 43 212 / var(--tw-bg-opacity));
   padding-top: 0px;
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
