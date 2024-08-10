@@ -16,6 +16,10 @@ public class Host
         ImageUrl = imageUrl;
     }
 
+    private Host()
+    {
+    }
+
     public static Host Create(
         string name,
         string email,

@@ -18,6 +18,12 @@ public sealed class Activity : Entity<Guid>
         Schedule = schedule;
     }
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    private Activity()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+    {
+    }
+
     public static Activity Create(string title, string description, Host host, Schedule schedule)
     {
         return new Activity(Guid.NewGuid(), title, description, host, schedule);
