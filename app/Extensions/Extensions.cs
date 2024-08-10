@@ -2,9 +2,12 @@ using app.Data.Interceptors;
 using app.Models.Identity;
 using app.Options;
 using app.Persistence;
+using app.Persistence.Impl;
+using app.Persistence.Repositories.Base;
+using app.Services;
+using app.Services.Impl;
 using app.Utils;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace app.Extensions;
@@ -15,9 +18,14 @@ public static class Extensions
         services.AddRazorComponents()
             .AddInteractiveServerComponents();
 
+        services.AddScoped<IUnitOfWork,UnitOfWork>();
+        services.AddScoped<IEventService,EventService>();
         services.AddScoped<DomainEventsInterceptor>();
         services.AddSqlServer<AppDbContext>(configuration.GetConnectionString("SqlServer"));
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Extensions).Assembly));
+        services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
+        services.AddIdentityCore<User>();
+        services.Configure<CookiesOptions>(configuration.GetRequiredSection(CookiesOptions.SectionName));
         services.AddAuth(configuration);
         return services;
     }

@@ -2,7 +2,6 @@ using app.Data.Interceptors;
 using app.Models.Common;
 using app.Models.EventAggregate;
 using app.Models.EventAggregate.Entities;
-using app.Models.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

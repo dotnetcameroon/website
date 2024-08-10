@@ -1,6 +1,5 @@
 using app.Components;
 using app.Extensions;
-using app.Models.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
