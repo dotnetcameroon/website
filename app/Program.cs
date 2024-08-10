@@ -1,10 +1,10 @@
 using app.Components;
+using app.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents();
+builder.Services.AddServices(builder.Configuration);
 
 var app = builder.Build();
 
@@ -21,6 +21,10 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseAntiforgery();
+
+app.UseAuthentication();
+
+app.UseAuthorization();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
