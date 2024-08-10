@@ -8,7 +8,9 @@ using app.Services;
 using app.Services.Impl;
 using app.Utils;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace app.Extensions;
 public static class Extensions
@@ -22,9 +24,12 @@ public static class Extensions
         services.AddScoped<IEventService,EventService>();
         services.AddScoped<DomainEventsInterceptor>();
         services.AddSqlServer<AppDbContext>(configuration.GetConnectionString("SqlServer"));
+        services.AddScoped<DbContext>(sp => sp.GetRequiredService<AppDbContext>());
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Extensions).Assembly));
         services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
-        services.AddIdentityCore<User>();
+        services
+            .AddIdentity<User, IdentityRole>()
+            .AddEntityFrameworkStores<AppDbContext>();
         services.Configure<CookiesOptions>(configuration.GetRequiredSection(CookiesOptions.SectionName));
         services.AddAuth(configuration);
         return services;
