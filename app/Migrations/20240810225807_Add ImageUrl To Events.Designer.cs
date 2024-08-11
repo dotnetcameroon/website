@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using app.Persistence;
 
@@ -12,9 +13,11 @@ using app.Persistence;
 namespace app.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240810225807_Add ImageUrl To Events")]
+    partial class AddImageUrlToEvents
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -334,9 +337,6 @@ namespace app.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Images")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RegistrationLink")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")

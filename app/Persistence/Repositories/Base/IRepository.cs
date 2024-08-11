@@ -5,6 +5,7 @@ namespace app.Persistence.Repositories.Base;
 
 public interface IRepository<TEntity, TId> where TEntity : Entity<TId>
 {
+    IQueryable<TEntity> Table { get; }
     Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default);
     Task<bool> DeleteAsync(TEntity entity, CancellationToken cancellationToken = default);
     Task<bool> DeleteAsync(TId id, CancellationToken cancellationToken = default);

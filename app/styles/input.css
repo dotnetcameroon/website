@@ -261,3 +261,19 @@
 .event-card:hover .event-background{
     transform: scale(1.05);
 }
+
+.event-card.event-card-1{
+    @apply md:w-[calc(66%-32px)];
+}
+
+.event-card.event-card-1 .event-card-description{
+    @apply md:text-5xl;
+}
+
+.event-card.event-card-2{
+    @apply md:w-[calc(33%-32px)];
+}
+
+.event-card.event-card-2 .event-card-description{
+    @apply md:text-3xl;
+}

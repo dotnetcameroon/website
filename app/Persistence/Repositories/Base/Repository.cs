@@ -7,6 +7,7 @@ internal class Repository<TEntity, TId>(DbContext dbContext) : IRepository<TEnti
     where TEntity : Entity<TId>
 {
     protected readonly DbContext _dbContext = dbContext;
+    public IQueryable<TEntity> Table => _dbContext.Set<TEntity>();
 
     public virtual async Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default)
     {

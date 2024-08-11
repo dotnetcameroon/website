@@ -7,6 +7,7 @@ using app.Persistence.Repositories.Base;
 using app.Services;
 using app.Services.Impl;
 using app.Utils;
+using EntityFrameworkCore.Seeder.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -15,11 +16,17 @@ using Microsoft.Extensions.DependencyInjection;
 namespace app.Extensions;
 public static class Extensions
 {
-    public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddServices(
+        this IServiceCollection services,
+        IConfiguration configuration,
+        IHostEnvironment environment)
     {
         services.AddRazorComponents()
             .AddInteractiveServerComponents();
-
+        if(environment.IsProduction())
+        {
+            services.AddApplicationInsightsTelemetry(configuration);
+        }
         services.AddScoped<IUnitOfWork,UnitOfWork>();
         services.AddScoped<IEventService,EventService>();
         services.AddScoped<DomainEventsInterceptor>();
@@ -32,6 +39,10 @@ public static class Extensions
             .AddEntityFrameworkStores<AppDbContext>();
         services.Configure<CookiesOptions>(configuration.GetRequiredSection(CookiesOptions.SectionName));
         services.AddAuth(configuration);
+
+        // Seeders
+        services.ConfigureSeedersEngine();
+        services.AddSeedersFromAssembly(typeof(Extensions).Assembly);
         return services;
     }
 
