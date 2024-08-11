@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app", "app\app.csproj", "{EA4A2653-03FF-435B-A78A-196B1DAF3C5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnet-ef-seeder", "dotnet-ef-seeder\dotnet-ef-seeder.csproj", "{C1F7493D-FA5C-43FB-BEB4-D44ADD71F1CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{EA4A2653-03FF-435B-A78A-196B1DAF3C5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA4A2653-03FF-435B-A78A-196B1DAF3C5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA4A2653-03FF-435B-A78A-196B1DAF3C5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1F7493D-FA5C-43FB-BEB4-D44ADD71F1CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1F7493D-FA5C-43FB-BEB4-D44ADD71F1CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1F7493D-FA5C-43FB-BEB4-D44ADD71F1CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1F7493D-FA5C-43FB-BEB4-D44ADD71F1CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
