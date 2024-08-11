@@ -7,6 +7,7 @@ using app.Persistence.Repositories.Base;
 using app.Services;
 using app.Services.Impl;
 using app.Utils;
+using EntityFrameworkCore.Seeder.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -32,6 +33,10 @@ public static class Extensions
             .AddEntityFrameworkStores<AppDbContext>();
         services.Configure<CookiesOptions>(configuration.GetRequiredSection(CookiesOptions.SectionName));
         services.AddAuth(configuration);
+
+        // Seeders
+        services.ConfigureSeedersEngine();
+        services.AddSeedersFromAssembly(typeof(Extensions).Assembly);
         return services;
     }
 

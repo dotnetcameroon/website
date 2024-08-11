@@ -1,5 +1,6 @@
 using app.Components;
 using app.Extensions;
+using EntityFrameworkCore.Seeder.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddServices(builder.Configuration);
 
 var app = builder.Build();
+
+if(await app.MapSeedCommandsAsync(args))
+{
+    return;
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
