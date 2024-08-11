@@ -14,6 +14,10 @@ public class Schedule
         IsAllDay = isAllDay;
     }
 
+    public Schedule()
+    {
+    }
+
     public static Schedule Create(DateTime start, DateTime? end, bool isAllDay = false)
     {
         var schedule = new Schedule(start, end, isAllDay);

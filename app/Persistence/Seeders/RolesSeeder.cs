@@ -1,11 +1,14 @@
+using app.Utils;
 using EntityFrameworkCore.Seeder.Base;
+using Microsoft.AspNetCore.Identity;
 
 namespace app.Persistence.Seeders;
-public class RolesSeeder : ISeeder
+public class RolesSeeder(RoleManager<IdentityRole> roleManager) : ISeeder
 {
+    private readonly RoleManager<IdentityRole> _roleManager = roleManager;
+
     public async Task SeedAsync()
     {
-        await Task.CompletedTask;
-        // throw new NotImplementedException();
+        await _roleManager.CreateAsync(new IdentityRole(Roles.Admin));
     }
 }

@@ -2,6 +2,7 @@
 @attribute [StreamRendering]
 @inject IEventService EventService
 
+<PageTitle>.NET Cameroon 🇨🇲 | Events</PageTitle>
 <NavBar />
 <Banner Title="Events" Description="Discover, Connect, and Grow with our upcoming Events." BackgroundImage="carousel-2.png"/>
 
@@ -13,58 +14,28 @@
             <h1 class="heading heading-1">Get in touch with our up coming events</h1>
             <p class="md:w-2/3">Stay ahead in the .NET world by joining our upcoming events. From hands-on workshops to networking meetups, these events are your chance to learn, connect, and grow with our community.</p>
             <div class="md:relative flex flex-col md:flex-row gap-4 mt-4">
-                @foreach(var (item, i) in _upcomingEvents.Select((item, index) => (item, index)))
+                @foreach(var (item, i) in _upcomingEvents.Select((item, index) => (item, index + 1)))
                 {
-                    <div class="event-card relative md:w-[calc(66%-32px)] h-[500px] flex items-end p-8 overflow-hidden">
-                        <img class="event-background absolute top-0 left-0 w-full h-ful" src="/assets/activity.jpg" alt="Title"/>
+                    <div class="event-card event-card-@i relative h-[500px] flex items-end p-8 overflow-hidden">
+                        <img class="event-background absolute top-0 left-0 w-full h-ful" src="@item.ImageUrl" alt="Title"/>
                         <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40"></div>
                         <div class="event-container relative z-10 flex flex-col gap-6 items-start overflow-y-hidden">
                             <div class="event-text">
-                                <h2 class="heading heading-5 md:heading-3 text-white bg-primary p-4 w-fit">Cameroon Tech Day</h2>
-                                <p class="font-special text-2xl md:text-5xl text-white font-bold">Join us this 12th of december for the Cameroon Tech Day</p>
-                                <p class="text-white font-bold">12th December 2024</p>
+                                <h2 class="heading heading-5 md:heading-3 text-white bg-primary p-4 w-fit">@item.Title</h2>
+                                <p class="event-card-description font-special text-white text-2xl font-bold text-ellipsis line-clamp-3">@item.Description</p>
+                                <p class="text-white font-bold">@item.Schedule.Start.ToCustomDateString()</p>
                             </div>
                             <div class="event-actions flex gap-4 md:translate-y-full md:opacity-0 flex-wrap">
                                 <a href="@item.RegistrationLink" class="btn btn-primary">Register</a>
-                                <a href="/events" class="btn btn-secondary">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+                                <a href="/events/@item.Id" class="btn btn-secondary">Learn more <i class="fa-solid fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
                 }
-                <a href="/events" class="hidden self-center md:flex flex-col w-16 h-16 rounded-full items-center border-2 border-black justify-center hover:bg-black hover:text-white bg-opacity-75 hover:bg-opacity-100 transition-all">
+                <a href="/events/search" class="hidden self-center md:flex flex-col w-16 h-16 rounded-full items-center border-2 border-black justify-center hover:bg-black hover:text-white bg-opacity-75 hover:bg-opacity-100 transition-all">
                     All
                     <i class="fa-solid fa-arrow-right"></i>
                 </a>
-                @* <div class="event-card relative md:w-[calc(66%-32px)] h-[500px] flex items-end p-8 overflow-hidden">
-                    <img class="event-background absolute top-0 left-0 w-full h-ful" src="/assets/activity.jpg" alt="Title"/>
-                    <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40"></div>
-                    <div class="event-container relative z-10 flex flex-col gap-6 items-start overflow-y-hidden">
-                        <div class="event-text">
-                            <h2 class="heading heading-5 md:heading-3 text-white bg-primary p-4 w-fit">Cameroon Tech Day</h2>
-                            <p class="font-special text-2xl md:text-5xl text-white font-bold">Join us this 12th of december for the Cameroon Tech Day</p>
-                            <p class="text-white font-bold">12th December 2024</p>
-                        </div>
-                        <div class="event-actions flex gap-4 md:translate-y-full md:opacity-0 flex-wrap">
-                            <a href="/events" class="btn btn-primary">Register</a>
-                            <a href="/events" class="btn btn-secondary">Learn more <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="event-card relative md:w-[calc(33%-32px)] h-[500px] flex items-end p-8 overflow-hidden">
-                    <img class="event-background absolute top-0 left-0 w-full h-ful object-cover" src="/assets/activity.jpg" alt="Title"/>
-                    <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40"></div>
-                    <div class="event-container relative z-10 flex flex-col gap-6 items-start overflow-y-hidden">
-                        <div class="event-text">
-                            <h2 class="heading heading-5 text-white bg-primary p-4 w-fit">Cameroon Tech Day</h2>
-                            <p class="font-special text-2xl md:text-3xl text-white font-bold">Join us this 12th of december for the Cameroon Tech Day</p>
-                            <p class="text-white font-bold">12th December 2024</p>
-                        </div>
-                        <div class="event-actions flex gap-4 md:translate-y-full md:opacity-0 flex-wrap">
-                            <a href="/events" class="btn btn-primary">Register</a>
-                            <a href="/events" class="btn btn-secondary">Learn more <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div> *@
             </div>
             @if(_upcomingEvents.Length > 0)
             {
@@ -89,8 +60,8 @@
                         <img src="@item.ImageUrl" alt="@item.Title" class="h-[200px] w-full md:w-[400px] object-cover" >
                         <div class="flex flex-col items-start">
                             <h2 class="heading heading-3 hidden md:block">@item.Title</h2>
-                            <p class="bg-secondary bg-opacity-60 text-white px-2 py-1 text-xs rounded-xl">15 December 2023 | In-Person</p>
-                            <p class="mt-2">
+                            <p class="bg-secondary bg-opacity-60 text-white px-2 py-1 text-xs rounded-xl">@item.Schedule.Start.ToCustomDateString() | @item.HostingModel.ToFriendlyString()</p>
+                            <p class="mt-2 text-ellipsis line-clamp-3">
                                 @item.Description
                             </p>
                             <a href="/events/@item.Id" class="btn btn-primary mt-2">Read more <i class="fa-solid fa-arrow-right"></i></a>

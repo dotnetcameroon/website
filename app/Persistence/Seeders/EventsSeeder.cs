@@ -10,13 +10,7 @@ public class EventsSeeder(AppDbContext dbContext, ILogger<EventsSeeder> logger) 
     public async Task SeedAsync()
     {
         var events = new EventsFactory().Generate(10);
-        foreach (var @event in events)
-        {
-            _logger.LogInformation("Event created: {Title}", @event.Title);
-        }
-
-        await Task.CompletedTask;
-        // await _dbContext.AddRangeAsync(events);
-        // await _dbContext.SaveChangesAsync();
+        await _dbContext.AddRangeAsync(events);
+        await _dbContext.SaveChangesAsync();
     }
 }
