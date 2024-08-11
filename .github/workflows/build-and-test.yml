@@ -28,17 +28,11 @@ jobs:
       with:
         dotnet-version: 8.x
 
-    - name: Install .NET MAUI workload
-      run: dotnet workload install maui-android maui-ios
-
     - name: Restore dependencies
       run: dotnet restore
 
     - name: Build solution
-      run: |
-        dotnet build src/Api --configuration Release --no-restore
-        dotnet build src/Dashboard --configuration Release --no-restore
-        dotnet build src/Mobile --configuration Release -p:TargetPlatform=android --no-restore
+      run: dotnet build --configuration Release --no-restore
 
     - name: Run tests
       run: dotnet test
