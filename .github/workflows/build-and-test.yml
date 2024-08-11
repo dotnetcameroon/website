@@ -16,7 +16,7 @@ on:
       - feature*
 jobs:
   build-and-test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     name: Build And Test Job
 
     steps:
