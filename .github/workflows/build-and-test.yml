@@ -1,0 +1,44 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - develop
+      - feature*
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
+      - master
+      - develop
+      - feature*
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+    name: Build And Test Job
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 8.x
+
+    - name: Install .NET MAUI workload
+      run: dotnet workload install maui-android maui-ios
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build solution
+      run: |
+        dotnet build src/Api --configuration Release --no-restore
+        dotnet build src/Dashboard --configuration Release --no-restore
+        dotnet build src/Mobile --configuration Release -p:TargetPlatform=android --no-restore
+
+    - name: Run tests
+      run: dotnet test
