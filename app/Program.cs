@@ -5,7 +5,7 @@ using EntityFrameworkCore.Seeder.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddServices(builder.Configuration);
+builder.Services.AddServices(builder.Configuration, builder.Environment);
 
 var app = builder.Build();
 

@@ -37,6 +37,7 @@ jobs:
           CookiesOptions.LogoutPath: ${{ secrets.COOKIES_LOGOUTPATH}}
           CookiesOptions.AccessDeniedPath: ${{ secrets.COOKIES_ACCESSDENIEDPATH}}
           CookiesOptions.ExpirationInDays: ${{ secrets.COOKIES_EXPIRATIONINDAYS}}
+          ApplicationInsights.InstrumentationKey: ${{ secrets.AZURE_APPINSIGHTS_INSTRUMENTAL_KEY}}
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:

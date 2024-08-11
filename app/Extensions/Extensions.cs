@@ -16,11 +16,17 @@ using Microsoft.Extensions.DependencyInjection;
 namespace app.Extensions;
 public static class Extensions
 {
-    public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddServices(
+        this IServiceCollection services,
+        IConfiguration configuration,
+        IHostEnvironment environment)
     {
         services.AddRazorComponents()
             .AddInteractiveServerComponents();
-
+        if(environment.IsProduction())
+        {
+            services.AddApplicationInsightsTelemetry(configuration);
+        }
         services.AddScoped<IUnitOfWork,UnitOfWork>();
         services.AddScoped<IEventService,EventService>();
         services.AddScoped<DomainEventsInterceptor>();
