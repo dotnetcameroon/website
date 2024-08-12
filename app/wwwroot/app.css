@@ -1342,7 +1342,9 @@ video {
 }
 
 #navbar.transparent {
-  background-color: transparent;
+  position: fixed;
+  background-color: #00000059;
+  padding-top: 0rem;
 }
 
 #navbar.scrolled{
@@ -1431,6 +1433,12 @@ video {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+@media (max-width: 768px) {
+  #nav-links{
+    top: 70px;
+  }
 }
 
 #nav-links.active{
