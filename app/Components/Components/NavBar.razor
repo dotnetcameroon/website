@@ -1,11 +1,16 @@
 <header>
-    <nav id="navbar" class="relative w-full z-50 @NavBarClass">
+        <nav id="navbar" class="relative w-full z-50 @NavBarClass">
+        <!-- <nav id="navbar" class="fixed w-full h-screen z-50 @NavBarClass"> -->
         <div class="container mx-auto p-4 relative flex justify-between h-[70px] items-center">
             <a href="/" class="flex items-center gap-2">
                 <img src="/assets/logo-rounded.png" alt=".NET Cameroon Logo" class="size-12">
                 <span class="text-white">Cameroon</span>
             </a>
-            <ul id="nav-links" class="absolute md:relative top-full md:top-0 h-[calc(100vh-70px)] md:h-auto bg-white md:bg-transparent w-full md:w-auto left-0 p-4 flex flex-col md:flex-row gap-2 md:gap-4">
+            <ul id="nav-links" class="fixed md:relative md:top-0 top-0 h-full md:h-auto bg-white md:bg-transparent w-full md:w-auto left-0 p-4 flex flex-col md:flex-row gap-2 md:gap-4">
+            <!-- style="top: 70px;"> -->
+            <!-- <ul id="nav-links" class="absolute md:relative top-0 md:top-full h-[calc(100vh-70px)] md:h-auto bg-white md:bg-transparent w-full md:w-auto left-0 p-4 flex flex-col md:flex-row gap-2 md:gap-4"> -->
+            <!-- <ul id="nav-links" class="fixed md:relative top-full md:top-0 h-[calc(100vh-70px)] md:h-auto bg-white md:bg-transparent w-full md:w-auto left-0 p-4 flex flex-col md:flex-row gap-2 md:gap-4 active"> -->
+            <!-- <ul id="nav-links" class="relative top-0 left-0 h-auto bg-white md:bg-transparent w-full p-4 flex flex-col md:flex-row gap-2 md:gap-4 active z-100"> -->
                 <li class="flex">
                     <NavLink href="/" Match="NavLinkMatch.All" class="py-2 md:text-slate-300 md:hover:text-white transition-all">Home</NavLink>
                 </li>

@@ -6,10 +6,16 @@
     font-family: "Noto Sans", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     scroll-behavior: smooth;
 }
-
-.page{
-    padding-top: 80px;
+@media (min-width: 768px) {
+    #nav-links {
+        @apply p-4;
+        max-height: initial;
+    }
 }
+
+/* .page{
+    padding-top: 80px;
+} */
 
 /* Headings */
 .heading {
@@ -118,7 +124,8 @@
 }
 
 #navbar.transparent{
-    @apply bg-transparent pt-5;
+    @apply bg-transparent;
+     /* pt-5; */
 }
 
 #navbar.scrolled{
