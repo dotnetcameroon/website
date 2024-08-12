@@ -1329,12 +1329,9 @@ video {
 
 #navbar.transparent {
   position: fixed;
-  background-color: transparent;
   background-color: #00000059;
   padding-top: 0rem;
 }
-
-  /* padding-top: 1.25rem; */
 
 #navbar.scrolled{
   position: fixed;

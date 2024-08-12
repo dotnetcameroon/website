@@ -13,14 +13,11 @@
     }
 }
 
-/* .page{
-    padding-top: 80px;
-} */
-
 /* Headings */
 .heading {
     @apply font-heading;
 }
+
 .heading-1 {
     @apply text-heading-1 leading-heading-1 mb-heading-1 font-heading font-bold;
 }
@@ -125,7 +122,6 @@
 
 #navbar.transparent{
     @apply bg-transparent;
-     /* pt-5; */
 }
 
 #navbar.scrolled{
