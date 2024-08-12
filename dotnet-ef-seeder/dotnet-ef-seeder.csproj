@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>EntityFrameworkCore.Seeder</RootNamespace>
+    <Title>EntityFrameworkCore.Seeder</Title>
+		<PackageId>EntityFrameworkCore.Seeder</PackageId>
+		<Description>This package defines a pattern to register and execute seeders to populate a database with test data</Description>
+		<Author>Djoufson Che</Author>
+		<Authors>Djoufson Che</Authors>
+		<PackageVersion>1.0.1</PackageVersion>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>logo.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bogus" Version="35.6.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+      <None Include="..\README.md" Pack="true" PackagePath="\"/>
+      <None Include="..\LICENSE.txt" Pack="true" PackagePath="\"/>
+      <None Include="..\assets\logo.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
+</Project>

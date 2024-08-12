@@ -2,6 +2,8 @@
 
 Welcome to the official website repository of the .NET Community in Cameroon! This website serves as a hub for our community, providing information about events, resources, and news related to .NET technologies.
 
+[Visit the Website](https://dotnetcameroon.azurewebsites.net)
+
 ![HomePage](./docs/assets/homepage.png)
 
 ## Table of Contents

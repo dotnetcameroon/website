@@ -1,0 +1,88 @@
+@page "/events"
+@attribute [StreamRendering]
+@inject IEventService EventService
+
+<PageTitle>.NET Cameroon 🇨🇲 | Events</PageTitle>
+<NavBar />
+<Banner Title="Events" Description="Discover, Connect, and Grow with our upcoming Events." BackgroundImage="carousel-2.png"/>
+
+<!-- Up coming events -->
+@if(_upcomingEvents.Length > 0)
+{
+    <section>
+        <div class="container mx-auto p-4 section flex flex-col items-start">
+            <h1 class="heading heading-1">Get in touch with our up coming events</h1>
+            <p class="md:w-2/3">Stay ahead in the .NET world by joining our upcoming events. From hands-on workshops to networking meetups, these events are your chance to learn, connect, and grow with our community.</p>
+            <div class="md:relative flex flex-col md:flex-row gap-4 mt-4">
+                @foreach(var (item, i) in _upcomingEvents.Select((item, index) => (item, index + 1)))
+                {
+                    <div class="event-card event-card-@i relative h-[500px] flex items-end p-8 overflow-hidden">
+                        <img class="event-background absolute top-0 left-0 w-full h-ful" src="@item.ImageUrl" alt="Title"/>
+                        <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40"></div>
+                        <div class="event-container relative z-10 flex flex-col gap-6 items-start overflow-y-hidden">
+                            <div class="event-text">
+                                <h2 class="heading heading-5 md:heading-3 text-white bg-primary p-4 w-fit">@item.Title</h2>
+                                <p class="event-card-description font-special text-white text-2xl font-bold text-ellipsis line-clamp-3">@item.Description</p>
+                                <p class="text-white font-bold">@item.Schedule.Start.ToCustomDateString()</p>
+                            </div>
+                            <div class="event-actions flex gap-4 md:translate-y-full md:opacity-0 flex-wrap">
+                                <a href="@item.RegistrationLink" class="btn btn-primary">Register</a>
+                                <a href="/events/@item.Id" class="btn btn-secondary">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <a href="/events/search" class="hidden self-center md:flex flex-col w-16 h-16 rounded-full items-center border-2 border-black justify-center hover:bg-black hover:text-white bg-opacity-75 hover:bg-opacity-100 transition-all">
+                    All
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+            @if(_upcomingEvents.Length > 0)
+            {
+                <a href="/" class="link link-secondary mt-4 md:hidden self-center">View all</a>
+            }
+        </div>
+    </section>
+
+}
+<!-- Previous events -->
+<section>
+    <div class="container mx-auto p-4 section">
+        <h1 class="heading heading-1">Take a look at our previous events</h1>
+        <p class="md:w-2/3">Revisit the highlights of our past events. Explore our archive to relive the learning, collaboration, and innovation that have shaped our community's journey.</p>
+        <div class="mt-7 flex flex-col gap-6 md:gap-16">
+            @if(_previousEvents.Length > 0)
+            {
+                @foreach(var item in _previousEvents)
+                {
+                    <div class="past-event-card flex flex-col md:flex-row gap-4">
+                        <h2 class="heading heading-3 md:hidden">@item.Title</h2>
+                        <img src="@item.ImageUrl" alt="@item.Title" class="h-[200px] w-full md:w-[400px] object-cover" >
+                        <div class="flex flex-col items-start">
+                            <h2 class="heading heading-3 hidden md:block">@item.Title</h2>
+                            <p class="bg-secondary bg-opacity-60 text-white px-2 py-1 text-xs rounded-xl">@item.Schedule.Start.ToCustomDateString() | @item.HostingModel.ToFriendlyString()</p>
+                            <p class="mt-2 text-ellipsis line-clamp-3">
+                                @item.Description
+                            </p>
+                            <a href="/events/@item.Id" class="btn btn-primary mt-2">Read more <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="heading heading-3"><i class="fa-regular fa-face-frown"></i> There is unfortunately nothing to show !</p>
+            }
+        </div>
+    </div>
+</section>
+
+@code{
+    private Event[] _upcomingEvents = [];
+    private Event[] _previousEvents = [];
+    protected override async Task OnInitializedAsync()
+    {
+        _upcomingEvents = await EventService.GetUpcomingAsync();
+        _previousEvents = await EventService.GetPreviousAsync();
+    }
+}

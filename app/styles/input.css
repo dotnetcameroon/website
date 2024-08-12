@@ -197,10 +197,18 @@
 
 #nav-links.active{
     max-height: 100vh;
-    @apply p-4;
+    padding: 1rem;
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
+}
+#nav-links a{
+    border: 2px solid transparent;
+}
+
+#nav-links a.active{
+    font-weight: bold;
+    border-bottom: 2px solid white;
 }
 
 @media (min-width: 768px) {
@@ -222,4 +230,53 @@
     transform: translateY(0px);
     opacity: 1;
     @apply transition-all;
+}
+
+.event-card .event-actions{
+    transition: all ease-in-out .3s;
+}
+
+.event-card .event-text{
+    transition: all ease-in-out .4s;
+}
+
+.event-card .event-container{
+    transition: all ease-in-out .4s;
+}
+
+.event-card .event-background{
+    transition: all ease-in-out .7s;
+}
+
+.event-card:hover .event-actions{
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.event-card:hover .event-text{
+    transform: translateY(-30px);
+}
+
+.event-card:hover .event-container{
+    overflow-y: visible;
+}
+
+.event-card:hover .event-background{
+    transform: scale(1.05);
+}
+
+.event-card.event-card-1{
+    @apply md:w-[calc(66%-32px)];
+}
+
+.event-card.event-card-1 .event-card-description{
+    @apply md:text-5xl;
+}
+
+.event-card.event-card-2{
+    @apply md:w-[calc(33%-32px)];
+}
+
+.event-card.event-card-2 .event-card-description{
+    @apply md:text-3xl;
 }
