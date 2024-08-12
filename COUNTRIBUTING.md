@@ -16,10 +16,10 @@ We welcome feature suggestions. Please create an issue detailing your idea and w
 
 1. Fork the repository.
 2. Head on the website documentation [here](./docs/description.md) and read it
-3. Create your feature branch (`git checkout -b feature/AmazingFeature`).
+3. Create your feature branch (`git checkout -b feature/AmazingFeature`) from the `develop` branch ⚠️⚠️.
 4. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
 5. Push to the branch (`git push origin feature/AmazingFeature`).
-6. Open a pull request.
+6. Open a pull request into the `develop` branch not `main` ⚠️⚠️⚠️.
 
 ### Coding Standards
 
