@@ -25,8 +25,19 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
-
+        run: dotnet publish ./app -c Release -o ${{env.DOTNET_ROOT}}/myapp
+      - name: App Settings Variable Substitution
+        uses: microsoft/variable-substitution@v1
+        with:
+          files: '${{env.DOTNET_ROOT}}/myapp/appsettings.Production.json'
+        env:
+          ConnectionStrings.SqlServer: ${{ secrets.AZURE_SQLSERVER_WEBSITE_DATABASE }}
+          CookiesOptions.Issuer: ${{ secrets.COOKIES_ISSUER}}
+          CookiesOptions.LoginPath: ${{ secrets.COOKIES_LOGINPATH}}
+          CookiesOptions.LogoutPath: ${{ secrets.COOKIES_LOGOUTPATH}}
+          CookiesOptions.AccessDeniedPath: ${{ secrets.COOKIES_ACCESSDENIEDPATH}}
+          CookiesOptions.ExpirationInDays: ${{ secrets.COOKIES_EXPIRATIONINDAYS}}
+          ApplicationInsights.InstrumentationKey: ${{ secrets.AZURE_APPINSIGHTS_INSTRUMENTAL_KEY}}
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
