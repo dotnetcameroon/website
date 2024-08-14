@@ -82,7 +82,15 @@
     private Event[] _previousEvents = [];
     protected override async Task OnInitializedAsync()
     {
-        _upcomingEvents = await EventService.GetUpcomingAsync();
-        _previousEvents = await EventService.GetPreviousAsync();
+        var upcomingResult = await EventService.GetUpcomingAsync();
+        if(!upcomingResult.IsError)
+        {
+            _upcomingEvents = upcomingResult.Value;
+        }
+        var previousResult = await EventService.GetPreviousAsync();
+        if(!previousResult.IsError)
+        {
+            _previousEvents = previousResult.Value;
+        }
     }
 }
