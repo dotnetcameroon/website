@@ -1,5 +1,4 @@
 @page "/events"
-@attribute [StreamRendering]
 @inject IEventService EventService
 
 <PageTitle>.NET Cameroon 🇨🇲 | Events</PageTitle>
@@ -17,7 +16,7 @@
                 @foreach(var (item, i) in _upcomingEvents.Select((item, index) => (item, index + 1)))
                 {
                     <div class="event-card event-card-@i relative h-[500px] flex items-end p-8 overflow-hidden">
-                        <img class="event-background absolute top-0 left-0 w-full h-ful" src="@item.ImageUrl" alt="Title"/>
+                        <img class="event-background absolute top-0 left-0 w-full h-ful" src="@item.ImageUrl" alt="@item.Title"/>
                         <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40"></div>
                         <div class="event-container relative z-10 flex flex-col gap-6 items-start overflow-y-hidden">
                             <div class="event-text">
@@ -82,7 +81,15 @@
     private Event[] _previousEvents = [];
     protected override async Task OnInitializedAsync()
     {
-        _upcomingEvents = await EventService.GetUpcomingAsync();
-        _previousEvents = await EventService.GetPreviousAsync();
+        var upcomingResult = await EventService.GetUpcomingAsync();
+        if(!upcomingResult.IsError)
+        {
+            _upcomingEvents = upcomingResult.Value;
+        }
+        var previousResult = await EventService.GetPreviousAsync();
+        if(!previousResult.IsError)
+        {
+            _previousEvents = previousResult.Value;
+        }
     }
 }

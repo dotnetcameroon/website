@@ -1,4 +1,5 @@
 using app.Data.Interceptors;
+using app.Middlewares;
 using app.Models.Identity;
 using app.Options;
 using app.Persistence;
@@ -26,7 +27,9 @@ public static class Extensions
         if(environment.IsProduction())
         {
             services.AddApplicationInsightsTelemetry(configuration);
+            services.AddExceptionHandler<ExceptionHandlerMiddleware>();
         }
+
         services.AddScoped<IUnitOfWork,UnitOfWork>();
         services.AddScoped<IEventService,EventService>();
         services.AddScoped<DomainEventsInterceptor>();

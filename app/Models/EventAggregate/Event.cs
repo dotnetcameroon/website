@@ -85,7 +85,7 @@ public sealed class Event : Entity<Guid>, IAggregateRoot
 
     public void Publish()
     {
-        Status = EventStatus.CommingSoon;
+        Status = EventStatus.ComingSoon;
     }
 
     public void Cancel()
