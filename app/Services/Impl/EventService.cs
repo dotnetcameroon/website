@@ -44,7 +44,12 @@ internal class EventService(IRepository<Event, Guid> eventRepository) : IEventSe
 
     public async Task<ErrorOr<Event>> GetAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var @event = await _eventRepository.GetAsync(id, cancellationToken);
+        var @event = await _eventRepository
+            .Table
+            .Include(e => e.Activities)
+            .Include(e => e.Partners)
+            .FirstOrDefaultAsync(e => e.Id == id, cancellationToken);
+
         if(@event is null)
         {
             return Error.NotFound("Event.NotFound", "Event not found");

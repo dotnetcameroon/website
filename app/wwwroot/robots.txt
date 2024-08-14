@@ -1,4 +1,4 @@
-# robots.txt file for .NET Community Cameroon
+# robots.txt file for .NET Cameroon Community
 
 User-agent: *
 Disallow: /admin/

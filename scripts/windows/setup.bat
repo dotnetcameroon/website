@@ -14,4 +14,6 @@ while (-not (docker exec $containerName /opt/mssql-tools/bin/sqlcmd -S localhost
 dotnet ef database update --project ./app/ 
 
 # Seed the database
-dotnet run --project ./app/ --seed
+dotnet run --project ./app/ --seed RolesSeeder
+dotnet run --project ./app/ --seed PartnersSeeder
+dotnet run --project ./app/ --seed EventsSeeder
