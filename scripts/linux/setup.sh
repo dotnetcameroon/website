@@ -11,4 +11,6 @@ done
 dotnet ef database update --project ./app/ && \
 
 # Seed the database
-dotnet run --project ./app/ --seed
+dotnet run --project ./app/ --seed RolesSeeder
+dotnet run --project ./app/ --seed PartnersSeeder
+dotnet run --project ./app/ --seed EventsSeeder
