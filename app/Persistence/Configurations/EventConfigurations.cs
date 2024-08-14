@@ -10,7 +10,11 @@ public class EventConfigurations : IEntityTypeConfiguration<Event>
         builder.ToTable("Events");
         builder.ComplexProperty(e => e.Schedule);
         builder.HasMany(e => e.Partners).WithMany();
-        builder.HasMany(e => e.Activities).WithOne().OnDelete(DeleteBehavior.Cascade);
+        builder
+            .HasMany(e => e.Activities)
+            .WithOne(a => a.Event)
+            .HasForeignKey(a => a.EventId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder.Navigation(c => c.Activities).Metadata.SetField("_activities");
         builder.Metadata.FindNavigation(nameof(Event.Activities))?

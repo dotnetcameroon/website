@@ -16,17 +16,17 @@ public sealed class Event : Entity<Guid>, IAggregateRoot
     public EventType Type { get; private set; }
     public EventStatus Status { get; private set; }
     public EventHostingModel HostingModel { get; private set; }
-    public int? Attendance { get; private set; }
-    public string? RegistrationLink { get; private set; }
+    public int Attendance { get; private set; }
+    public string RegistrationLink { get; private set; }
     /// <summary>
     /// The image url of the event
     /// </summary>
-    public string? ImageUrl { get; private set; }
+    public string ImageUrl { get; private set; }
 
     /// <summary>
     /// The list of images links separated by comma
     /// </summary>
-    public string? Images { get; private set; }
+    public string Images { get; private set; }
     public IReadOnlyList<Partner> Partners => [.. _partners];
     public IReadOnlyList<Activity> Activities => [.. _activities];
     public IReadOnlyList<IDomainEvent> DomainEvents => [.. _domainEvents];
@@ -40,10 +40,10 @@ public sealed class Event : Entity<Guid>, IAggregateRoot
         EventType type,
         EventStatus status,
         EventHostingModel hostingModel,
-        string? imageUrl,
-        string? images,
-        int? attendance,
-        string? registrationLink) : base(id)
+        string imageUrl,
+        string images,
+        int attendance,
+        string registrationLink) : base(id)
     {
         Title = title;
         Description = description;
@@ -125,10 +125,10 @@ public sealed class Event : Entity<Guid>, IAggregateRoot
             type,
             status,
             hostingModel,
-            imageUrl,
-            images,
-            attendance,
-            registrationLink);
+            imageUrl ?? string.Empty,
+            images ?? string.Empty,
+            attendance ?? 0,
+            registrationLink ?? string.Empty);
 
         if(activities is not null)
         {
