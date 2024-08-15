@@ -32,6 +32,7 @@ public static class Extensions
 
         services.AddScoped<IUnitOfWork,UnitOfWork>();
         services.AddScoped<IEventService,EventService>();
+        services.AddScoped<IIdentityService,IdentityService>();
         services.AddScoped<DomainEventsInterceptor>();
         services.AddSqlServer<AppDbContext>(configuration.GetConnectionString("SqlServer"));
         services.AddScoped<DbContext>(sp => sp.GetRequiredService<AppDbContext>());

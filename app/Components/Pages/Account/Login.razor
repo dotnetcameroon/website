@@ -1,0 +1,75 @@
+@page "/account/login"
+@layout BlankLayout
+@inject NavigationManager NavigationManager
+@inject IIdentityService IdentityService
+
+<PageTitle>.NET Cameroon | Login</PageTitle>
+
+<div class="h-[100svh] flex">
+    <div class="relative hidden md:flex md:flex-col items-start md:w-1/2 bg-primary p-12 bg-[url('/assets/featured/carousel-3.png')] bg-bottom bg-cover bg-no-repeat">
+        <div class="absolute z-10 top-0 left-0 w-full h-full bg-gradient-to-r from-black to-transparent opacity-70"></div>
+        <a href="/" class="relative z-10">
+            <img src="/assets/brand/logo.png" alt=".NET Cameroon logo" class="w-[100px]">
+        </a>
+    </div>
+    <div class="w-full md:w-1/2 flex items-center justify-center p-8 md:p-12">
+        <div class="flex flex-col gap-6 w-[400px] p-4">
+            <img src="/assets/brand/logo-rounded.png" alt=".NET Cameroon logo" class="block justify-self-center self-center my-4 size-20"/>
+            <div>
+                <h1 class="heading heading-1 text-center">Hi Administrator !!, Welcome Back</h1>
+                <p class="text-center text-gray-500">Hope you are doing well</p>
+                <ul>
+                    @foreach(var message in _errorMessages)
+                    {
+                        <li class="text-red-400 list-disc">@message</li>
+                    }
+                </ul>
+            </div>
+            <EditForm class="flex flex-col gap-4" OnValidSubmit="@HandleLogin" Model="@Model" FormName="login-form">
+                <label for="email-input" class="flex items-center px-4 gap-1 border border-gray-400 rounded-lg">
+                    <i class="fa-regular fa-envelope"></i>
+                    <InputText class="p-2 w-full" id="email-input" @bind-Value="@Model.Email" title="email" required type="email" placeholder="Your email"/>
+                </label>
+                <label for="password-input" class="flex items-center px-4 gap-1 border border-gray-400 rounded-lg">
+                    <i class="fa-solid fa-lock"></i>
+                    <InputText class="p-2 w-full" id="password-input" @bind-Value="@Model.Password" title="password" required type="password" placeholder="Your password"/>
+                </label>
+                <button class="btn btn-primary center mt-6" type="submit">Log in</button>
+                <a href="/" class="link link-secondary text-center"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string? ReturnUrl { get; set; }= string.Empty;
+    private const string DefaultReturnUrl = "/admin";
+
+    [SupplyParameterFromForm]
+    private LoginModel Model { get; set; } = new();
+    private string[] _errorMessages = [];
+    private async Task HandleLogin()
+    {
+        var userResult = await IdentityService.LoginAsync(Model.Email, Model.Password);
+        Model.Password = string.Empty;
+        if(userResult.IsError)
+        {
+            _errorMessages = userResult.Errors.Select(e => e.Description).ToArray();
+            return;
+        }
+
+        if(string.IsNullOrWhiteSpace(ReturnUrl))
+        {
+            ReturnUrl = DefaultReturnUrl;
+        }
+
+        NavigationManager.NavigateTo(ReturnUrl, true);
+    }
+
+    class LoginModel
+    {
+        public string Email { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+    }
+}
