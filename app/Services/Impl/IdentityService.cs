@@ -25,4 +25,9 @@ public class IdentityService(UserManager<User> userManager, SignInManager<User> 
         await _signInManager.SignInAsync(user, isPersistent: false);
         return user;
     }
+
+    public async Task LogoutAsync()
+    {
+        await _signInManager.SignOutAsync();
+    }
 }
