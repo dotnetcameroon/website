@@ -42,8 +42,8 @@
 </div>
 
 @code {
-    [Parameter]
-    public string? ReturnUrl { get; set; }= string.Empty;
+    [Parameter, SupplyParameterFromQuery]
+    public string ReturnUrl { get; set; } = string.Empty;
     private const string DefaultReturnUrl = "/admin";
 
     [SupplyParameterFromForm]
