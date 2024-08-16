@@ -1,46 +1,57 @@
-<section>
-    <div class="section container mx-auto">
+<section class="text-white bg-secondary bg-opacity-75">
+    <div class=" relative mt-2 p-4 py-8 container mx-auto">
         <div class="flex flex-col gap-6 md:flex-row md:items-start md:gap-0 md:justify-between">
             <div>
-                <a href="/" class="flex items-center heading heading-2 w-fit">
+                <a href="/" class="flex items-center heading heading-2 w-fit" aria-label="Home">
                     .NET Cameroon
                 </a>
                 <!-- Newsletter form -->
             </div>
-            <div>
+            <nav>
                 <h2 class="heading heading-4">Resources</h2>
-                <ul class="">
-                    <li class="flex w-fit items-center hover:translate-x-2 transition-all"><a href="/" class="py-1"><i class="fa-solid fa-arrow-right"></i> Home</a></li>
-                    <li class="flex w-fit items-center hover:translate-x-2 transition-all"><a href="/events" class="py-1"><i class="fa-solid fa-arrow-right"></i> Events</a></li>
-                    <li class="flex w-fit items-center hover:translate-x-2 transition-all"><a href="/" class="py-1"><i class="fa-solid fa-arrow-right"></i> About <span class="ml-2 text-[10px] py-1 px-2 rounded-full bg-primary text-white">Soon</span></a></li>
-                    <li class="flex w-fit items-center hover:translate-x-2 transition-all"><a href="/" class="py-1"><i class="fa-solid fa-arrow-right"></i> Projects <span class="ml-2 text-[10px] py-1 px-2 rounded-full bg-primary text-white">Soon</span></a></li>
-                    <li class="flex w-fit items-center hover:translate-x-2 transition-all"><a href="/" class="py-1"><i class="fa-solid fa-arrow-right"></i> Resources</a></li>
-                    <li class="flex w-fit items-center hover:translate-x-2 transition-all"><a href="/" class="py-1"><i class="fa-solid fa-arrow-right"></i> Contact</a></li>
+                <ul>
+                    <li class="flex w-fit items-center hover:translate-x-2 transition-all">
+                        <a href="/" class="py-1" aria-label="Home"><i class="fa-solid fa-arrow-right"></i> Home</a>
+                    </li>
+                    <li class="flex w-fit items-center hover:translate-x-2 transition-all">
+                        <a href="/events" class="py-1" aria-label="Events"><i class="fa-solid fa-arrow-right"></i> Events</a>
+                    </li>
+                    <li class="flex w-fit items-center hover:translate-x-2 transition-all">
+                        <a href="/" class="py-1" aria-label="About"><i class="fa-solid fa-arrow-right"></i> About <span class="ml-2 text-[10px] py-1 px-2 rounded-full bg-primary text-white">Soon</span></a>
+                    </li>
+                    <li class="flex w-fit items-center hover:translate-x-2 transition-all">
+                        <a href="/" class="py-1" aria-label="Projects"><i class="fa-solid fa-arrow-right"></i> Projects <span class="ml-2 text-[10px] py-1 px-2 rounded-full bg-primary text-white">Soon</span></a>
+                    </li>
+                    <li class="flex w-fit items-center hover:translate-x-2 transition-all">
+                        <a href="/" class="py-1" aria-label="Resources"><i class="fa-solid fa-arrow-right"></i> Resources</a>
+                    </li>
+                    <li class="flex w-fit items-center hover:translate-x-2 transition-all">
+                        <a href="/" class="py-1" aria-label="Contact"><i class="fa-solid fa-arrow-right"></i> Contact</a>
+                    </li>
                 </ul>
-            </div>
+            </nav>
             <div>
                 <h2 class="heading heading-4">Contact</h2>
                 <ul>
                     <li class="py-1"><i class="fa-solid fa-location-dot"></i> Douala, Cameroon</li>
-                    <li class="py-1"><a href="mailto:dotnetcameroon@outlook.com" class="link link-secondary"><i class="fa-regular fa-envelope"></i> dotnetcameroon@outlook.com</a></li>
-                    <li class="py-1"<i class="fa-solid fa-phone"></i> +237 699254549, +237 653953452</li>
+                    <li class="py-1"><a href="mailto:dotnetcameroon@outlook.com" class="link link-white" aria-label="Email dotnetcameroon"><i class="fa-solid fa-envelope"></i> dotnetcameroon@outlook.com</a></li>
+                    <li class="py-1"><i class="fa-solid fa-phone"></i> +237 699254549, +237 653953452</li>
                 </ul>
             </div>
             <div>
                 <h2 class="heading heading-4">Join us</h2>
                 <p>Join us on our different platforms</p>
                 <ul class="flex gap-2 mt-3">
-                    <li><a href="https://discord.gg/npkCMRgqdm" class="btn btn-primary" target="_blank"><i class="fa-brands fa-discord"></i></a></li>
-                    <li><a href="https://chat.whatsapp.com/KlBkiJX85Y8KFS28tIm1UU" class="btn btn-primary" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
-                    <li><a href="https://www.linkedin.com/company/dotnetcameroon" class="btn btn-primary" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
-                    <li><a href="https://github.com/dotnetcameroon" class="btn btn-primary" target="_blank"><i class="fa-brands fa-github"></i></a></li>
-                    <li><a href="https://t.me/+cjXkPqigrZNkNDE0" class="btn btn-primary" target="_blank"><i class="fa-brands fa-telegram"></i></a></li>
+                    <li><a href="https://discord.gg/npkCMRgqdm" class="btn btn-primary" target="_blank" aria-label="Join Discord"><i class="fa-brands fa-discord"></i></a></li>
+                    <li><a href="https://chat.whatsapp.com/KlBkiJX85Y8KFS28tIm1UU" class="btn btn-primary" target="_blank" aria-label="Join WhatsApp"><i class="fa-brands fa-whatsapp"></i></a></li>
+                    <li><a href="https://www.linkedin.com/company/dotnetcameroon" class="btn btn-primary" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a></li>
+                    <li><a href="https://github.com/dotnetcameroon" class="btn btn-primary" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a></li>
+                    <li><a href="https://t.me/+cjXkPqigrZNkNDE0" class="btn btn-primary" target="_blank" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a></li>
                 </ul>
             </div>
         </div>
         <p class="text-center mt-8">Copyright &copy; .NET Cameroon @Year</p>
     </div>
-    
 </section>
 
 @code{
