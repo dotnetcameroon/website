@@ -7,7 +7,7 @@ using app.Persistence.Impl;
 using app.Persistence.Repositories.Base;
 using app.Services;
 using app.Services.Impl;
-using app.Utils;
+using app.Utilities;
 using EntityFrameworkCore.Seeder.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
@@ -32,6 +32,7 @@ public static class Extensions
 
         services.AddScoped<IUnitOfWork,UnitOfWork>();
         services.AddScoped<IEventService,EventService>();
+        services.AddScoped<IIdentityService,IdentityService>();
         services.AddScoped<DomainEventsInterceptor>();
         services.AddSqlServer<AppDbContext>(configuration.GetConnectionString("SqlServer"));
         services.AddScoped<DbContext>(sp => sp.GetRequiredService<AppDbContext>());

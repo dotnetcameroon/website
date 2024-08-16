@@ -14,3 +14,4 @@ dotnet ef database update --project ./app/ && \
 dotnet run --project ./app/ --seed RolesSeeder
 dotnet run --project ./app/ --seed PartnersSeeder
 dotnet run --project ./app/ --seed EventsSeeder
+dotnet run --project ./app/ --seed AdminsSeeder
