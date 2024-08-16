@@ -1,5 +1,5 @@
 using app.Models.Identity;
-using app.Utils;
+using app.Utilities;
 using EntityFrameworkCore.Seeder.Base;
 using Microsoft.AspNetCore.Identity;
 

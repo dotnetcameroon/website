@@ -45,3 +45,8 @@ function toggleExpand() {
     const sidebar = document.getElementById("sidebar");
     sidebar.classList.toggle("collapsed");
 }
+
+function onPageSizeSelected() {
+    const submitButton = document.getElementById("page-size-submit");
+    submitButton.click();
+}
