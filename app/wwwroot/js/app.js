@@ -35,7 +35,18 @@ function showBackToTop() {
     navbar.classList.remove("active");
     navbar.classList.add("active");
 }
+
 function hideBackToTop() {
     const navbar = document.getElementById("back-to-top");
     navbar.classList.remove("active");
+}
+
+function toggleExpand() {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("collapsed");
+}
+
+function onPageSizeSelected() {
+    const submitButton = document.getElementById("page-size-submit");
+    submitButton.click();
 }

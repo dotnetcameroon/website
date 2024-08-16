@@ -1,0 +1,19 @@
+@inherits LayoutComponentBase
+<div class="h-[100svh] bg-lightblue">
+    <header>
+        <AdminHeader/>
+    </header>
+    <main class="flex gap-2">
+        <AdminSideBar/>
+        <div class="content z-10 h-[calc(100svh-80px-40px)] md:h-[calc(100svh-160px)] p-2 md:p-8 overflow-y-scroll w-full">
+            @Body
+        </div>
+    </main>
+    <footer class="flex justify-center items-center bg-white bottom-0 h-[40px] md:h-[80px]">
+        Copyright &copy; <a href="/" class="link">.NET Cameroon</a> &nbsp; @Year
+    </footer>
+</div>
+
+@code{
+    public int Year => DateTime.Now.Year;
+}

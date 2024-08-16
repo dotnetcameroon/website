@@ -2,13 +2,14 @@ using app.Data.Interceptors;
 using app.Models.Common;
 using app.Models.EventAggregate;
 using app.Models.EventAggregate.Entities;
+using app.Models.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace app.Persistence;
 public sealed partial class AppDbContext(
     DbContextOptions<AppDbContext> options,
-    DomainEventsInterceptor domainEventsInterceptor) : IdentityDbContext(options)
+    DomainEventsInterceptor domainEventsInterceptor) : IdentityDbContext<User>(options)
 {
     private readonly DomainEventsInterceptor _domainEventsInterceptor = domainEventsInterceptor;
     public DbSet<Event> Events { get; set; }

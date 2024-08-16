@@ -280,3 +280,25 @@
 .event-card.event-card-2 .event-card-description{
     @apply md:text-3xl;
 }
+
+/* Sidebar */
+
+#sidebar.collapsed .nav-text{
+    display: none;
+}
+
+#sidebar.collapsed .sidebar-link{
+    @apply text-center;
+}
+
+#sidebar.collapsed{
+    @apply p-2 pt-24 w-auto;
+}
+
+#sidebar.collapsed .toggle{
+    @apply -rotate-90;
+}
+
+.sidebar-link.active{
+    @apply bg-opacity-25 bg-white;
+}

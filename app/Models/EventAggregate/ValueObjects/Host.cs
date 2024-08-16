@@ -23,7 +23,7 @@ public class Host
     public static Host Create(
         string name,
         string email,
-        string imageUrl = "/assets/avatar.png")
+        string imageUrl = "/assets/utils/avatar.png")
     {
         return new Host(
             name,

@@ -1,4 +1,4 @@
-namespace app.Utils;
+namespace app.Utilities;
 public enum NavType
 {
     Default,

@@ -2,6 +2,7 @@ using System.Linq.Expressions;
 using app.Models.EventAggregate;
 using app.Models.EventAggregate.Enums;
 using app.Persistence.Repositories.Base;
+using app.Utilities;
 using ErrorOr;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,31 +16,35 @@ internal class EventService(IRepository<Event, Guid> eventRepository) : IEventSe
         return _eventRepository.ExistsAsync(expression, cancellationToken);
     }
 
-    public async Task<ErrorOr<Event[]>> GetAllAsync(int page = 1, int number = 5, CancellationToken cancellationToken = default)
+    public async Task<ErrorOr<PagedList<Event>>> GetAllAsync(int page = 1, int size = 5, CancellationToken cancellationToken = default)
     {
+        var totalCount = await _eventRepository.Table.CountAsync(cancellationToken);
         var events = await _eventRepository
             .Table
             .OrderByDescending(e => e.Schedule.Start)
             .Skip(page - 1)
-            .Take(number)
-            .ToArrayAsync(cancellationToken);
+            .Take(size)
+            .ToListAsync(cancellationToken);
 
-        return events;
+        return PagedList.FromList(events, totalCount, page, size);
     }
 
-    public async Task<ErrorOr<Event[]>> GetAllAsync(Expression<Func<Event, bool>> predicate, int page = 1, int number = 5, CancellationToken cancellationToken = default)
+    public async Task<ErrorOr<PagedList<Event>>> SearchAsync(Expression<Func<Event, bool>> predicate, int page = 1, int size = 5, CancellationToken cancellationToken = default)
     {
-        var events = await _eventRepository
+        var query = _eventRepository
             .Table
             .Include(e => e.Activities)
             .Include(e => e.Partners)
-            .Where(predicate)
+            .Where(predicate);
+
+        var totalCount = await query.CountAsync(cancellationToken);
+        var events = await query
             .OrderByDescending(e => e.Schedule.Start)
             .Skip(page - 1)
-            .Take(number)
-            .ToArrayAsync(cancellationToken);
+            .Take(size)
+            .ToListAsync(cancellationToken);
 
-        return events;
+        return PagedList.FromList(events, totalCount, page, size);
     }
 
     public async Task<ErrorOr<Event>> GetAsync(Guid id, CancellationToken cancellationToken = default)
@@ -69,27 +74,27 @@ internal class EventService(IRepository<Event, Guid> eventRepository) : IEventSe
         return @event;
     }
 
-    public async Task<ErrorOr<Event[]>> GetPreviousAsync(int page = 1, int number = 5, CancellationToken cancellationToken = default)
+    public async Task<ErrorOr<Event[]>> GetPreviousAsync(int page = 1, int size = 5, CancellationToken cancellationToken = default)
     {
         var events = await _eventRepository
             .Table
             .Where(e => e.Status == EventStatus.Passed)
             .OrderByDescending(e => e.Schedule.Start)
             .Skip(page - 1)
-            .Take(number)
+            .Take(size)
             .ToArrayAsync(cancellationToken);
 
         return events;
     }
 
-    public async Task<ErrorOr<Event[]>> GetUpcomingAsync(int page = 1, int number = 2, CancellationToken cancellationToken = default)
+    public async Task<ErrorOr<Event[]>> GetUpcomingAsync(int page = 1, int size = 2, CancellationToken cancellationToken = default)
     {
         var events = await _eventRepository
             .Table
             .Where(e => e.Status == EventStatus.ComingSoon)
             .OrderByDescending(e => e.Schedule.Start)
             .Skip(page - 1)
-            .Take(number)
+            .Take(size)
             .ToArrayAsync(cancellationToken);
 
         return events;

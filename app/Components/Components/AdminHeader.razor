@@ -1,0 +1,16 @@
+<nav class="bg-white h-[80px] flex items-center">
+    <div class="relative flex justify-between w-full md:p-5 p-4 items-center">
+        <a href="/">
+            <img src="/assets/brand/logo.png" alt=".NET Cameroon Logo" class="w-[80px]">
+        </a>
+        <div class="flex gap-6 items-center">
+            <p>@HttpContext.User.FindFirstValue(ClaimTypes.Email)</p>
+            <a href="/Account/Logout" class="link text-red-400 hover:text-red-500 transition-all">Logout</a>
+        </div>
+    </div>
+</nav>
+
+@code{
+    [CascadingParameter]
+    public required HttpContext HttpContext { get; set; }
+}
