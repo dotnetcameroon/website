@@ -1023,6 +1023,10 @@ video {
   --tw-bg-opacity: 0.75;
 }
 
+.bg-opacity-85 {
+  --tw-bg-opacity: 0.85;
+}
+
 .bg-\[url\(\'\/assets\/featured\/carousel-3\.png\'\)\] {
   background-image: url('/assets/featured/carousel-3.png');
 }
