@@ -54,7 +54,7 @@ else
             <tbody class="bg-slate-100">
                 @foreach(var item in _events.Items)
                 {
-                    <tr>
+                    <tr class="border-b-white border-b-2">
                         <td class="p-2" >@item.Schedule.ToFriendlyDateString()</td>
                         <td class="p-2" >@item.Title</td>
                         <td class="p-2" >@item.Status</td>

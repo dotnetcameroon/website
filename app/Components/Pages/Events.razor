@@ -36,7 +36,7 @@
                 @foreach(var (item, i) in _upcomingEvents.Select((item, index) => (item, index + 1)))
                 {
                     <div class="event-card event-card-@i relative h-[500px] flex items-end p-8 overflow-hidden">
-                        <img class="event-background absolute top-0 left-0 w-full h-ful" src="@item.ImageUrl" alt="@item.Title"/>
+                        <img class="block event-background absolute top-0 left-0 w-full h-ful" src="@item.ImageUrl" alt="@item.Title"/>
                         <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40"></div>
                         <div class="event-container relative z-10 flex flex-col gap-6 items-start overflow-y-hidden">
                             <div class="event-text">
@@ -76,7 +76,7 @@
                 {
                     <div class="past-event-card flex flex-col md:flex-row gap-4">
                         <h2 class="heading heading-3 md:hidden">@item.Title</h2>
-                        <img src="@item.ImageUrl" alt="@item.Title" class="h-[200px] w-full md:w-[400px] object-cover" >
+                        <img src="@item.ImageUrl" alt="@item.Title" class="block h-[200px] w-full md:w-[400px] object-cover" >
                         <div class="flex flex-col items-start">
                             <h2 class="heading heading-3 hidden md:block">@item.Title</h2>
                             <p class="bg-secondary bg-opacity-60 text-white px-2 py-1 text-xs rounded-xl">@item.Schedule.Start.ToCustomDateString() | @item.HostingModel.ToFriendlyString()</p>

@@ -110,4 +110,9 @@ internal class EventService(IRepository<Event, Guid> eventRepository) : IEventSe
 
         return result;
     }
+
+    public async Task<ErrorOr<bool>> DeleteEvent(Guid id, CancellationToken cancellationToken = default)
+    {
+        return await _eventRepository.DeleteAsync(id, cancellationToken);
+    }
 }
