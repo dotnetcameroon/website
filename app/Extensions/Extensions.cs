@@ -1,3 +1,4 @@
+using app.Components.Pages.Admin.Events;
 using app.Data.Interceptors;
 using app.Middlewares;
 using app.Models.Identity;
@@ -12,7 +13,6 @@ using EntityFrameworkCore.Seeder.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace app.Extensions;
 public static class Extensions
@@ -32,6 +32,7 @@ public static class Extensions
 
         services.AddScoped<IUnitOfWork,UnitOfWork>();
         services.AddScoped<IEventService,EventService>();
+        services.AddScoped<IPartnerService,PartnerService>();
         services.AddScoped<IIdentityService,IdentityService>();
         services.AddScoped<DomainEventsInterceptor>();
         services.AddSqlServer<AppDbContext>(configuration.GetConnectionString("SqlServer"));

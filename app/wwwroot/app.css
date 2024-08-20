@@ -696,6 +696,10 @@ video {
   margin-top: 2rem;
 }
 
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
 .line-clamp-3 {
   overflow: hidden;
   display: -webkit-box;
@@ -784,20 +788,20 @@ video {
   height: 100vh;
 }
 
+.h-\[0px\] {
+  height: 0px;
+}
+
+.h-\[25px\] {
+  height: 25px;
+}
+
+.h-\[30px\] {
+  height: 30px;
+}
+
 .max-h-\[400px\] {
   max-height: 400px;
-}
-
-.min-h-\[\] {
-  min-height: ;
-}
-
-.min-h-\[700px\] {
-  min-height: 700px;
-}
-
-.min-h-\[500px\] {
-  min-height: 500px;
 }
 
 .min-h-\[550px\] {
@@ -847,6 +851,62 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-\[\] {
+  width: ;
+}
+
+.w-\[150px\] {
+  width: 150px;
+}
+
+.w-\[class\] {
+  width: class;
+}
+
+.w-\[calc\(100\)\] {
+  width: calc(100);
+}
+
+.w-\[calc\(100\%\)\] {
+  width: calc(100%);
+}
+
+.w-\[calc\(100\%-\)\] {
+  width: calc(100% - );
+}
+
+.w-\[calc\(100\%-100px\)\] {
+  width: calc(100% - 100px);
+}
+
+.w-\[calc\(100\%-150px\)\] {
+  width: calc(100% - 150px);
+}
+
+.w-\[calc\] {
+  width: calc;
+}
+
+.w-\[calc\(\)\] {
+  width: calc();
+}
+
+.w-\[calc\(100\%-50px\)\] {
+  width: calc(100% - 50px);
+}
+
+.w-\[50px\] {
+  width: 50px;
+}
+
+.w-\[0px\] {
+  width: 0px;
+}
+
+.w-\[60px\] {
+  width: 60px;
 }
 
 .max-w-\[600px\] {

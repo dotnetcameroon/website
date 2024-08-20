@@ -1,7 +1,10 @@
 @page "/admin/events/delete/{Id:guid}"
+@layout AdminLayout
+@attribute [Authorize]
 @inject NavigationManager NavigationManager
 @inject IEventService EventService
-<NavBar />
+
+<PageTitle>Admin | Delete</PageTitle>
 <div class="min-h-[550px]">
     <div class="section container mx-auto">
         <h1 class="text-center heading heading-1"><i class="fa-solid fa-circle-exclamation"></i> Delete an event !!</h1>
@@ -11,7 +14,7 @@
                 Are you sure you want to delete the event with Id <strong class="font-bold">@Id</strong>? This action is <strong class="font-bold">irreversible</strong>, and all associated data will be <strong class="font-bold">permanently removed</strong>. Please confirm if you wish to proceed.
             </p>
             <div class="flex gap-4 justify-center mt-4">
-                <a href="/admin/" class="btn btn-secondary">Cancel</a>
+                <a href="/admin" class="btn btn-secondary">Cancel</a>
                 <button type="submit" class="btn bg-red-500 hover:bg-red-400 transition-all text-white">Confirm Deletion</button>
             </div>
         </EditForm>
@@ -40,6 +43,6 @@
 
     class DeleteModel
     {
-        public string Text { get; set; }
+        public string Text { get; set; } = string.Empty;
     }
 }
