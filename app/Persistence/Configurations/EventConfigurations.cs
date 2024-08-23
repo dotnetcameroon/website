@@ -12,8 +12,7 @@ public class EventConfigurations : IEntityTypeConfiguration<Event>
         builder.HasMany(e => e.Partners).WithMany();
         builder
             .HasMany(e => e.Activities)
-            .WithOne(a => a.Event)
-            .HasForeignKey(a => a.EventId)
+            .WithOne()
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.Navigation(c => c.Activities).Metadata.SetField("_activities");

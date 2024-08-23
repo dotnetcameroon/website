@@ -9,17 +9,14 @@ public sealed class Activity : Entity<Guid>
     public string Description { get; private set; } = string.Empty;
     public Host Host { get; private set; }
     public Schedule Schedule { get; private set; }
-    public Event Event { get; private set; }
     public Guid EventId { get; private set; }
 
-    private Activity(Guid id, string title, string description, Host host, Schedule schedule, Event @event) : base(id)
+    private Activity(Guid id, string title, string description, Host host, Schedule schedule) : base(id)
     {
         Title = title;
         Description = description;
         Host = host;
         Schedule = schedule;
-        Event = @event;
-        EventId = @event.Id;
     }
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
@@ -32,9 +29,8 @@ public sealed class Activity : Entity<Guid>
         string title,
         string description,
         Host host,
-        Schedule schedule,
-        Event @event)
+        Schedule schedule)
     {
-        return new Activity(Guid.NewGuid(), title, description, host, schedule, @event);
+        return new Activity(Guid.NewGuid(), title, description, host, schedule);
     }
 }

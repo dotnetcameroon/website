@@ -4,7 +4,7 @@
 <div id="activity-popup" class="activity-popup absolute top-0 left-0 w-full h-full z-10">
     <div class="relative top-0 left-0 w-full h-full z-10">
         <div class="fixed w-full h-full top-0 left-0 bg-black bg-opacity-30"></div>
-        <EditForm id="new-activity-form" FormName="NewActivityForm" OnValidSubmit="@Add" Model="@ActivityModel" class="absolute flex flex-col gap-4 p-4 justify-between items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[80%] h-[80%] bg-white rounded-lg">
+        <EditForm id="new-activity-form" OnValidSubmit="@Add" FormName="NewActivityForm" Model="@ActivityModel" class="absolute flex flex-col gap-4 p-4 justify-between items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[80%] h-[80%] bg-white rounded-lg">
             <div class="w-full flex gap-6 pt-10">
                 <div class="w-1/2">
                     <h2 class="heading heading-2">Details</h2>
@@ -41,7 +41,7 @@
                             Host Picture
                         </label>
                         <div class="flex items-center gap-2">
-                            <img src="@Base64Image" alt="@ActivityModel.HostName" class="block w-[50px] aspect-square"/>
+                            <img src="@ActivityModel.HostImageUrl" alt="@ActivityModel.HostName" class="block w-[50px] aspect-square"/>
                             <InputFile OnChange="@HandleFileSelected" title="Choose host picture" accept="image/*" />
                         </div>
                     </div>
@@ -69,7 +69,6 @@
 
 @code{
     private const string ActiveClass = "active";
-    private string Base64Image = string.Empty;
     private string _class = string.Empty;
     [Parameter]
     public NewOrEdit Parent { get; set; } = new();
@@ -84,7 +83,7 @@
 
     [SupplyParameterFromForm(FormName = "NewActivityForm")]
     private Model ActivityModel { get; set; } = new();
-    private async Task Add(EditContext context)
+    private async Task Add()
     {
         Parent.AddActivity(new ActivityModel
         {
@@ -94,32 +93,33 @@
             {
                 Name = ActivityModel.HostName,
                 Email = ActivityModel.HostEmail,
-                Base64Image = Base64Image
+                ImageUrl = ActivityModel.HostImageUrl
             },
             @* Schedule =  ActivityModel.Schedule *@
         });
-        Base64Image = string.Empty;
+        ActivityModel.HostImageUrl = string.Empty;
         await JsInterop.InvokeVoidAsync("toggleActivityPopup");
     }
 
     private async Task HandleFileSelected(InputFileChangeEventArgs e)
     {
         var file = e.File;
-
-        if (file != null)
+        if (file is null)
         {
-            using var memoryStream = new MemoryStream();
-            await file.OpenReadStream().CopyToAsync(memoryStream);
-            byte[] fileBytes = memoryStream.ToArray();
-
-            Base64Image = $"data:{file.ContentType};base64,{Convert.ToBase64String(fileBytes)}";
-            StateHasChanged();
+            return;
         }
+
+        using var memoryStream = new MemoryStream();
+        await file.OpenReadStream().CopyToAsync(memoryStream);
+        byte[] fileBytes = memoryStream.ToArray();
+
+        ActivityModel.HostImageUrl = $"data:{file.ContentType};base64,{Convert.ToBase64String(fileBytes)}";
+        StateHasChanged();
     }
 
     private async Task CloseActivityPopup()
     {        
-        Base64Image = string.Empty;
+        ActivityModel.HostImageUrl = string.Empty;
         await JsInterop.InvokeVoidAsync("toggleActivityPopup");
     }
 
@@ -130,7 +130,6 @@
         public string HostName { get; set; } = string.Empty;
         public string HostEmail { get; set; } = string.Empty;
         public string HostImageUrl { get; set; } = string.Empty;
-        public string HostBase64Image { get; set; } = string.Empty;
         public TimeOnly Start { get; set; } = new();
         public TimeOnly End { get; set; } = new();
     }

@@ -34,15 +34,13 @@ public class EventsSeeder(AppDbContext dbContext, ILogger<EventsSeeder> logger) 
             "Introduction to .NET",
             "Step into the world of .NET, a powerful framework that has revolutionized the development of modern applications. This introductory event is designed for aspiring developers and tech enthusiasts who want to explore the capabilities of .NET. Discover how .NET can help you build robust, scalable, and high-performance applications across various platforms. We’ll cover the essentials, from the basics of the framework to the latest features and tools that make development easier and faster. Whether you're just starting out or looking to expand your skills, this event will equip you with the knowledge to start your journey in .NET development.",
             Models.EventAggregate.ValueObjects.Host.Create("Djoufson Che", "djouflegran@gmail.com", "https://avatars.githubusercontent.com/u/101910784?v=4"),
-            Schedule.Create(new DateTime(2023, 10, 16, 14, 00, 00), new DateTime(2023, 10, 16, 16, 00, 00)),
-            event1);
+            Schedule.Create(new DateTime(2023, 10, 16, 14, 00, 00), new DateTime(2023, 10, 16, 16, 00, 00)));
 
         var activity2 = Activity.Create(
             "Entrepreneurship and Human Resources management",
             "Unlock the secrets to building a successful business with the right people by your side. This event dives deep into the intersection of entrepreneurship and human resources, exploring how strategic HR management can drive your business to new heights. Whether you’re a startup founder or an established entrepreneur, learn how to attract, retain, and nurture the talent that will propel your vision forward. Gain insights from industry experts on leadership, team dynamics, and the best practices for creating a thriving workplace culture. Join us to transform your HR approach and fuel your entrepreneurial journey.",
             Models.EventAggregate.ValueObjects.Host.Create("Cédric Noumbo", "cnoumbo@gmail.com"),
-            Schedule.Create(new DateTime(2023, 10, 16, 12, 00, 00), new DateTime(2023, 10, 16, 14, 00, 00)),
-            event1);
+            Schedule.Create(new DateTime(2023, 10, 16, 12, 00, 00), new DateTime(2023, 10, 16, 14, 00, 00)));
 
         event1.AddActivity(activity2);
         event1.AddActivity(activity);

@@ -1,22 +1,25 @@
 using System.Linq.Expressions;
 using app.Models.EventAggregate;
 using app.Models.EventAggregate.Enums;
+using app.Persistence;
 using app.Persistence.Repositories.Base;
 using app.Utilities;
+using app.ViewModels;
 using ErrorOr;
 using Microsoft.EntityFrameworkCore;
 
 namespace app.Services.Impl;
-internal class EventService(IRepository<Event, Guid> eventRepository) : IEventService
+internal class EventService(IRepository<Event, Guid> eventRepository, IUnitOfWork unitOfWork) : IEventService
 {
     private readonly IRepository<Event, Guid> _eventRepository = eventRepository;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
     public Task<bool> ExistsAsync(Expression<Func<Event, bool>> expression, CancellationToken cancellationToken = default)
     {
         return _eventRepository.ExistsAsync(expression, cancellationToken);
     }
 
-    public async Task<ErrorOr<PagedList<Event>>> GetAllAsync(int page = 1, int size = 5, CancellationToken cancellationToken = default)
+    public async Task<ErrorOr<PagedList<Event>>> GetAllAsync(int page = 1, int size = 10, CancellationToken cancellationToken = default)
     {
         var totalCount = await _eventRepository.Table.CountAsync(cancellationToken);
         var events = await _eventRepository
@@ -29,7 +32,7 @@ internal class EventService(IRepository<Event, Guid> eventRepository) : IEventSe
         return PagedList.FromList(events, totalCount, page, size);
     }
 
-    public async Task<ErrorOr<PagedList<Event>>> SearchAsync(Expression<Func<Event, bool>> predicate, int page = 1, int size = 5, CancellationToken cancellationToken = default)
+    public async Task<ErrorOr<PagedList<Event>>> SearchAsync(Expression<Func<Event, bool>> predicate, int page = 1, int size = 10, CancellationToken cancellationToken = default)
     {
         var query = _eventRepository
             .Table
@@ -55,7 +58,7 @@ internal class EventService(IRepository<Event, Guid> eventRepository) : IEventSe
             .Include(e => e.Partners)
             .FirstOrDefaultAsync(e => e.Id == id, cancellationToken);
 
-        if(@event is null)
+        if (@event is null)
         {
             return Error.NotFound("Event.NotFound", "Event not found");
         }
@@ -66,7 +69,7 @@ internal class EventService(IRepository<Event, Guid> eventRepository) : IEventSe
     public async Task<ErrorOr<Event>> GetAsync(Expression<Func<Event, bool>> expression, CancellationToken cancellationToken = default)
     {
         var @event = await _eventRepository.GetAsync(expression, cancellationToken);
-        if(@event is null)
+        if (@event is null)
         {
             return Error.NotFound("Event.NotFound", "Event not found");
         }
@@ -100,19 +103,29 @@ internal class EventService(IRepository<Event, Guid> eventRepository) : IEventSe
         return events;
     }
 
-    public async Task<ErrorOr<Event>> UpdateAsync(Event entity, CancellationToken cancellationToken = default)
+    public async Task<ErrorOr<bool>> DeleteEvent(Guid id, CancellationToken cancellationToken = default)
     {
-        var result = await _eventRepository.GetAsync(entity.Id, cancellationToken);
-        if(result is null)
+        return await _eventRepository.DeleteAsync(id, cancellationToken);
+    }
+
+    public async Task<ErrorOr<Event>> UpdateAsync(Guid id, EventModel eventModel, CancellationToken cancellationToken = default)
+    {
+        var @event = await _eventRepository.GetAsync(id, cancellationToken);
+        if (@event is null)
         {
             return Error.NotFound("Event.NotFound", "Event not found");
         }
 
-        return result;
+        @event.Update(eventModel);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        return @event;
     }
 
-    public async Task<ErrorOr<bool>> DeleteEvent(Guid id, CancellationToken cancellationToken = default)
+    public async Task<ErrorOr<Event>> CreateAsync(EventModel eventModel, CancellationToken cancellationToken = default)
     {
-        return await _eventRepository.DeleteAsync(id, cancellationToken);
+        var @event = Event.Create(eventModel);
+        @event = await _eventRepository.AddAsync(@event, cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        return @event;
     }
 }

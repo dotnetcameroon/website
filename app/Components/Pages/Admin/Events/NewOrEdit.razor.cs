@@ -1,7 +1,10 @@
+using app.Models.EventAggregate;
 using app.Models.EventAggregate.Entities;
 using app.Services;
 using app.ViewModels;
+using ErrorOr;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
 
 namespace app.Components.Pages.Admin.Events;
@@ -21,12 +24,55 @@ public partial class NewOrEdit
     [Inject]
     public IPartnerService PartnerService { get; set; } = default!;
 
+    [Inject]
+    public NavigationManager NavigationManager { get; set; } = default!;
+
+    [Inject]
+    public IJSRuntime JSRuntime { get; set; } = default!;
+
     protected override async Task OnInitializedAsync()
     {
         await LoadPartners();
         await LoadEvent();
         // await JSRuntime.InvokeVoidAsync("adjustTextareaHight", "description-input");
         await base.OnInitializedAsync();
+    }
+
+    private async Task HandleSubmit()
+    {
+        ErrorOr<Event> result;
+        if(Id is null)
+        {
+            result = await EventService.CreateAsync(EventModel);
+        }
+        else
+        {
+            result = await EventService.UpdateAsync(Id.Value, EventModel);
+        }
+
+        if(result.IsError)
+        {
+            NavigationManager.NavigateTo("/errors", true);
+            return;
+        }
+
+        NavigationManager.NavigateTo("/admin", true);
+    }
+
+    private async Task HandleFileSelected(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file is null)
+        {
+            return;
+        }
+
+        using var memoryStream = new MemoryStream();
+        await file.OpenReadStream().CopyToAsync(memoryStream);
+        byte[] fileBytes = memoryStream.ToArray();
+
+        EventModel.ImageUrl = $"data:{file.ContentType};base64,{Convert.ToBase64String(fileBytes)}";
+        StateHasChanged();
     }
 
     private async Task LoadPartners()
@@ -115,8 +161,6 @@ public partial class NewOrEdit
     private static string GetActivityImage(ActivityModel model)
     {
         return 
-            model.Host.ImageUrl ??
-            model.Host.Base64Image ??
-            string.Empty;
+            model.Host.ImageUrl;
     }
 }

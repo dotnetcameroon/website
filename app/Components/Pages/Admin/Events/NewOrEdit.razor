@@ -8,9 +8,9 @@
 <PageTitle>Admin | Edit Event</PageTitle>
 <NewActivityPopup Parent="@this"/>
 <h1 class="heading heading-1">Create or Update Events</h1>
-<div class="flex gap-8">
+<EditForm Model="@EventModel" OnValidSubmit="@HandleSubmit" FormName="EventForm" class="w-full flex gap-8">
     <div class="w-1/2">
-        <EditForm Model="@EventModel" FormName="EventForm" class="w-full">
+        <div>
             <div>
                 <h2 class="heading heading-2">Core informations</h2>
                 <p></p>
@@ -101,7 +101,7 @@
                             <img src="@partner.Logo" alt="@partner.Name" class="block w-[60px] h-[30px] object-cover">
                             <div class="flex justify-between items-center w-[calc(100%-50px)]">
                                 <p class="font-bold">@partner.Name</p>
-                                <button class="link link-secondary" @onclick="() => RemovePartner(partner)"><i class="fa-solid fa-trash-can"></i></button>
+                                <button type="button" class="link link-secondary" @onclick="() => RemovePartner(partner)"><i class="fa-solid fa-trash-can"></i></button>
                             </div>
                         </div>
                     }
@@ -112,7 +112,7 @@
                 <h2 class="heading heading-2">Activities</h2>
                 <p>Use the dropdow to pick a partner. It will automatically register the one picked to the partners list, and later on you can remove it</p>
                 <div class="mt-4">
-                    <button class="btn btn-primary" onclick="toggleActivityPopup()"><i class="fa-regular fa-square-plus"></i></button> New activity
+                    <button type="button" class="btn btn-primary" onclick="toggleActivityPopup()"><i class="fa-regular fa-square-plus"></i></button> New activity
                 </div>
                 <div class="flex flex-col mt-4 gap-2">
                     @foreach(var activity in EventModel.Activities) 
@@ -123,7 +123,7 @@
                                 <p class="font-bold">@activity.Title</p>
                                 <div class="flex gap-2">
                                     @* <a href="/" class="link link-secondary"><i class="fa-solid fa-pen-to-square"></i></a> *@
-                                <button class="link link-secondary" @onclick="() => RemoveActivity(activity)"><i class="fa-solid fa-trash-can"></i></button>
+                                <button type="button" class="link link-secondary" @onclick="() => RemoveActivity(activity)"><i class="fa-solid fa-trash-can"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -134,18 +134,15 @@
                 <a href="/admin" class="btn btn-secondary"><i class="fa-solid fa-xmark"></i> Discard</a>
                 <button class="btn btn-primary center" type="submit"><i class="fa-solid fa-check"></i> Save</button>
             </div>
-        </EditForm>
+        </div>
     </div>
     <div class="w-1/2">
         <div>
             <h2 class="heading heading-2">Banner picture</h2>
             <p>The picture will automatically be updated once you pick a new one</p>
-            <div class="relative flex w-full mt-4">
-                <img src="@EventModel.ImageUrl" alt="@EventModel.Title" class="w-full"/>
-                <label for="banner-picture-input" title="Change the banner picture" class="absolute w-full h-full top-0 left-0 bg-black bg-opacity-30 opacity-0 hover:opacity-100 transition-all cursor-pointer flex items-center justify-center">
-                    <InputFile id="banner-picture-input" hidden/>
-                    <span class="text-white text-6xl"><i class="fa-regular fa-image"></i></span>
-                </label>
+            <div class="flex items-center gap-2">
+                <img src="@EventModel.ImageUrl" alt="@EventModel.Title" class="block w-[50px] aspect-square"/>
+                <InputFile OnChange="@HandleFileSelected" title="Choose host picture" accept="image/*" />
             </div>
         </div>
         <div class="mt-6">            
@@ -153,4 +150,4 @@
             <p>Upload here a recap of the event, as pictures</p>
         </div>
     </div>
-</div>
+</EditForm>
