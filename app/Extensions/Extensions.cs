@@ -30,6 +30,7 @@ public static class Extensions
         }
 
         services.AddScoped<IUnitOfWork,UnitOfWork>();
+        services.AddScoped<DatabaseCheckMiddleware>();
         services.AddScoped<IEventService,EventService>();
         services.AddScoped<IPartnerService,PartnerService>();
         services.AddScoped<IIdentityService,IdentityService>();
