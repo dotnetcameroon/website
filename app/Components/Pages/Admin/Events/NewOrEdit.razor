@@ -2,152 +2,177 @@
 @page "/admin/events/{Id:guid}"
 @layout AdminLayout
 @rendermode InteractiveServer
-@attribute [StreamRendering]
 @attribute [Authorize]
 
 <PageTitle>Admin | Edit Event</PageTitle>
 <NewActivityPopup Parent="@this"/>
-<h1 class="heading heading-1">Create or Update Events</h1>
-<EditForm Model="@EventModel" OnValidSubmit="@HandleSubmit" FormName="EventForm" class="w-full flex gap-8">
-    <div class="w-1/2">
-        <div>
+<EditForm id="event-form" Model="@EventModel" OnValidSubmit="@HandleSubmit" FormName="EventForm">
+    <div class="flex justify-between items-center">
+        <h1 class="heading heading-1">Create or Update Events</h1>
+        <div class="flex gap-2">
+            <a href="/admin" class="btn btn-primary"><i class="fa-solid fa-xmark"></i> Discard</a>
+            <button type="submit" class="btn btn-primary">Save</button>
+            @if(Id != null)
+            {
+                @switch (EventModel.Status)
+                {
+                    case EventStatus.ComingSoon:
+                    {
+                        <button type="button" @onclick="() => CancelEvent(Id.Value)" class="btn bg-red-500 hover:bg-red-400 transition-all text-white">Cancel</button>
+                    }break;
+                    case  EventStatus.Draft:
+                    {
+                        <button type="button" @onclick="() => PublishEvent(Id.Value)" class="btn btn-secondary">Publish</button>
+                    }break;
+                    case  EventStatus.Cancelled:
+                    {
+                        <button type="button" @onclick="() => PublishEvent(Id.Value)" class="btn btn-secondary">RePublish</button>
+                    }break;
+                }
+            }
+        </div>
+    </div>
+    <div class="w-full flex gap-8">
+        <div class="w-1/2">
             <div>
-                <h2 class="heading heading-2">Core informations</h2>
-                <p></p>
-                <div class="flex flex-col gap-4 items-start">
-                    <div class="w-full">
-                        <label for="title-input" class="font-bold">
-                            Title
-                        </label>
-                        <InputText id="title-input" class="p-2 w-full px-4 border border-gray-400 rounded-lg" @bind-Value="@EventModel.Title" title="title" required placeholder="The event name"/>
-                    </div>
-                    <div class="w-full">
-                        <label for="description-input" class="font-bold">
-                            Description
-                        </label>
-                        <InputTextArea id="description-input" onfocus="adjustTextareaHight('description-input')" oninput="adjustTextareaHight('description-input')" class="p-2 w-full px-4 border border-gray-400 rounded-lg" @bind-Value="@EventModel.Description" title="description" required placeholder="The event description"/>
-                    </div>
-                    <div class="w-full">
-                        <p class="font-bold">Schedule</p>
-                        <div class="flex justify-between">
-                            <div class="flex flex-col">
-                                <label>
-                                    <i class="fa-regular fa-calendar"></i> Start Date:
-                                    <InputDate @bind-Value="EventModel.Schedule.Start"/>
-                                </label>
-                                @if(!EventModel.Schedule.IsAllDay)
-                                {
+                <div>
+                    <h2 class="heading heading-2">Core informations</h2>
+                    <p></p>
+                    <div class="flex flex-col gap-4 items-start">
+                        <div class="w-full">
+                            <label for="title-input" class="font-bold">
+                                Title
+                            </label>
+                            <InputText id="title-input" class="p-2 w-full px-4 border border-gray-400 rounded-lg" @bind-Value="@EventModel.Title" title="title" required placeholder="The event name"/>
+                        </div>
+                        <div class="w-full">
+                            <label for="description-input" class="font-bold">
+                                Description
+                            </label>
+                            <InputTextArea id="description-input" onfocus="adjustTextareaHight('description-input')" oninput="adjustTextareaHight('description-input')" class="p-2 w-full px-4 border border-gray-400 rounded-lg" @bind-Value="@EventModel.Description" title="description" required placeholder="The event description"/>
+                        </div>
+                        <div class="w-full">
+                            <p class="font-bold">Schedule</p>
+                            <div class="flex justify-between">
+                                <div class="flex flex-col">
                                     <label>
-                                        <i class="fa-regular fa-calendar-minus"></i> End Date:
-                                        <InputDate @bind-Value="EventModel.Schedule.End"/>
+                                        <i class="fa-regular fa-calendar"></i> Start Date:
+                                        <InputDate @bind-Value="EventModel.Schedule.Start"/>
                                     </label>
-                                }
-                            </div>
-                            <div>
-                                <label class="flex items-center gap-2">
-                                    <InputCheckbox @bind-Value="EventModel.Schedule.IsAllDay"/>
-                                    Is All-day?
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-full">
-                        <label for="registration-link-input" class="font-bold">
-                            Registration link
-                        </label>
-                        <InputText id="registration-link-input" class="p-2 w-full px-4 border border-gray-400 rounded-lg" @bind-Value="@EventModel.RegistrationLink" title="registration link" placeholder="Paste the registration link here"/>
-                    </div>
-                    <div class="w-full">
-                        <label for="event-type-input" class="font-bold">
-                            Event Type
-                        </label>
-                        <InputSelect id="event-type-input" @bind-Value="@EventModel.Type" class="block w-full">
-                            @foreach(var type in Enum.GetNames(typeof(EventType)))
-                            {
-                                <option value="@type">@type</option>
-                            }
-                        </InputSelect>
-                    </div>
-                    <div class="w-full">
-                        <label for="event-hosting-input" class="font-bold">
-                            Hosting Model
-                        </label>
-                        <InputSelect id="event-hosting-input" @bind-Value="@EventModel.HostingModel" class="block w-full">
-                            @foreach(var type in Enum.GetNames(typeof(EventHostingModel)))
-                            {
-                                <option value="@type">@type</option>
-                            }
-                        </InputSelect>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-6">
-                <h2 class="heading heading-2">Partners</h2>
-                <p>Use the dropdow to pick a partner. It will automatically register the one picked to the partners list, and later on you can remove it</p>
-                <div class="relative flex mt-4">
-                    <select @onchange="@OnPartnerSelected" class="w-full">
-                        <option value="">-- Choose a partner --</option>
-                        @foreach(var partner in AllPartners)
-                        {
-                            <option value="@partner.Name">@partner.Name</option>
-                        }
-                    </select>
-                </div>
-                <div class="flex flex-col mt-4 gap-2">
-                    @foreach(var partner in EventModel.Partners)
-                    {
-                        <div class="flex items-center w-full gap-4">
-                            <img src="@partner.Logo" alt="@partner.Name" class="block w-[60px] h-[30px] object-cover">
-                            <div class="flex justify-between items-center w-[calc(100%-50px)]">
-                                <p class="font-bold">@partner.Name</p>
-                                <button type="button" class="link link-secondary" @onclick="() => RemovePartner(partner)"><i class="fa-solid fa-trash-can"></i></button>
-                            </div>
-                        </div>
-                    }
-                </div>
-            </div>
-
-            <div class="mt-6">
-                <h2 class="heading heading-2">Activities</h2>
-                <p>Use the dropdow to pick a partner. It will automatically register the one picked to the partners list, and later on you can remove it</p>
-                <div class="mt-4">
-                    <button type="button" class="btn btn-primary" onclick="toggleActivityPopup()"><i class="fa-regular fa-square-plus"></i></button> New activity
-                </div>
-                <div class="flex flex-col mt-4 gap-2">
-                    @foreach(var activity in EventModel.Activities) 
-                    {
-                        <div class="flex items-center w-full gap-4">
-                            <img src="@GetActivityImage(@activity)" alt="@activity.Title" class="block w-[60px] h-[30px] object-cover">
-                            <div class="flex justify-between items-center w-[calc(100%-50px)]">
-                                <p class="font-bold">@activity.Title</p>
-                                <div class="flex gap-2">
-                                    @* <a href="/" class="link link-secondary"><i class="fa-solid fa-pen-to-square"></i></a> *@
-                                <button type="button" class="link link-secondary" @onclick="() => RemoveActivity(activity)"><i class="fa-solid fa-trash-can"></i></button>
+                                    @if(!EventModel.Schedule.IsAllDay)
+                                    {
+                                        <label>
+                                            <i class="fa-regular fa-calendar-minus"></i> End Date:
+                                            <InputDate @bind-Value="EventModel.Schedule.End"/>
+                                        </label>
+                                    }
+                                </div>
+                                <div>
+                                    <label class="flex items-center gap-2">
+                                        <InputCheckbox @bind-Value="EventModel.Schedule.IsAllDay"/>
+                                        Is All-day?
+                                    </label>
                                 </div>
                             </div>
                         </div>
-                    }
+                        <div class="w-full">
+                            <label for="registration-link-input" class="font-bold">
+                                Registration link
+                            </label>
+                            <InputText id="registration-link-input" class="p-2 w-full px-4 border border-gray-400 rounded-lg" @bind-Value="@EventModel.RegistrationLink" title="registration link" placeholder="Paste the registration link here"/>
+                        </div>
+                        <div class="w-full">
+                            <label for="event-type-input" class="font-bold">
+                                Event Type
+                            </label>
+                            <InputSelect id="event-type-input" @bind-Value="@EventModel.Type" class="block w-full">
+                                @foreach(var type in Enum.GetNames(typeof(EventType)))
+                                {
+                                    <option value="@type">@type</option>
+                                }
+                            </InputSelect>
+                        </div>
+                        <div class="w-full">
+                            <label for="event-hosting-input" class="font-bold">
+                                Hosting Model
+                            </label>
+                            <InputSelect id="event-hosting-input" @bind-Value="@EventModel.HostingModel" class="block w-full">
+                                @foreach(var type in Enum.GetNames(typeof(EventHostingModel)))
+                                {
+                                    <option value="@type">@type</option>
+                                }
+                            </InputSelect>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <h2 class="heading heading-2">Partners</h2>
+                    <p>Use the dropdow to pick a partner. It will automatically register the one picked to the partners list, and later on you can remove it</p>
+                    <div class="relative flex mt-4">
+                        <select @onchange="@OnPartnerSelected" class="w-full">
+                            <option value="">-- Choose a partner --</option>
+                            @foreach(var partner in AllPartners)
+                            {
+                                <option value="@partner.Name">@partner.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="flex flex-col mt-4 gap-2">
+                        @foreach(var partner in EventModel.Partners)
+                        {
+                            <div class="flex items-center w-full gap-4">
+                                <img src="@partner.Logo" alt="@partner.Name" class="block w-[60px] h-[30px] object-cover">
+                                <div class="flex justify-between items-center w-[calc(100%-50px)]">
+                                    <p class="font-bold">@partner.Name</p>
+                                    <button type="button" class="link link-secondary" @onclick="() => RemovePartner(partner)"><i class="fa-solid fa-trash-can"></i></button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <h2 class="heading heading-2">Activities</h2>
+                    <p>Use the dropdow to pick a partner. It will automatically register the one picked to the partners list, and later on you can remove it</p>
+                    <div class="mt-4">
+                        <button type="button" class="btn btn-primary" onclick="toggleActivityPopup()"><i class="fa-regular fa-square-plus"></i></button> New activity
+                    </div>
+                    <div class="flex flex-col mt-4 gap-2">
+                        @foreach(var activity in EventModel.Activities) 
+                        {
+                            <div class="flex items-center w-full gap-4">
+                                <img src="@GetActivityImage(@activity)" alt="@activity.Title" class="block w-[60px] h-[30px] object-cover">
+                                <div class="flex justify-between items-center w-[calc(100%-50px)]">
+                                    <p class="font-bold">@activity.Title</p>
+                                    <div class="flex gap-2">
+                                        @* <a href="/" class="link link-secondary"><i class="fa-solid fa-pen-to-square"></i></a> *@
+                                    <button type="button" class="link link-secondary" @onclick="() => RemoveActivity(activity)"><i class="fa-solid fa-trash-can"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                @* <div class="flex mt-6 gap-4">
+                    <a href="/admin" class="btn btn-secondary"><i class="fa-solid fa-xmark"></i> Discard</a>
+                    <button class="btn btn-primary center" type="submit"><i class="fa-solid fa-check"></i> Save</button>
+                </div> *@
+            </div>
+        </div>
+        <div class="w-1/2">
+            <div>
+                <h2 class="heading heading-2">Banner picture</h2>
+                <p>The picture will automatically be updated once you pick a new one</p>
+                <div class="flex items-center gap-2">
+                    <img src="@EventModel.ImageUrl" alt="@EventModel.Title" class="block w-[50px] aspect-square"/>
+                    <InputFile OnChange="@HandleFileSelected" title="Choose host picture" accept="image/*" />
                 </div>
             </div>
-            <div class="flex mt-6 gap-4">
-                <a href="/admin" class="btn btn-secondary"><i class="fa-solid fa-xmark"></i> Discard</a>
-                <button class="btn btn-primary center" type="submit"><i class="fa-solid fa-check"></i> Save</button>
+            <div class="mt-6">            
+                <h2 class="heading heading-2">Resources</h2>
+                <p>Upload here a recap of the event, as pictures</p>
             </div>
-        </div>
-    </div>
-    <div class="w-1/2">
-        <div>
-            <h2 class="heading heading-2">Banner picture</h2>
-            <p>The picture will automatically be updated once you pick a new one</p>
-            <div class="flex items-center gap-2">
-                <img src="@EventModel.ImageUrl" alt="@EventModel.Title" class="block w-[50px] aspect-square"/>
-                <InputFile OnChange="@HandleFileSelected" title="Choose host picture" accept="image/*" />
-            </div>
-        </div>
-        <div class="mt-6">            
-            <h2 class="heading heading-2">Resources</h2>
-            <p>Upload here a recap of the event, as pictures</p>
         </div>
     </div>
 </EditForm>

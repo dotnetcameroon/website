@@ -17,4 +17,6 @@ public interface IEventService
     Task<ErrorOr<PagedList<Event>>> SearchAsync(Expression<Func<Event,bool>> predicate,int page = 1, int size = 10, CancellationToken cancellationToken = default);
     Task<ErrorOr<bool>> DeleteEvent(Guid id, CancellationToken cancellationToken = default);
     Task<ErrorOr<Event>> CreateAsync(EventModel eventModel, CancellationToken cancellationToken = default);
+    Task<ErrorOr<Event>> PublishAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<ErrorOr<Event>> CancelAsync(Guid id, CancellationToken cancellationToken = default);
 }

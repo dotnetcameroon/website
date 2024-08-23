@@ -1,6 +1,6 @@
 namespace app.Persistence;
 
-internal interface IUnitOfWork
+public interface IUnitOfWork
 {
     Task SaveChangesAsync(CancellationToken cancellationToken = default);
 }

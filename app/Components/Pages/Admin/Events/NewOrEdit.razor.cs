@@ -75,6 +75,32 @@ public partial class NewOrEdit
         StateHasChanged();
     }
 
+    private async Task CancelEvent(Guid eventId)
+    {
+        var result = await EventService.CancelAsync(eventId);
+        if(result.IsError)
+        {
+            NavigationManager.NavigateTo("/errors", true);
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/admin", true);
+        }
+    }
+
+    private async Task PublishEvent(Guid eventId)
+    {
+        var result = await EventService.PublishAsync(eventId);
+        if(result.IsError)
+        {
+            NavigationManager.NavigateTo("/errors", true);
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/admin", true);
+        }
+    }
+
     private async Task LoadPartners()
     {
         var result = await PartnerService.GetAllAsync();

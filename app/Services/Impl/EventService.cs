@@ -9,7 +9,9 @@ using ErrorOr;
 using Microsoft.EntityFrameworkCore;
 
 namespace app.Services.Impl;
-internal class EventService(IRepository<Event, Guid> eventRepository, IUnitOfWork unitOfWork) : IEventService
+internal class EventService(
+    IRepository<Event, Guid> eventRepository,
+    IUnitOfWork unitOfWork) : IEventService
 {
     private readonly IRepository<Event, Guid> _eventRepository = eventRepository;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
@@ -125,6 +127,32 @@ internal class EventService(IRepository<Event, Guid> eventRepository, IUnitOfWor
     {
         var @event = Event.Create(eventModel);
         @event = await _eventRepository.AddAsync(@event, cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        return @event;
+    }
+
+    public async Task<ErrorOr<Event>> PublishAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        var @event = await _eventRepository.GetAsync(id, cancellationToken);
+        if(@event is null)
+        {
+            return Error.NotFound("Event.NotFound", "Event not found");
+        }
+
+        @event.Publish();
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        return @event;
+    }
+
+    public async Task<ErrorOr<Event>> CancelAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        var @event = await _eventRepository.GetAsync(id, cancellationToken);
+        if(@event is null)
+        {
+            return Error.NotFound("Event.NotFound", "Event not found");
+        }
+
+        @event.Cancel();
         await _unitOfWork.SaveChangesAsync(cancellationToken);
         return @event;
     }
