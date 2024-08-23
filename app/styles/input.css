@@ -302,3 +302,11 @@
 .sidebar-link.active{
     @apply bg-opacity-25 bg-white;
 }
+
+#activity-popup{
+    @apply opacity-0 -z-10 transition-all;
+}
+
+#activity-popup.active{
+    @apply opacity-100 z-10 transition-all;
+}

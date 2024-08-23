@@ -1,6 +1,7 @@
 using System.Linq.Expressions;
 using app.Models.EventAggregate;
 using app.Utilities;
+using app.ViewModels;
 using ErrorOr;
 
 namespace app.Services;
@@ -11,7 +12,11 @@ public interface IEventService
     Task<bool> ExistsAsync(Expression<Func<Event, bool>> expression, CancellationToken cancellationToken = default);
     Task<ErrorOr<Event>> GetAsync(Guid id, CancellationToken cancellationToken = default);
     Task<ErrorOr<Event>> GetAsync(Expression<Func<Event, bool>> expression, CancellationToken cancellationToken = default);
-    Task<ErrorOr<Event>> UpdateAsync(Event entity, CancellationToken cancellationToken = default);
-    Task<ErrorOr<PagedList<Event>>> GetAllAsync(int page = 1, int size = 5, CancellationToken cancellationToken = default);
-    Task<ErrorOr<PagedList<Event>>> SearchAsync(Expression<Func<Event,bool>> predicate,int page = 1, int size = 5, CancellationToken cancellationToken = default);
+    Task<ErrorOr<Event>> UpdateAsync(Guid id, EventModel eventModel, CancellationToken cancellationToken = default);
+    Task<ErrorOr<PagedList<Event>>> GetAllAsync(int page = 1, int size = 10, CancellationToken cancellationToken = default);
+    Task<ErrorOr<PagedList<Event>>> SearchAsync(Expression<Func<Event,bool>> predicate,int page = 1, int size = 10, CancellationToken cancellationToken = default);
+    Task<ErrorOr<bool>> DeleteEvent(Guid id, CancellationToken cancellationToken = default);
+    Task<ErrorOr<Event>> CreateAsync(EventModel eventModel, CancellationToken cancellationToken = default);
+    Task<ErrorOr<Event>> PublishAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<ErrorOr<Event>> CancelAsync(Guid id, CancellationToken cancellationToken = default);
 }

@@ -2,7 +2,9 @@ using app.Models.Common;
 using app.Models.EventAggregate.Entities;
 using app.Models.EventAggregate.Enums;
 using app.Models.EventAggregate.ValueObjects;
+using app.ViewModels;
 using Domain.Common.Utils;
+using Host = app.Models.EventAggregate.ValueObjects.Host;
 
 namespace app.Models.EventAggregate;
 public sealed class Event : Entity<Guid>, IAggregateRoot
@@ -147,5 +149,65 @@ public sealed class Event : Entity<Guid>, IAggregateRoot
         }
 
         return @event;
+    }
+
+    public void Update(EventModel entity)
+    {
+        Title = entity.Title;
+        Description = entity.Description;
+        Schedule = entity.Schedule;
+        Type = entity.Type;
+        Status = entity.Status;
+        HostingModel = entity.HostingModel;
+        Attendance = entity.Attendance;
+        Images = entity.Images;
+        ImageUrl = entity.ImageUrl;
+        RegistrationLink = entity.RegistrationLink;
+        _activities.Clear();
+        _partners.Clear();
+        var activities = entity.Activities
+            .Select(a => Activity.Create(
+                a.Title,
+                a.Description,
+                Host.Create(
+                    a.Host.Name,
+                    a.Host.Email,
+                    a.Host.ImageUrl!),
+                a.Schedule));
+        foreach (var activity in activities)
+        {
+            AddActivity(activity);
+        }
+
+        foreach (var partner in entity.Partners)
+        {
+            AddPartner(partner);
+        }
+    }
+
+    public static Event Create(EventModel eventModel)
+    {
+        return Create(
+            eventModel.Title,
+            eventModel.Description,
+            eventModel.Schedule,
+            eventModel.Type,
+            eventModel.Status,
+            eventModel.HostingModel,
+            eventModel.ImageUrl,
+            eventModel.Images,
+            eventModel.Attendance,
+            eventModel.RegistrationLink,
+            eventModel.Activities
+                .Select(a => Activity.Create(
+                    a.Title,
+                    a.Description,
+                    Host.Create(
+                        a.Host.Name,
+                        a.Host.Email,
+                        a.Host.ImageUrl!),
+                    a.Schedule))
+                .ToList(),
+            eventModel.Partners);
     }
 }

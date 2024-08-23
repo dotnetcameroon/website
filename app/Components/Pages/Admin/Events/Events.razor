@@ -54,7 +54,7 @@ else
             <tbody class="bg-slate-100">
                 @foreach(var item in _events.Items)
                 {
-                    <tr>
+                    <tr class="border-b-white border-b-2">
                         <td class="p-2" >@item.Schedule.ToFriendlyDateString()</td>
                         <td class="p-2" >@item.Title</td>
                         <td class="p-2" >@item.Status</td>
@@ -70,10 +70,10 @@ else
 }
 
 <div class="flex justify-between items-center mt-4">
-    <a class="btn btn-secondary cursor-pointer"><i class="fa-regular fa-square-plus"></i> New event</a>
+    <a href="/admin/events" class="btn btn-secondary cursor-pointer"><i class="fa-regular fa-square-plus"></i> New event</a>
     <div class="flex gap-4 items-center">
         <!-- Pagination -->
-        <p>Page @Page</p>
+        <p>Page @Page / @_events.TotalPages</p>
 
         @if(_events.HasPreviousPage)
         {

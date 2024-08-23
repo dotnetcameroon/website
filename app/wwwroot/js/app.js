@@ -50,3 +50,72 @@ function onPageSizeSelected() {
     const submitButton = document.getElementById("page-size-submit");
     submitButton.click();
 }
+
+function toggleActivityPopup() {
+    const popup = document.getElementById("activity-popup");
+    const body = document.getElementById("body");
+    popup.classList.toggle("active");
+    body.scrollTo(0,0);
+}
+
+function adjustTextareaHight(id) {
+    const textarea = document.getElementById(id);
+    textarea.style.height = 'auto';
+    textarea.style.height = (textarea.scrollHeight) + 'px';
+}
+
+function saveDraft() {
+    try {
+        const form = document.getElementById("event-form");
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
+        form.submit();
+    } catch (error) {
+        console.error('An error occurred while publishing the event:', error);
+        window.location.href = '/errors';
+    }
+}
+
+// async function publishEvent(eventId) {
+//     try {
+//         const form = document.getElementById("event-form");
+//         if (!form.checkValidity()) {
+//             form.reportValidity();
+//             return;
+//         }
+
+//         form.submit();
+//         const response = await fetch(`/api/events/publish/${eventId}`, {
+//             method: 'POST'
+//         });
+
+//         if (response.ok) {
+//             window.location.href = '/admin';
+//         } else {
+//             window.location.href = '/errors';
+//         }
+//     } catch (error) {
+//         console.error('An error occurred while publishing the event:', error);
+//         window.location.href = '/errors';
+//     }
+// }
+
+// async function cancelEvent(eventId) {
+//     try {
+//         const response = await fetch(`/api/events/cancel/${eventId}`, {
+//             method: 'POST'
+//         });
+
+//         if (response.ok) {
+//             window.location.href = '/admin';
+//         } else {
+//             window.location.href = '/errors';
+//         }
+//     } catch (error) {
+//         console.error('An error occurred while cancelling the event:', error);
+//         window.location.href = '/errors';
+//     }
+// }
