@@ -2,6 +2,7 @@ using app.Models.EventAggregate.Entities;
 using app.Services;
 using app.ViewModels;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace app.Components.Pages.Admin.Events;
 public partial class NewOrEdit
@@ -10,7 +11,7 @@ public partial class NewOrEdit
     public Guid? Id { get; set; }
 
     [SupplyParameterFromForm(FormName = "EventForm")]
-    private EventModel Model { get; set; } = new();
+    private EventModel EventModel { get; set; } = new();
 
     public List<Partner> AllPartners = [];
 
@@ -24,6 +25,7 @@ public partial class NewOrEdit
     {
         await LoadPartners();
         await LoadEvent();
+        // await JSRuntime.InvokeVoidAsync("adjustTextareaHight", "description-input");
         await base.OnInitializedAsync();
     }
 
@@ -52,7 +54,7 @@ public partial class NewOrEdit
         }
 
         var @event = result.Value;
-        Model = new EventModel
+        EventModel = new EventModel
         {
             Title = @event.Title,
             Description = @event.Description,
@@ -65,13 +67,30 @@ public partial class NewOrEdit
             ImageUrl = @event.ImageUrl,
             Images = @event.Images,
             Partners = [.. @event.Partners],
-            Activities = [.. @event.Activities]
+            Activities = @event.Activities.Select(a => new ActivityModel
+            {
+                Title = a.Title,
+                Description = a.Description,
+                Schedule = a.Schedule,
+                Host = new HostModel
+                {
+                    Name = a.Host.Name,
+                    Email = a.Host.Email,
+                    ImageUrl = a.Host.ImageUrl
+                }
+            }).ToList()
         };
     }
 
     private void RemovePartner(Partner partner)
     {
-        Model.Partners.Remove(partner);
+        EventModel.Partners.Remove(partner);
+        StateHasChanged();
+    }
+
+    private void RemoveActivity(ActivityModel activity)
+    {
+        EventModel.Activities.Remove(activity);
         StateHasChanged();
     }
 
@@ -83,7 +102,21 @@ public partial class NewOrEdit
             return;
         }
 
-        Model.Partners.Add(partner);
+        EventModel.Partners.Add(partner);
         StateHasChanged();
+    }
+
+    public void AddActivity(ActivityModel activity)
+    {
+        EventModel.Activities.Add(activity);
+        StateHasChanged();
+    }
+
+    private static string GetActivityImage(ActivityModel model)
+    {
+        return 
+            model.Host.ImageUrl ??
+            model.Host.Base64Image ??
+            string.Empty;
     }
 }

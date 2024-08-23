@@ -1,4 +1,3 @@
-using app.Components.Pages.Admin.Events;
 using app.Data.Interceptors;
 using app.Middlewares;
 using app.Models.Identity;

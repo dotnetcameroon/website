@@ -70,10 +70,10 @@ else
 }
 
 <div class="flex justify-between items-center mt-4">
-    <a class="btn btn-secondary cursor-pointer"><i class="fa-regular fa-square-plus"></i> New event</a>
+    <a href="/admin/events" class="btn btn-secondary cursor-pointer"><i class="fa-regular fa-square-plus"></i> New event</a>
     <div class="flex gap-4 items-center">
         <!-- Pagination -->
-        <p>Page @Page</p>
+        <p>Page @Page / @_events.TotalPages</p>
 
         @if(_events.HasPreviousPage)
         {

@@ -3,9 +3,9 @@ namespace app.Models.EventAggregate.ValueObjects;
 // Will be mapped to complex property
 public class Schedule
 {
-    public DateTime Start { get; private set; }
-    public DateTime? End { get; private set; }
-    public bool IsAllDay { get; private set; }
+    public DateTime Start { get; set; }
+    public DateTime? End { get; set; }
+    public bool IsAllDay { get; set; }
 
     private Schedule(DateTime start, DateTime? end, bool isAllDay)
     {

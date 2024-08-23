@@ -16,5 +16,5 @@ public class EventModel
     public string ImageUrl { get; set; } = string.Empty;
     public string Images { get; set; } = string.Empty;
     public List<Partner> Partners { get; set; } = [];
-    public List<Activity> Activities { get; set; } = [];
+    public List<ActivityModel> Activities { get; set; } = [];
 }

@@ -50,3 +50,16 @@ function onPageSizeSelected() {
     const submitButton = document.getElementById("page-size-submit");
     submitButton.click();
 }
+
+function toggleActivityPopup() {
+    const popup = document.getElementById("activity-popup");
+    const body = document.getElementById("body");
+    popup.classList.toggle("active");
+    body.scrollTo(0,0);
+}
+
+function adjustTextareaHight(id) {
+    const textarea = document.getElementById(id);
+    textarea.style.height = 'auto';
+    textarea.style.height = (textarea.scrollHeight) + 'px';
+}
