@@ -1,5 +1,6 @@
 using app.Components;
 using app.Extensions;
+using app.Middlewares;
 using EntityFrameworkCore.Seeder.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +29,8 @@ if (app.Environment.IsProduction())
 }
 
 app.UseStaticFiles();
+
+app.UseMiddleware<DatabaseCheckMiddleware>();
 
 app.UseAuthentication();
 
