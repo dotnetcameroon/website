@@ -8,7 +8,7 @@
 <div class="h-[100svh] flex">
     <div class="relative hidden md:flex md:flex-col items-start md:w-1/2 bg-primary p-12 bg-[url('/assets/featured/carousel-3.png')] bg-bottom bg-cover bg-no-repeat">
         <div class="absolute z-10 top-0 left-0 w-full h-full bg-gradient-to-r from-black to-transparent opacity-70"></div>
-        <a href="/" class="relative z-10">
+        <a data-enhance-nav="false" href="/" class="relative z-10">
             <img src="/assets/brand/logo.png" alt=".NET Cameroon logo" class="w-[100px]">
         </a>
     </div>
@@ -35,7 +35,7 @@
                     <InputText class="p-2 w-full" id="password-input" @bind-Value="@Model.Password" title="password" required type="password" placeholder="Your password"/>
                 </label>
                 <button class="btn btn-primary center mt-6" type="submit">Log in</button>
-                <a href="/" class="link link-secondary text-center"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+                <a data-enhance-nav="false" href="/" class="link link-secondary text-center"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
             </EditForm>
         </div>
     </div>

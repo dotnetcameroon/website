@@ -59,8 +59,8 @@ else
                         <td class="p-2" >@item.Title</td>
                         <td class="p-2" >@item.Status</td>
                         <td class="p-2" >
-                            <a class="text-secondary" href="/admin/events/@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a class="text-secondary ml-4" href="/admin/events/delete/@item.Id"><i class="fa-solid fa-trash-can"></i></a>
+                            <a data-enhance-nav="false" class="text-secondary" href="/admin/events/@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a data-enhance-nav="false" class="text-secondary ml-4" href="/admin/events/delete/@item.Id"><i class="fa-solid fa-trash-can"></i></a>
                         </td>
                     </tr>
                 }
@@ -70,18 +70,18 @@ else
 }
 
 <div class="flex justify-between items-center mt-4">
-    <a href="/admin/events" class="btn btn-secondary cursor-pointer"><i class="fa-regular fa-square-plus"></i> New event</a>
+    <a data-enhance-nav="false" href="/admin/events" class="btn btn-secondary cursor-pointer"><i class="fa-regular fa-square-plus"></i> New event</a>
     <div class="flex gap-4 items-center">
         <!-- Pagination -->
         <p>Page @Page / @_events.TotalPages</p>
 
         @if(_events.HasPreviousPage)
         {
-            <a href="/admin?Page=@(Page - 1)" class="link link-secondary" target="_parent">Previous</a>
+            <a data-enhance-nav="false" href="/admin?Page=@(Page - 1)" class="link link-secondary" target="_parent">Previous</a>
         }
         @if(_events.HasNextPage)
         {
-            <a href="/admin?Page=@(Page + 1)" class="link link-secondary" target="_parent">Next</a>
+            <a data-enhance-nav="false" href="/admin?Page=@(Page + 1)" class="link link-secondary" target="_parent">Next</a>
         }
     </div>
 </div>
