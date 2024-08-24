@@ -47,21 +47,21 @@
                             <div class="event-actions flex gap-4 md:translate-y-full md:opacity-0 flex-wrap">
                                 @if(!string.IsNullOrWhiteSpace(item.RegistrationLink))
                                 {
-                                    <a href="@item.RegistrationLink" class="btn btn-primary">Register</a>
+                                    <a href="@item.RegistrationLink" target="_blank" class="btn btn-primary">Register</a>
                                 }
-                                <a href="/events/@item.Id" class="btn btn-secondary">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+                                <a href="/events/@item.Id" data-enhance-nav="false" class="btn btn-secondary">Learn more <i class="fa-solid fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
                 }
-                <a href="/events/search" class="hidden self-center md:flex flex-col w-16 h-16 rounded-full items-center border-2 border-black justify-center hover:bg-black hover:text-white bg-opacity-75 hover:bg-opacity-100 transition-all">
+                <a data-enhance-nav="false" href="/events/search" class="hidden self-center md:flex flex-col w-16 h-16 rounded-full items-center border-2 border-black justify-center hover:bg-black hover:text-white bg-opacity-75 hover:bg-opacity-100 transition-all">
                     All
                     <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>
             @if(_upcomingEvents.Length > 0)
             {
-                <a href="/" class="link link-secondary mt-4 md:hidden self-center">View all</a>
+                <a data-enhance-nav="false" href="/" class="link link-secondary mt-4 md:hidden self-center">View all</a>
             }
         </div>
     </section>
@@ -86,7 +86,7 @@
                             <p class="mt-2 text-ellipsis line-clamp-3">
                                 @item.Description
                             </p>
-                            <a href="/events/@item.Id" class="btn btn-primary mt-2">Read more <i class="fa-solid fa-arrow-right"></i></a>
+                            <a data-enhance-nav="false" href="/events/@item.Id" class="btn btn-primary mt-2">Read more <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
                     </div>
                 }

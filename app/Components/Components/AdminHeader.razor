@@ -1,11 +1,11 @@
 <nav class="relative bg-white h-[80px] flex items-center z-50">
     <div class="relative flex justify-between w-full md:p-5 p-4 items-center">
-        <a href="/">
+        <a href="/" data-enhance-nav="false">
             <img src="/assets/brand/logo.png" alt=".NET Cameroon Logo" class="w-[80px]">
         </a>
         <div class="flex gap-6 items-center">
             <p>@HttpContext.User.FindFirstValue(ClaimTypes.Email)</p>
-            <a href="/Account/Logout" class="link text-red-400 hover:text-red-500 transition-all">Logout</a>
+            <a href="/Account/Logout" data-enhance-nav="false" class="link text-red-400 hover:text-red-500 transition-all">Logout</a>
         </div>
     </div>
 </nav>
