@@ -173,7 +173,8 @@ public sealed class Event : Entity<Guid>, IAggregateRoot
                     a.Host.Name,
                     a.Host.Email,
                     a.Host.ImageUrl!),
-                a.Schedule));
+                a.Schedule,
+                this));
         foreach (var activity in activities)
         {
             AddActivity(activity);
@@ -187,7 +188,7 @@ public sealed class Event : Entity<Guid>, IAggregateRoot
 
     public static Event Create(EventModel eventModel)
     {
-        return Create(
+        var @event = Create(
             eventModel.Title,
             eventModel.Description,
             eventModel.Schedule,
@@ -198,16 +199,24 @@ public sealed class Event : Entity<Guid>, IAggregateRoot
             eventModel.Images,
             eventModel.Attendance,
             eventModel.RegistrationLink,
-            eventModel.Activities
-                .Select(a => Activity.Create(
-                    a.Title,
-                    a.Description,
-                    Host.Create(
-                        a.Host.Name,
-                        a.Host.Email,
-                        a.Host.ImageUrl!),
-                    a.Schedule))
-                .ToList(),
+            null,
             eventModel.Partners);
+
+        var activities = eventModel.Activities
+            .Select(a => Activity.Create(
+                a.Title,
+                a.Description,
+                Host.Create(
+                    a.Host.Name,
+                    a.Host.Email,
+                    a.Host.ImageUrl!),
+                a.Schedule,
+                @event))
+            .ToList();
+        foreach (var activity in activities)
+        {
+            @event.AddActivity(activity);
+        }
+        return @event;
     }
 }

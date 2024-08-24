@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace app.Persistence;
 public sealed partial class AppDbContext(
     DbContextOptions<AppDbContext> options,
-    DomainEventsInterceptor domainEventsInterceptor) : IdentityDbContext<User>(options)
+    DomainEventsInterceptor domainEventsInterceptor) : IdentityDbContext<User>(options), IDbContext
 {
     private readonly DomainEventsInterceptor _domainEventsInterceptor = domainEventsInterceptor;
     public DbSet<Event> Events { get; set; }
