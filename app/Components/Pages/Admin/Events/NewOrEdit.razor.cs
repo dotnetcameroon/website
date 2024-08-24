@@ -1,5 +1,7 @@
 using app.Models.EventAggregate;
 using app.Models.EventAggregate.Entities;
+using app.Models.EventAggregate.ValueObjects;
+using app.Persistence;
 using app.Services;
 using app.ViewModels;
 using ErrorOr;
@@ -30,6 +32,9 @@ public partial class NewOrEdit
     [Inject]
     public IJSRuntime JSRuntime { get; set; } = default!;
 
+    [Inject]
+    public IUnitOfWork UnitOfWork { get; set; } = default!;
+
     protected override async Task OnInitializedAsync()
     {
         await LoadPartners();
@@ -40,20 +45,23 @@ public partial class NewOrEdit
 
     private async Task HandleSubmit()
     {
-        ErrorOr<Event> result;
         if(Id is null)
         {
-            result = await EventService.CreateAsync(EventModel);
+            var result = await EventService.CreateAsync(EventModel);
+            if(result.IsError)
+            {
+                NavigationManager.NavigateTo("/errors", true);
+                return;
+            }
         }
         else
         {
-            result = await EventService.UpdateAsync(Id.Value, EventModel);
-        }
-
-        if(result.IsError)
-        {
-            NavigationManager.NavigateTo("/errors", true);
-            return;
+            var result = await EventService.UpdateAsync(Id.Value, EventModel);
+            if(!result)
+            {
+                NavigationManager.NavigateTo("/errors", true);
+                return;
+            }
         }
 
         NavigationManager.NavigateTo("/admin", true);

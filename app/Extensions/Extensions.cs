@@ -37,6 +37,7 @@ public static class Extensions
         services.AddScoped<DomainEventsInterceptor>();
         services.AddSqlServer<AppDbContext>(configuration.GetConnectionString("SqlServer"));
         services.AddScoped<DbContext>(sp => sp.GetRequiredService<AppDbContext>());
+        services.AddScoped<IDbContext>(sp => sp.GetRequiredService<AppDbContext>());
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Extensions).Assembly));
         services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
         services
