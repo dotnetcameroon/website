@@ -12,7 +12,7 @@ public interface IEventService
     Task<bool> ExistsAsync(Expression<Func<Event, bool>> expression, CancellationToken cancellationToken = default);
     Task<ErrorOr<Event>> GetAsync(Guid id, CancellationToken cancellationToken = default);
     Task<ErrorOr<Event>> GetAsync(Expression<Func<Event, bool>> expression, CancellationToken cancellationToken = default);
-    Task<bool> UpdateAsync(Guid id, EventModel eventModel, CancellationToken cancellationToken = default);
+    Task<ErrorOr<Event>> UpdateAsync(Guid id, EventModel eventModel, CancellationToken cancellationToken = default);
     Task<ErrorOr<PagedList<Event>>> GetAllAsync(int page = 1, int size = 10, CancellationToken cancellationToken = default);
     Task<ErrorOr<PagedList<Event>>> SearchAsync(Expression<Func<Event,bool>> predicate,int page = 1, int size = 10, CancellationToken cancellationToken = default);
     Task<ErrorOr<bool>> DeleteEvent(Guid id, CancellationToken cancellationToken = default);
