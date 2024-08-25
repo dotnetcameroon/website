@@ -95,7 +95,7 @@
                 Email = ActivityModel.HostEmail,
                 ImageUrl = ActivityModel.HostImageUrl
             },
-            @* Schedule =  ActivityModel.Schedule *@
+            @* Schedule = Schedule.Create(ActivityModel.Start, ActivityModel.End); *@
         });
         ActivityModel.HostImageUrl = string.Empty;
         await JsInterop.InvokeVoidAsync("toggleActivityPopup");

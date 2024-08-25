@@ -151,7 +151,7 @@ public sealed class Event : Entity<Guid>, IAggregateRoot
         return @event;
     }
 
-    public void Update(EventModel entity)
+    public void UpdateInfos(EventModel entity)
     {
         Title = entity.Title;
         Description = entity.Description;
@@ -163,27 +163,6 @@ public sealed class Event : Entity<Guid>, IAggregateRoot
         Images = entity.Images;
         ImageUrl = entity.ImageUrl;
         RegistrationLink = entity.RegistrationLink;
-        _activities.Clear();
-        _partners.Clear();
-        var activities = entity.Activities
-            .Select(a => Activity.Create(
-                a.Title,
-                a.Description,
-                Host.Create(
-                    a.Host.Name,
-                    a.Host.Email,
-                    a.Host.ImageUrl!),
-                a.Schedule,
-                this));
-        foreach (var activity in activities)
-        {
-            AddActivity(activity);
-        }
-
-        foreach (var partner in entity.Partners)
-        {
-            AddPartner(partner);
-        }
     }
 
     public static Event Create(EventModel eventModel)
@@ -218,5 +197,23 @@ public sealed class Event : Entity<Guid>, IAggregateRoot
             @event.AddActivity(activity);
         }
         return @event;
+    }
+
+    public void UpdatePartners(List<Partner> partners)
+    {
+        _partners.Clear();
+        foreach (var partner in partners)
+        {
+            AddPartner(partner);
+        }
+    }
+
+    public void UpdateActivities(List<ActivityModel> activities)
+    {
+        _activities.Clear();
+        foreach (var activity in activities)
+        {
+            AddActivity(Activity.Create(activity.Title, activity.Description, Host.Create(activity.Host.Name, activity.Host.Email, activity.Host.ImageUrl), Schedule, this));
+        }
     }
 }

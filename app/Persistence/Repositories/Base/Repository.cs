@@ -18,6 +18,13 @@ internal class Repository<TEntity, TId>(DbContext dbContext) : IRepository<TEnti
         return result.Entity;
     }
 
+    public async Task AddRangeAsync(IEnumerable<TEntity> entity, CancellationToken cancellationToken = default)
+    {
+        await _dbContext
+            .Set<TEntity>()
+            .AddRangeAsync(entity, cancellationToken);
+    }
+
     public virtual Task<bool> DeleteAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         _ = _dbContext.Set<TEntity>().Remove(entity);

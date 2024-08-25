@@ -45,23 +45,20 @@ public partial class NewOrEdit
 
     private async Task HandleSubmit()
     {
+        ErrorOr<Event> result;
         if(Id is null)
         {
-            var result = await EventService.CreateAsync(EventModel);
-            if(result.IsError)
-            {
-                NavigationManager.NavigateTo("/errors", true);
-                return;
-            }
+            result = await EventService.CreateAsync(EventModel);
         }
         else
         {
-            var result = await EventService.UpdateAsync(Id.Value, EventModel);
-            if(!result)
-            {
-                NavigationManager.NavigateTo("/errors", true);
-                return;
-            }
+            result = await EventService.UpdateAsync(Id.Value, EventModel);
+        }
+
+        if(result.IsError)
+        {
+            NavigationManager.NavigateTo("/errors", true);
+            return;
         }
 
         NavigationManager.NavigateTo("/admin", true);
