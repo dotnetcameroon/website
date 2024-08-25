@@ -62,7 +62,7 @@ internal class EventService(
     {
         var @event = await _eventRepository
             .Table
-            .Include(e => e.Activities)
+            .Include(e => e.Activities.OrderBy(a => a.Schedule.Start))
             .Include(e => e.Partners)
             .FirstOrDefaultAsync(e => e.Id == id, cancellationToken);
 
