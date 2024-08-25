@@ -152,15 +152,6 @@ internal class EventService(
                     @event));
         await _activityRepository.AddRangeAsync(activities, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
-        // foreach (var activity in eventModel.Activities)
-        // {
-        //     await _dbContext.Database.ExecuteSqlAsync(
-        //         @$"INSERT INTO [Activities]
-        //             ([Id], [Title], [Description], [EventId], [Host_Email], [Host_Name], [Host_ImageUrl], [Schedule_Start], [Schedule_End], [Schedule_IsAllDay])
-        //         VALUES ({Guid.NewGuid()}, {activity.Title}, {activity.Description}, {id}, {activity.Host.Email}, {activity.Host.Name}, {activity.Host.ImageUrl}, {activity.Schedule.Start}, {activity.Schedule.End}, {activity.Schedule.IsAllDay});
-        //         ",
-        //         cancellationToken);
-        // }
         await _unitOfWork.CommitTransactionAsync(transactionId, cancellationToken);
         return @event;
     }

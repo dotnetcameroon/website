@@ -7,7 +7,7 @@ public class EventModel
 {
     public string Title { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
-    public Schedule Schedule { get; set; } = new();
+    public EventSchedule Schedule { get; set; } = new();
     public EventType Type { get; set; }
     public EventStatus Status { get; set; }
     public EventHostingModel HostingModel { get; set; }

@@ -6,5 +6,5 @@ public class ActivityModel
     public string Title { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public HostModel Host { get; set; } = new();
-    public Schedule Schedule { get; set; } = new();
+    public ActivitySchedule Schedule { get; set; } = new();
 }

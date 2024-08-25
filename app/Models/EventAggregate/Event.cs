@@ -14,7 +14,7 @@ public sealed class Event : Entity<Guid>, IAggregateRoot
     private readonly List<IDomainEvent> _domainEvents = [];
     public string Title { get; private set; } = string.Empty;
     public string Description { get; private set; } = string.Empty;
-    public Schedule Schedule { get; private set; }
+    public EventSchedule Schedule { get; private set; }
     public EventType Type { get; private set; }
     public EventStatus Status { get; private set; }
     public EventHostingModel HostingModel { get; private set; }
@@ -38,7 +38,7 @@ public sealed class Event : Entity<Guid>, IAggregateRoot
         Guid id,
         string title,
         string description,
-        Schedule schedule,
+        EventSchedule schedule,
         EventType type,
         EventStatus status,
         EventHostingModel hostingModel,
@@ -108,7 +108,7 @@ public sealed class Event : Entity<Guid>, IAggregateRoot
     public static Event Create(
         string title,
         string description,
-        Schedule schedule,
+        EventSchedule schedule,
         EventType type,
         EventStatus status,
         EventHostingModel hostingModel,
@@ -205,15 +205,6 @@ public sealed class Event : Entity<Guid>, IAggregateRoot
         foreach (var partner in partners)
         {
             AddPartner(partner);
-        }
-    }
-
-    public void UpdateActivities(List<ActivityModel> activities)
-    {
-        _activities.Clear();
-        foreach (var activity in activities)
-        {
-            AddActivity(Activity.Create(activity.Title, activity.Description, Host.Create(activity.Host.Name, activity.Host.Email, activity.Host.ImageUrl), Schedule, this));
         }
     }
 }

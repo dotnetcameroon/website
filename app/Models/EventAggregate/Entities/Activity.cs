@@ -8,11 +8,11 @@ public sealed class Activity : Entity<Guid>
     public string Title { get; private set; } = string.Empty;
     public string Description { get; private set; } = string.Empty;
     public Host Host { get; private set; }
-    public Schedule Schedule { get; private set; }
+    public ActivitySchedule Schedule { get; private set; }
     public Guid EventId { get; private set; }
     public Event Event { get; private set; }
 
-    private Activity(Guid id, string title, string description, Host host, Schedule schedule, Event @event) : base(id)
+    private Activity(Guid id, string title, string description, Host host, ActivitySchedule schedule, Event @event) : base(id)
     {
         Title = title;
         Description = description;
@@ -32,7 +32,7 @@ public sealed class Activity : Entity<Guid>
         string title,
         string description,
         Host host,
-        Schedule schedule,
+        ActivitySchedule schedule,
         Event @event)
     {
         return new Activity(Guid.NewGuid(), title, description, host, schedule, @event);

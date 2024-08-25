@@ -1,26 +1,26 @@
 namespace app.Models.EventAggregate.ValueObjects;
 
 // Will be mapped to complex property
-public class Schedule
+public class EventSchedule
 {
     public DateTime Start { get; set; }
     public DateTime? End { get; set; }
     public bool IsAllDay { get; set; }
 
-    private Schedule(DateTime start, DateTime? end, bool isAllDay)
+    private EventSchedule(DateTime start, DateTime? end, bool isAllDay)
     {
         Start = start;
         End = end;
         IsAllDay = isAllDay;
     }
 
-    public Schedule()
+    public EventSchedule()
     {
     }
 
-    public static Schedule Create(DateTime start, DateTime? end, bool isAllDay = false)
+    public static EventSchedule Create(DateTime start, DateTime? end, bool isAllDay = false)
     {
-        var schedule = new Schedule(start, end, isAllDay);
+        var schedule = new EventSchedule(start, end, isAllDay);
         if (isAllDay)
         {
             schedule.Start = start.Date;

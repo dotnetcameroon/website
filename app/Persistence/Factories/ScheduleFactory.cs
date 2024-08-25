@@ -3,11 +3,11 @@ using Bogus;
 using EntityFrameworkCore.Seeder.Base;
 
 namespace app.Persistence.Factories;
-public class ScheduleFactory : Factory<Schedule>
+public class ScheduleFactory : Factory<EventSchedule>
 {
-    protected override Faker<Schedule> BuildRules()
+    protected override Faker<EventSchedule> BuildRules()
     {
-        return new Faker<Schedule>()
+        return new Faker<EventSchedule>()
             .RuleFor(x => x.Start, f => f.Date.Future())
             .RuleFor(x => x.End, (f, x) => f.Date.Between(x.Start, x.Start))
             .RuleFor(x => x.IsAllDay, f => f.Random.Bool());
