@@ -19,7 +19,7 @@ public class EventsSeeder(AppDbContext dbContext, ILogger<EventsSeeder> logger) 
         var @event = Event.Create(
             "Infinite Days",
             "Welcome to Infinite Days, a tech extravaganza where innovation meets inspiration! This event brings together tech enthusiasts, developers, entrepreneurs, and industry leaders for a day packed with cutting-edge insights, hands-on workshops, and dynamic discussions. From exploring the latest trends in technology to diving deep into specialized topics like entrepreneurship, human resources management, and .NET development, Infinite Days is your gateway to endless possibilities. Whether you’re looking to level up your skills, network with like-minded professionals, or simply immerse yourself in the tech world, Infinite Days offers something for everyone. Join us for a journey through the infinite landscape of technology, where the only limit is your imagination!",
-            EventSchedule.Create(new DateTime(2023, 10, 16), null, true),
+            EventSchedule.Create(new DateTime(2023, 10, 16).ToUniversalTime(), null, true),
             EventType.Conference,
             EventStatus.Passed,
             EventHostingModel.InPerson,

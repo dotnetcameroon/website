@@ -10,6 +10,7 @@ using app.Services.Impl;
 using app.Utilities;
 using EntityFrameworkCore.Seeder.Extensions;
 using Hangfire;
+using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -34,7 +35,7 @@ public static class Extensions
             .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
             .UseSimpleAssemblyNameTypeSerializer()
             .UseRecommendedSerializerSettings()
-            .UseSqlServerStorage(configuration.GetConnectionString("SqlServer")));
+            .UsePostgreSqlStorage(configuration.GetConnectionString("Npgsql")));
 
         services.AddHangfireServer();
 
@@ -44,7 +45,7 @@ public static class Extensions
         services.AddScoped<IPartnerService,PartnerService>();
         services.AddScoped<IIdentityService,IdentityService>();
         services.AddScoped<DomainEventsInterceptor>();
-        services.AddSqlServer<AppDbContext>(configuration.GetConnectionString("SqlServer"));
+        services.AddNpgsql<AppDbContext>(configuration.GetConnectionString("Npgsql"));
         services.AddScoped<DbContext>(sp => sp.GetRequiredService<AppDbContext>());
         services.AddScoped<IDbContext>(sp => sp.GetRequiredService<AppDbContext>());
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Extensions).Assembly));

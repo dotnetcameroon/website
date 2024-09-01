@@ -1,12 +1,11 @@
 # Spin up the database in detached mode
 docker-compose up -d
 
-# Wait until the SQL Server container is ready
-$containerName = "sqlserver"
-$password = "!Passw0rd"
+# Wait until the PostgreSQL container is ready
+$containerName = "postgres"
 
-while (-not (docker exec $containerName /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P $password -Q "SELECT 1" -ErrorAction SilentlyContinue)) {
-    Write-Host "Waiting for SQL Server to be ready..."
+while (-not (docker exec $containerName pg_isready -U admin -h localhost -q)) {
+    Write-Host "Waiting for PostgreSQL to be ready..."
     Start-Sleep -Seconds 3
 }
 
@@ -17,3 +16,4 @@ dotnet ef database update --project ./app/
 dotnet run --project ./app/ --seed RolesSeeder
 dotnet run --project ./app/ --seed PartnersSeeder
 dotnet run --project ./app/ --seed EventsSeeder
+dotnet run --project ./app/ --seed AdminsSeeder

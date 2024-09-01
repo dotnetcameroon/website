@@ -1,9 +1,9 @@
 # Spin up the database in detached mode
 docker compose up -d
 
-# Wait until the SQL Server container is ready
-until docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P '!Passw0rd' -Q "SELECT 1" &> /dev/null; do
-  echo "Waiting for SQL Server to be ready..."
+# Wait until the PostgreSQL container is ready
+until docker exec postgres pg_isready -U admin &> /dev/null; do
+  echo "Waiting for PostgreSQL to be ready..."
   sleep 3
 done
 

@@ -1,17 +1,29 @@
-version: '3.8'
-
 services:
-  sqlserver:
-    container_name: sqlserver
-    image: mcr.microsoft.com/mssql/server:2017-latest
+  postgres:
+    container_name: postgres
+    image: postgres:latest
     ports:
-      - "1433:1433"
+      - "5432:5432"
     environment:
-      SA_PASSWORD: "!Passw0rd"
-      ACCEPT_EULA: "Y"
-      MSSQL_PID: "Express"
+      POSTGRES_PASSWORD: "P@55w0rd"
+      POSTGRES_USER: "admin"
+      POSTGRES_DB: "Website"
     volumes:
-      - sqlserver-data:/var/opt/mssql
+      - postgres-data:/var/lib/postgresql/data
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
 
 volumes:
-  sqlserver-data:
+  postgres-data:
+  pgadmin-data:

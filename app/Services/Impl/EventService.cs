@@ -116,7 +116,6 @@ internal class EventService(
         return await _eventRepository.DeleteAsync(id, cancellationToken);
     }
 
-    // This method uses a mix and match of Ef queries qnd raw sql queries
     public async Task<ErrorOr<Event>> UpdateAsync(Guid id, EventModel eventModel, CancellationToken cancellationToken = default)
     {
         var @event = await _eventRepository.GetAsync(e => e.Id == id, cancellationToken);
@@ -131,12 +130,9 @@ internal class EventService(
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         // Delete the activities
-        await _dbContext.Database.ExecuteSqlInterpolatedAsync(
-            @$"
-            DELETE FROM [Activities]
-            WHERE [EventId] = {id};
-            ",
-            cancellationToken);
+        await _activityRepository.Table
+            .Where(a => a.EventId == id)
+            .ExecuteDeleteAsync(cancellationToken);
 
         // Insert the new activities
         var activities = eventModel.Activities
