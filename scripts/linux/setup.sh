@@ -1,5 +1,5 @@
 # Spin up the database in detached mode
-docker compose up -d
+docker compose -f docker-compose.postgres.yml up -d
 
 # Wait until the PostgreSQL container is ready
 until docker exec postgres pg_isready -U admin &> /dev/null; do
@@ -11,7 +11,7 @@ done
 dotnet ef database update --project ./app/ && \
 
 # Seed the database
-dotnet run --project ./app/ --seed RolesSeeder
-dotnet run --project ./app/ --seed PartnersSeeder
-dotnet run --project ./app/ --seed EventsSeeder
-dotnet run --project ./app/ --seed AdminsSeeder
+dotnet run --project ./app/ --seed RolesSeeder PartnersSeeder EventsSeeder AdminsSeeder
+
+# Shut down the database
+docker compose -f docker-compose.postgres.yml down
