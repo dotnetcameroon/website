@@ -189,4 +189,18 @@ internal class EventService(
         await _unitOfWork.SaveChangesAsync(cancellationToken);
         return @event;
     }
+
+    public async Task MarkPassedEventsAsync()
+    {
+        var passedEvents = await _eventRepository.Table
+            .Where(e => e.Schedule.End < DateTime.UtcNow && e.Status != EventStatus.Passed)
+            .ToArrayAsync();
+
+        foreach (var @event in passedEvents)
+        {
+            @event.MarkAsPassed();
+        }
+
+        await _unitOfWork.SaveChangesAsync();
+    }
 }

@@ -1,7 +1,9 @@
 using app.Components;
 using app.Extensions;
 using app.Middlewares;
+using app.Services;
 using EntityFrameworkCore.Seeder.Extensions;
+using Hangfire;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,5 +42,12 @@ app.UseAntiforgery();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
+
+app.UseHangfireDashboard();
+
+RecurringJob.AddOrUpdate<IEventService>(
+    "MarkPassedEvents", 
+    service => service.MarkPassedEventsAsync(),
+    Cron.Daily);
 
 app.Run();

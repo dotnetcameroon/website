@@ -15,6 +15,7 @@ public class EventModel
     public string RegistrationLink { get; set; } = string.Empty;
     public string ImageUrl { get; set; } = string.Empty;
     public string Images { get; set; } = string.Empty;
+    public string? Location { get; set; } = string.Empty;
     public List<Partner> Partners { get; set; } = [];
     public List<ActivityModel> Activities { get; set; } = [];
 }

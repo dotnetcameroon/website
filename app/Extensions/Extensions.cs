@@ -9,6 +9,7 @@ using app.Services;
 using app.Services.Impl;
 using app.Utilities;
 using EntityFrameworkCore.Seeder.Extensions;
+using Hangfire;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +29,14 @@ public static class Extensions
             services.AddApplicationInsightsTelemetry(configuration);
             services.AddExceptionHandler<ExceptionHandlerMiddleware>();
         }
+
+        services.AddHangfire(cfg => cfg
+            .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+            .UseSimpleAssemblyNameTypeSerializer()
+            .UseRecommendedSerializerSettings()
+            .UseSqlServerStorage(configuration.GetConnectionString("SqlServer")));
+
+        services.AddHangfireServer();
 
         services.AddScoped<IUnitOfWork,UnitOfWork>();
         services.AddScoped<DatabaseCheckMiddleware>();
