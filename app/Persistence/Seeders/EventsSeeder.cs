@@ -7,9 +7,10 @@ using EntityFrameworkCore.Seeder.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace app.Persistence.Seeders;
-public class EventsSeeder(AppDbContext dbContext, ILogger<EventsSeeder> logger) : ISeeder
+public class EventsSeeder(IDbContext dbContext, ILogger<EventsSeeder> logger, IUnitOfWork unitOfWork) : ISeeder
 {
-    private readonly AppDbContext _dbContext = dbContext;
+    private readonly IDbContext _dbContext = dbContext;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly ILogger<EventsSeeder> _logger = logger;
 
     public async Task SeedAsync()
@@ -28,7 +29,7 @@ public class EventsSeeder(AppDbContext dbContext, ILogger<EventsSeeder> logger) 
             70,
             null,
             [],
-            [ partners ]);
+            [partners]);
 
         var activity = Activity.Create(
             "Introduction to .NET",
@@ -46,7 +47,7 @@ public class EventsSeeder(AppDbContext dbContext, ILogger<EventsSeeder> logger) 
 
         @event.AddActivity(activity2);
         @event.AddActivity(activity);
-        await _dbContext.AddRangeAsync([ @event, ..events ]);
-        await _dbContext.SaveChangesAsync();
+        await _dbContext.Events.AddRangeAsync([@event, .. events]);
+        await _unitOfWork.SaveChangesAsync();
     }
 }

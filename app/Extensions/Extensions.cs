@@ -10,7 +10,6 @@ using app.Services.Impl;
 using app.Utilities;
 using EntityFrameworkCore.Seeder.Extensions;
 using Hangfire;
-using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 namespace app.Extensions;
 public static class Extensions
 {
+    private const string SqlServer = "SqlServer";
     public static IServiceCollection AddServices(
         this IServiceCollection services,
         IConfiguration configuration,
@@ -35,19 +35,22 @@ public static class Extensions
             .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
             .UseSimpleAssemblyNameTypeSerializer()
             .UseRecommendedSerializerSettings()
-            .UsePostgreSqlStorage(configuration.GetConnectionString("Npgsql")));
+            .UseSqlServerStorage(configuration.GetConnectionString(SqlServer)));
 
         services.AddHangfireServer();
-
+        services.AddJobsFromAssembly(typeof(Extensions).Assembly);
         services.AddScoped<IUnitOfWork,UnitOfWork>();
+        services.AddScoped<IFileDownloader,FileDownloader>();
+        services.AddScoped<IFileUploader,FileUploader>();
+        services.AddScoped<IFileManager,FileManager>();
         services.AddScoped<DatabaseCheckMiddleware>();
         services.AddScoped<IEventService,EventService>();
         services.AddScoped<IPartnerService,PartnerService>();
         services.AddScoped<IIdentityService,IdentityService>();
         services.AddScoped<DomainEventsInterceptor>();
-        services.AddNpgsql<AppDbContext>(configuration.GetConnectionString("Npgsql"));
-        services.AddScoped<DbContext>(sp => sp.GetRequiredService<AppDbContext>());
+        services.AddSqlServer<AppDbContext>(configuration.GetConnectionString(SqlServer));
         services.AddScoped<IDbContext>(sp => sp.GetRequiredService<AppDbContext>());
+        services.AddScoped<DbContext>(sp => sp.GetRequiredService<AppDbContext>());
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Extensions).Assembly));
         services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
         services

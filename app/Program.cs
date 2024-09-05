@@ -1,5 +1,6 @@
 using app.Components;
 using app.Extensions;
+using app.Filters;
 using app.Middlewares;
 using app.Services;
 using EntityFrameworkCore.Seeder.Extensions;
@@ -40,14 +41,9 @@ app.UseAuthorization();
 
 app.UseAntiforgery();
 
+app.MapHangfireJobs();
+
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
-
-app.UseHangfireDashboard();
-
-RecurringJob.AddOrUpdate<IEventService>(
-    "MarkPassedEvents", 
-    service => service.MarkPassedEventsAsync(),
-    Cron.Daily);
 
 app.Run();

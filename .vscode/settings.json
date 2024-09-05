@@ -17,6 +17,7 @@
         "Picsum",
         "Postgre",
         "postgres",
-        "proditech"
+        "proditech",
+        "pyodbc"
     ]
 }

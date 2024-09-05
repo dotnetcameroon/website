@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace app.Persistence.Impl;
-internal class UnitOfWork(DbContext dbContext) : IUnitOfWork
+internal class UnitOfWork(IDbContext dbContext) : IUnitOfWork
 {
-    private readonly DbContext _dbContext = dbContext;
+    private readonly IDbContext _dbContext = dbContext;
     private static readonly ConcurrentDictionary<Guid, IDbContextTransaction> _transactions = [];
 
     public async Task<Guid> BeginTransactionAsync(CancellationToken cancellationToken = default)

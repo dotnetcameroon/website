@@ -1,9 +1,9 @@
 # Spin up the database in detached mode
-docker compose -f docker-compose.postgres.yml up -d
+docker compose up -d
 
-# Wait until the PostgreSQL container is ready
-until docker exec postgres pg_isready -U admin &> /dev/null; do
-  echo "Waiting for PostgreSQL to be ready..."
+# Wait until the SQL Server container is ready
+until docker exec sqlserver /opt/mssql-tools18/bin/sqlcmd -S localhost -U SA -P '!Passw0rd' -Q "SELECT 1" -C &> /dev/null; do
+  echo "Waiting for SQL Server to be ready..."
   sleep 3
 done
 
@@ -14,4 +14,4 @@ dotnet ef database update --project ./app/ && \
 dotnet run --project ./app/ --seed RolesSeeder PartnersSeeder EventsSeeder AdminsSeeder
 
 # Shut down the database
-docker compose -f docker-compose.postgres.yml down
+docker compose down
