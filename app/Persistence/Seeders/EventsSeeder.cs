@@ -7,9 +7,10 @@ using EntityFrameworkCore.Seeder.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace app.Persistence.Seeders;
-public class EventsSeeder(AppDbContext dbContext, ILogger<EventsSeeder> logger) : ISeeder
+public class EventsSeeder(IDbContext dbContext, ILogger<EventsSeeder> logger, IUnitOfWork unitOfWork) : ISeeder
 {
-    private readonly AppDbContext _dbContext = dbContext;
+    private readonly IDbContext _dbContext = dbContext;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly ILogger<EventsSeeder> _logger = logger;
 
     public async Task SeedAsync()
@@ -19,7 +20,7 @@ public class EventsSeeder(AppDbContext dbContext, ILogger<EventsSeeder> logger) 
         var @event = Event.Create(
             "Infinite Days",
             "Welcome to Infinite Days, a tech extravaganza where innovation meets inspiration! This event brings together tech enthusiasts, developers, entrepreneurs, and industry leaders for a day packed with cutting-edge insights, hands-on workshops, and dynamic discussions. From exploring the latest trends in technology to diving deep into specialized topics like entrepreneurship, human resources management, and .NET development, Infinite Days is your gateway to endless possibilities. Whether you’re looking to level up your skills, network with like-minded professionals, or simply immerse yourself in the tech world, Infinite Days offers something for everyone. Join us for a journey through the infinite landscape of technology, where the only limit is your imagination!",
-            EventSchedule.Create(new DateTime(2023, 10, 16), null, true),
+            EventSchedule.Create(new DateTime(2023, 10, 16).ToUniversalTime(), null, true),
             EventType.Conference,
             EventStatus.Passed,
             EventHostingModel.InPerson,
@@ -28,7 +29,7 @@ public class EventsSeeder(AppDbContext dbContext, ILogger<EventsSeeder> logger) 
             70,
             null,
             [],
-            [ partners ]);
+            [partners]);
 
         var activity = Activity.Create(
             "Introduction to .NET",
@@ -46,7 +47,7 @@ public class EventsSeeder(AppDbContext dbContext, ILogger<EventsSeeder> logger) 
 
         @event.AddActivity(activity2);
         @event.AddActivity(activity);
-        await _dbContext.AddRangeAsync([ @event, ..events ]);
-        await _dbContext.SaveChangesAsync();
+        await _dbContext.Events.AddRangeAsync([@event, .. events]);
+        await _unitOfWork.SaveChangesAsync();
     }
 }

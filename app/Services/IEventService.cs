@@ -19,4 +19,5 @@ public interface IEventService
     Task<ErrorOr<Event>> CreateAsync(EventModel eventModel, CancellationToken cancellationToken = default);
     Task<ErrorOr<Event>> PublishAsync(Guid id, CancellationToken cancellationToken = default);
     Task<ErrorOr<Event>> CancelAsync(Guid id, CancellationToken cancellationToken = default);
+    Task MarkPassedEventsAsync();
 }

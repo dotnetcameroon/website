@@ -1,7 +1,10 @@
 using app.Components;
 using app.Extensions;
+using app.Filters;
 using app.Middlewares;
+using app.Services;
 using EntityFrameworkCore.Seeder.Extensions;
+using Hangfire;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +40,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseAntiforgery();
+
+app.MapHangfireJobs();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();

@@ -15,6 +15,9 @@
         "linux",
         "Noumbo",
         "Picsum",
-        "proditech"
+        "Postgre",
+        "postgres",
+        "proditech",
+        "pyodbc"
     ]
 }

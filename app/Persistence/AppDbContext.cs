@@ -18,7 +18,7 @@ public sealed partial class AppDbContext(
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.Ignore<List<IDomainEvent>>();
-        builder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+        builder.ApplyConfigurationsFromAssembly(typeof(IDbContext).Assembly);
         base.OnModelCreating(builder);
     }
 
@@ -26,5 +26,10 @@ public sealed partial class AppDbContext(
     {
         optionsBuilder.AddInterceptors(_domainEventsInterceptor);
         base.OnConfiguring(optionsBuilder);
+    }
+
+    Task IDbContext.SaveChangesAsync(CancellationToken cancellationToken)
+    {
+        return SaveChangesAsync(cancellationToken);
     }
 }

@@ -9,8 +9,22 @@ public class SeederEngine(ILogger<SeederEngine> logger)
 
     public async Task<bool> RunAsync(string[] seederNames, ISeeder[] allSeeders)
     {
-        var seeders = allSeeders.Where(s => seederNames.Contains(s.GetType().Name)).ToArray();
-        return await RunAsync(seeders);
+        // var seeders = allSeeders.Where(s => seederNames.Contains(s.GetType().Name)).ToArray();
+        var seeders = Filter(seederNames, allSeeders);
+        return await RunAsync([.. seeders]);
+    }
+
+    private static IEnumerable<ISeeder> Filter(string[] seederNames, ISeeder[] allSeeders)
+    {
+        // To keep the seederNames order, we opt for a naive approach
+        foreach (var seederName in seederNames)
+        {
+            var seeder = allSeeders.FirstOrDefault(s => s.GetType().Name == seederName);
+            if(seeder is not null)
+            {
+                yield return seeder;
+            }
+        }
     }
 
     public async Task<bool> RunAsync(ISeeder[] seeders)

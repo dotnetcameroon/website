@@ -29,6 +29,7 @@ public sealed class Event : Entity<Guid>, IAggregateRoot
     /// The list of images links separated by comma
     /// </summary>
     public string Images { get; private set; }
+    public string? Location { get; private set; }
     public IReadOnlyList<Partner> Partners => [.. _partners];
     public IReadOnlyList<Activity> Activities => [.. _activities];
     public IReadOnlyList<IDomainEvent> DomainEvents => [.. _domainEvents];
@@ -93,6 +94,11 @@ public sealed class Event : Entity<Guid>, IAggregateRoot
     public void Cancel()
     {
         Status = EventStatus.Cancelled;
+    }
+
+    public void MarkAsPassed()
+    {
+        Status =  EventStatus.Passed;
     }
 
     public void RaiseDomainEvent(IDomainEvent domainEvent)
@@ -163,6 +169,7 @@ public sealed class Event : Entity<Guid>, IAggregateRoot
         Images = entity.Images;
         ImageUrl = entity.ImageUrl;
         RegistrationLink = entity.RegistrationLink;
+        Location = entity.Location;
     }
 
     public static Event Create(EventModel eventModel)
