@@ -12,7 +12,6 @@ using Host = app.Models.EventAggregate.ValueObjects.Host;
 
 namespace app.Services.Impl;
 internal class EventService(
-    IDbContext dbContext,
     IUnitOfWork unitOfWork,
     IRepository<Event, Guid> eventRepository,
     IRepository<Activity, Guid> activityRepository) : IEventService
@@ -20,7 +19,6 @@ internal class EventService(
     private readonly IRepository<Event, Guid> _eventRepository = eventRepository;
     private readonly IRepository<Activity, Guid> _activityRepository = activityRepository;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
-    private readonly IDbContext _dbContext = dbContext;
 
     public Task<bool> ExistsAsync(Expression<Func<Event, bool>> expression, CancellationToken cancellationToken = default)
     {
@@ -189,15 +187,8 @@ internal class EventService(
     public async Task MarkPassedEventsAsync()
     {
         var now = DateTime.UtcNow;
-        var passedEvents = await _eventRepository.Table
+        _ = await _eventRepository.Table
             .Where(e => (e.Schedule.End == null ? e.Schedule.Start < now.AddDays(1) : e.Schedule.End < now) && e.Status != EventStatus.Passed)
-            .ToArrayAsync();
-
-        foreach (var @event in passedEvents)
-        {
-            @event.MarkAsPassed();
-        }
-
-        await _unitOfWork.SaveChangesAsync();
+            .ExecuteUpdateAsync(x => x.SetProperty(e => e.Status, EventStatus.Passed));
     }
 }
