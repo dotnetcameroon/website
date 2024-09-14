@@ -188,8 +188,9 @@ internal class EventService(
 
     public async Task MarkPassedEventsAsync()
     {
+        var now = DateTime.UtcNow;
         var passedEvents = await _eventRepository.Table
-            .Where(e => e.Schedule.End < DateTime.UtcNow && e.Status != EventStatus.Passed)
+            .Where(e => (e.Schedule.End == null ? e.Schedule.Start < now.AddDays(1) : e.Schedule.End < now) && e.Status != EventStatus.Passed)
             .ToArrayAsync();
 
         foreach (var @event in passedEvents)
