@@ -1940,6 +1940,10 @@ video {
     width: calc(100% - 200px);
   }
 
+  .md\:w-\[calc\(100\%-400px\)\] {
+    width: calc(100% - 400px);
+  }
+
   .md\:w-auto {
     width: auto;
   }
