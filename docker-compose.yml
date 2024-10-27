@@ -12,6 +12,10 @@ services:
       - "1433:1433"
     volumes:
       - sqlserver-data:/var/opt/mssql
-
+  # redis:
+  #   image: redis:latest
+  #   restart: always
+  #   ports:
+  #     - "6379:6379"
 volumes:
   sqlserver-data:

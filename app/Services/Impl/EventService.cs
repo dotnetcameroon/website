@@ -3,6 +3,7 @@ using app.Models.EventAggregate;
 using app.Models.EventAggregate.Entities;
 using app.Models.EventAggregate.Enums;
 using app.Persistence;
+using app.Extensions;
 using app.Persistence.Repositories.Base;
 using app.Utilities;
 using app.ViewModels;
@@ -14,11 +15,13 @@ namespace app.Services.Impl;
 internal class EventService(
     IUnitOfWork unitOfWork,
     IRepository<Event, Guid> eventRepository,
-    IRepository<Activity, Guid> activityRepository) : IEventService
+    IRepository<Activity, Guid> activityRepository,
+    ICacheManager cacheManager) : IEventService
 {
     private readonly IRepository<Event, Guid> _eventRepository = eventRepository;
     private readonly IRepository<Activity, Guid> _activityRepository = activityRepository;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly ICacheManager _cacheManager = cacheManager;
 
     public Task<bool> ExistsAsync(Expression<Func<Event, bool>> expression, CancellationToken cancellationToken = default)
     {
@@ -58,11 +61,14 @@ internal class EventService(
 
     public async Task<ErrorOr<Event>> GetAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var @event = await _eventRepository
-            .Table
-            .Include(e => e.Activities.OrderBy(a => a.Schedule.Start))
-            .Include(e => e.Partners)
-            .FirstOrDefaultAsync(e => e.Id == id, cancellationToken);
+        var cacheKey = $"event-{id}";
+        var @event = await _cacheManager.GetOrCreateAsync(
+            cacheKey,
+            entry => _eventRepository
+                .Table
+                .Include(e => e.Activities.OrderBy(a => a.Schedule.Start))
+                .Include(e => e.Partners)
+                .FirstOrDefaultAsync(e => e.Id == id, cancellationToken));
 
         if (@event is null)
         {
@@ -85,28 +91,36 @@ internal class EventService(
 
     public async Task<ErrorOr<Event[]>> GetPreviousAsync(int page = 1, int size = 5, CancellationToken cancellationToken = default)
     {
-        var events = await _eventRepository
-            .Table
-            .Where(e => e.Status == EventStatus.Passed)
-            .OrderByDescending(e => e.Schedule.Start)
-            .Skip(page - 1)
-            .Take(size)
-            .ToArrayAsync(cancellationToken);
+        var cacheKey = $"previous-events-{page}-{size}";
+        var events = await _cacheManager.GetOrCreateAsync(
+            cacheKey,
+            e => _eventRepository
+                .Table
+                .Where(e => e.Status == EventStatus.Passed)
+                .OrderByDescending(e => e.Schedule.Start)
+                .Skip(page - 1)
+                .Take(size)
+                .ToArrayAsync(cancellationToken)
+            );
 
-        return events;
+        return events ?? [];
     }
 
     public async Task<ErrorOr<Event[]>> GetUpcomingAsync(int page = 1, int size = 2, CancellationToken cancellationToken = default)
     {
-        var events = await _eventRepository
-            .Table
-            .Where(e => e.Status == EventStatus.ComingSoon)
-            .OrderByDescending(e => e.Schedule.Start)
-            .Skip(page - 1)
-            .Take(size)
-            .ToArrayAsync(cancellationToken);
+        var cacheKey = $"upcoming-events-{page}-{size}";
+        var events = await _cacheManager.GetOrCreateAsync(
+            cacheKey,
+            e => _eventRepository
+                .Table
+                .Where(e => e.Status == EventStatus.ComingSoon)
+                .OrderByDescending(e => e.Schedule.Start)
+                .Skip(page - 1)
+                .Take(size)
+                .ToArrayAsync(cancellationToken)
+            );
 
-        return events;
+        return events ?? [];
     }
 
     public async Task<ErrorOr<bool>> DeleteEvent(Guid id, CancellationToken cancellationToken = default)
@@ -134,7 +148,7 @@ internal class EventService(
 
         // Insert the new activities
         var activities = eventModel.Activities
-            .Select(activity => 
+            .Select(activity =>
                 Activity.Create(
                     activity.Title,
                     activity.Description,
@@ -147,7 +161,20 @@ internal class EventService(
         await _activityRepository.AddRangeAsync(activities, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
         await _unitOfWork.CommitTransactionAsync(transactionId, cancellationToken);
+        ClearEventCache(id);
         return @event;
+    }
+
+    private void ClearEventCache(Guid id)
+    {
+        var keys = _cacheManager
+            .GetKeys()
+            .Where(k => k.Contains("events") || k.Contains(id.ToString()));
+
+        foreach (var key in keys)
+        {
+            _cacheManager.Remove(key);
+        }
     }
 
     public async Task<ErrorOr<Event>> CreateAsync(EventModel eventModel, CancellationToken cancellationToken = default)
@@ -155,6 +182,7 @@ internal class EventService(
         var @event = Event.Create(eventModel);
         @event = await _eventRepository.AddAsync(@event, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
+        ClearEventCache(@event.Id);
         return @event;
     }
 
@@ -168,6 +196,7 @@ internal class EventService(
 
         @event.Publish();
         await _unitOfWork.SaveChangesAsync(cancellationToken);
+        ClearEventCache(id);
         return @event;
     }
 
@@ -181,6 +210,7 @@ internal class EventService(
 
         @event.Cancel();
         await _unitOfWork.SaveChangesAsync(cancellationToken);
+        ClearEventCache(id);
         return @event;
     }
 
