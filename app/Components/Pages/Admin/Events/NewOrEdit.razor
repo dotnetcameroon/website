@@ -55,15 +55,19 @@
                             <p class="font-bold">Schedule</p>
                             <div class="flex justify-between">
                                 <div class="flex flex-col">
-                                    <label>
-                                        <i class="fa-regular fa-calendar"></i> Start Date:
-                                        <InputDate @bind-Value="EventModel.Schedule.Start"/>
+                                    <label class="flex items-center">
+                                        <span class="w-[160px]">
+                                            <i class="fa-regular fa-calendar"></i> Start Date:
+                                        </span>
+                                        <InputDate Type="InputDateType.DateTimeLocal" @bind-Value="EventModel.Schedule.Start" class="p-2 border-slate-200 border-[1px] rounded-lg"/>
                                     </label>
                                     @if(!EventModel.Schedule.IsAllDay)
                                     {
-                                        <label>
-                                            <i class="fa-regular fa-calendar-minus"></i> End Date:
-                                            <InputDate @bind-Value="EventModel.Schedule.End"/>
+                                        <label class="flex items-center mt-2">
+                                            <span class="w-[160px]">
+                                                <i class="fa-regular fa-calendar-minus"></i> End Date:
+                                            </span>
+                                            <InputDate Type="InputDateType.DateTimeLocal" @bind-Value="EventModel.Schedule.End" class="p-2 border-slate-200 border-[1px] rounded-lg"/>
                                         </label>
                                     }
                                 </div>
