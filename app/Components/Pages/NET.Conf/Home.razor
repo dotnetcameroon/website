@@ -54,12 +54,93 @@
         </div>
     </div>
 </section>
-<section class="section bg-[rgb(12,5,56)]">
-    <div class="container mx-auto">
 
+<!-- Event Overview -->
+<section class="section bg-[rgb(12,5,56)]">
+    <div class="container mx-auto p-4">
+        <h1 class="heading heading-1 text-white text-center">Event Overview</h1>
+        <p class="text-white text-center">
+            Get ready to join developers, tech enthusiasts, and industry experts from across Cameroon and beyond for an
+            exciting day dedicated to .NET innovation. Whether you’re an experienced developer or just starting your
+            journey, this conference offers something for everyone.
+        </p>
+        @* <img src="/assets/featured/net9-banner.png"/> *@
+    </div>
+    <div class="flex flex-wrap justify-center gap-2 mt-12">
+        @foreach(var activity in Activities)
+        {
+            <div style="background-image: url('@activity.ImageUrl');" class="activity relative flex flex-col justify-between bg-blue-400 p-6 md:p-12 bg-cover bg-center w-full md:w-[max(33%,500px)] h-[650px] overflow-y-hidden">
+                <div class="activity-bg absolute top-0 left-0 w-full h-full bg-gradient-to-t from-[rgb(12,5,56)] to-transparent"></div>
+                <span class="text-white text-sm font-bold uppercase">@activity.Label</span>
+                <div class="relative z-10">
+                    <h2 class="heading heading-1 text-white">@activity.Title</h2>
+                    <div class="activity-desc">
+                        <p class="text-white">@activity.Desctiption</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- <div>
+        @foreach (var speaker in Speakers)
+        {
+            <div class="rounded-lg">
+                <div class="relative">
+                    <img src="@speaker.ImageUrl" alt="@speaker.Name Picture" class="absolute top-0 left-0 w-full h-full object-cover">
+                </div>
+                <div>
+                    <p class="text-white">@speaker.Occupation</p>
+                    <p class="text-white">@speaker.Name</p>
+                </div>
+            </div>
+        }
+    </div> -->
+</section>
+<section class="section">
+    <div class="container mx-auto p-4">
+        @* <h1 class="heading heading-1 text-center">Event Overview</h1>
+        <img src="/assets/featured/net9-banner.png"/> *@
+        <div class="mt-4 md:flex items-center md:gap-6">
+            <div class="md:w-1/2">
+            <h1 class="heading heading-1">Why to attend?</h1>
+                <p class="mb-6">Whether you’re an experienced developer or a newcomer to .NET, this event offers a valuable opportunity to grow, learn, and connect</p>
+                <ul class="mb-8">
+                    <li class="font-bold mt-2"><i class="fa-regular fa-circle-check"></i> Stay Ahead with the Latest in .NET 9</li>
+                    <li class="font-bold mt-2"><i class="fa-regular fa-circle-check"></i> Get Inspired by Industry Leaders</li>
+                    <li class="font-bold mt-2"><i class="fa-regular fa-circle-check"></i> Build Your Professional Network</li>
+                </ul>
+                <a target="_blank" href="@EventUrl" class="btn btn-primary">Register Now <i class="fa-solid fa-arrow-right -rotate-45"></i></a>
+            </div>
+            <iframe class="w-[600px] h-[450px] md:w-1/2 md:h-auto md:aspect-square" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.834102866315!2d9.6983944!3d4.0542329!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1061125fabaee4b9%3A0x45a663c08b140e74!2sActivSpaces!5e0!3m2!1sfr!2scm!4v1730662552393!5m2!1sfr!2scm" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
     </div>
 </section>
 
 @code {
     private string EventUrl = "https://forms.office.com/r/ChLwZEYr53";
+    private Speaker[] Speakers = [
+        new Speaker("Djoufson Che", "Founder of .NET Cameroon", "", "", "", "")
+    ];
+
+    private Activity[] Activities = [
+        new Activity("Inspiring Sessions and Conferences", "Dive into cutting-edge topics and explore the latest in .NET technology through insightful sessions and talks. Learn from experts as they cover a wide range of topics, from web and mobile development to cloud solutions and artificial intelligence", "/assets/activities/activity-2.jpeg", "Tech"),
+        new Activity("Meet Microsoft Experts", "Gain exclusive insights from Microsoft employees who work directly on .NET and related technologies. This is your chance to hear directly from those shaping the future of .NET and to ask questions that matter to your projects.", "/assets/featured/net9.png", "Culture"),
+        new Activity("Networking and Connections", "Build meaningful connections with fellow developers, industry professionals, and tech enthusiasts. Exchange ideas, discuss solutions, and expand your network within the vibrant .NET community of Cameroon and beyond.", "/assets/featured/carousel-2.png", "Community"),
+    ];
+
+    record Speaker(
+        string Name,
+        string Occupation,
+        string ImageUrl,
+        string? LinkedIn,
+        string? Twitter,
+        string? Github
+    );
+
+    record Activity(
+        string Title,
+        string Desctiption,
+        string ImageUrl,
+        string Label
+    );
 }

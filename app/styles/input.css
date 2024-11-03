@@ -3,310 +3,347 @@
 @tailwind utilities;
 
 * {
-    font-family: "Noto Sans", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    scroll-behavior: smooth;
+  font-family: "Noto Sans", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  scroll-behavior: smooth;
 }
+
 @media (min-width: 768px) {
-    #nav-links {
-        @apply p-4;
-        max-height: initial;
-    }
+  #nav-links {
+    @apply p-4;
+    max-height: initial;
+  }
 }
 
 /* Headings */
 .heading {
-    @apply font-heading;
+  @apply font-heading;
 }
 
 .heading-1 {
-    @apply text-heading-1 leading-heading-1 mb-heading-1 font-heading font-bold;
+  @apply text-heading-1 leading-heading-1 mb-heading-1 font-heading font-bold;
 }
 
 .heading-2 {
-    @apply text-heading-2 leading-heading-2 mb-heading-2 font-heading font-bold;
+  @apply text-heading-2 leading-heading-2 mb-heading-2 font-heading font-bold;
 }
 
 .heading-3 {
-    @apply text-heading-3 leading-heading-3 mb-heading-3 font-heading font-bold;
+  @apply text-heading-3 leading-heading-3 mb-heading-3 font-heading font-bold;
 }
 
 .heading-4 {
-    @apply text-heading-4 leading-heading-4 mb-heading-4 font-heading font-bold;
+  @apply text-heading-4 leading-heading-4 mb-heading-4 font-heading font-bold;
 }
 
 .heading-5 {
-    @apply text-heading-5 leading-heading-5 mb-heading-5 font-bold;
+  @apply text-heading-5 leading-heading-5 mb-heading-5 font-bold;
 }
 
 .heading-6 {
-    @apply text-heading-6 leading-heading-6 mb-heading-6 font-bold;
+  @apply text-heading-6 leading-heading-6 mb-heading-6 font-bold;
 }
 
 /* Buttons */
 .btn {
-    @apply px-4 py-2  transition-all rounded-md;
+  @apply px-4 py-2 transition-all rounded-md;
 }
 
-.btn.btn-primary{
-    @apply bg-primary hover:bg-primary-accentuation active:bg-primary transition-all text-white;
+.btn.btn-primary {
+  @apply bg-primary hover:bg-primary-accentuation active:bg-primary transition-all text-white;
 }
 
-.btn.btn-secondary{
-    @apply bg-secondary hover:bg-secondary-accentuation transition-all active:bg-secondary text-white;
+.btn.btn-secondary {
+  @apply bg-secondary hover:bg-secondary-accentuation transition-all active:bg-secondary text-white;
 }
 
-.btn.btn-tertiary{
-    @apply bg-tertiary hover:bg-tertiary-accentuation transition-all active:bg-tertiary text-white;
+.btn.btn-tertiary {
+  @apply bg-tertiary hover:bg-tertiary-accentuation transition-all active:bg-tertiary text-white;
 }
 
-.btn.btn-outline-primary{
-    @apply border border-primary bg-transparent hover:bg-primary transition-all active:bg-primary-accentuation text-primary hover:text-white;
+.btn.btn-outline-primary {
+  @apply border border-primary bg-transparent hover:bg-primary transition-all active:bg-primary-accentuation text-primary hover:text-white;
 }
 
-.btn.btn-outline-secondary{
-    @apply border border-secondary bg-transparent hover:bg-secondary transition-all active:bg-secondary-accentuation text-secondary hover:text-white;
+.btn.btn-outline-secondary {
+  @apply border border-secondary bg-transparent hover:bg-secondary transition-all active:bg-secondary-accentuation text-secondary hover:text-white;
 }
 
-.btn.btn-outline-tertiary{
-    @apply border border-tertiary bg-transparent hover:bg-tertiary transition-all active:bg-tertiary-accentuation text-tertiary hover:text-white;
+.btn.btn-outline-tertiary {
+  @apply border border-tertiary bg-transparent hover:bg-tertiary transition-all active:bg-tertiary-accentuation text-tertiary hover:text-white;
 }
 
-.btn.btn-outline-white{
-    @apply border border-white bg-transparent hover:bg-white transition-all active:bg-slate-100 text-white hover:text-secondary;
+.btn.btn-outline-white {
+  @apply border border-white bg-transparent hover:bg-white transition-all active:bg-slate-100 text-white hover:text-secondary;
 }
 
 /* Links */
-.link{
-    @apply underline transition-all;
+.link {
+  @apply underline transition-all;
 }
 
-.link.link-primary{
-    @apply text-primary hover:text-primary-accentuation;
+.link.link-primary {
+  @apply text-primary hover:text-primary-accentuation;
 }
 
-.link.link-secondary{
-    @apply text-secondary hover:text-secondary-accentuation;
+.link.link-secondary {
+  @apply text-secondary hover:text-secondary-accentuation;
 }
 
-.link.link-tertiary{
-    @apply text-tertiary hover:text-tertiary-accentuation;
+.link.link-tertiary {
+  @apply text-tertiary hover:text-tertiary-accentuation;
 }
 
-.link.link-white{
-    @apply text-white hover:text-white;
+.link.link-white {
+  @apply text-white hover:text-white;
 }
 
-.container{
-    max-width: 1200px;
+.container {
+  max-width: 1200px;
 }
 
 /* Sections */
-.section{
-    @apply p-4 py-20 relative;
+.section {
+  @apply p-4 py-20 relative;
 }
 
-.section::after{
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    bottom: 0;
-    left: 0;
-    @apply bg-primary opacity-20;
+.section::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  @apply bg-primary opacity-20;
 }
 
 /* NAVBAR */
-#navbar{
-    @apply bg-secondary shadow-xl;
+#navbar {
+  @apply bg-secondary shadow-xl;
 }
 
-#navbar.transparent{
-    @apply bg-transparent;
+#navbar.transparent {
+  @apply bg-transparent;
 }
 
-#navbar.scrolled{
-    position: fixed;
-    animation-name: expand-nav;
-    animation-duration: .3s;
-    overflow: hidden;
-    @apply bg-secondary pt-0 transition-all shadow-sm;
+#navbar.scrolled {
+  position: fixed;
+  animation-name: expand-nav;
+  animation-duration: .3s;
+  overflow: hidden;
+  @apply bg-secondary pt-0 transition-all shadow-sm;
 }
 
 @keyframes expand-nav {
-    from{ top: -100%; opacity: 0;}
-    to{ top: 0; opacity: 1; }
+  from {
+    top: -100%;
+    opacity: 0;
+  }
+
+  to {
+    top: 0;
+    opacity: 1;
+  }
 }
 
 /* Hamburger */
-#hamburger{
-    width: 40px;
-    aspect-ratio: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
+#hamburger {
+  width: 40px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
 @media (min-width: 768px) {
-    #hamburger {
-        display: none;
-    }
+  #hamburger {
+    display: none;
+  }
 }
 
-#hamburger span, #hamburger span::after{
-    position: relative;
-    width: 100%;
-    height: 3px;
-    background-color: white;
-    border-radius: 50px;
-    transform: translateY(5px);
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
+#hamburger span,
+#hamburger span::after {
+  position: relative;
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  border-radius: 50px;
+  transform: translateY(5px);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
-#hamburger span::after{
-    content: '';
-    left: 0;
-    top: 0;
-    position: absolute;
-    transform: translateY(-10px);
+#hamburger span::after {
+  content: '';
+  left: 0;
+  top: 0;
+  position: absolute;
+  transform: translateY(-10px);
 }
 
-#hamburger.active{
-    transform: rotate(45deg);
+#hamburger.active {
+  transform: rotate(45deg);
 }
 
-#hamburger.active span::after{
-    transform: rotate(-90deg);
+#hamburger.active span::after {
+  transform: rotate(-90deg);
 }
 
 /* Navigation Links */
-#nav-links{
-    max-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    overflow: hidden;
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
+#nav-links {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
-#nav-links.active{
-    max-height: 100vh;
-    padding: 1rem;
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
-}
-#nav-links a{
-    border: 2px solid transparent;
+#nav-links.active {
+  max-height: 100vh;
+  padding: 1rem;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
-#nav-links a.active{
-    font-weight: bold;
-    border-bottom: 2px solid white;
+#nav-links a {
+  border: 2px solid transparent;
+}
+
+#nav-links a.active {
+  font-weight: bold;
+  border-bottom: 2px solid white;
 }
 
 @media (min-width: 768px) {
-    #nav-links {
-        @apply p-4;
-        max-height: initial;
-    }
+  #nav-links {
+    @apply p-4;
+    max-height: initial;
+  }
 }
 
 /* Back to top */
-#back-to-top{
-    transform: translateY(10px);
-    opacity: 0;
-    @apply transition-all;
+#back-to-top {
+  transform: translateY(10px);
+  opacity: 0;
+  @apply transition-all;
 }
 
-#back-to-top.active{
-    z-index: 100;
-    transform: translateY(0px);
-    opacity: 1;
-    @apply transition-all;
+#back-to-top.active {
+  z-index: 100;
+  transform: translateY(0px);
+  opacity: 1;
+  @apply transition-all;
 }
 
-.event-card .event-actions{
-    transition: all ease-in-out .3s;
+.event-card .event-actions {
+  transition: all ease-in-out .3s;
 }
 
-.event-card .event-text{
-    transition: all ease-in-out .4s;
+.event-card .event-text {
+  transition: all ease-in-out .4s;
 }
 
-.event-card .event-container{
-    transition: all ease-in-out .4s;
+.event-card .event-container {
+  transition: all ease-in-out .4s;
 }
 
-.event-card .event-background{
-    transition: all ease-in-out .7s;
+.event-card .event-background {
+  transition: all ease-in-out .7s;
 }
 
-.event-card:hover .event-actions{
-    transform: translateX(0);
-    opacity: 1;
+.event-card:hover .event-actions {
+  transform: translateX(0);
+  opacity: 1;
 }
 
-.event-card:hover .event-text{
-    transform: translateY(-30px);
+.event-card:hover .event-text {
+  transform: translateY(-30px);
 }
 
-.event-card:hover .event-container{
-    overflow-y: visible;
+.event-card:hover .event-container {
+  overflow-y: visible;
 }
 
-.event-card:hover .event-background{
-    transform: scale(1.05);
+.event-card:hover .event-background {
+  transform: scale(1.05);
 }
 
-.event-card.event-card-1{
-    @apply md:w-[calc(66%-32px)];
+.event-card.event-card-1 {
+  @apply md:w-[calc(66%-32px)];
 }
 
-.event-card.event-card-1 .event-card-description{
-    @apply md:text-5xl;
+.event-card.event-card-1 .event-card-description {
+  @apply md:text-5xl;
 }
 
-.event-card.event-card-2{
-    @apply md:w-[calc(33%-32px)];
+.event-card.event-card-2 {
+  @apply md:w-[calc(33%-32px)];
 }
 
-.event-card.event-card-2 .event-card-description{
-    @apply md:text-3xl;
+.event-card.event-card-2 .event-card-description {
+  @apply md:text-3xl;
 }
 
 /* Sidebar */
 
-#sidebar.collapsed .nav-text{
-    display: none;
+#sidebar.collapsed .nav-text {
+  display: none;
 }
 
-#sidebar.collapsed .sidebar-link{
-    @apply text-center;
+#sidebar.collapsed .sidebar-link {
+  @apply text-center;
 }
 
-#sidebar.collapsed{
-    @apply p-2 pt-24 w-auto;
+#sidebar.collapsed {
+  @apply p-2 pt-24 w-auto;
 }
 
-#sidebar.collapsed .toggle{
-    @apply -rotate-90;
+#sidebar.collapsed .toggle {
+  @apply -rotate-90;
 }
 
-.sidebar-link.active{
-    @apply bg-opacity-25 bg-white;
+.sidebar-link.active {
+  @apply bg-opacity-25 bg-white;
 }
 
-#activity-popup{
-    @apply opacity-0 -z-10 transition-all;
+#activity-popup {
+  @apply opacity-0 -z-10 transition-all;
 }
 
-#activity-popup.active{
-    @apply opacity-100 z-10 transition-all;
+#activity-popup.active {
+  @apply opacity-100 z-10 transition-all;
+}
+
+
+/* .NET Conf */
+
+@media (min-width: 768px) {
+  .activity .activity-desc{
+    max-height: 0;
+    opacity: 0;
+    transition: all ease-in-out 400ms;
+  }
+
+  .activity .activity-bg{
+    transform: translateY(100%);
+    transition: all ease-in-out 300ms;
+  }
+
+  .activity:hover .activity-bg{
+    transform: translateY(0);
+    transition: all ease-in-out 300ms;
+  }
+
+  .activity:hover .activity-desc{
+    max-height: 600px;
+    opacity: 1;
+    transition: all ease-in-out 700ms;
+  }
 }
