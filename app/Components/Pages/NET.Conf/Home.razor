@@ -1,0 +1,65 @@
+@page "/dotnet-conf-2024"
+
+<PageTitle>.NET Conf 2024 Cameroon 🇨🇲</PageTitle>
+<HeadContent>
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content=".NET Conf 2024 Cameroon 🇨🇲">
+    <meta property="og:description"
+        content="Welcome to the .NET Cameroon Community website! Join us to learn, share, and collaborate on .NET technologies. Stay updated with our latest events, resources, and news.">
+    <meta property="og:image" content="https://dotnetcameroon.azurewebsites.net/assets/brand/logo.png">
+    <meta property="og:url" content="https://dotnetcameroon.azurewebsites.net">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content=".NET Cameroon Community">
+
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content=".NET Conf 2024 Cameroon 🇨🇲">
+    <meta name="twitter:description"
+        content="Welcome to the .NET Cameroon Community website! Join us to learn, share, and collaborate on .NET technologies. Stay updated with our latest events, resources, and news.">
+    <meta name="twitter:image" content="https://dotnetcameroon.azurewebsites.net/assets/brand/logo.png">
+    <meta name="twitter:site" content="@@dotnetcameroon">
+
+    <meta name="description"
+        content="Welcome to the .NET Cameroon Community website! Join us to learn, share, and collaborate on .NET technologies. Stay updated with our latest events, resources, and news.">
+</HeadContent>
+
+
+<!-- Hero section -->
+<section class="md:h-[700px] relative">
+    <NavBar Type=@NavType.Transparent/>
+    <div class="absolute z-10 top-0 left-0 w-full h-full bg-gradient-to-t from-[rgb(12,5,56)] to-[rgb(31,21,121)]"></div>
+    <div class="md:flex md:gap-[110px] relative md:absolute md:top-0 md:left-1/2 md:-translate-x-1/2 z-20 md:h-full bg-transparent container mx-auto p-4">
+        <div class="md:w-1/2 self-center flex flex-col gap-4 items-center">
+            <h1 class="text-white text-center text-7xl font-bold font-special">.NET Conf 2024 Cameroon 🚀🇨🇲</h1>
+            <p class="text-white text-center">Join the .NET Revolution in Cameroon!</p>
+            <a href="@EventUrl" target="_blank" class="btn btn-outline-white">Register Now <i class="fa-solid fa-arrow-right -rotate-45"></i></a>
+        </div>
+        <div class="md:w-1/2 mt-6 md:mt-0 self-center flex flex-col gap-8">
+            <div>
+                <ul class="text-white flex md:block justify-center gap-4 flex-wrap">
+                    <li class="font-bold"><i class="fa-regular fa-calendar-days"></i> 11th Jan 2025</li>
+                    <li class="font-bold"><i class="fa-solid fa-location-dot"></i> ActivSpaces, Douala, Cameroon</li>
+                    <li class="font-bold link"><a target="_blank" href="https://maps.app.goo.gl/TsQw2FXXUvJGsftQ7"><i class="fa-regular fa-map"></i> Google Maps Location</a></li>
+                </ul>
+            </div>
+            <Countdown DueDate="new DateTime(2025, 1, 11)" />
+            <div>
+                <p class="text-white mb-6">Get ready to expand your skills, meet fellow developers, and dive into the latest trends in .NET at this year’s event! Here’s what awaits you</p>
+                <ul class="text-white">
+                    <li class="font-bold mt-2"><i class="fa-regular fa-circle-check"></i> Inspiring Talks from Experts</li>
+                    <li class="font-bold mt-2"><i class="fa-regular fa-circle-check"></i> Cutting-Edge .NET 9 features</li>
+                    <li class="font-bold mt-2"><i class="fa-regular fa-circle-check"></i> Build Connections</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section bg-[rgb(12,5,56)]">
+    <div class="container mx-auto">
+
+    </div>
+</section>
+
+@code {
+    private string EventUrl = "https://forms.office.com/r/ChLwZEYr53";
+}

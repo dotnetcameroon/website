@@ -102,7 +102,7 @@
 
 /* Sections */
 .section{
-    @apply p-4 py-20 relative mt-2;
+    @apply p-4 py-20 relative;
 }
 
 .section::after{
