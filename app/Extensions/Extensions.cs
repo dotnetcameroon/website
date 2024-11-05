@@ -37,13 +37,17 @@ public static class Extensions
             .UseRecommendedSerializerSettings()
             .UseSqlServerStorage(configuration.GetConnectionString(SqlServer)));
 
+        // We currently use the memory cache because it's enough for our simple application
+        // We will scale to a distributed Redis Cache if needed
+        services.AddCacheManager();
+        services.AddSingleton<CacheManager>();
+
         services.AddHangfireServer();
         services.AddJobsFromAssembly(typeof(Extensions).Assembly);
         services.AddScoped<IUnitOfWork,UnitOfWork>();
         services.AddScoped<IFileDownloader,FileDownloader>();
         services.AddScoped<IFileUploader,FileUploader>();
         services.AddScoped<IFileManager,FileManager>();
-        services.AddScoped<DatabaseCheckMiddleware>();
         services.AddScoped<IEventService,EventService>();
         services.AddScoped<IPartnerService,PartnerService>();
         services.AddScoped<IIdentityService,IdentityService>();
