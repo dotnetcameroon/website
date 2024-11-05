@@ -1,0 +1,65 @@
+<div id="@CountDownName-countdown" class="flex w-full items-center justify-between">
+    <div>
+        <span id="@CountDownName-days" class="block text-4xl font-heading font-bold text-white text-center"></span>
+        <span class="block text-white text-center font-bold">Days</span>
+    </div>
+    <div>
+        <span id="@CountDownName-hours" class="block text-4xl font-heading font-bold text-white text-center"></span>
+        <span class="block text-white text-center font-bold">Hours</span>
+    </div>
+    <div>
+        <span id="@CountDownName-minutes" class="block text-4xl font-heading font-bold text-white text-center"></span>
+        <span class="block text-white text-center font-bold">Minutes</span>
+    </div>
+    <div>
+        <span id="@CountDownName-seconds" class="block text-4xl font-heading font-bold text-white text-center"></span>
+        <span class="block text-white text-center font-bold">Seconds</span>
+    </div>
+</div>
+
+<script defer>
+    function startCountdown(eventDate) {
+        const countdownElement = document.getElementById("@CountDownName-countdown");
+        const daysElement = document.getElementById("@CountDownName-days");
+        const hoursElement = document.getElementById("@CountDownName-hours");
+        const minutesElement = document.getElementById("@CountDownName-minutes");
+        const secondsElement = document.getElementById("@CountDownName-seconds");
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeRemaining = new Date(eventDate).getTime() - now;
+
+            if (timeRemaining > 0) {
+                const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                const hours = Math.floor(
+                    (timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+                );
+                const minutes = Math.floor(
+                    (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
+                );
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                daysElement.innerText = days;
+                hoursElement.innerText = hours.toString().padStart(2, "0");
+                minutesElement.innerText = minutes.toString().padStart(2, "0");
+                secondsElement.innerText = seconds.toString().padStart(2, "0");
+            } else {
+                countdownElement.innerText = "The event has started!";
+                clearInterval(interval);
+            }
+        }
+
+        const interval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+    }
+
+    const eventDate = "@DueDate.ToString()";
+    startCountdown(eventDate);
+</script>
+
+@code {
+    [Parameter]
+    public DateTime DueDate { get; set; } = DateTime.UtcNow;
+
+    public string CountDownName { get; set; } = Guid.NewGuid().ToString();
+}
