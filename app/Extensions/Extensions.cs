@@ -42,8 +42,8 @@ public static class Extensions
         services.AddCacheManager();
         services.AddSingleton<CacheManager>();
 
-        services.AddHangfireServer();
-        services.AddJobsFromAssembly(typeof(Extensions).Assembly);
+        // services.AddHangfireServer();
+        // services.AddJobsFromAssembly(typeof(Extensions).Assembly);
         services.AddScoped<IUnitOfWork,UnitOfWork>();
         services.AddScoped<IFileDownloader,FileDownloader>();
         services.AddScoped<IFileUploader,FileUploader>();
