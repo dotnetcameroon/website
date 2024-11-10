@@ -31,11 +31,11 @@ public static class Extensions
             services.AddExceptionHandler<ExceptionHandlerMiddleware>();
         }
 
-        services.AddHangfire(cfg => cfg
-            .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
-            .UseSimpleAssemblyNameTypeSerializer()
-            .UseRecommendedSerializerSettings()
-            .UseSqlServerStorage(configuration.GetConnectionString(SqlServer)));
+        // services.AddHangfire(cfg => cfg
+        //     .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+        //     .UseSimpleAssemblyNameTypeSerializer()
+        //     .UseRecommendedSerializerSettings()
+        //     .UseSqlServerStorage(configuration.GetConnectionString(SqlServer)));
 
         // We currently use the memory cache because it's enough for our simple application
         // We will scale to a distributed Redis Cache if needed
