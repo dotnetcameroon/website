@@ -35,7 +35,7 @@ app.UseAuthorization();
 
 app.UseAntiforgery();
 
-app.MapHangfireJobs();
+// app.MapHangfireJobs();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
