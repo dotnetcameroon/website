@@ -27,7 +27,7 @@ if (app.Environment.IsProduction())
     app.UseHttpsRedirection();
 }
 
-app.UseStaticFiles();
+app.MapStaticAssets();
 
 app.UseAuthentication();
 

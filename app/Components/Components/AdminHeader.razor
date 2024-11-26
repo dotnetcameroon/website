@@ -1,7 +1,7 @@
 <nav class="relative bg-white h-[80px] flex items-center z-50">
     <div class="relative flex justify-between w-full md:p-5 p-4 items-center">
         <a href="/" data-enhance-nav="false">
-            <img src="/assets/brand/logo.png" alt=".NET Cameroon Logo" class="w-[80px]">
+            <img src="@Assets["/assets/brand/logo.png"]" alt=".NET Cameroon Logo" class="w-[80px]">
         </a>
         <div class="flex gap-6 items-center">
             <p>@HttpContext.User.FindFirstValue(ClaimTypes.Email)</p>
