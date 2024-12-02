@@ -111,16 +111,58 @@
                 </ul>
                 <a target="_blank" href="@EventUrl" class="btn btn-primary">Register Now <i class="fa-solid fa-arrow-right -rotate-45"></i></a>
             </div>
-            <iframe class="w-full aspect-square md:w-1/2" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.834102866315!2d9.6983944!3d4.0542329!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1061125fabaee4b9%3A0x45a663c08b140e74!2sActivSpaces!5e0!3m2!1sfr!2scm!4v1730662552393!5m2!1sfr!2scm" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe class="w-full aspect-square mt-2 md:mt-0 md:w-1/2" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.834102866315!2d9.6983944!3d4.0542329!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1061125fabaee4b9%3A0x45a663c08b140e74!2sActivSpaces!5e0!3m2!1sfr!2scm!4v1730662552393!5m2!1sfr!2scm" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
+</section>
+<section class="section">
+<div>
+    <div class="mx-auto max-w-2xl my-5 px-6 lg:max-w-7xl lg:px-8">
+        <h2 class="text-center text-base/7 font-semibold text-secondary">About last year?</h2>
+        <p class="mx-auto mt-2 max-w-xl text-balance text-center heading heading-1 sm:text-5xl">A brief overview of the Infinite Days last year</p>
+        <p class="mt-2 p-4 container text-center mx-auto text-balance">Last year, we hosted the Infinite Days event sponsored by <a href="http://isolutions-intl.com/" target="_blank" class="font-bold link link-secondary">Infinite Solutions SARL</a>, a tech company building enterprise level softwares and solutions. Here is a small recap by pictures of this amazing event !!</p>
+    </div>
+    <div class="flex flex-col gap-2 lg:grid lg:grid-cols-4 lg:grid-rows-3">
+        <div class="flex lg:block lg:row-span-2 border-gray-600 border-opacity-15 rounded-lg border-[1px] overflow-hidden">
+            <img class="lg:w-full lg:h-full object-cover hover:scale-105 transition-all" src="@Assets["/assets/infinite-days/image-6.jpeg"]" alt="Cameroon Infinite Days 2023 Insights">
+        </div>
+        <div class="flex lg:block border-gray-600 border-opacity-15 rounded-lg border-[1px] overflow-hidden">
+            <img class="lg:w-full lg:h-full object-cover hover:scale-105 transition-all" src="@Assets["/assets/infinite-days/image-8.jpeg"]" alt="Cameroon Infinite Days 2023 Insights">
+        </div>
+        <div class="flex lg:block border-gray-600 border-opacity-15 rounded-lg border-[1px] overflow-hidden">
+            <img class="lg:w-full lg:h-full object-cover hover:scale-105 transition-all" src="@Assets["/assets/infinite-days/image-9.jpeg"]" alt="Cameroon Infinite Days 2023 Insights">
+        </div>
+        <div class="flex lg:block border-gray-600 border-opacity-15 rounded-lg border-[1px] overflow-hidden">
+            <img class="lg:w-full lg:h-full object-cover hover:scale-105 transition-all" src="@Assets["/assets/infinite-days/image-1.jpeg"]" alt="Cameroon Infinite Days 2023 Insights">
+        </div>
+        <div class="flex lg:row-span-2 lg:col-span-2 lg:block border-gray-600 border-opacity-15 rounded-lg border-[1px] overflow-hidden">
+            <img class="lg:w-full lg:h-full object-cover hover:scale-105 transition-all" src="@Assets["/assets/infinite-days/image-7.jpeg"]" alt="Cameroon Infinite Days 2023 Insights">
+        </div>
+        <div class="flex lg:block border-gray-600 border-opacity-15 rounded-lg border-[1px] overflow-hidden">
+            <img class="lg:w-full lg:h-full object-cover hover:scale-105 transition-all" src="@Assets["/assets/infinite-days/image-3.jpeg"]" alt="Cameroon Infinite Days 2023 Insights">
+        </div>
+        <div class="flex lg:block border-gray-600 border-opacity-15 rounded-lg border-[1px] overflow-hidden">
+            <img class="lg:w-full lg:h-full object-cover hover:scale-105 transition-all" src="@Assets["/assets/infinite-days/image-2.jpeg"]" alt="Cameroon Infinite Days 2023 Insights">
+        </div>
+        <div class="flex lg:row-span-2 lg:block border-gray-600 border-opacity-15 rounded-lg border-[1px] overflow-hidden">
+            <img class="lg:w-full lg:h-full object-cover hover:scale-105 transition-all" src="@Assets["/assets/infinite-days/image-5.jpeg"]" alt="Cameroon Infinite Days 2023 Insights">
+        </div>
+        <div class="flex lg:col-span-2 lg:block border-gray-600 border-opacity-15 rounded-lg border-[1px] overflow-hidden">
+            <img class="lg:w-full lg:h-full object-cover hover:scale-105 transition-all" src="@Assets["/assets/infinite-days/image-4.jpeg"]" alt="Cameroon Infinite Days 2023 Insights">
+        </div>
+        <div class="flex lg:block border-gray-600 border-opacity-15 rounded-lg border-[1px] overflow-hidden">
+            <img class="lg:w-full lg:h-full object-cover hover:scale-105 transition-all" src="@Assets["/assets/infinite-days/image-10.jpeg"]" alt="Cameroon Infinite Days 2023 Insights">
+        </div>
+    </div>
+
+    <div class="w-fit mt-5 mx-auto">
+        <a href="/" target="_blank" class="btn btn-primary">See all the pictures</a>
+    </div>
+</div>
 </section>
 
 @code {
     private string EventUrl = "https://forms.office.com/r/ChLwZEYr53";
-    private Speaker[] Speakers = [
-        new Speaker("Djoufson Che", "Founder of .NET Cameroon", "", "", "", "")
-    ];
 
     private Activity[] Activities = [
         new Activity("Inspiring Sessions and Conferences", "Dive into cutting-edge topics and explore the latest in .NET technology through insightful sessions and talks. Learn from experts as they cover a wide range of topics, from web and mobile development to cloud solutions and artificial intelligence", "/assets/activities/activity-2.jpeg", "Tech"),
