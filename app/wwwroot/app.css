@@ -2417,6 +2417,10 @@ video {
     display: none;
   }
 
+  .md\:aspect-square {
+    aspect-ratio: 1 / 1;
+  }
+
   .md\:h-\[300px\] {
     height: 300px;
   }
@@ -2508,6 +2512,10 @@ video {
     align-items: flex-start;
   }
 
+  .md\:items-center {
+    align-items: center;
+  }
+
   .md\:justify-start {
     justify-content: flex-start;
   }
@@ -2557,6 +2565,11 @@ video {
 
   .md\:to-transparent {
     --tw-gradient-to: transparent var(--tw-gradient-to-position);
+  }
+
+  .md\:object-cover {
+    -o-object-fit: cover;
+       object-fit: cover;
   }
 
   .md\:p-12 {
