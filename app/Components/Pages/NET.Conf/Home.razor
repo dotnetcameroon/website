@@ -32,7 +32,11 @@
         <div class="md:w-1/2 self-center flex flex-col gap-4 items-center">
             <h1 class="text-white text-center text-7xl font-bold font-special">.NET Conf 2024 Cameroon 🚀🇨🇲</h1>
             <p class="text-white text-center">Join the .NET Revolution in Cameroon!</p>
-            <a href="@EventUrl" target="_blank" class="btn btn-outline-white">Register Now <i class="fa-solid fa-arrow-right -rotate-45"></i></a>
+            <div class="flex justify-center flex-wrap gap-4">
+                <a href="@EventUrl" target="_blank" class="btn btn-outline-white">Register Now <i class="fa-solid fa-arrow-right -rotate-45"></i></a>
+                <a target="_blank" href="@SpeakerLink" class="btn btn-primary">Become a Speaker <i class="fa-solid fa-arrow-right -rotate-45"></i></a>
+                @* <a target="_blank" href="@SpeakerLink" class="btn btn-secondary">Become a Speaker <i class="fa-solid fa-arrow-right -rotate-45"></i></a> *@
+            </div>
         </div>
         <div class="md:w-1/2 mt-6 md:mt-0 self-center flex flex-col gap-8">
             <div>
@@ -64,7 +68,6 @@
             exciting day dedicated to .NET innovation. Whether you’re an experienced developer or just starting your
             journey, this conference offers something for everyone.
         </p>
-        @* <img src="/assets/featured/net9-banner.png"/> *@
     </div>
     <div class="flex flex-wrap justify-center gap-2 mt-12">
         @foreach(var activity in Activities)
@@ -81,21 +84,9 @@
             </div>
         }
     </div>
-    <!-- <div>
-        @foreach (var speaker in Speakers)
-        {
-            <div class="rounded-lg">
-                <div class="relative">
-                    <img src="@speaker.ImageUrl" alt="@speaker.Name Picture" class="absolute top-0 left-0 w-full h-full object-cover">
-                </div>
-                <div>
-                    <p class="text-white">@speaker.Occupation</p>
-                    <p class="text-white">@speaker.Name</p>
-                </div>
-            </div>
-        }
-    </div> -->
 </section>
+
+<!-- Why to attend -->
 <section>
     <div class="section container mx-auto p-4">
         <div class="mt-4 md:flex md:items-center md:gap-6">
