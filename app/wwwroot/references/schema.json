@@ -2,8 +2,8 @@
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": ".NET Cameroon Community",
-    "url": "https://dotnetcameroon.azurewebsites.net",
-    "logo": "https://dotnetcameroon.azurewebsites.net/assets/brand/logo.png",
+    "url": "https://dotnet.cm",
+    "logo": "https://dotnet.cm/assets/brand/logo.png",
     "description": "The .NET Cameroon Community is a group of passionate .NET developers in Cameroon committed to sharing knowledge, hosting events, and fostering a collaborative environment for learning and growth in .NET technologies.",
     "foundingDate": "2022-01-15",
     "founders": [
@@ -23,7 +23,7 @@
         "telephone": "+237 699 254 549",
         "contactType": "customer support",
         "email": "djouflegran@gmail.com",
-        "url": "https://dotnetcameroon.azurewebsites.net/contact"
+        "url": "https://dotnet.cm/contact"
     },
     "sameAs": [
         "https://www.facebook.com/dotnetcameroon",
