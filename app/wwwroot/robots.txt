@@ -15,4 +15,4 @@ Allow: /resources/
 Allow: /contact/
 
 # Sitemap location
-# Sitemap: https://dotnetcameroon.azurewebsites.net/sitemap.xml
+# Sitemap: https://dotnet.cm/sitemap.xml

@@ -2,7 +2,7 @@
 
 Welcome to the official website repository of the .NET Community in Cameroon! This website serves as a hub for our community, providing information about events, resources, and news related to .NET technologies.
 
-[Visit the Website](https://dotnet.cm/)
+[Visit the Website](https://dotnet.cm)
 
 ![HomePage](./docs/assets/homepage.png)
 

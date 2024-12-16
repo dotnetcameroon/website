@@ -7,23 +7,27 @@
 
     <!-- Open Graph meta tags -->
     <meta property="og:title" content=".NET Cameroon - @Event.Title">
-    <meta property="og:description" content="🚀 Join us at the @Event.Title event hosted by the .NET Cameroon Community !!! @Event.Description">
+    <meta property="og:description"
+        content="🚀 Join us at the @Event.Title event hosted by the .NET Cameroon Community !!! @Event.Description">
     <meta property="og:image" content="@Event.ImageUrl">
-    <meta property="og:url" content="https://dotnetcameroon.azurewebsites.net/events/@EventId">
+    <meta property="og:url" content="https://dotnet.cm/events/@EventId">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content=".NET Cameroon Community">
 
     <!-- Twitter Card meta tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content=".NET Cameroon - @Event.Title">
-    <meta name="twitter:description" content="🚀 Join us at the @Event.Title event hosted by the .NET Cameroon Community !!! @Event.Description">
+    <meta name="twitter:description"
+        content="🚀 Join us at the @Event.Title event hosted by the .NET Cameroon Community !!! @Event.Description">
     <meta name="twitter:image" content="@Event.ImageUrl">
     <meta name="twitter:site" content="@@dotnetcameroon">
 
-    <meta name="description" content="🚀 Join us at the @Event.Title event hosted by the .NET Cameroon Community !!! @Event.Description">
+    <meta name="description"
+        content="🚀 Join us at the @Event.Title event hosted by the .NET Cameroon Community !!! @Event.Description">
 </HeadContent>
 <NavBar />
-<Banner Title="Events" Description="Discover, Connect, and Grow with our upcoming Events." BackgroundImage="carousel-2.png"/>
+<Banner Title="Events" Description="Discover, Connect, and Grow with our upcoming Events."
+    BackgroundImage="carousel-2.png" />
 
 <section>
     <div class="flex flex-col md:flex-row container section mx-auto p-4 items-start gap-6">
@@ -37,30 +41,30 @@
     </div>
 </section>
 
-@if(Event.Activities.Count > 0)
+@if (Event.Activities.Count > 0)
 {
     <section>
-        <div class="container section mx-auto p-4">
-            <h1 class="heading heading-1">Schedule</h1>
-            <p class="mt-4">This event is planned to follow this schedule</p>
-            <div class="mt-8 flex flex-col gap-12">
-                @foreach(var activity in Event.Activities)
+    <div class="container section mx-auto p-4">
+        <h1 class="heading heading-1">Schedule</h1>
+        <p class="mt-4">This event is planned to follow this schedule</p>
+        <div class="mt-8 flex flex-col gap-12">
+            @foreach (var activity in Event.Activities)
                 {
-                    <EventActivityCard Activity="@activity"/>
+                    <EventActivityCard Activity="@activity" />
                 }
             </div>
         </div>
     </section>
 }
 
-@if(Event.Partners.Count > 0)
+@if (Event.Partners.Count > 0)
 {
     <section>
-        <div class="container section mx-auto p-4">
-            <h1 class="heading heading-1 text-center">Partners</h1>
-            <p class="mt-4 text-center">This event couldn't be possible without the support of</p>
-            <div class="flex flex-wrap gap-8 justify-center mt-8">
-                @foreach(var partner in Event.Partners)
+    <div class="container section mx-auto p-4">
+        <h1 class="heading heading-1 text-center">Partners</h1>
+        <p class="mt-4 text-center">This event couldn't be possible without the support of</p>
+        <div class="flex flex-wrap gap-8 justify-center mt-8">
+            @foreach (var partner in Event.Partners)
                 {
                     <a data-enhance-nav="false" href="@partner.Website" target="_blank" title="@partner.Name">
                         <img src="@partner.Logo" alt="@partner.Name" class="h-[100px]">
@@ -71,23 +75,23 @@
     </section>
 }
 
-@if(ImageLinks.Length > 0)
+@if (ImageLinks.Length > 0)
 {
     <section>
-        <div class="container section mx-auto p-4">
-            <h1 class="heading heading-1">Recap</h1>
-            <p class="mt-4">This event is planned to follow this schedule</p>
-            <div class="flex flex-wrap gap-8">
-                @foreach(var image in ImageLinks)
+    <div class="container section mx-auto p-4">
+        <h1 class="heading heading-1">Recap</h1>
+        <p class="mt-4">This event is planned to follow this schedule</p>
+        <div class="flex flex-wrap gap-8">
+            @foreach (var image in ImageLinks)
                 {
-                    <img src="@image" alt="@Event.Title"/>
+                    <img src="@image" alt="@Event.Title" />
                 }
             </div>
         </div>
     </section>
 }
 
-@code{
+@code {
     [Parameter]
     public Guid EventId { get; set; }
     private Event Event { get; set; } = new();
@@ -95,13 +99,13 @@
     protected override async Task OnInitializedAsync()
     {
         var result = await EventService.GetAsync(EventId);
-        if(result.IsError)
+        if (result.IsError)
         {
             NavigationManager.NavigateTo("/errors", true);
             return;
         }
         Event = result.Value;
-        if(string.IsNullOrWhiteSpace(Event.Images))
+        if (string.IsNullOrWhiteSpace(Event.Images))
         {
             ImageLinks = [];
         }
