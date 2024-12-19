@@ -5,8 +5,8 @@
     <!-- Open Graph meta tags -->
     <meta property="og:title" content=".NET Conf 2024 Cameroon 🇨🇲">
     <meta property="og:description" content=".NET Conf Cameroon is a premier event for developers, tech enthusiasts, and industry leaders to explore the latest in .NET, connect with the community, and drive innovation in software development. Join us for inspiring talks, hands-on sessions, and networking opportunities!">
-    <meta property="og:image" content="https://dotnet.cm/assets/featured/dotnetconf24-dark.png">
-    <meta property="og:url" content="https://dotnet.cm">
+    <meta property="og:image" content="https://dotnetcameroon.blob.core.windows.net/public/dotnetconf24-dark.png">
+    <meta property="og:url" content="https://dotnet.cm/dotnet-conf-2024">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content=".NET Cameroon Community">
 
@@ -14,7 +14,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content=".NET Conf 2024 Cameroon 🇨🇲">
     <meta name="twitter:description" content=".NET Conf Cameroon is a premier event for developers, tech enthusiasts, and industry leaders to explore the latest in .NET, connect with the community, and drive innovation in software development. Join us for inspiring talks, hands-on sessions, and networking opportunities!">
-    <meta name="twitter:image" content="https://dotnet.cm/assets/featured/dotnetconf24-dark.png">
+    <meta name="twitter:image" content="https://dotnetcameroon.blob.core.windows.net/public/dotnetconf24-dark.png">
     <meta name="twitter:site" content="@@dotnetcameroon">
 
     <meta name="description" content=".NET Conf Cameroon is a premier event for developers, tech enthusiasts, and industry leaders to explore the latest in .NET, connect with the community, and drive innovation in software development. Join us for inspiring talks, hands-on sessions, and networking opportunities!">
@@ -211,10 +211,11 @@
     ];
 
     private Partner[] Partners = [
-        new Partner("/assets/sponsors/dotnetfondation.webp", ".NET Foundation", "https://dotnetfoundation.org"),
-        new Partner("/assets/sponsors/proditech.png", "Proditech Consulting", "https://proditech-digital.com"),
-        new Partner("/assets/sponsors/itia.jpg", "ITIA Solutions Consulting", "https://itia-consulting.com"),
-        new Partner("/assets/sponsors/codec.png", "Codec", "https://codec.cm"),
+        new ("/assets/sponsors/dotnetfondation.webp", ".NET Foundation", "https://dotnetfoundation.org"),
+        new ("/assets/sponsors/proditech.png", "Proditech Consulting", "https://proditech-digital.com"),
+        new ("/assets/sponsors/itia.jpg", "ITIA Solutions Consulting", "https://itia-consulting.com"),
+        new ("/assets/sponsors/codec.png", "Codec", "https://codec.cm"),
+        new ("/assets/sponsors/tcd-cmr.png", "Tech Community Day Cameroon", "https://codec.cm"),
     ];
 
     record Speaker(
