@@ -77,3 +77,7 @@ function saveDraft() {
     window.location.href = "/errors";
   }
 }
+
+function backToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
