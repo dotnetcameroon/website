@@ -43,7 +43,7 @@
                     <li class="font-bold link"><a target="_blank" href="https://maps.app.goo.gl/QDVsEbBKf1NAPL7j7"><i class="fa-regular fa-map"></i> Google Maps Location</a></li>
                 </ul>
             </div>
-            <Countdown DueDate="new DateTime(2025, 1, 11)" />
+            <Countdown DueDate="new DateTime(2025, 1, 11)" CountDownName="dotnet-conf-2024" />
             <div>
                 <p class="text-white mb-6">Get ready to expand your skills, meet fellow developers, and dive into the latest trends in .NET at this year’s event! Here’s what awaits you</p>
                 <ul class="text-white">
@@ -144,7 +144,7 @@
         <div class="mt-8 md:mt-0 flex gap-8 items-center md:w-1/2 justify-center flex-wrap">
             @foreach(var partner in Partners)
             {
-                <a target="_blank" href="@partner.Website" title="@partner.Name" class="w-[100px]">
+                <a target="_blank" href="@partner.Website" title="@partner.Name" class="w-[100px] hover:scale-105 transition-all">
                     <img src="@partner.ImageUrl" alt="@partner.Name" class="w-full object-contain"/>
                 </a>
             }
@@ -205,9 +205,9 @@
     private string SponsorLink = "https://forms.office.com/r/YnKLW60s73";
 
     private Activity[] Activities = [
-        new Activity("Inspiring Sessions and Conferences", "Dive into cutting-edge topics and explore the latest in .NET technology through insightful sessions and talks. Learn from experts as they cover a wide range of topics, from web and mobile development to cloud solutions and artificial intelligence", "/assets/activities/activity-2.jpeg", "Tech"),
-        new Activity("Meet Microsoft Experts", "Gain exclusive insights from Microsoft employees who work directly on .NET and related technologies. This is your chance to hear directly from those shaping the future of .NET and to ask questions that matter to your projects.", "/assets/featured/net9.png", "Culture"),
-        new Activity("Networking and Connections", "Build meaningful connections with fellow developers, industry professionals, and tech enthusiasts. Exchange ideas, discuss solutions, and expand your network within the vibrant .NET community of Cameroon and beyond.", "/assets/featured/carousel-2.png", "Community"),
+        new ("Inspiring Sessions and Conferences", "Dive into cutting-edge topics and explore the latest in .NET technology through insightful sessions and talks. Learn from experts as they cover a wide range of topics, from web and mobile development to cloud solutions and artificial intelligence", "/assets/activities/activity-2.jpeg", "Tech"),
+        new ("Meet Microsoft Experts", "Gain exclusive insights from Microsoft employees who work directly on .NET and related technologies. This is your chance to hear directly from those shaping the future of .NET and to ask questions that matter to your projects.", "/assets/featured/net9.png", "Culture"),
+        new ("Networking and Connections", "Build meaningful connections with fellow developers, industry professionals, and tech enthusiasts. Exchange ideas, discuss solutions, and expand your network within the vibrant .NET community of Cameroon and beyond.", "/assets/featured/carousel-2.png", "Community"),
     ];
 
     private Partner[] Partners = [
@@ -216,6 +216,7 @@
         new ("/assets/sponsors/itia.jpg", "ITIA Solutions Consulting", "https://itia-consulting.com"),
         new ("/assets/sponsors/codec.png", "Codec", "https://codec.cm"),
         new ("/assets/sponsors/tcd-cmr.png", "Tech Communities Day Cameroon", "https://www.linkedin.com/company/tech-communities-day-cameroon"),
+        new ("/assets/sponsors/examboot.jpg", "Examboot", "https://examboot.net/"),
     ];
 
     record Speaker(
