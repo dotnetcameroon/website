@@ -62,5 +62,6 @@
     [Parameter]
     public DateTime DueDate { get; set; } = DateTime.UtcNow;
 
+    [Parameter]
     public string CountDownName { get; set; } = Guid.NewGuid().ToString();
 }
