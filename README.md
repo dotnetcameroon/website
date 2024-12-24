@@ -1,5 +1,8 @@
 # .NET Cameroon Community Website
 
+![Build - Test](https://github.com/dotnetcameroon/website/actions/workflows/build-and-test.yml/badge.svg)
+![Deploy](https://github.com/dotnetcameroon/website/actions/workflows/main_dotnetcameroon.yml/badge.svg)
+
 Welcome to the official website repository of the .NET Community in Cameroon! This website serves as a hub for our community, providing information about events, resources, and news related to .NET technologies.
 
 [Visit the Website](https://dotnet.cm)
