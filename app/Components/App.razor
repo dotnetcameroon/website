@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject IWebHostEnvironment HostEnvironment
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -30,24 +32,29 @@
     <ImportMap />
     <HeadOutlet />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XN77F4CSLG"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+    @if(HostEnvironment.IsProduction())
+    {
+        <script src="_framework/blazor.webassembly.js" defer></script>
 
-        gtag('config', 'G-XN77F4CSLG');
-    </script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XN77F4CSLG"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
-    <!-- Vercel Analytics Script -->
-    <script>
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "prj_NmkWJHvj4tVTGYwNcuOK4dQz7up2");
-    </script>
+            gtag('config', 'G-XN77F4CSLG');
+        </script>
+
+        <!-- Vercel Analytics Script -->
+        <script>
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "prj_NmkWJHvj4tVTGYwNcuOK4dQz7up2");
+        </script>
+    }
 </head>
 
 <body>
