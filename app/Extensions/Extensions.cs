@@ -27,7 +27,9 @@ public static class Extensions
         IHostEnvironment environment)
     {
         services.AddRazorComponents()
-            .AddInteractiveServerComponents();
+            .AddInteractiveServerComponents()
+            .AddInteractiveWebAssemblyComponents();
+
         if (environment.IsProduction())
         {
             services.AddApplicationInsightsTelemetry(configuration);

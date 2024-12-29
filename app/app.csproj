@@ -11,12 +11,14 @@
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\dotnet-ef-seeder\dotnet-ef-seeder.csproj" />
     <ProjectReference Include="..\app.business\app.business.csproj" />
     <ProjectReference Include="..\app.infrastructure\app.infrastructure.csproj" />
+    <ProjectReference Include="..\app.client\app.client.csproj" />
   </ItemGroup>
 
 </Project>
