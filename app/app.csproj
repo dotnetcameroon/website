@@ -24,6 +24,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\dotnet-ef-seeder\dotnet-ef-seeder.csproj" />
+    <ProjectReference Include="..\app.business\app.business.csproj" />
+    <ProjectReference Include="..\app.infrastructure\app.infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
