@@ -6,3 +6,18 @@
 @using static Microsoft.AspNetCore.Components.Web.RenderMode
 @using Microsoft.AspNetCore.Components.Web.Virtualization
 @using Microsoft.JSInterop
+@using Microsoft.AspNetCore.Authorization
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Http
+@using app.client.Components
+@using app.business.Services
+@using app.client.Layout
+@using ErrorOr
+@using app.domain.Extensions
+@using app.domain.Models.EventAggregate
+@using app.shared.Utilities
+@using app.client.Pages.Admin.Events
+@using app.domain.Models.EventAggregate.Entities
+@using app.domain.Models.EventAggregate.ValueObjects
+@using app.domain.ViewModels
+@using app.domain.Models.EventAggregate.Enums

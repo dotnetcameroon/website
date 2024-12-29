@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
 
-namespace app.Components.Pages.Admin.Events;
+namespace app.client.Pages.Admin.Events;
 public partial class NewOrEdit
 {
     [Parameter]

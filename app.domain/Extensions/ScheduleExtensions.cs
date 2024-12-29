@@ -1,6 +1,6 @@
 using app.domain.Models.EventAggregate.ValueObjects;
 
-namespace app.Extensions;
+namespace app.domain.Extensions;
 public static class ScheduleExtensions
 {
     public static string ToFriendlyString(this EventSchedule schedule)

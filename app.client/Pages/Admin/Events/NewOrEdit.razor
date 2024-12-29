@@ -1,8 +1,7 @@
 @page "/admin/events"
 @page "/admin/events/{Id:guid}"
-@using app.domain.Models.EventAggregate.Enums
 @layout AdminLayout
-@rendermode InteractiveServer
+@rendermode InteractiveWebAssembly
 @attribute [Authorize]
 
 <PageTitle>Admin | Edit Event</PageTitle>
