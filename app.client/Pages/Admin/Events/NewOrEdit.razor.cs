@@ -38,7 +38,7 @@ public partial class NewOrEdit
     {
         await LoadPartners();
         await LoadEvent();
-        // await JSRuntime.InvokeVoidAsync("adjustTextareaHight", "description-input");
+        // await JSRuntime.InvokeVoidAsync("adjustTextareaHeight", "description-input");
         await base.OnInitializedAsync();
     }
 
