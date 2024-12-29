@@ -1,6 +1,6 @@
-using app.Models.EventAggregate.Entities;
-using app.Models.EventAggregate.Enums;
-using app.Models.EventAggregate.ValueObjects;
+using app.domain.Models.EventAggregate.Entities;
+using app.domain.Models.EventAggregate.Enums;
+using app.domain.Models.EventAggregate.ValueObjects;
 
 namespace app.domain.ViewModels;
 public class EventModel

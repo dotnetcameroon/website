@@ -1,8 +1,8 @@
 using app.domain.Models.Common;
-using app.Models.EventAggregate.ValueObjects;
-using Host = app.Models.EventAggregate.ValueObjects.Host;
+using app.domain.Models.EventAggregate.ValueObjects;
+using Host = app.domain.Models.EventAggregate.ValueObjects.Host;
 
-namespace app.Models.EventAggregate.Entities;
+namespace app.domain.Models.EventAggregate.Entities;
 public sealed class Activity : Entity<Guid>
 {
     public string Title { get; private set; } = string.Empty;

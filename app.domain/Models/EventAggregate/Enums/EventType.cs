@@ -1,4 +1,4 @@
-namespace app.Models.EventAggregate.Enums;
+namespace app.domain.Models.EventAggregate.Enums;
 
 public enum EventType
 {

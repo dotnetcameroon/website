@@ -1,6 +1,6 @@
 using app.domain.Models.Common;
 
-namespace app.Models.EventAggregate.Entities;
+namespace app.domain.Models.EventAggregate.Entities;
 public class Partner : Entity<Guid>
 {
     public string Name { get; private set; } = string.Empty;

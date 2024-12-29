@@ -1,11 +1,11 @@
 using app.domain.Models.Common;
+using app.domain.Models.EventAggregate.Entities;
+using app.domain.Models.EventAggregate.Enums;
+using app.domain.Models.EventAggregate.ValueObjects;
 using app.domain.ViewModels;
-using app.Models.EventAggregate.Entities;
-using app.Models.EventAggregate.Enums;
-using app.Models.EventAggregate.ValueObjects;
-using Host = app.Models.EventAggregate.ValueObjects.Host;
+using Host = app.domain.Models.EventAggregate.ValueObjects.Host;
 
-namespace app.Models.EventAggregate;
+namespace app.domain.Models.EventAggregate;
 public sealed class Event : Entity<Guid>, IAggregateRoot
 {
     private readonly List<Partner> _partners = [];

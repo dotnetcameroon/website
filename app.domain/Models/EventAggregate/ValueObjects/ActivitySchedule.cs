@@ -1,4 +1,4 @@
-namespace app.Models.EventAggregate.ValueObjects;
+namespace app.domain.Models.EventAggregate.ValueObjects;
 
 // Will be mapped to complex property
 public class ActivitySchedule

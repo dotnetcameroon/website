@@ -1,4 +1,4 @@
-namespace Infrastructure.Options;
+namespace app.Options;
 
 public sealed class AzureBlobOptions
 {

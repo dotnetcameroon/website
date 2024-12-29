@@ -1,9 +1,8 @@
+using app.business.Services;
+using app.domain.Models.EventAggregate;
+using app.domain.Models.EventAggregate.Entities;
 using app.domain.ViewModels;
-using app.Models.EventAggregate;
-using app.Models.EventAggregate.Entities;
-using app.Models.EventAggregate.ValueObjects;
-using app.Persistence;
-using app.Services;
+using app.infrastructure.Persistence;
 using ErrorOr;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;

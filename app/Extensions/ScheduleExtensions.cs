@@ -1,4 +1,4 @@
-using app.Models.EventAggregate.ValueObjects;
+using app.domain.Models.EventAggregate.ValueObjects;
 
 namespace app.Extensions;
 public static class ScheduleExtensions
