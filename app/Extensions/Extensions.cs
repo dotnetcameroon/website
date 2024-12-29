@@ -1,9 +1,9 @@
 using app.business.Jobs.Base;
+using app.business.Persistence;
 using app.business.Services;
 using app.domain.Models.Identity;
 using app.infrastructure.Options;
 using app.infrastructure.Persistence;
-using app.infrastructure.Persistence.Impl;
 using app.infrastructure.Persistence.Interceptors;
 using app.infrastructure.Persistence.Repositories.Base;
 using app.infrastructure.Services;
@@ -28,7 +28,7 @@ public static class Extensions
     {
         services.AddRazorComponents()
             .AddInteractiveServerComponents();
-        if(environment.IsProduction())
+        if (environment.IsProduction())
         {
             services.AddApplicationInsightsTelemetry(configuration);
             services.AddExceptionHandler<ExceptionHandlerMiddleware>();
@@ -45,13 +45,13 @@ public static class Extensions
 
         services.AddHangfireServer();
         services.AddJobsFromAssembly(typeof(IJob).Assembly);
-        services.AddScoped<IUnitOfWork,UnitOfWork>();
-        services.AddScoped<IFileDownloader,FileDownloader>();
-        services.AddScoped<IFileUploader,FileUploader>();
-        services.AddScoped<IFileManager,FileManager>();
-        services.AddScoped<IEventService,EventService>();
-        services.AddScoped<IPartnerService,PartnerService>();
-        services.AddScoped<IIdentityService,IdentityService>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IFileDownloader, FileDownloader>();
+        services.AddScoped<IFileUploader, FileUploader>();
+        services.AddScoped<IFileManager, FileManager>();
+        services.AddScoped<IEventService, EventService>();
+        services.AddScoped<IPartnerService, PartnerService>();
+        services.AddScoped<IIdentityService, IdentityService>();
         services.AddScoped<DomainEventsInterceptor>();
         services.AddSqlServer<AppDbContext>(configuration.GetConnectionString(SqlServer));
         services.AddScoped<IDbContext>(sp => sp.GetRequiredService<AppDbContext>());

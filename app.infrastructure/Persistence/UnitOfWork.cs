@@ -1,9 +1,10 @@
 using System.Collections.Concurrent;
+using app.business.Persistence;
 using app.domain.Models.EventAggregate.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace app.infrastructure.Persistence.Impl;
+namespace app.infrastructure.Persistence;
 public class UnitOfWork(IDbContext dbContext) : IUnitOfWork
 {
     private readonly IDbContext _dbContext = dbContext;

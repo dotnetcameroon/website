@@ -1,4 +1,4 @@
-namespace app.infrastructure.Persistence;
+namespace app.business.Persistence;
 
 public interface IUnitOfWork
 {

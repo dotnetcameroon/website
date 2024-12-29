@@ -1,10 +1,10 @@
 using System.Linq.Expressions;
+using app.business.Persistence;
 using app.business.Services;
 using app.domain.Models.EventAggregate;
 using app.domain.Models.EventAggregate.Entities;
 using app.domain.Models.EventAggregate.Enums;
 using app.domain.ViewModels;
-using app.infrastructure.Persistence;
 using app.infrastructure.Persistence.Repositories.Base;
 using app.shared.Utilities;
 using ErrorOr;

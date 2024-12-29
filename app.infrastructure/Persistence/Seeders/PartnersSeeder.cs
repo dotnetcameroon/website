@@ -1,3 +1,4 @@
+using app.business.Persistence;
 using app.domain.Models.EventAggregate.Entities;
 using EntityFrameworkCore.Seeder.Base;
 
