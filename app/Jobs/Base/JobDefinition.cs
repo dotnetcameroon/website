@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 
-namespace app.business.Jobs.Base;
+namespace app.Jobs.Base;
 public class JobDefinition
 {
     public Expression<Action> MethodCall { get; }

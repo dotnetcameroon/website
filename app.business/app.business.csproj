@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Hangfire" Version="1.8.15" />
-    <PackageReference Include="Hangfire.Storage.SQLite" Version="0.4.2" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\app.domain\app.domain.csproj" />
   </ItemGroup>
 
