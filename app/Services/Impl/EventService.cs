@@ -1,4 +1,5 @@
 using System.Linq.Expressions;
+using app.domain.ViewModels;
 using app.Models.EventAggregate;
 using app.Models.EventAggregate.Entities;
 using app.Models.EventAggregate.Enums;
@@ -6,7 +7,6 @@ using app.Persistence;
 using app.Extensions;
 using app.Persistence.Repositories.Base;
 using app.Utilities;
-using app.ViewModels;
 using ErrorOr;
 using Microsoft.EntityFrameworkCore;
 using Host = app.Models.EventAggregate.ValueObjects.Host;

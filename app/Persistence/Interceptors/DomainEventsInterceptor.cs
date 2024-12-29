@@ -1,4 +1,4 @@
-using Domain.Common.Utils;
+using app.domain.Models.Common;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;

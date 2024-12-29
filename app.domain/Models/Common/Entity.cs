@@ -1,4 +1,4 @@
-namespace app.Models.Common;
+namespace app.domain.Models.Common;
 
 public abstract class Entity<TId>
 {

@@ -1,4 +1,4 @@
-using app.Models.Common;
+using app.domain.Models.Common;
 
 namespace app.Models.EventAggregate.Entities;
 public class Partner : Entity<Guid>

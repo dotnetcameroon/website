@@ -1,4 +1,4 @@
-using app.Models.Common;
+using app.domain.Models.Common;
 using app.Models.EventAggregate.ValueObjects;
 using Host = app.Models.EventAggregate.ValueObjects.Host;
 

@@ -1,4 +1,4 @@
-namespace app.ViewModels;
+namespace app.domain.ViewModels;
 
 public class HostModel
 {

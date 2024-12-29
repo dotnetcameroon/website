@@ -1,9 +1,8 @@
-using app.Models.Common;
+using app.domain.Models.Common;
+using app.domain.ViewModels;
 using app.Models.EventAggregate.Entities;
 using app.Models.EventAggregate.Enums;
 using app.Models.EventAggregate.ValueObjects;
-using app.ViewModels;
-using Domain.Common.Utils;
 using Host = app.Models.EventAggregate.ValueObjects.Host;
 
 namespace app.Models.EventAggregate;

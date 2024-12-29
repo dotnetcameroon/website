@@ -1,5 +1,5 @@
 using System.Linq.Expressions;
-using app.Models.Common;
+using app.domain.Models.Common;
 
 namespace app.Persistence.Repositories.Base;
 

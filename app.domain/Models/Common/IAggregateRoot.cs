@@ -1,6 +1,4 @@
-using app.Models.Common;
-
-namespace Domain.Common.Utils;
+namespace app.domain.Models.Common;
 
 public interface IAggregateRoot
 {

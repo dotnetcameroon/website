@@ -1,5 +1,5 @@
 using app.Data.Interceptors;
-using app.Models.Common;
+using app.domain.Models.Common;
 using app.Models.EventAggregate;
 using app.Models.EventAggregate.Entities;
 using app.Models.Identity;

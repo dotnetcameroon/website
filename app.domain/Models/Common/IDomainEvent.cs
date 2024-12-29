@@ -1,4 +1,4 @@
 using MediatR;
 
-namespace app.Models.Common;
+namespace app.domain.Models.Common;
 public interface IDomainEvent : INotification;

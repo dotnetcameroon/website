@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
+using app.domain.ViewModels;
 using app.Models.EventAggregate;
 using app.Utilities;
-using app.ViewModels;
 using ErrorOr;
 
 namespace app.Services;
