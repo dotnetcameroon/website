@@ -1,6 +1,6 @@
 using System.Reflection;
-using app.business.Jobs.Base;
 using app.Filters;
+using app.Jobs.Base;
 using Hangfire;
 
 namespace app.Extensions;
@@ -12,7 +12,7 @@ public static class HangfireExtensions
         app.UseHangfireDashboard("/admin/jobs", new DashboardOptions
         {
             IsReadOnlyFunc = context => false,
-            Authorization = [ new HangfireAuthFilter() ]
+            Authorization = [new HangfireAuthFilter()]
         });
 
         using var scope = app.Services.CreateScope();

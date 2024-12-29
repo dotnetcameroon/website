@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
 
-namespace app.Components.Pages.Admin.Events;
+namespace app.client.Pages.Admin.Events;
 public partial class NewOrEdit
 {
     [Parameter]
@@ -38,7 +38,7 @@ public partial class NewOrEdit
     {
         await LoadPartners();
         await LoadEvent();
-        // await JSRuntime.InvokeVoidAsync("adjustTextareaHight", "description-input");
+        // await JSRuntime.InvokeVoidAsync("adjustTextareaHeight", "description-input");
         await base.OnInitializedAsync();
     }
 

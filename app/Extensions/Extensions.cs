@@ -1,4 +1,3 @@
-using app.business.Jobs.Base;
 using app.business.Persistence;
 using app.business.Services;
 using app.domain.Models.Identity;
@@ -7,6 +6,7 @@ using app.infrastructure.Persistence;
 using app.infrastructure.Persistence.Interceptors;
 using app.infrastructure.Persistence.Repositories.Base;
 using app.infrastructure.Services;
+using app.Jobs.Base;
 using app.Middlewares;
 using app.shared.Utilities;
 using EntityFrameworkCore.Seeder.Extensions;
@@ -27,7 +27,9 @@ public static class Extensions
         IHostEnvironment environment)
     {
         services.AddRazorComponents()
-            .AddInteractiveServerComponents();
+            .AddInteractiveServerComponents()
+            .AddInteractiveWebAssemblyComponents();
+
         if (environment.IsProduction())
         {
             services.AddApplicationInsightsTelemetry(configuration);

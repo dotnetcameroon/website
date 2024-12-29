@@ -37,6 +37,8 @@ app.UseAntiforgery();
 app.MapHangfireJobs();
 
 app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
+    .AddInteractiveServerRenderMode()
+    .AddInteractiveWebAssemblyRenderMode()
+    .AddAdditionalAssemblies(typeof(app.client._Imports).Assembly);
 
 app.Run();

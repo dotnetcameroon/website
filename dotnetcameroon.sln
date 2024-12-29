@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app.shared", "app.shared\ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app.domain", "app.domain\app.domain.csproj", "{93EB2875-B349-48BC-8509-86F7365BC945}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app.client", "app.client\app.client.csproj", "{6E22DCB4-CB51-4976-BB72-3554504B9D59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{93EB2875-B349-48BC-8509-86F7365BC945}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93EB2875-B349-48BC-8509-86F7365BC945}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93EB2875-B349-48BC-8509-86F7365BC945}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E22DCB4-CB51-4976-BB72-3554504B9D59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E22DCB4-CB51-4976-BB72-3554504B9D59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E22DCB4-CB51-4976-BB72-3554504B9D59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E22DCB4-CB51-4976-BB72-3554504B9D59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
