@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="ErrorOr" Version="2.1.0" />
     <PackageReference Include="Hangfire" Version="1.8.15" />
-    <PackageReference Include="Hangfire.SqlServer" Version="1.8.15" />
+    <PackageReference Include="Hangfire.Storage.SQLite" Version="0.4.2" />
     <PackageReference Include="MediatR" Version="12.4.0" />
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.22.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
