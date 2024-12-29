@@ -10,6 +10,7 @@ using app.Services.Impl;
 using app.Utilities;
 using EntityFrameworkCore.Seeder.Extensions;
 using Hangfire;
+using Hangfire.Storage.SQLite;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,7 @@ namespace app.Extensions;
 public static class Extensions
 {
     private const string SqlServer = "SqlServer";
+    private const string HangfireSqlite = "HangfireSqlite";
     public static IServiceCollection AddServices(
         this IServiceCollection services,
         IConfiguration configuration,
@@ -30,6 +32,10 @@ public static class Extensions
             services.AddApplicationInsightsTelemetry(configuration);
             services.AddExceptionHandler<ExceptionHandlerMiddleware>();
         }
+        services.AddHangfire(cfg => cfg
+            .UseSimpleAssemblyNameTypeSerializer()
+            .UseRecommendedSerializerSettings()
+            .UseSQLiteStorage(configuration.GetConnectionString(HangfireSqlite)));
 
         // services.AddHangfire(cfg => cfg
         //     .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
