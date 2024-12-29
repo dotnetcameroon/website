@@ -11,7 +11,7 @@ using app.Middlewares;
 using app.shared.Utilities;
 using EntityFrameworkCore.Seeder.Extensions;
 using Hangfire;
-using Hangfire.Storage.SQLite;
+using Hangfire.MemoryStorage;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -38,7 +38,7 @@ public static class Extensions
         services.AddHangfire(cfg => cfg
             .UseSimpleAssemblyNameTypeSerializer()
             .UseRecommendedSerializerSettings()
-            .UseSQLiteStorage(configuration.GetConnectionString(HangfireSqlite)));
+            .UseMemoryStorage());
 
         // We currently use the memory cache because it's enough for our simple application
         // We will scale to a distributed Redis Cache if needed
