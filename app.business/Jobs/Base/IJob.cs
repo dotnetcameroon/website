@@ -1,4 +1,4 @@
-namespace app.Jobs.Base;
+namespace app.business.Jobs.Base;
 
 public interface IJob
 {

@@ -1,9 +1,8 @@
-
+using app.business.Jobs.Base;
 using app.business.Services;
-using app.Jobs.Base;
 using Hangfire;
 
-namespace app.Jobs;
+namespace app.business.Jobs;
 public class MarkEventsAsPassed(IEventService eventService) : IJob
 {
     private const string JobName = nameof(MarkEventsAsPassed);

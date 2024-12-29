@@ -1,14 +1,14 @@
+using app.business.Jobs.Base;
 using app.business.Services;
 using app.domain.Models.Identity;
+using app.infrastructure.Options;
 using app.infrastructure.Persistence;
 using app.infrastructure.Persistence.Impl;
 using app.infrastructure.Persistence.Interceptors;
 using app.infrastructure.Persistence.Repositories.Base;
 using app.infrastructure.Services;
 using app.Middlewares;
-using app.Options;
 using app.shared.Utilities;
-using app.Utilities;
 using EntityFrameworkCore.Seeder.Extensions;
 using Hangfire;
 using Hangfire.Storage.SQLite;
@@ -38,19 +38,13 @@ public static class Extensions
             .UseRecommendedSerializerSettings()
             .UseSQLiteStorage(configuration.GetConnectionString(HangfireSqlite)));
 
-        // services.AddHangfire(cfg => cfg
-        //     .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
-        //     .UseSimpleAssemblyNameTypeSerializer()
-        //     .UseRecommendedSerializerSettings()
-        //     .UseSqlServerStorage(configuration.GetConnectionString(SqlServer)));
-
         // We currently use the memory cache because it's enough for our simple application
         // We will scale to a distributed Redis Cache if needed
         services.AddCacheManager();
         services.AddSingleton<CacheManager>();
 
-        // services.AddHangfireServer();
-        // services.AddJobsFromAssembly(typeof(Extensions).Assembly);
+        services.AddHangfireServer();
+        services.AddJobsFromAssembly(typeof(IJob).Assembly);
         services.AddScoped<IUnitOfWork,UnitOfWork>();
         services.AddScoped<IFileDownloader,FileDownloader>();
         services.AddScoped<IFileUploader,FileUploader>();

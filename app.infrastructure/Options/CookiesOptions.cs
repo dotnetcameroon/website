@@ -1,4 +1,4 @@
-namespace app.Options;
+namespace app.infrastructure.Options;
 public sealed class CookiesOptions
 {
     public static string SectionName => "CookiesOptions";
