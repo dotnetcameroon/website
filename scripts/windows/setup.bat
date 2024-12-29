@@ -10,7 +10,7 @@ while (-not (docker exec $containerName /opt/mssql-tools18/bin/sqlcmd -S localho
 }
 
 # Migrate the database
-dotnet ef database update --project ./app/ 
+dotnet ef database update -s ./app -p ./app.infrastructure
 
 # Seed the database
 dotnet run --project ./app/ --seed RolesSeeder PartnersSeeder EventsSeeder AdminsSeeder

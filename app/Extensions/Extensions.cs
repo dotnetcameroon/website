@@ -66,7 +66,7 @@ public static class Extensions
 
         // Seeders
         services.ConfigureSeedersEngine();
-        services.AddSeedersFromAssembly(typeof(Extensions).Assembly);
+        services.AddSeedersFromAssembly(typeof(AppDbContext).Assembly);
         return services;
     }
 
