@@ -1,4 +1,7 @@
 @page "/admin"
+@using app.business.Services
+@using app.domain.Models.EventAggregate
+@using app.shared.Utilities
 @attribute [Authorize]
 @layout AdminLayout
 @inject IEventService EventService

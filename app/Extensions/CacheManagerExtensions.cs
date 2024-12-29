@@ -1,5 +1,5 @@
-using app.Services;
-using app.Services.Impl;
+using app.business.Services;
+using app.infrastructure.Services;
 
 namespace app.Extensions;
 public static class CacheManagerExtensions

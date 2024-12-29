@@ -1,13 +1,14 @@
-using app.Data.Interceptors;
+using app.business.Jobs.Base;
+using app.business.Persistence;
+using app.business.Services;
+using app.domain.Models.Identity;
+using app.infrastructure.Options;
+using app.infrastructure.Persistence;
+using app.infrastructure.Persistence.Interceptors;
+using app.infrastructure.Persistence.Repositories.Base;
+using app.infrastructure.Services;
 using app.Middlewares;
-using app.Models.Identity;
-using app.Options;
-using app.Persistence;
-using app.Persistence.Impl;
-using app.Persistence.Repositories.Base;
-using app.Services;
-using app.Services.Impl;
-using app.Utilities;
+using app.shared.Utilities;
 using EntityFrameworkCore.Seeder.Extensions;
 using Hangfire;
 using Hangfire.Storage.SQLite;
@@ -27,7 +28,7 @@ public static class Extensions
     {
         services.AddRazorComponents()
             .AddInteractiveServerComponents();
-        if(environment.IsProduction())
+        if (environment.IsProduction())
         {
             services.AddApplicationInsightsTelemetry(configuration);
             services.AddExceptionHandler<ExceptionHandlerMiddleware>();
@@ -37,26 +38,20 @@ public static class Extensions
             .UseRecommendedSerializerSettings()
             .UseSQLiteStorage(configuration.GetConnectionString(HangfireSqlite)));
 
-        // services.AddHangfire(cfg => cfg
-        //     .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
-        //     .UseSimpleAssemblyNameTypeSerializer()
-        //     .UseRecommendedSerializerSettings()
-        //     .UseSqlServerStorage(configuration.GetConnectionString(SqlServer)));
-
         // We currently use the memory cache because it's enough for our simple application
         // We will scale to a distributed Redis Cache if needed
         services.AddCacheManager();
         services.AddSingleton<CacheManager>();
 
-        // services.AddHangfireServer();
-        // services.AddJobsFromAssembly(typeof(Extensions).Assembly);
-        services.AddScoped<IUnitOfWork,UnitOfWork>();
-        services.AddScoped<IFileDownloader,FileDownloader>();
-        services.AddScoped<IFileUploader,FileUploader>();
-        services.AddScoped<IFileManager,FileManager>();
-        services.AddScoped<IEventService,EventService>();
-        services.AddScoped<IPartnerService,PartnerService>();
-        services.AddScoped<IIdentityService,IdentityService>();
+        services.AddHangfireServer();
+        services.AddJobsFromAssembly(typeof(IJob).Assembly);
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IFileDownloader, FileDownloader>();
+        services.AddScoped<IFileUploader, FileUploader>();
+        services.AddScoped<IFileManager, FileManager>();
+        services.AddScoped<IEventService, EventService>();
+        services.AddScoped<IPartnerService, PartnerService>();
+        services.AddScoped<IIdentityService, IdentityService>();
         services.AddScoped<DomainEventsInterceptor>();
         services.AddSqlServer<AppDbContext>(configuration.GetConnectionString(SqlServer));
         services.AddScoped<IDbContext>(sp => sp.GetRequiredService<AppDbContext>());
@@ -71,7 +66,7 @@ public static class Extensions
 
         // Seeders
         services.ConfigureSeedersEngine();
-        services.AddSeedersFromAssembly(typeof(Extensions).Assembly);
+        services.AddSeedersFromAssembly(typeof(AppDbContext).Assembly);
         return services;
     }
 

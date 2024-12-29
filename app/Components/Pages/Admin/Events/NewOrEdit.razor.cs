@@ -1,9 +1,8 @@
-using app.Models.EventAggregate;
-using app.Models.EventAggregate.Entities;
-using app.Models.EventAggregate.ValueObjects;
-using app.Persistence;
-using app.Services;
-using app.ViewModels;
+using app.business.Persistence;
+using app.business.Services;
+using app.domain.Models.EventAggregate;
+using app.domain.Models.EventAggregate.Entities;
+using app.domain.ViewModels;
 using ErrorOr;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
@@ -46,7 +45,7 @@ public partial class NewOrEdit
     private async Task HandleSubmit()
     {
         ErrorOr<Event> result;
-        if(Id is null)
+        if (Id is null)
         {
             result = await EventService.CreateAsync(EventModel);
         }
@@ -55,7 +54,7 @@ public partial class NewOrEdit
             result = await EventService.UpdateAsync(Id.Value, EventModel);
         }
 
-        if(result.IsError)
+        if (result.IsError)
         {
             NavigationManager.NavigateTo("/errors", true);
             return;
@@ -83,7 +82,7 @@ public partial class NewOrEdit
     private async Task CancelEvent(Guid eventId)
     {
         var result = await EventService.CancelAsync(eventId);
-        if(result.IsError)
+        if (result.IsError)
         {
             NavigationManager.NavigateTo("/errors", true);
         }
@@ -96,7 +95,7 @@ public partial class NewOrEdit
     private async Task PublishEvent(Guid eventId)
     {
         var result = await EventService.PublishAsync(eventId);
-        if(result.IsError)
+        if (result.IsError)
         {
             NavigationManager.NavigateTo("/errors", true);
         }
@@ -109,23 +108,23 @@ public partial class NewOrEdit
     private async Task LoadPartners()
     {
         var result = await PartnerService.GetAllAsync();
-        if(result.IsError)
+        if (result.IsError)
         {
             return;
         }
 
-        AllPartners = [..result.Value];
+        AllPartners = [.. result.Value];
     }
 
     private async Task LoadEvent()
     {
-        if(Id is null)
+        if (Id is null)
         {
             return;
         }
 
         var result = await EventService.GetAsync(Id ?? Guid.Empty);
-        if(result.IsError)
+        if (result.IsError)
         {
             return;
         }
@@ -174,7 +173,7 @@ public partial class NewOrEdit
     private void OnPartnerSelected(ChangeEventArgs args)
     {
         var partner = AllPartners.FirstOrDefault(p => p.Name.Equals(args.Value?.ToString() ?? string.Empty));
-        if(partner is null)
+        if (partner is null)
         {
             return;
         }
@@ -191,7 +190,7 @@ public partial class NewOrEdit
 
     private static string GetActivityImage(ActivityModel model)
     {
-        return 
+        return
             model.Host.ImageUrl;
     }
 }

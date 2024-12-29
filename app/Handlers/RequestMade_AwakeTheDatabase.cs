@@ -1,5 +1,5 @@
+using app.infrastructure.Persistence;
 using app.Notifications;
-using app.Persistence;
 using MediatR;
 
 namespace app.Handlers;
