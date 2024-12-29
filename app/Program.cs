@@ -1,7 +1,6 @@
 using app.Components;
 using app.Extensions;
 using EntityFrameworkCore.Seeder.Extensions;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -35,9 +34,11 @@ app.UseAuthorization();
 
 app.UseAntiforgery();
 
-// app.MapHangfireJobs();
+app.MapHangfireJobs();
 
 app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
+    .AddInteractiveServerRenderMode()
+    .AddInteractiveWebAssemblyRenderMode()
+    .AddAdditionalAssemblies(typeof(app.client._Imports).Assembly);
 
 app.Run();

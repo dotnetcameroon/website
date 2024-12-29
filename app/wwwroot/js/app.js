@@ -57,7 +57,7 @@ function toggleActivityPopup() {
   body.scrollTo(0, 0);
 }
 
-function adjustTextareaHight(id) {
+function adjustTextareaHeight(id) {
   const textarea = document.getElementById(id);
   textarea.style.height = "auto";
   textarea.style.height = textarea.scrollHeight + "px";
@@ -79,5 +79,5 @@ function saveDraft() {
 }
 
 function backToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }

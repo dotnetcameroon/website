@@ -1,4 +1,4 @@
-using app.Models.EventAggregate.Enums;
+using app.domain.Models.EventAggregate.Enums;
 
 namespace app.Extensions;
 public static class EventHostingModelExtensions

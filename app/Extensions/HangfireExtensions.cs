@@ -12,7 +12,7 @@ public static class HangfireExtensions
         app.UseHangfireDashboard("/admin/jobs", new DashboardOptions
         {
             IsReadOnlyFunc = context => false,
-            Authorization = [ new HangfireAuthFilter() ]
+            Authorization = [new HangfireAuthFilter()]
         });
 
         using var scope = app.Services.CreateScope();

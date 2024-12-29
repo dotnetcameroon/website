@@ -8,7 +8,7 @@ until docker exec sqlserver /opt/mssql-tools18/bin/sqlcmd -S localhost -U SA -P 
 done
 
 # Migrate the database
-dotnet ef database update --project ./app/ && \
+dotnet ef database update -s ./app -p ./app.infrastructure && \
 
 # Seed the database
 dotnet run --project ./app/ --seed RolesSeeder PartnersSeeder EventsSeeder AdminsSeeder

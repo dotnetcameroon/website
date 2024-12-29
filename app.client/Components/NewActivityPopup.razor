@@ -1,0 +1,141 @@
+@inject IJSRuntime JsInterop
+
+<div id="activity-popup" class="activity-popup absolute top-0 left-0 w-full h-full z-10">
+    <div class="relative top-0 left-0 w-full h-full z-10">
+        <div class="fixed w-full h-full top-0 left-0 bg-black bg-opacity-30"></div>
+        <EditForm id="new-activity-form" OnValidSubmit="@Add" FormName="NewActivityForm" Model="@ActivityModel"
+            class="absolute flex flex-col gap-4 p-4 justify-between items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[80%] h-[80%] bg-white rounded-lg">
+            <div class="w-full flex gap-6 pt-10">
+                <div class="w-1/2">
+                    <h2 class="heading heading-2">Details</h2>
+                    <div class="w-full">
+                        <label for="title-input" class="font-bold">
+                            Title
+                        </label>
+                        <InputText id="title-input" class="p-2 w-full px-4 border border-gray-400 rounded-lg"
+                            @bind-Value="@ActivityModel.Title" title="title" required placeholder="The activity name" />
+                    </div>
+                    <div class="w-full mt-4">
+                        <label for="activity-description-input" class="font-bold">
+                            Description
+                        </label>
+                        <InputTextArea id="activity-description-input"
+                            onfocus="adjustTextareaHeight('activity-description-input')"
+                            oninput="adjustTextareaHeight('activity-description-input')"
+                            class="p-2 w-full px-4 border border-gray-400 rounded-lg"
+                            @bind-Value="@ActivityModel.Description" title="description" required
+                            placeholder="The activity description" />
+                    </div>
+                    <div class="w-full">
+                        <p class="font-bold">Schedule</p>
+                        <div class="flex flex-col">
+                            <label>
+                                <i class="fa-regular fa-calendar"></i> Start Time:
+                                <InputDate Type="InputDateType.Time" @bind-Value="ActivityModel.Start" />
+                            </label>
+                            <label>
+                                <i class="fa-regular fa-calendar-minus"></i> End Time:
+                                <InputDate Type="InputDateType.Time" @bind-Value="ActivityModel.End" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/2">
+                    <h2 class="heading heading-2">Details</h2>
+                    <div class="w-full mt-4 flex flex-col">
+                        <label for="host-name-input" class="font-bold">
+                            Host Picture
+                        </label>
+                        <div class="flex items-center gap-2">
+                            <img src="@ActivityModel.HostImageUrl" alt="@ActivityModel.HostName"
+                                class="block w-[50px] aspect-square" />
+                            <InputFile OnChange="@HandleFileSelected" title="Choose host picture" accept="image/*" />
+                        </div>
+                    </div>
+                    <div class="w-full mt-4">
+                        <label for="host-name-input" class="font-bold">
+                            Host Name
+                        </label>
+                        <InputText id="host-name-input" class="p-2 w-full px-4 border border-gray-400 rounded-lg"
+                            @bind-Value="@ActivityModel.HostName" title="host name" required placeholder="Host name" />
+                    </div>
+                    <div class="w-full mt-4">
+                        <label for="host-email-input" class="font-bold">
+                            Host Email
+                        </label>
+                        <InputText id="host-email-input" class="p-2 w-full px-4 border border-gray-400 rounded-lg"
+                            @bind-Value="@ActivityModel.HostEmail" title="host email" required
+                            placeholder="Host Email" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-secondary" type="reset" @onclick="@CloseActivityPopup">Cancel</button>
+                <button class="btn btn-primary" type="submit">Add</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private const string ActiveClass = "active";
+    private string _class = string.Empty;
+    [Parameter]
+    public NewOrEdit Parent { get; set; } = new();
+
+    private void Cancel()
+    {
+        _class = _class == ActiveClass ? string.Empty : ActiveClass;
+    }
+
+    [Parameter]
+    public List<Activity> Activities { get; set; } = [];
+
+    [SupplyParameterFromForm(FormName = "NewActivityForm")]
+    private Model ActivityModel { get; set; } = new();
+    private async Task Add()
+    {
+        Parent.AddActivity(new ActivityModel
+            {
+                Title = ActivityModel.Title,
+                Description = ActivityModel.Description,
+                Host = new HostModel
+                {
+                    Name = ActivityModel.HostName,
+                    Email = ActivityModel.HostEmail,
+                    ImageUrl = ActivityModel.HostImageUrl
+                },
+                Schedule = ActivitySchedule.Create(ActivityModel.Start, ActivityModel.End)
+            });
+        ActivityModel.HostImageUrl = string.Empty;
+        await JsInterop.InvokeVoidAsync("toggleActivityPopup");
+    }
+
+    private async Task HandleFileSelected(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        using var memoryStream = new MemoryStream();
+        await file.OpenReadStream().CopyToAsync(memoryStream);
+        byte[] fileBytes = memoryStream.ToArray();
+
+        ActivityModel.HostImageUrl = $"data:{file.ContentType};base64,{Convert.ToBase64String(fileBytes)}";
+        StateHasChanged();
+    }
+
+    private async Task CloseActivityPopup()
+    {
+        ActivityModel.HostImageUrl = string.Empty;
+        await JsInterop.InvokeVoidAsync("toggleActivityPopup");
+    }
+
+    class Model
+    {
+        public string Title { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public string HostName { get; set; } = string.Empty;
+        public string HostEmail { get; set; } = string.Empty;
+        public string HostImageUrl { get; set; } = string.Empty;
+        public TimeOnly Start { get; set; }
+        public TimeOnly End { get; set; }
+    }
+}
