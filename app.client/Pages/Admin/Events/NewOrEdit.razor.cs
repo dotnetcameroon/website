@@ -1,4 +1,3 @@
-using app.business.Persistence;
 using app.business.Services;
 using app.domain.Models.EventAggregate;
 using app.domain.Models.EventAggregate.Entities;
@@ -6,7 +5,6 @@ using app.domain.ViewModels;
 using ErrorOr;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.JSInterop;
 
 namespace app.client.Pages.Admin.Events;
 public partial class NewOrEdit
@@ -18,28 +16,30 @@ public partial class NewOrEdit
     private EventModel EventModel { get; set; } = new();
 
     public List<Partner> AllPartners = [];
-
-    [Inject]
     public IEventService EventService { get; set; } = default!;
-
-    [Inject]
     public IPartnerService PartnerService { get; set; } = default!;
-
-    [Inject]
     public NavigationManager NavigationManager { get; set; } = default!;
-
-    [Inject]
-    public IJSRuntime JSRuntime { get; set; } = default!;
-
-    [Inject]
-    public IUnitOfWork UnitOfWork { get; set; } = default!;
+    private IServiceScope _scope = default!;
 
     protected override async Task OnInitializedAsync()
     {
+        InitializeDependencies();
         await LoadPartners();
         await LoadEvent();
-        // await JSRuntime.InvokeVoidAsync("adjustTextareaHeight", "description-input");
         await base.OnInitializedAsync();
+    }
+
+    // Djoufson Che - 2024-12-31
+    // We manually resolve the services through the service provider (which is a Singleton)
+    // instead of dependency injection
+    // because this is a client side component and we need to manually persist the scope
+    // Note that this is the behavior I encountered, and this solution worked for me
+    private void InitializeDependencies()
+    {
+        _scope = ServiceProvider.CreateScope();
+        EventService = _scope.ServiceProvider.GetRequiredService<IEventService>();
+        PartnerService = _scope.ServiceProvider.GetRequiredService<IPartnerService>();
+        NavigationManager = _scope.ServiceProvider.GetRequiredService<NavigationManager>();
     }
 
     private async Task HandleSubmit()
