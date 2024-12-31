@@ -16,9 +16,9 @@ public partial class NewOrEdit
     private EventModel EventModel { get; set; } = new();
 
     public List<Partner> AllPartners = [];
-    public IEventService EventService { get; set; } = default!;
-    public IPartnerService PartnerService { get; set; } = default!;
-    public NavigationManager NavigationManager { get; set; } = default!;
+    private IEventService _eventService = default!;
+    private IPartnerService _partnerService = default!;
+    private NavigationManager _navigationManager = default!;
     private IServiceScope _scope = default!;
 
     protected override async Task OnInitializedAsync()
@@ -37,9 +37,9 @@ public partial class NewOrEdit
     private void InitializeDependencies()
     {
         _scope = ServiceProvider.CreateScope();
-        EventService = _scope.ServiceProvider.GetRequiredService<IEventService>();
-        PartnerService = _scope.ServiceProvider.GetRequiredService<IPartnerService>();
-        NavigationManager = _scope.ServiceProvider.GetRequiredService<NavigationManager>();
+        _eventService = _scope.ServiceProvider.GetRequiredService<IEventService>();
+        _partnerService = _scope.ServiceProvider.GetRequiredService<IPartnerService>();
+        _navigationManager = _scope.ServiceProvider.GetRequiredService<NavigationManager>();
     }
 
     private async Task HandleSubmit()
@@ -47,20 +47,20 @@ public partial class NewOrEdit
         ErrorOr<Event> result;
         if (Id is null)
         {
-            result = await EventService.CreateAsync(EventModel);
+            result = await _eventService.CreateAsync(EventModel);
         }
         else
         {
-            result = await EventService.UpdateAsync(Id.Value, EventModel);
+            result = await _eventService.UpdateAsync(Id.Value, EventModel);
         }
 
         if (result.IsError)
         {
-            NavigationManager.NavigateTo("/errors", true);
+            _navigationManager.NavigateTo("/errors", true);
             return;
         }
 
-        NavigationManager.NavigateTo("/admin", true);
+        _navigationManager.NavigateTo("/admin", true);
     }
 
     private async Task HandleFileSelected(InputFileChangeEventArgs e)
@@ -81,33 +81,33 @@ public partial class NewOrEdit
 
     private async Task CancelEvent(Guid eventId)
     {
-        var result = await EventService.CancelAsync(eventId);
+        var result = await _eventService.CancelAsync(eventId);
         if (result.IsError)
         {
-            NavigationManager.NavigateTo("/errors", true);
+            _navigationManager.NavigateTo("/errors", true);
         }
         else
         {
-            NavigationManager.NavigateTo("/admin", true);
+            _navigationManager.NavigateTo("/admin", true);
         }
     }
 
     private async Task PublishEvent(Guid eventId)
     {
-        var result = await EventService.PublishAsync(eventId);
+        var result = await _eventService.PublishAsync(eventId);
         if (result.IsError)
         {
-            NavigationManager.NavigateTo("/errors", true);
+            _navigationManager.NavigateTo("/errors", true);
         }
         else
         {
-            NavigationManager.NavigateTo("/admin", true);
+            _navigationManager.NavigateTo("/admin", true);
         }
     }
 
     private async Task LoadPartners()
     {
-        var result = await PartnerService.GetAllAsync();
+        var result = await _partnerService.GetAllAsync();
         if (result.IsError)
         {
             return;
@@ -123,7 +123,7 @@ public partial class NewOrEdit
             return;
         }
 
-        var result = await EventService.GetAsync(Id ?? Guid.Empty);
+        var result = await _eventService.GetAsync(Id ?? Guid.Empty);
         if (result.IsError)
         {
             return;
