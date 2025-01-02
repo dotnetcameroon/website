@@ -35,18 +35,19 @@ public static class Extensions
             services.AddApplicationInsightsTelemetry(configuration);
             services.AddExceptionHandler<ExceptionHandlerMiddleware>();
         }
-        services.AddHangfire(cfg => cfg
-            .UseSimpleAssemblyNameTypeSerializer()
-            .UseRecommendedSerializerSettings()
-            .UseMemoryStorage());
+
+        // services.AddHangfire(cfg => cfg
+        //     .UseSimpleAssemblyNameTypeSerializer()
+        //     .UseRecommendedSerializerSettings()
+        //     .UseMemoryStorage());
+
+        // services.AddHangfireServer();
+        // services.AddJobsFromAssembly(typeof(IJob).Assembly);
 
         // We currently use the memory cache because it's enough for our simple application
         // We will scale to a distributed Redis Cache if needed
         services.AddCacheManager();
         services.AddSingleton<CacheManager>();
-
-        services.AddHangfireServer();
-        services.AddJobsFromAssembly(typeof(IJob).Assembly);
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IFileDownloader, FileDownloader>();
         services.AddScoped<IFileUploader, FileUploader>();
