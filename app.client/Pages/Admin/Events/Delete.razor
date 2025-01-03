@@ -1,6 +1,6 @@
 @page "/admin/events/delete/{Id:guid}"
 @layout AdminLayout
-@attribute [Authorize]
+@attribute [Authorize(Policy = Policies.AdminOnly)]
 @inject NavigationManager NavigationManager
 @inject IEventService EventService
 

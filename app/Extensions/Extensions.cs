@@ -1,5 +1,7 @@
+using System.Text;
 using app.business.Persistence;
 using app.business.Services;
+using app.domain.Models.ExternalAppAggregate;
 using app.domain.Models.Identity;
 using app.infrastructure.Options;
 using app.infrastructure.Persistence;
@@ -13,14 +15,17 @@ using EntityFrameworkCore.Seeder.Extensions;
 using Hangfire;
 using Hangfire.MemoryStorage;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace app.Extensions;
 public static class Extensions
 {
     private const string SqlServer = "SqlServer";
     private const string HangfireSqlite = "HangfireSqlite";
+    private const string Sqlite = "Sqlite";
     public static IServiceCollection AddServices(
         this IServiceCollection services,
         IConfiguration configuration,
@@ -49,13 +54,18 @@ public static class Extensions
         services.AddCacheManager();
         services.AddSingleton<CacheManager>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped<IFileDownloader, FileDownloader>();
         services.AddScoped<IFileUploader, FileUploader>();
         services.AddScoped<IFileManager, FileManager>();
         services.AddScoped<IEventService, EventService>();
+        services.AddScoped<ITokenProvider, TokenProvider>();
+        services.AddScoped<IProjectService, ProjectService>();
+        services.AddScoped<IFileDownloader, FileDownloader>();
         services.AddScoped<IPartnerService, PartnerService>();
         services.AddScoped<IIdentityService, IdentityService>();
+        services.AddScoped<IExternalAppService, ExternalAppService>();
+        services.AddScoped<IPasswordHasher<Application>>(sp => new PasswordHasher<Application>());
         services.AddScoped<DomainEventsInterceptor>();
+        services.AddSqlite<ProjectDbContext>(configuration.GetConnectionString(Sqlite));
         services.AddSqlServer<AppDbContext>(configuration.GetConnectionString(SqlServer));
         services.AddScoped<IDbContext>(sp => sp.GetRequiredService<AppDbContext>());
         services.AddScoped<DbContext>(sp => sp.GetRequiredService<AppDbContext>());
@@ -65,6 +75,7 @@ public static class Extensions
             .AddIdentity<User, IdentityRole>()
             .AddEntityFrameworkStores<AppDbContext>();
         services.Configure<CookiesOptions>(configuration.GetRequiredSection(CookiesOptions.SectionName));
+        services.Configure<JwtOptions>(configuration.GetRequiredSection(JwtOptions.SectionName));
         services.AddAuth(configuration);
 
         // Seeders
@@ -99,12 +110,34 @@ public static class Extensions
                         return Task.CompletedTask;
                     }
                 };
+            })
+            .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opt =>
+            {
+                var jwtOptions = conf.GetRequiredSection(JwtOptions.SectionName).Get<JwtOptions>()!;
+                opt.RequireHttpsMetadata = false;
+                opt.SaveToken = true;
+                opt.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ClockSkew = TimeSpan.Zero,
+                    ValidIssuer = jwtOptions.Issuer,
+                    ValidAudience = jwtOptions.Audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Secret))
+                };
             });
 
         services.AddAuthorizationBuilder()
             .AddPolicy(Policies.AdminOnly, p =>
             {
                 p.RequireRole(Roles.Admin);
+            })
+            .AddPolicy(Policies.JwtAuthOnly, p =>
+            {
+                p.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
+                p.RequireAuthenticatedUser();
             });
 
         return services;
