@@ -1,5 +1,6 @@
 using app.business.Persistence;
 using app.business.Services;
+using app.domain.Models.ExternalAppAggregate;
 using app.domain.Models.Identity;
 using app.infrastructure.Options;
 using app.infrastructure.Persistence;
@@ -55,6 +56,8 @@ public static class Extensions
         services.AddScoped<IEventService, EventService>();
         services.AddScoped<IPartnerService, PartnerService>();
         services.AddScoped<IIdentityService, IdentityService>();
+        services.AddScoped<IExternalAppService, ExternalAppService>();
+        services.AddScoped<IPasswordHasher<Application>>(sp => new PasswordHasher<Application>());
         services.AddScoped<DomainEventsInterceptor>();
         services.AddSqlServer<AppDbContext>(configuration.GetConnectionString(SqlServer));
         services.AddScoped<IDbContext>(sp => sp.GetRequiredService<AppDbContext>());

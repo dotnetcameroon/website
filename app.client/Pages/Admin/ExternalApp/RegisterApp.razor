@@ -1,0 +1,75 @@
+@page "/admin/apps/register"
+@using Microsoft.AspNetCore.Identity
+@using app.domain.Models.ExternalAppAggregate
+@attribute [Authorize]
+@layout AdminLayout
+@rendermode InteractiveServer
+@inject NavigationManager NavigationManager
+@inject IExternalAppService ExternalAppService
+@inject IPasswordHasher<Application> PasswordHasher
+
+<PageTitle>Admin | Register External Application</PageTitle>
+
+<h1>Register External App</h1>
+
+@if(_errors.Length > 0)
+{
+    <div class="text-red-600 bg-red-100 p-4 rounded-md border border-red-300">
+        @foreach(var error in _errors)
+        {
+            <p>* @error</p>
+        }
+    </div>
+}
+
+<div class="max-w-md">
+    <div class="mb-4">
+        <label for="appName" class="block font-bold">Application Name:</label>
+        <InputText id="appName" class="p-2 w-full px-4 border border-gray-400 rounded-lg" @bind-Value="appModel.Name" required />
+    </div>
+
+    <button @onclick="HandleSubmit" class="btn btn-secondary">Register Application</button>
+    @if(!string.IsNullOrEmpty(_clientSecret))
+    {
+        <div class="mt-4 p-4 bg-yellow-100 border border-yellow-400 rounded-lg">
+            <p class="text-yellow-800 font-bold mb-2">⚠️ Warning: Save this client secret now. It will not be shown again!</p>
+            <div class="flex items-center gap-2">
+                <input id="secret" type="password" readonly value="@_clientSecret" class="flex-grow p-2 border rounded" />
+                <button id="secret-button" onclick="copySecretToClipboard()" class="btn btn-primary">
+                    <i class="fa-regular fa-clipboard"></i>
+                </button>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private AppModel appModel = new();
+    private string[] _errors = [];
+    private string _clientSecret = string.Empty;
+
+    private async Task HandleSubmit()
+    {
+        _errors = [];
+        if(string.IsNullOrWhiteSpace(appModel.Name))
+        {
+            _errors = ["Application name is required"];
+            return;
+        }
+
+        var result = await ExternalAppService.RegisterAsync(appModel.Name, PasswordHasher);
+        if (result.IsError)
+        {
+            _errors = result.Errors.Select(e => e.Description).ToArray();
+        }
+        else
+        {
+            _clientSecret = result.Value.secret;
+        }
+    }
+
+    private class AppModel
+    {
+        public string Name { get; set; } = string.Empty;
+    }
+}

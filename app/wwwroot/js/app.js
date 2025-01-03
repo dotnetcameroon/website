@@ -81,3 +81,10 @@ function saveDraft() {
 function backToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
+function copySecretToClipboard() {
+  const secret = document.getElementById("secret");
+  const secret_button = document.getElementById("secret-button");
+  navigator.clipboard.writeText(secret.value);
+  secret_button.innerHTML = `<i class="fa-solid fa-check"></i>`;
+}

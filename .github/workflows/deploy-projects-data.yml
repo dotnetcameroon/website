@@ -1,0 +1,28 @@
+name: Post Project Data To The Website
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  post-file-content:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository to access the file
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Read the file content and send it via POST request
+      - name: Post Project Data To The Website
+        env:
+          API_URL: https://example.com/api/endpoint  # Replace with your API endpoint
+          FILE_PATH: path/to/your/file.txt           # Replace with the relative file path
+          AUTH_TOKEN: ${{ secrets.API_AUTH_TOKEN }}  # Use a GitHub secret for sensitive data
+        run: |
+          FILE_CONTENT=$(cat "$FILE_PATH")
+          curl -X POST "$API_URL" \
+            -H "Authorization: Bearer $AUTH_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "{\"fileContent\": \"$FILE_CONTENT\"}"

@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./app/**/*.{html,js,razor}"],
+  content: [
+    "./app/**/*.{html,js,razor}",
+    "./app.client/**/*.{html,js,razor}",
+  ],
   theme: {
     screens: {
       'xs': '450px',

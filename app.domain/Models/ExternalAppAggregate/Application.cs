@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using app.domain.Models.Common;
 using Microsoft.AspNetCore.Identity;
 
@@ -19,14 +20,16 @@ public class Application : Entity<Guid>, IAggregateRoot
         ClientName = clientName;
     }
 
-    public static Application Create(Guid clientId, string clientName)
+    public static Application Create(string clientName)
     {
-        return new Application(clientId, clientName);
+        return new Application(Guid.NewGuid(), clientName);
     }
 
-    public void UpdateClientSecret(string clientSecret, IPasswordHasher<Application> passwordHasher)
+    public string UpdateClientSecret(IPasswordHasher<Application> passwordHasher)
     {
+        var clientSecret = Convert.ToBase64String(RandomNumberGenerator.GetBytes(32));
         ClientSecret = passwordHasher.HashPassword(this, clientSecret);
+        return clientSecret;
     }
 
     public void ClearDomainEvents()
