@@ -1,3 +1,5 @@
+using app.Api.Identity;
+using app.Api.Projects;
 using app.Components;
 using app.Extensions;
 using EntityFrameworkCore.Seeder.Extensions;
@@ -8,7 +10,7 @@ builder.Services.AddServices(builder.Configuration, builder.Environment);
 
 var app = builder.Build();
 
-if(await app.MapSeedCommandsAsync(args))
+if (await app.MapSeedCommandsAsync(args))
 {
     return;
 }
@@ -40,5 +42,8 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(app.client._Imports).Assembly);
+
+app.MapProjectsApi();
+app.MapIdentityApi();
 
 app.Run();

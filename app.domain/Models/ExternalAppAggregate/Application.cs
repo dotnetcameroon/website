@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Identity;
 namespace app.domain.Models.ExternalAppAggregate;
 public class Application : Entity<Guid>, IAggregateRoot
 {
-    public Guid ClientId { get; private set; }
     public string ClientName { get; private set; } = string.Empty;
     public string ClientSecret { get; private set; } = string.Empty; // A random encoded string used to identify the client
     private readonly List<IDomainEvent> _domainEvents = [];
@@ -14,9 +13,8 @@ public class Application : Entity<Guid>, IAggregateRoot
     // For EF Core
     private Application(){}
 
-    private Application(Guid clientId, string clientName)
+    private Application(Guid clientId, string clientName) : base(clientId)
     {
-        ClientId = clientId;
         ClientName = clientName;
     }
 

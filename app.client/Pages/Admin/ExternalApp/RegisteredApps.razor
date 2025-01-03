@@ -1,6 +1,6 @@
 @page "/admin/apps"
 @using app.domain.Models.ExternalAppAggregate
-@attribute [Authorize]
+@attribute [Authorize(Policy = Policies.AdminOnly)]
 @attribute [StreamRendering]
 @layout AdminLayout
 @inject IExternalAppService ExternalAppService
@@ -28,17 +28,17 @@ else
     else
     {
         <table class="w-full">
-            <thead class="bg-primary">
-                <th class="text-left p-2 text-white">Applications Name</th>
-                <th class="text-left p-2 text-white">Applications Id</th>
+    <thead class="bg-primary">
+        <th class="text-left p-2 text-white">Applications Name</th>
+        <th class="text-left p-2 text-white">Applications Id</th>
                 @* <th class="text-left p-2 text-white">Actions</th> *@
-            </thead>
-            <tbody class="bg-slate-100">
-                @foreach (var item in _applications.Items)
+    </thead>
+    <tbody class="bg-slate-100">
+        @foreach (var item in _applications.Items)
                 {
                     <tr class="border-b-white border-b-2">
                         <td class="p-2">@item.ClientName</td>
-                        <td class="p-2">@item.ClientId</td>
+                        <td class="p-2">@item.Id</td>
                         @* <td class="p-2">
                             <a data-enhance-nav="false" class="text-secondary" href="/admin/events/@item.Id"><i
                                     class="fa-solid fa-pen-to-square"></i></a>

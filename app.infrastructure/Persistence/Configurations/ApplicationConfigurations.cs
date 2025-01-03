@@ -10,7 +10,6 @@ public class ApplicationConfigurations : IEntityTypeConfiguration<Application>
         builder.ToTable("ExternalApplications");
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Id).HasColumnName("ApplicationId");
-        builder.HasIndex(x => x.ClientId).IsUnique();
         builder.HasIndex(x => x.ClientSecret).IsUnique();
     }
 }
