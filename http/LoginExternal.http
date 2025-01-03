@@ -1,0 +1,23 @@
+@BaseUrl=http://localhost:8000/api
+@ApplicationId=4eab7754-a6b1-4973-8621-061eccefec90
+@ApplicationSecret=HyYFkYK8WuOEkc1GMa42KxjaaVAyr2s30M8HmW7SxBY=
+
+# Login External app
+POST {{BaseUrl}}/login/external
+Content-Type: application/json
+
+{
+  "ApplicationId": "{{ApplicationId}}",
+  "ApplicationSecret": "{{ApplicationSecret}}"
+}
+
+###
+
+### Test external login endpoint
+POST http://localhost:8000/api/login/external
+Content-Type: application/json
+
+{
+  "ApplicationId": "ee509c54-2445-4dc8-a7f5-ea88d5528daa",
+  "ApplicationSecret": "exampleToken"
+}

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using app.infrastructure.Persistence;
 
@@ -12,9 +13,11 @@ using app.infrastructure.Persistence;
 namespace app.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250103060031_Add_External_App_Identity")]
+    partial class Add_External_App_Identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -313,6 +316,9 @@ namespace app.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("ApplicationId");
 
+                    b.Property<Guid>("ClientId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("ClientName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -322,6 +328,9 @@ namespace app.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClientId")
+                        .IsUnique();
 
                     b.HasIndex("ClientSecret")
                         .IsUnique();

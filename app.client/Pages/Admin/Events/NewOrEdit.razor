@@ -2,7 +2,7 @@
 @page "/admin/events/{Id:guid}"
 @layout AdminLayout
 @rendermode InteractiveWebAssembly
-@attribute [Authorize]
+@attribute [Authorize(Policy = Policies.AdminOnly)]
 
 <PageTitle>Admin | Edit Event</PageTitle>
 <NewActivityPopup Parent="@this" />
