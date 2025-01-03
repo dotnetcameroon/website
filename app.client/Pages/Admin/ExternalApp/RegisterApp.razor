@@ -32,7 +32,10 @@
     <button @onclick="HandleSubmit" class="btn btn-secondary">Register Application</button>
     @if (!string.IsNullOrEmpty(_clientSecret))
     {
-        <div class="mt-4 p-4 bg-yellow-100 border border-yellow-400 rounded-lg">
+        <div class="mt-4 flex items-center gap-2">
+            <p><span class="font-bold">Application ID:</span> @_application.Id</p>
+        </div>
+        <div class="mt-2 p-4 bg-yellow-100 border border-yellow-400 rounded-lg">
             <p class="text-yellow-800 font-bold mb-2">⚠️ Warning: Save this client secret now. It will not be shown again!
             </p>
             <div class="flex items-center gap-2">
@@ -49,6 +52,7 @@
     private AppModel appModel = new();
     private string[] _errors = [];
     private string _clientSecret = string.Empty;
+    private Application _application = default!;
 
     private async Task HandleSubmit()
     {
@@ -67,6 +71,7 @@
         else
         {
             _clientSecret = result.Value.secret;
+            _application = result.Value.application;
         }
     }
 
