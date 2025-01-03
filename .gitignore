@@ -6,6 +6,7 @@
 # secret files
 secrets/
 hangfire.db*
+projects.db*
 
 # dotenv files
 .env

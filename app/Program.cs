@@ -15,6 +15,8 @@ if (await app.MapSeedCommandsAsync(args))
     return;
 }
 
+app.EnsureDatabaseCreated();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsProduction())
 {
