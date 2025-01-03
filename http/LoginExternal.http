@@ -10,14 +10,3 @@ Content-Type: application/json
   "ApplicationId": "{{ApplicationId}}",
   "ApplicationSecret": "{{ApplicationSecret}}"
 }
-
-###
-
-### Test external login endpoint
-POST http://localhost:8000/api/login/external
-Content-Type: application/json
-
-{
-  "ApplicationId": "ee509c54-2445-4dc8-a7f5-ea88d5528daa",
-  "ApplicationSecret": "exampleToken"
-}

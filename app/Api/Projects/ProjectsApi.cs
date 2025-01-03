@@ -31,9 +31,9 @@ public static class ProjectsApi
         })
             .RequireAuthorization(Policies.JwtAuthOnly);
 
-        endpoints.MapPost("/api/projects/json", async (string json, IProjectService projectService) =>
+        endpoints.MapPost("/api/projects/json", async (PushDataRequest request, IProjectService projectService) =>
         {
-            var projects = JsonSerializer.Deserialize<ProjectDto[]>(json) ?? throw new InvalidOperationException("Invalid JSON");
+            var projects = JsonSerializer.Deserialize<ProjectDto[]>(request.Json) ?? throw new InvalidOperationException("Invalid JSON");
             await projectService.RefreshAsync(projects.Select(p => new Project
             {
                 Id = Guid.NewGuid(),
@@ -59,3 +59,7 @@ public record struct ProjectDto(
     string Technologies,
     string? Github,
     string? Website);
+
+public record PushDataRequest(
+    string Json
+);
