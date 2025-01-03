@@ -33,6 +33,7 @@ jobs:
         env:
           ConnectionStrings.SqlServer: ${{ secrets.AZURE_SQLSERVER_WEBSITE_DATABASE }}
           ConnectionStrings.Npgsql: ${{ secrets.AZURE_POSTGRES_WEBSITE_DATABASE }}
+          ConnectionStrings.Sqlite: ${{ secrets.SQLITE_CONNECTION }}
           CookiesOptions.Issuer: ${{ secrets.COOKIES_ISSUER}}
           CookiesOptions.LoginPath: ${{ secrets.COOKIES_LOGINPATH}}
           CookiesOptions.LogoutPath: ${{ secrets.COOKIES_LOGOUTPATH}}
