@@ -1,5 +1,9 @@
 ﻿@page "/"
+@using app.business.Services
+@using app.domain.Models.ProjectsAggregate
 @using app.shared.Utilities
+@attribute [StreamRendering]
+@inject IProjectService ProjectService
 
 <PageTitle>.NET Cameroon 🇨🇲 | Home</PageTitle>
 <HeadContent>
@@ -113,18 +117,75 @@
             <div class="flex flex-wrap gap-8 justify-center items-center mt-8">
                 <a data-enhance-nav="false" href="/"><img src="@Assets["/assets/sponsors/dotnetfondation.webp"]"
                         alt=".NET Foundation" class="h-[100px]" /></a>
-                <a data-enhance-nav="false" href="https://www.packtpub.com/"><img src="@Assets["/assets/sponsors/packt.svg"]" alt="Packt"
-                                                                                  class="w-[200px]" /></a>
-                <a data-enhance-nav="false" href="https://www.linkedin.com/company/communaut%C3%A9-microsoft-powerplatform"><img src="@Assets["/assets/sponsors/Microsoft_PowerPlateform_Cameroun-removebg-preview.png"]"
-                                                                                                                                 alt="Microsoft PowerPlateform Cameroun " class="w-[200px]" /></a>
-              
-                <a data-enhance-nav="false" href="https://examboot.net/"><img src="@Assets["/assets/sponsors/examboot.jpg"]"
-                                                                              alt="Examboot" class="w-[200px]" /></a>
-                <a data-enhance-nav="false" href="https://itia-consulting.com"><img src="@Assets["/assets/sponsors/itia-removebg-preview.png"]"
-                                                                                    alt="Itia" class="w-[200px]" /></a>
-                <a data-enhance-nav="false" href="https://proditech-digital.com"><img src="@Assets["/assets/sponsors/proditech.png"]"
-                                                                                      alt="Proditech" class="h-[100px]" /></a>
+                <a data-enhance-nav="false" href="https://www.packtpub.com/"><img
+                        src="@Assets["/assets/sponsors/packt.svg"]" alt="Packt" class="w-[200px]" /></a>
+                <a data-enhance-nav="false"
+                    href="https://www.linkedin.com/company/communaut%C3%A9-microsoft-powerplatform"><img
+                        src="@Assets["/assets/sponsors/Microsoft_PowerPlateform_Cameroun-removebg-preview.png"]"
+                        alt="Microsoft PowerPlateform Cameroun " class="w-[200px]" /></a>
+
+                <a data-enhance-nav="false" href="https://examboot.net/"><img
+                        src="@Assets["/assets/sponsors/examboot.jpg"]" alt="Examboot" class="w-[200px]" /></a>
+                <a data-enhance-nav="false" href="https://itia-consulting.com"><img
+                        src="@Assets["/assets/sponsors/itia-removebg-preview.png"]" alt="Itia" class="w-[200px]" /></a>
+                <a data-enhance-nav="false" href="https://proditech-digital.com"><img
+                        src="@Assets["/assets/sponsors/proditech.png"]" alt="Proditech" class="h-[100px]" /></a>
             </div>
         </div>
     </section>
+
+    <!-- Projects -->
+    @if(_projects.Length > 0)
+    {
+        <section>
+            <div class="section container mx-auto">
+                <h1 class="heading heading-1">Our Open Source Projects</h1>
+                <p class="md:w-2/3">
+                    Explore the innovative open-source projects driving our community forward. Built with passion and
+                    collaboration, these projects reflect our commitment to sharing knowledge and building impactful
+                    solutions together.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+                    @foreach (var project in _projects)
+                    {
+                        <div class="min-h-[200px] flex flex-col items-start hover:shadow-lg transition-all p-4 rounded-lg" target="_blank">
+                            <span class="font-bold">@project.Title</span>
+                            <p class="text-gray-600 line-clamp-2 text-sm">@project.Description</p>
+
+                            <div class="flex flex-wrap gap-2">
+                                @foreach (var tech in project.Technologies.Split(','))
+                                {
+                                    <span class="text-sm m-0 font-semibold text-secondary">#@tech</span>
+                                }
+                            </div>
+
+                            <div class="flex flex-wrap gap-2 mt-2">
+                                @if(!string.IsNullOrWhiteSpace(project.Github))
+                                {
+                                    <a href="@project.Github" title="@project.Title github" class="text-primary text-lg hover:text-primary-accentuation transition-all" target="_blank">
+                                        <i class="fa-brands fa-github"></i>
+                                    </a>
+                                }
+                                @if(!string.IsNullOrWhiteSpace(project.Website))
+                                {
+                                    <a href="@project.Website" title="@project.Title website" class="text-primary text-lg hover:text-primary-accentuation transition-all" target="_blank">
+                                        <i class="fa-solid fa-globe"></i>
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    }
 </div>
+
+@code {
+    private Project[] _projects = [];
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        _projects = await ProjectService.GetAllAsync();
+    }
+}

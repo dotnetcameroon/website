@@ -10,12 +10,12 @@ builder.Services.AddServices(builder.Configuration, builder.Environment);
 
 var app = builder.Build();
 
+app.EnsureDatabaseCreated();
+
 if (await app.MapSeedCommandsAsync(args))
 {
     return;
 }
-
-app.EnsureDatabaseCreated();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsProduction())
