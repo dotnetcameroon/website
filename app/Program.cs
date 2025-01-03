@@ -10,6 +10,8 @@ builder.Services.AddServices(builder.Configuration, builder.Environment);
 
 var app = builder.Build();
 
+app.EnsureDatabaseCreated();
+
 if (await app.MapSeedCommandsAsync(args))
 {
     return;

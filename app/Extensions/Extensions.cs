@@ -25,6 +25,7 @@ public static class Extensions
 {
     private const string SqlServer = "SqlServer";
     private const string HangfireSqlite = "HangfireSqlite";
+    private const string Sqlite = "Sqlite";
     public static IServiceCollection AddServices(
         this IServiceCollection services,
         IConfiguration configuration,
@@ -57,12 +58,14 @@ public static class Extensions
         services.AddScoped<IFileManager, FileManager>();
         services.AddScoped<IEventService, EventService>();
         services.AddScoped<ITokenProvider, TokenProvider>();
+        services.AddScoped<IProjectService, ProjectService>();
         services.AddScoped<IFileDownloader, FileDownloader>();
         services.AddScoped<IPartnerService, PartnerService>();
         services.AddScoped<IIdentityService, IdentityService>();
         services.AddScoped<IExternalAppService, ExternalAppService>();
         services.AddScoped<IPasswordHasher<Application>>(sp => new PasswordHasher<Application>());
         services.AddScoped<DomainEventsInterceptor>();
+        services.AddSqlite<ProjectDbContext>(configuration.GetConnectionString(Sqlite));
         services.AddSqlServer<AppDbContext>(configuration.GetConnectionString(SqlServer));
         services.AddScoped<IDbContext>(sp => sp.GetRequiredService<AppDbContext>());
         services.AddScoped<DbContext>(sp => sp.GetRequiredService<AppDbContext>());
