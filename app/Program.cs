@@ -1,6 +1,7 @@
 using app.Api.Identity;
 using app.Api.Projects;
 using app.Components;
+using app.Components.Pages.NET_Conf;
 using app.Extensions;
 using EntityFrameworkCore.Seeder.Extensions;
 var builder = WebApplication.CreateBuilder(args);

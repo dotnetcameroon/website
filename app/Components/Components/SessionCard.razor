@@ -2,7 +2,7 @@
 
 <div class="flex gap-2 w-full mt-2">
     <div class="p-2 w-1/4 border-r-8 border-secondary font-bold">
-        @Session.StartTime - @Session.EndTime
+        @Session.StartTime.ToString("hh:mm tt") - @Session.EndTime.ToString("hh:mm tt")
     </div>
     <div class="flex flex-col w-3/4 p-2">
         @if (Session.Type == SessionType.Advertisement)
