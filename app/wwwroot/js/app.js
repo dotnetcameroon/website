@@ -88,3 +88,33 @@ function copySecretToClipboard() {
   navigator.clipboard.writeText(secret.value);
   secret_button.innerHTML = `<i class="fa-solid fa-check"></i>`;
 }
+
+function showDotnetSessions() {
+  const dotnet = document.getElementById("dotnet-sessions");
+  const microsoft = document.getElementById("microsoft-sessions");
+
+  const dotnetTab = document.getElementById("dotnet-tab");
+  const microsoftTab = document.getElementById("microsoft-tab");
+
+  dotnet.classList.remove("hidden");
+  microsoft.classList.remove("hidden");
+  microsoft.classList.add("hidden");
+
+  dotnetTab.classList.add("active");
+  microsoftTab.classList.remove("active");
+}
+
+function showMicrosoftSessions() {
+  const dotnet = document.getElementById("dotnet-sessions");
+  const microsoft = document.getElementById("microsoft-sessions");
+
+  const dotnetTab = document.getElementById("dotnet-tab");
+  const microsoftTab = document.getElementById("microsoft-tab");
+
+  dotnet.classList.remove("hidden");
+  microsoft.classList.remove("hidden");
+  dotnet.classList.add("hidden");
+
+  dotnetTab.classList.remove("active");
+  microsoftTab.classList.add("active");
+}

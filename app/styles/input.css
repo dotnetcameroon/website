@@ -347,3 +347,11 @@
     transition: all ease-in-out 700ms;
   }
 }
+
+.tabs .tab{
+  @apply cursor-pointer inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300;
+}
+
+.tabs .tab.active{
+  @apply text-secondary border-b-2 border-secondary hover:border-secondary-accentuation hover:text-secondary-accentuation;
+}

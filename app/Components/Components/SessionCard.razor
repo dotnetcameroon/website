@@ -1,0 +1,43 @@
+@using app.domain.ViewModels
+
+<div class="flex gap-2 w-full mt-2">
+    <div class="p-2 w-1/4 border-r-8 border-secondary font-bold">
+        @Session.StartTime - @Session.EndTime
+    </div>
+    <div class="flex flex-col w-3/4 p-2">
+        @if (Session.Type == SessionType.Advertisement)
+        {
+            <h3 class="heading heading-3 text-heading-2 text-secondary">Sponsor Time - @Session.Title</h3>
+        }
+        else if (Session.Type == SessionType.Break)
+        {
+            <h3 class="heading heading-3 text-heading-2 text-secondary ">Break</h3>
+        }
+        else
+        {
+            <h3 class="heading heading-3 text-heading-2">@Session.Title</h3>
+        }
+
+        <p class="text-gray-600 mb-4">@Session.Description</p>
+
+        @if (Session.Type is SessionType.Talk or SessionType.Keynote)
+        {
+            <div class="flex items-center mb-4">
+                <div class="flex gap-2">
+                    @foreach (var speaker in Session.Speakers)
+                    {
+                        <div>
+                            <p class="font-medium text-gray-800">@speaker.Name</p>
+                            <p class="text-sm text-gray-500">@speaker.Occupation</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Session Session { get; set; } = default!;
+}

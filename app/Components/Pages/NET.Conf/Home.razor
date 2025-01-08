@@ -1,4 +1,5 @@
 @page "/dotnet-conf-2024"
+@using app.domain.ViewModels
 @using app.shared.Utilities
 
 <PageTitle>.NET Conf 2024 Cameroon 🇨🇲</PageTitle>
@@ -131,6 +132,39 @@
     </div>
 </section>
 
+<!-- Agenda -->
+<section>
+    <div class="section container mx-auto p-4">
+        <h1 class="heading heading-1 text-center">Take a look at our Agenda</h1>
+        <p>
+            Discover the lineup of engaging sessions and activities we have planned for .NET Conf! Dive into the day's agenda and join us for an inspiring journey through .NET innovation and community connections
+        </p>
+        <div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200">
+            <ul class="flex flex-wrap tabs">
+                <li>
+                    <button id="dotnet-tab" onclick="showDotnetSessions()" class="tab active" aria-current="page">Dotnet Sessions</button>
+                </li>
+                <li>
+                    <button id="microsoft-tab" onclick="showMicrosoftSessions()" class="tab">Microsoft Sessions</button>
+                </li>
+            </ul>
+        </div>
+        <div class="hidden"></div> <!-- Just to make sure the 'hidden' class is compiled by Tailwind -->
+        <div id="dotnet-sessions" class="w-full">
+            @foreach (var session in DotnetSessions)
+            {
+                <SessionCard Session="session"/>
+            }
+        </div>
+        <div id="microsoft-sessions" class="hidden w-full">
+            @foreach (var session in MicrosoftSessions)
+            {
+                <SessionCard Session="session"/>
+            }
+        </div>
+    </div>
+</section>
+
 <!-- Sponsors -->
 <section>
     <div class="section container mx-auto p-4 flex flex-col md:flex-row items-center justify-center min-h-[600px]">
@@ -199,11 +233,14 @@
 </div>
 </section>
 
-
 @code {
+
     private string EventUrl = "https://forms.office.com/r/ChLwZEYr53";
     private string SpeakerLink = "https://forms.office.com/r/debtL0TDmA";
     private string SponsorLink = "https://forms.office.com/r/YnKLW60s73";
+
+    private string _dotnetSessionsClass = string.Empty;
+    private string _microsoftSessionsClass = "hidden";
 
     private Activity[] Activities = [
         new ("Inspiring Sessions and Conferences", "Dive into cutting-edge topics and explore the latest in .NET technology through insightful sessions and talks. Learn from experts as they cover a wide range of topics, from web and mobile development to cloud solutions and artificial intelligence", "/assets/activities/activity-2.jpeg", "Tech"),
@@ -221,14 +258,93 @@
         new ("/assets/sponsors/Microsoft_PowerPlateform_Cameroun-removebg-preview.png", "Microsoft PowerPlateform Cameroun", "https://www.linkedin.com/company/communaut%C3%A9-microsoft-powerplatform"),
     ];
 
-    record Speaker(
-        string Name,
-        string Occupation,
-        string ImageUrl,
-        string? LinkedIn,
-        string? Twitter,
-        string? Github
-    );
+    private Session[] MicrosoftSessions = [
+        new(
+            "Keynote",
+            null,
+            [ new Speaker("Boris Gautier", "Software, SI, DevOps and Lead Engineer", "", null, null, null)],
+            new TimeOnly(10, 00),
+            new TimeOnly(10, 30),
+            SessionType.Keynote, Room.Microsoft),
+        new(
+            "Copilot: prise en main de copilot sur Microsoft 365",
+            null,
+            [ new Speaker("Tchassem Eric", "CEO of PRODITECH", "", null, null, null)],
+            new TimeOnly(10, 30),
+            new TimeOnly(11, 00),
+            SessionType.Talk, Room.Microsoft),
+        new(
+            "ITIA",
+            null,
+            [ new Speaker("ITIA", "ITIA", "", null, null, null)],
+            new TimeOnly(11, 00),
+            new TimeOnly(11, 15),
+            SessionType.Advertisement, Room.Microsoft),
+        new(
+            "Git and GitHub for Dummies",
+            null,
+            [ new Speaker("Steve Yonkeu", "Software Engineer", "", null, null, null)],
+            new TimeOnly(11, 15),
+            new TimeOnly(11, 45),
+            SessionType.Talk, Room.Microsoft),
+        new(
+            "Microsoft Power BI - Initiation à Power BI : Exploration des données et création de tableaux de bord interactifs",
+            null,
+            [ new Speaker("BITÉE Méryl", "Ing @ ARII, Architecte des Technologies du Numériques", "", null, null, null)],
+            new TimeOnly(11, 45),
+            new TimeOnly(12, 15),
+            SessionType.Talk, Room.Microsoft),
+        new(
+            "Break",
+            null,
+            [ new Speaker("Break", "Break", "", null, null, null)],
+            new TimeOnly(12, 15),
+            new TimeOnly(12, 45),
+            SessionType.Break, Room.Microsoft),
+        new(
+            "Tech Community",
+            null,
+            [ new Speaker("Tech Community", "Tech Community", "", null, null, null)],
+            new TimeOnly(12, 45),
+            new TimeOnly(13, 00),
+            SessionType.Advertisement, Room.Microsoft),
+        new(
+            "Développer une application web moderne avec Python et .NET : Une approche hybride pour les développeurs web",
+            null,
+            [ new Speaker("Tech Community", "Tech Community", "", null, null, null)],
+            new TimeOnly(12, 45),
+            new TimeOnly(13, 00),
+            SessionType.Advertisement, Room.Microsoft),
+    ];
+    private Session[] DotnetSessions = [
+        new(
+            "Microsoft Power BI - Initiation à Power BI : Exploration des données et création de tableaux de bord interactifs",
+            null,
+            [ new Speaker("BITÉE Méryl", "Ing @ ARII, Architecte des Technologies du Numériques", "", null, null, null)],
+            new TimeOnly(11, 45),
+            new TimeOnly(12, 15),
+            SessionType.Talk, Room.Microsoft),
+        new(
+            "Break",
+            null,
+            [ new Speaker("Break", "Break", "", null, null, null)],
+            new TimeOnly(12, 15),
+            new TimeOnly(12, 45),
+            SessionType.Break, Room.Microsoft)];
+
+    private void ShowDotnetSessions()
+    {
+        _dotnetSessionsClass = string.Empty;
+        _microsoftSessionsClass = "hidden";
+        StateHasChanged();
+    }
+    
+    private void ShowMicrosoftSessions()
+    {
+        _dotnetSessionsClass = "hidden";
+        _microsoftSessionsClass = string.Empty;
+        StateHasChanged();
+    }
 
     record Activity(
         string Title,
