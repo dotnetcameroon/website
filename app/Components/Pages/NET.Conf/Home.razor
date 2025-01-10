@@ -139,25 +139,10 @@
         <p>
             Discover the lineup of engaging sessions and activities we have planned for .NET Conf! Dive into the day's agenda and join us for an inspiring journey through .NET innovation and community connections
         </p>
-        <div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200">
-            <ul class="flex flex-wrap tabs">
-                <li>
-                    <button id="dotnet-tab" onclick="showDotnetSessions()" class="tab active" aria-current="page">Dotnet Sessions</button>
-                </li>
-                <li>
-                    <button id="microsoft-tab" onclick="showMicrosoftSessions()" class="tab">Microsoft Sessions</button>
-                </li>
-            </ul>
-        </div>
+
         <div class="hidden"></div> <!-- Just to make sure the 'hidden' class is compiled by Tailwind -->
-        <div id="dotnet-sessions" class="w-full">
+        <div class="w-full">
             @foreach (var session in DotnetSessions)
-            {
-                <SessionCard Session="session"/>
-            }
-        </div>
-        <div id="microsoft-sessions" class="hidden w-full">
-            @foreach (var session in MicrosoftSessions)
             {
                 <SessionCard Session="session"/>
             }
