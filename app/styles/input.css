@@ -76,6 +76,10 @@
   @apply border border-white bg-transparent hover:bg-white transition-all active:bg-slate-100 text-white hover:text-secondary;
 }
 
+.btn.btn-disabled {
+  @apply bg-blue-500 text-white font-semibold cursor-not-allowed opacity-50;
+}
+
 /* Links */
 .link {
   @apply underline transition-all;
