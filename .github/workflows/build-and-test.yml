@@ -8,7 +8,7 @@ on:
       - develop
       - feature*
     paths:
-      - "app*/**"
+      - "src"
       - ".github/workflows/build-and-test.yml"
   pull_request:
     branches:
@@ -17,7 +17,7 @@ on:
       - develop
       - feature*
     paths:
-      - "app*/**"
+      - "src"
       - ".github/workflows/build-and-test.yml"
 jobs:
   build-and-test:
@@ -34,10 +34,10 @@ jobs:
         dotnet-version: 9.x
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore src
 
     - name: Build solution
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build src --configuration Release --no-restore
 
     - name: Run tests
-      run: dotnet test
+      run: dotnet test src
