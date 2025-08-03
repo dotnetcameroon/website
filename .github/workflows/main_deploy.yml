@@ -21,7 +21,7 @@ jobs:
       - name: App Settings Variable Substitution
         uses: microsoft/variable-substitution@v1
         with:
-          files: './app/appsettings.Production.json'
+          files: './src/app/appsettings.Production.json'
         env:
           ConnectionStrings.SqlServer: ${{ secrets.AZURE_SQLSERVER_WEBSITE_DATABASE }}
           ConnectionStrings.Npgsql: ${{ secrets.AZURE_POSTGRES_WEBSITE_DATABASE }}
