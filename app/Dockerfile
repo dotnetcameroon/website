@@ -25,7 +25,7 @@ RUN dotnet publish "app.csproj" -c Release -o /app/publish
 # final stage/image
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
-EXPOSE 80
+EXPOSE 8080
 
 # Copy the published output from the 'publish' stage
 COPY --from=publish /app/publish .
