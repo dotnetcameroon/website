@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "src"
+      - "src/**"
       - ".github/workflows/main_deploy.yml"
 
 jobs:

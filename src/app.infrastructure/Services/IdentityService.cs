@@ -6,7 +6,6 @@ using app.infrastructure.Persistence.Repositories.Base;
 using app.shared.Utilities;
 using ErrorOr;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 namespace app.infrastructure.Services;
 public class IdentityService(
@@ -22,13 +21,13 @@ public class IdentityService(
     public async Task<ErrorOr<string>> LoginAppAsync(Guid applicationId, string applicationSecret)
     {
         var application = await repository.GetAsync(applicationId);
-        if(application is null)
+        if (application is null)
         {
             return Error.Unauthorized("Application.UnAuthorized", "Wrong credentials");
         }
 
         var passwordCheck = passwordHasher.VerifyHashedPassword(application, application.ClientSecret, applicationSecret);
-        if(passwordCheck == PasswordVerificationResult.Failed)
+        if (passwordCheck == PasswordVerificationResult.Failed)
         {
             return Error.Unauthorized("Application.UnAuthorized", "Wrong credentials");
         }

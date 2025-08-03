@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace app.infrastructure.Services;
 public class PartnerService(IRepository<Partner, Guid> repository) : IPartnerService
 {
-    private readonly IRepository<Partner,Guid> _repository = repository;
+    private readonly IRepository<Partner, Guid> _repository = repository;
 
     public async Task<ErrorOr<Partner>> CreateAsync(Partner partner, CancellationToken cancellationToken = default)
     {
@@ -30,7 +30,7 @@ public class PartnerService(IRepository<Partner, Guid> repository) : IPartnerSer
     public async Task<ErrorOr<Partner>> GetAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var partner = await _repository.GetAsync(id, cancellationToken);
-        if(partner is null)
+        if (partner is null)
         {
             return Error.NotFound("Partner.NotFound", "Partner not found");
         }
@@ -41,7 +41,7 @@ public class PartnerService(IRepository<Partner, Guid> repository) : IPartnerSer
     public async Task<ErrorOr<Partner>> GetAsync(Expression<Func<Partner, bool>> predicate, CancellationToken cancellationToken = default)
     {
         var partner = await _repository.GetAsync(predicate, cancellationToken);
-        if(partner is null)
+        if (partner is null)
         {
             return Error.NotFound("Partner.NotFound", "Partner not found");
         }

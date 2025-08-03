@@ -6,7 +6,7 @@ services:
     hostname: sqlserver
     environment:
       ACCEPT_EULA: "Y"
-      MSSQL_SA_PASSWORD: "!Passw0rd"
+      MSSQL_SA_PASSWORD: "@Passw0rd"
       MSSQL_PID: "Evaluation"
     ports:
       - "1433:1433"

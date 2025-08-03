@@ -32,7 +32,7 @@ public class ExternalAppService(
         CancellationToken cancellationToken = default)
     {
         var exists = await applicationRepository.ExistsAsync(a => a.ClientName == applicationName, cancellationToken);
-        if(exists)
+        if (exists)
         {
             return Error.Conflict(
                 "ExternalApplication.AlreadyExists",

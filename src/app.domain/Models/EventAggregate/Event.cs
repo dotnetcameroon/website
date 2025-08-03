@@ -97,7 +97,7 @@ public sealed class Event : Entity<Guid>, IAggregateRoot
 
     public void MarkAsPassed()
     {
-        Status =  EventStatus.Passed;
+        Status = EventStatus.Passed;
     }
 
     public void RaiseDomainEvent(IDomainEvent domainEvent)
@@ -137,7 +137,7 @@ public sealed class Event : Entity<Guid>, IAggregateRoot
             attendance ?? 0,
             registrationLink ?? string.Empty);
 
-        if(activities is not null)
+        if (activities is not null)
         {
             foreach (var activity in activities)
             {
@@ -145,7 +145,7 @@ public sealed class Event : Entity<Guid>, IAggregateRoot
             }
         }
 
-        if(partners is not null)
+        if (partners is not null)
         {
             foreach (var partner in partners)
             {

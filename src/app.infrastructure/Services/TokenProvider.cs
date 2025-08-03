@@ -14,7 +14,7 @@ public class TokenProvider(IOptions<JwtOptions> jwtOptions) : ITokenProvider
         var jwtSettings = jwtOptions.Value;
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secret));
         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
-        
+
 
         var tokenDescriptor = new SecurityTokenDescriptor
         {

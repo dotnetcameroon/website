@@ -19,7 +19,7 @@ public class FileManager(IFileDownloader fileDownloader, IFileUploader fileUploa
 
     public Task<string> UploadAsync(Stream stream, string fileName, string relativeLocation, CancellationToken cancellationToken = default)
     {
-        return _fileUploader.UploadAsync(stream, fileName, relativeLocation,  cancellationToken);
+        return _fileUploader.UploadAsync(stream, fileName, relativeLocation, cancellationToken);
     }
 
     public Task<string> UploadAsync(byte[] data, string fileName, string relativeLocation, CancellationToken cancellationToken = default)
