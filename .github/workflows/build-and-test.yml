@@ -7,13 +7,18 @@ on:
       - master
       - develop
       - feature*
+    paths:
+      - "app*/**"
+      - ".github/workflows/build-and-test.yml"
   pull_request:
-    types: [opened, synchronize, reopened, closed]
     branches:
       - main
       - master
       - develop
       - feature*
+    paths:
+      - "app*/**"
+      - ".github/workflows/build-and-test.yml"
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
