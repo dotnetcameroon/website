@@ -4,9 +4,11 @@ using app.Components;
 using app.Components.Pages.NET_Conf;
 using app.Extensions;
 using EntityFrameworkCore.Seeder.Extensions;
+using OpenTelemetry.Logs;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.WithOpenTelemetry();
 builder.Services.AddServices(builder.Configuration, builder.Environment);
 
 var app = builder.Build();
