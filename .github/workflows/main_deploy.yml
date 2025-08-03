@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "src"
+      - ".github/workflows/main_deploy.yml"
 
 jobs:
   deploy:
@@ -42,7 +45,7 @@ jobs:
 
       - name: Build and push Docker images
         run: |
-          docker build -t djoufson/dotnetcameroon -f ./app/Dockerfile .
+          docker build -t djoufson/dotnetcameroon -f ./src/app/Dockerfile .
           docker push djoufson/dotnetcameroon:latest
 
       - name: Deploy to VPS

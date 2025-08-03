@@ -4,17 +4,17 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /source
 
 # copy csproj and restore as distinct layers
-COPY ["dotnet-ef-seeder/dotnet-ef-seeder.csproj", "source/dotnet-ef-seeder/"]
-COPY ["app.shared/app.shared.csproj", "source/app.shared/"]
-COPY ["app.business/app.business.csproj", "source/app.business/"]
-COPY ["app.client/app.client.csproj", "source/app.client/"]
-COPY ["app.domain/app.domain.csproj", "source/app.domain/"]
-COPY ["app.infrastructure/app.infrastructure.csproj", "source/app.infrastructure/"]
-COPY ["app/app.csproj", "source/app/"]
+COPY ["src/dotnet-ef-seeder/dotnet-ef-seeder.csproj", "source/dotnet-ef-seeder/"]
+COPY ["src/app.shared/app.shared.csproj", "source/app.shared/"]
+COPY ["src/app.business/app.business.csproj", "source/app.business/"]
+COPY ["src/app.client/app.client.csproj", "source/app.client/"]
+COPY ["src/app.domain/app.domain.csproj", "source/app.domain/"]
+COPY ["src/app.infrastructure/app.infrastructure.csproj", "source/app.infrastructure/"]
+COPY ["src/app/app.csproj", "source/app/"]
 
 RUN dotnet restore "source/app/app.csproj"
 
-COPY . .
+COPY ./src .
 WORKDIR "/source/app/"
 RUN dotnet build "app.csproj" -c Release -o /app/build
 
