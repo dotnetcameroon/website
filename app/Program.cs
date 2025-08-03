@@ -8,7 +8,7 @@ using OpenTelemetry.Logs;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Logging.AddOpenTelemetry(logging => logging.AddOtlpExporter());
+builder.WithOpenTelemetry();
 builder.Services.AddServices(builder.Configuration, builder.Environment);
 
 var app = builder.Build();

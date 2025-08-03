@@ -8,20 +8,14 @@ using app.infrastructure.Persistence;
 using app.infrastructure.Persistence.Interceptors;
 using app.infrastructure.Persistence.Repositories.Base;
 using app.infrastructure.Services;
-using app.Jobs.Base;
 using app.Middlewares;
 using app.shared.Utilities;
 using EntityFrameworkCore.Seeder.Extensions;
-using Hangfire;
-using Hangfire.MemoryStorage;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using OpenTelemetry.Metrics;
-using OpenTelemetry.Resources;
-using OpenTelemetry.Trace;
 
 namespace app.Extensions;
 public static class Extensions
@@ -37,26 +31,6 @@ public static class Extensions
         services.AddRazorComponents()
             .AddInteractiveServerComponents()
             .AddInteractiveWebAssemblyComponents();
-
-        services.AddOpenTelemetry()
-            .ConfigureResource(res => res.AddService("Website"))
-            .WithMetrics(metrics =>
-            {
-                metrics
-                    .AddAspNetCoreInstrumentation()
-                    .AddHttpClientInstrumentation();
-
-                metrics.AddOtlpExporter();
-            })
-            .WithTracing(tracing =>
-            {
-                tracing
-                    .AddAspNetCoreInstrumentation()
-                    .AddHttpClientInstrumentation()
-                    .AddEntityFrameworkCoreInstrumentation();
-
-                tracing.AddOtlpExporter();
-            });
 
         if (environment.IsProduction())
         {
