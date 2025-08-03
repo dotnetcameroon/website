@@ -6,7 +6,6 @@ using app.infrastructure.Persistence.Repositories.Base;
 using app.shared.Utilities;
 using ErrorOr;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 namespace app.infrastructure.Services;
 public class IdentityService(

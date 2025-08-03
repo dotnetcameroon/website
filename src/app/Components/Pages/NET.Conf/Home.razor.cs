@@ -4,13 +4,13 @@ namespace app.Components.Pages.NET_Conf;
 
 public partial class Home
 {
-    private Activity[] Activities = [
+    private readonly Activity[] Activities = [
         new ("Inspiring Sessions and Conferences", "Dive into cutting-edge topics and explore the latest in .NET technology through insightful sessions and talks. Learn from experts as they cover a wide range of topics, from web and mobile development to cloud solutions and artificial intelligence", "/assets/activities/activity-2.jpeg", "Tech"),
         new ("Meet Microsoft Experts", "Gain exclusive insights from Microsoft employees who work directly on .NET and related technologies. This is your chance to hear directly from those shaping the future of .NET and to ask questions that matter to your projects.", "/assets/featured/net9.png", "Culture"),
         new ("Networking and Connections", "Build meaningful connections with fellow developers, industry professionals, and tech enthusiasts. Exchange ideas, discuss solutions, and expand your network within the vibrant .NET community of Cameroon and beyond.", "/assets/featured/carousel-2.png", "Community"),
     ];
 
-    private Partner[] Partners = [
+    private readonly Partner[] Partners = [
         new ("/assets/sponsors/dotnetfondation.webp", ".NET Foundation", "https://dotnetfoundation.org"),
         new ("/assets/sponsors/proditech.png", "Proditech Consulting", "https://proditech-digital.com"),
         new ("/assets/sponsors/itia-removebg-preview.png", "ITIA Solutions Consulting", "https://itia-consulting.com"),
@@ -20,10 +20,10 @@ public partial class Home
         new ("/assets/sponsors/Microsoft_PowerPlateform_Cameroun-removebg-preview.png", "Microsoft PowerPlateform Cameroun", "https://www.linkedin.com/company/communaut%C3%A9-microsoft-powerplatform"),
     ];
 
-    private Session[] MicrosoftSessions = [
+    private readonly Session[] MicrosoftSessions = [
     ];
 
-    private Session[] DotnetSessions = [
+    private readonly Session[] DotnetSessions = [
         new(
             "Keynote",
             null,

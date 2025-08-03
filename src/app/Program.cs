@@ -1,10 +1,8 @@
 using app.Api.Identity;
 using app.Api.Projects;
 using app.Components;
-using app.Components.Pages.NET_Conf;
 using app.Extensions;
 using EntityFrameworkCore.Seeder.Extensions;
-using OpenTelemetry.Logs;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
