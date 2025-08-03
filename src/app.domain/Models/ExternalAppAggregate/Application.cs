@@ -11,7 +11,7 @@ public class Application : Entity<Guid>, IAggregateRoot
     public IReadOnlyList<IDomainEvent> DomainEvents => [.. _domainEvents];
 
     // For EF Core
-    private Application(){}
+    private Application() { }
 
     private Application(Guid clientId, string clientName) : base(clientId)
     {

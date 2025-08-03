@@ -7,7 +7,7 @@ public static class IdentityApi
     public static IEndpointRouteBuilder MapIdentityApi(this IEndpointRouteBuilder endpoints)
     {
         endpoints.MapPost("/api/login/external", async (
-            [FromBody] LoginExternalRequest request, IIdentityService service) => 
+            [FromBody] LoginExternalRequest request, IIdentityService service) =>
         {
             var result = await service.LoginAppAsync(request.ApplicationId, request.ApplicationSecret);
             return result.Match(

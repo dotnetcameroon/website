@@ -20,7 +20,7 @@ public class SeederEngine(ILogger<SeederEngine> logger)
         foreach (var seederName in seederNames)
         {
             var seeder = allSeeders.FirstOrDefault(s => s.GetType().Name == seederName);
-            if(seeder is not null)
+            if (seeder is not null)
             {
                 yield return seeder;
             }
