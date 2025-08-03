@@ -34,7 +34,6 @@ public static class Extensions
 
         if (environment.IsProduction())
         {
-            services.AddApplicationInsightsTelemetry(configuration);
             services.AddExceptionHandler<ExceptionHandlerMiddleware>();
         }
 
