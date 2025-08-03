@@ -6,24 +6,7 @@ on:
       - main
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "23"
-      - name: Install dependencies
-        run: npm install
-      - name: Build
-        run: npm run build
-      # There are no tests in this code base yet
-      # - name: Run tests
-      #   run: npm test
-
   deploy:
-    needs: build-and-test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
