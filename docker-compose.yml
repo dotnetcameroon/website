@@ -6,11 +6,19 @@ services:
     hostname: sqlserver
     environment:
       ACCEPT_EULA: "Y"
-      MSSQL_SA_PASSWORD: "!Passw0rd"
+      MSSQL_SA_PASSWORD: "@Passw0rd"
       MSSQL_PID: "Evaluation"
     ports:
       - "1433:1433"
     volumes:
       - sqlserver-data:/var/opt/mssql
+  dashboard:
+    image: mcr.microsoft.com/dotnet/nightly/aspire-dashboard:latest
+    container_name: dashboard
+    environment:
+      DASHBOARD__OTLP__AUTHMODE: 'ApiKey'
+      DASHBOARD__OTLP__PRIMARYAPIKEY: 'buhkyb-zasros-7Nevpy'
+    ports:
+      - 18888:18888
 volumes:
   sqlserver-data:
