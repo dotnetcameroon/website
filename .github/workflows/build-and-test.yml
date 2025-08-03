@@ -8,7 +8,7 @@ on:
       - develop
       - feature*
     paths:
-      - "src"
+      - "src/**"
       - ".github/workflows/build-and-test.yml"
   pull_request:
     branches:
@@ -17,7 +17,7 @@ on:
       - develop
       - feature*
     paths:
-      - "src"
+      - "src/**"
       - ".github/workflows/build-and-test.yml"
 jobs:
   build-and-test:
