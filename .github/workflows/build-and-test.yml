@@ -31,13 +31,12 @@ jobs:
       with:
         dotnet-version: 9.x
 
-    - name: Cache NuGet packages
-      uses: actions/cache@v3
+    - name: Get Cached NuGet Packages
+      uses: actions/cache@v4
       with:
         path: ~/.nuget/packages
-        key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
-        restore-keys: |
-          ${{ runner.os }}-nuget-
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj', '**/*.props') }}
+        restore-keys: ${{ runner.os }}-nuget-
 
     - name: Restore dependencies
       run: dotnet restore src
