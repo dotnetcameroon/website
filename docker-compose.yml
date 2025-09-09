@@ -1,7 +1,7 @@
 services:
-  sqlserver:
+  dotnetcameroon.sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: sqlserver
+    container_name: dotnetcameroon.sqlserver
     user: root
     hostname: sqlserver
     environment:
@@ -12,9 +12,18 @@ services:
       - "1433:1433"
     volumes:
       - sqlserver-data:/var/opt/mssql
-  dashboard:
+    healthcheck:
+      test: [
+        "CMD-SHELL", 
+        "/opt/mssql-tools18/bin/sqlcmd -S localhost -U SA -P '@Passw0rd' -Q 'SELECT 1' -C || exit 1"
+      ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+  dotnetcameroon.dashboard:
     image: mcr.microsoft.com/dotnet/nightly/aspire-dashboard:latest
-    container_name: dashboard
+    container_name: dotnetcameroon.dashboard
     environment:
       DASHBOARD__OTLP__AUTHMODE: 'ApiKey'
       DASHBOARD__OTLP__PRIMARYAPIKEY: 'buhkyb-zasros-7Nevpy'

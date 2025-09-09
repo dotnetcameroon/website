@@ -8,6 +8,10 @@ on:
       - "src/**"
       - ".github/workflows/main_deploy.yml"
 
+concurrency:
+  group: production-deployment
+  cancel-in-progress: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
