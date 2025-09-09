@@ -1,9 +1,9 @@
 # Spin up the database in detached mode
 docker compose up -d
 
-# Wait until the SQL Server container is ready
-until docker exec sqlserver /opt/mssql-tools18/bin/sqlcmd -S localhost -U SA -P '@Passw0rd' -Q "SELECT 1" -C &> /dev/null; do
-  echo "Waiting for SQL Server to be ready..."
+# Wait until the SQL Server container is healthy
+until [ "$(docker inspect --format='{{.State.Health.Status}}' dotnetcameroon.sqlserver)" = "healthy" ]; do
+  echo "Waiting for SQL Server to be healthy..."
   sleep 3
 done
 
