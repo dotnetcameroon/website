@@ -3,6 +3,10 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /source
 
+# copy central package management files first
+COPY ["src/Directory.Build.props", "source/"]
+COPY ["src/Directory.Packages.props", "source/"]
+
 # copy csproj and restore as distinct layers
 COPY ["src/dotnet-ef-seeder/dotnet-ef-seeder.csproj", "source/dotnet-ef-seeder/"]
 COPY ["src/app.shared/app.shared.csproj", "source/app.shared/"]
