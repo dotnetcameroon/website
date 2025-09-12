@@ -45,22 +45,23 @@ app.UseHttpsRedirection();
 
 app.MapStaticAssets();
 
+// configure supported cultures
 var supportedCultures = new[]
 {
     new CultureInfo("en-US"),
     new CultureInfo("fr-FR")
-    // add others e.g. new CultureInfo("es-ES")
+    // add more here if needed
 };
 
-var requestLocalizationOptions = new RequestLocalizationOptions
+var localizationOptions = new RequestLocalizationOptions
 {
     DefaultRequestCulture = new RequestCulture("en-US"),
     SupportedCultures = supportedCultures.ToList(),
     SupportedUICultures = supportedCultures.ToList()
 };
 
-// Ensure cookie provider is first and use consistent cookie name "AppCulture"
-var cookieProvider = requestLocalizationOptions.RequestCultureProviders
+// ensure the cookie provider uses the same cookie name as your links (AppCulture)
+var cookieProvider = localizationOptions.RequestCultureProviders
     .OfType<CookieRequestCultureProvider>()
     .FirstOrDefault();
 
@@ -70,15 +71,10 @@ if (cookieProvider != null)
 }
 else
 {
-    // If not present, insert one at the start
-    requestLocalizationOptions.RequestCultureProviders.Insert(0, new CookieRequestCultureProvider
-    {
-        CookieName = "AppCulture"
-    });
+    localizationOptions.RequestCultureProviders.Insert(0, new CookieRequestCultureProvider { CookieName = "AppCulture" });
 }
 
-// Add middleware into pipeline
-app.UseRequestLocalization(requestLocalizationOptions);
+app.UseRequestLocalization(localizationOptions);
 
 app.UseAuthentication();
 
