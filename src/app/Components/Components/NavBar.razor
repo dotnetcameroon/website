@@ -9,13 +9,13 @@
             </a>
             <ul id="nav-links" class="fixed md:relative md:top-0 top-0 h-full md:h-auto bg-white md:bg-transparent w-full md:w-auto left-0 p-4 flex flex-col md:flex-row gap-2 md:gap-4">
                 <li class="flex">
-                    <NavLink href="/" data-enhance-nav="false" Match="NavLinkMatch.All" class="py-2 md:text-slate-300 md:hover:text-white transition-all">@L["Nav_Home"]</NavLink>
+                    <NavLink href="/" data-enhance-nav="false" Match="NavLinkMatch.All" class="py-2 md:text-slate-300 md:hover:text-white transition-all">@GetNavText("Nav_Home")</NavLink>
                 </li>
                 @* <li class="flex">
                     <NavLink href="/events" data-enhance-nav="false" class="py-2 md:text-slate-300 md:hover:text-white transition-all">Events</NavLink>
                 </li> *@
                 <li class="flex">
-                    <NavLink href="/dotnet-conf-2024" data-enhance-nav="false" class="py-2 md:text-slate-300 md:hover:text-white transition-all">@L["Nav_NetConf"]</NavLink>
+                    <NavLink href="/dotnet-conf-2024" data-enhance-nav="false" class="py-2 md:text-slate-300 md:hover:text-white transition-all">@GetNavText("Nav_NetConf")</NavLink>
                 </li>
                 @* <li class="flex">
                     <NavLink href="/counter" data-enhance-nav="false" class="py-2 md:text-slate-300 md:hover:text-white transition-all">Counter</NavLink>
@@ -59,7 +59,7 @@
     private Microsoft.AspNetCore.Components.NavigationManager NavigationManager { get; set; } = default!;
 
     [Inject]
-    private Microsoft.Extensions.Localization.IStringLocalizer<app.Resources.SharedResources> L { get; set; } = default!;
+    private Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory { get; set; } = default!;
 
     private string GetSetCultureUrl(string culture)
     {
@@ -70,8 +70,22 @@
     private string GetLocalizedSiteName()
     {
         var culture = System.Globalization.CultureInfo.CurrentUICulture.Name;
-        var siteName = L["Site_Name"];
-        var isFound = !siteName.ResourceNotFound;
-        return $"{siteName} ({culture}) [Found: {isFound}]";
+        
+        // Try different localizer approaches to find what works
+        var localizer1 = LocalizerFactory.Create(typeof(app.Resources.SharedResources));
+        var localizer2 = LocalizerFactory.Create("SharedResources", "app");
+        var localizer3 = LocalizerFactory.Create("Resources.SharedResources", "app");
+        
+        var siteName1 = localizer1["Site_Name"];
+        var siteName2 = localizer2["Site_Name"];
+        var siteName3 = localizer3["Site_Name"];
+        
+        return $"L1:{siteName1}[{!siteName1.ResourceNotFound}] L2:{siteName2}[{!siteName2.ResourceNotFound}] L3:{siteName3}[{!siteName3.ResourceNotFound}] ({culture})";
+    }
+
+    private string GetNavText(string key)
+    {
+        var localizer = LocalizerFactory.Create(typeof(app.Resources.SharedResources));
+        return localizer[key];
     }
 }
