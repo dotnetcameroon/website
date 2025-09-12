@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+
+  <data name="WelcomeUser" xml:space="preserve">
+    <value>Bienvenue, {0}!</value>
+  </data>
+</root>

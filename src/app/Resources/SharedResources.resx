@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Minimal .resx file. Add more <data> entries for other keys.
+  -->
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+
+  <data name="WelcomeUser" xml:space="preserve">
+    <value>Welcome, {0}!</value>
+  </data>
+</root>
