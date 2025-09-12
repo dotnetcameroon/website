@@ -94,12 +94,15 @@ app.MapGet("/setculture", (HttpContext http, string culture, string? returnUrl) 
 {
     if (string.IsNullOrEmpty(culture)) culture = "en-US";
     var cookieValue = CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture));
-    http.Response.Cookies.Append("AppCulture", cookieValue, new CookieOptions
+    var cookieOptions = new CookieOptions
     {
         Expires = DateTimeOffset.UtcNow.AddYears(1),
         HttpOnly = false,
-        IsEssential = true
-    });
+        IsEssential = true,
+        SameSite = SameSiteMode.Lax,
+        Secure = http.Request.IsHttps
+    };
+    http.Response.Cookies.Append("AppCulture", cookieValue, cookieOptions);
     http.Response.Redirect(string.IsNullOrEmpty(returnUrl) ? "/" : returnUrl);
     return Results.Ok();
 });
