@@ -78,18 +78,7 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.UseAntiforgery();
-
-// app.MapHangfireJobs();
-
-app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode()
-    .AddInteractiveWebAssemblyRenderMode()
-    .AddAdditionalAssemblies(typeof(app.client._Imports).Assembly);
-
-app.MapProjectsApi();
-app.MapIdentityApi();
-
+// Map setculture endpoint BEFORE antiforgery to avoid conflicts
 app.MapGet("/setculture", (HttpContext http, string culture, string? returnUrl) =>
 {
     if (string.IsNullOrEmpty(culture)) culture = "en-US";
@@ -105,5 +94,17 @@ app.MapGet("/setculture", (HttpContext http, string culture, string? returnUrl) 
     http.Response.Cookies.Append("AppCulture", cookieValue, cookieOptions);
     return Results.Redirect(string.IsNullOrEmpty(returnUrl) ? "/" : returnUrl);
 });
+
+app.UseAntiforgery();
+
+// app.MapHangfireJobs();
+
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode()
+    .AddInteractiveWebAssemblyRenderMode()
+    .AddAdditionalAssemblies(typeof(app.client._Imports).Assembly);
+
+app.MapProjectsApi();
+app.MapIdentityApi();
 
 app.Run();
