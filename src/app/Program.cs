@@ -74,25 +74,13 @@ else
 
 app.UseRequestLocalization(localizationOptions);
 
-// Add middleware to log current culture for debugging
-app.Use(async (context, next) =>
-{
-    var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
-    var culture = System.Globalization.CultureInfo.CurrentCulture;
-    var uiCulture = System.Globalization.CultureInfo.CurrentUICulture;
-    logger.LogInformation("Request culture: {Culture}, UI culture: {UICulture}", culture.Name, uiCulture.Name);
-    await next();
-});
-
 app.UseAuthentication();
 
 app.UseAuthorization();
 
 // Map setculture endpoint BEFORE antiforgery to avoid conflicts
-app.MapGet("/setculture", (HttpContext http, string culture, string? returnUrl, ILogger<Program> logger) =>
+app.MapGet("/setculture", (HttpContext http, string culture, string? returnUrl) =>
 {
-    logger.LogInformation("SetCulture endpoint hit with culture: {Culture}, returnUrl: {ReturnUrl}", culture, returnUrl);
-    
     if (string.IsNullOrEmpty(culture)) culture = "en-US";
     var cookieValue = CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture));
     var cookieOptions = new CookieOptions
@@ -105,7 +93,6 @@ app.MapGet("/setculture", (HttpContext http, string culture, string? returnUrl, 
     };
     http.Response.Cookies.Append("AppCulture", cookieValue, cookieOptions);
     
-    logger.LogInformation("Cookie set, redirecting to: {ReturnUrl}", string.IsNullOrEmpty(returnUrl) ? "/" : returnUrl);
     return Results.Redirect(string.IsNullOrEmpty(returnUrl) ? "/" : returnUrl);
 });
 
