@@ -10,4 +10,7 @@
   <data name="WelcomeUser" xml:space="preserve">
     <value>Welcome, {0}!</value>
   </data>
+  <data name="Site_Name" xml:space="preserve">
+    <value>Cameroon</value>
+  </data>
 </root>

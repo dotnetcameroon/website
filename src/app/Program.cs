@@ -12,8 +12,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.WithOpenTelemetry();
 builder.Services.AddServices(builder.Configuration, builder.Environment);
-builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
-
 // Register localization and point to Resources folder
 builder.Services.AddLocalization(options =>
 {
