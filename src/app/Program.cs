@@ -74,6 +74,16 @@ else
 
 app.UseRequestLocalization(localizationOptions);
 
+// Add middleware to log current culture for debugging
+app.Use(async (context, next) =>
+{
+    var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
+    var culture = System.Globalization.CultureInfo.CurrentCulture;
+    var uiCulture = System.Globalization.CultureInfo.CurrentUICulture;
+    logger.LogInformation("Request culture: {Culture}, UI culture: {UICulture}", culture.Name, uiCulture.Name);
+    await next();
+});
+
 app.UseAuthentication();
 
 app.UseAuthorization();
