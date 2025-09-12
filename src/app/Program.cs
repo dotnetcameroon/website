@@ -92,4 +92,18 @@ app.MapRazorComponents<App>()
 app.MapProjectsApi();
 app.MapIdentityApi();
 
+app.MapGet("/setculture", (HttpContext http, string culture, string? returnUrl) =>
+{
+    if (string.IsNullOrEmpty(culture)) culture = "en-US";
+    var cookieValue = CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture));
+    http.Response.Cookies.Append("AppCulture", cookieValue, new CookieOptions
+    {
+        Expires = DateTimeOffset.UtcNow.AddYears(1),
+        HttpOnly = false,
+        IsEssential = true
+    });
+    http.Response.Redirect(string.IsNullOrEmpty(returnUrl) ? "/" : returnUrl);
+    return Results.Ok();
+});
+
 app.Run();
