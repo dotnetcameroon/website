@@ -10,4 +10,19 @@
   <data name="Site_Name" xml:space="preserve">
     <value>Cameroun</value>
   </data>
+  <data name="Nav_Home" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="Nav_NetConf" xml:space="preserve">
+    <value>.NET Conf 2024</value>
+  </data>
+  <data name="Nav_Projects" xml:space="preserve">
+    <value>Projets</value>
+  </data>
+  <data name="Nav_Resources" xml:space="preserve">
+    <value>Ressources</value>
+  </data>
+  <data name="Nav_Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
 </root>
