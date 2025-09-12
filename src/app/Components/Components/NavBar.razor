@@ -1,11 +1,19 @@
-@using app.shared.Utilities
+@using app                <li class="flex">
+                    <NavLink href="/" data-enhance-nav="false" Match="NavLinkMatch.All" class="py-2 md:text-slate-300 md:hover:text-white transition-all">@L["Nav_Home"]</NavLink>
+                </li>
+                @* <li class="flex">
+                    <NavLink href="/events" data-enhance-nav="false" class="py-2 md:text-slate-300 md:hover:text-white transition-all">Events</NavLink>
+                </li> *@
+                <li class="flex">
+                    <NavLink href="/dotnet-conf-2024" data-enhance-nav="false" class="py-2 md:text-slate-300 md:hover:text-white transition-all">@L["Nav_NetConf"]</NavLink>
+                </li>tilities
 <header>
         <nav id="navbar" class="relative w-full z-50 @NavBarClass">
         <!-- <nav id="navbar" class="fixed w-full h-screen z-50 @NavBarClass"> -->
         <div class="container mx-auto p-4 relative flex justify-between h-[70px] items-center">
             <a data-enhance-nav="false" href="/" class="flex items-center gap-2">
                 <img src="@Assets["/assets/brand/logo-rounded.png"]" alt=".NET Cameroon Logo" class="size-12">
-                <span class="text-white">@GetLocalizedSiteName()</span>
+                <span class="text-white">@L["Site_Name"]</span>
             </a>
             <ul id="nav-links" class="fixed md:relative md:top-0 top-0 h-full md:h-auto bg-white md:bg-transparent w-full md:w-auto left-0 p-4 flex flex-col md:flex-row gap-2 md:gap-4">
                 <li class="flex">
@@ -60,6 +68,9 @@
 
     [Inject]
     private Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory { get; set; } = default!;
+
+    private Microsoft.Extensions.Localization.IStringLocalizer? _localizer;
+    private Microsoft.Extensions.Localization.IStringLocalizer L => _localizer ??= LocalizerFactory.Create("SharedResources", "app");
 
     private string GetSetCultureUrl(string culture)
     {
