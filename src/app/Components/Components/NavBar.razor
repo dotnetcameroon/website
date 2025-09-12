@@ -36,9 +36,15 @@
                     <a data-enhance-nav="false" href="/" class="btn">Join</a>
                 </li> *@
             </ul>
-            <button id="hamburger" onclick="toggleNavbar()" title="Hamburger menu" aria-label="Hamburger menu">
-                <span></span>
-            </button>
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-2">
+                    <a class="text-white hover:underline" href="@GetSetCultureUrl("en-US")">EN</a>
+                    <a class="text-white hover:underline" href="@GetSetCultureUrl("fr-FR")">FR</a>
+                </div>
+                <button id="hamburger" onclick="toggleNavbar()" title="Hamburger menu" aria-label="Hamburger menu">
+                    <span></span>
+                </button>
+            </div>
         </div>
     </nav>
 </header>
@@ -48,4 +54,17 @@
     public NavType Type { get; set; }
 
     private string NavBarClass => Type == NavType.Default ? string.Empty : "transparent";
+
+    [Inject]
+    private Microsoft.AspNetCore.Components.NavigationManager NavigationManager { get; set; } = default!;
+
+    [Inject]
+    private Microsoft.Extensions.Localization.IStringLocalizer<app.Resources.SharedResources> L { get; set; } = default!;
+
+    private string GetSetCultureUrl(string culture)
+    {
+        // Use the current absolute URI as returnUrl so the user returns to the same page after switching
+        var returnUrl = Uri.EscapeDataString(NavigationManager.Uri);
+        return $"/setculture?culture={culture}&returnUrl={returnUrl}";
+    }
 }
