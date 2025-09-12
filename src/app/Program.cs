@@ -79,8 +79,10 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 // Map setculture endpoint BEFORE antiforgery to avoid conflicts
-app.MapGet("/setculture", (HttpContext http, string culture, string? returnUrl) =>
+app.MapGet("/setculture", (HttpContext http, string culture, string? returnUrl, ILogger<Program> logger) =>
 {
+    logger.LogInformation("SetCulture endpoint hit with culture: {Culture}, returnUrl: {ReturnUrl}", culture, returnUrl);
+    
     if (string.IsNullOrEmpty(culture)) culture = "en-US";
     var cookieValue = CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture));
     var cookieOptions = new CookieOptions
@@ -92,6 +94,8 @@ app.MapGet("/setculture", (HttpContext http, string culture, string? returnUrl) 
         Secure = http.Request.IsHttps
     };
     http.Response.Cookies.Append("AppCulture", cookieValue, cookieOptions);
+    
+    logger.LogInformation("Cookie set, redirecting to: {ReturnUrl}", string.IsNullOrEmpty(returnUrl) ? "/" : returnUrl);
     return Results.Redirect(string.IsNullOrEmpty(returnUrl) ? "/" : returnUrl);
 });
 

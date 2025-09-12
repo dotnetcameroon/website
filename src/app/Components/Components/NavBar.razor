@@ -63,8 +63,7 @@
 
     private string GetSetCultureUrl(string culture)
     {
-        // Use the current absolute URI as returnUrl so the user returns to the same page after switching
-        var returnUrl = Uri.EscapeDataString(NavigationManager.Uri);
-        return $"/setculture?culture={culture}&returnUrl={returnUrl}";
+        // Simplified approach - just use root path as return URL
+        return $"/setculture?culture={culture}&returnUrl=/";
     }
 }
