@@ -36,7 +36,7 @@
 
   <!-- Hero Section -->
   <data name="Hero_Title" xml:space="preserve">
-    <value>Communauté.<br>Open Source.<br>Innovation.<br>Continent 🇨🇲</value>
+    <value>Communauté.&lt;br&gt;Open Source.&lt;br&gt;Innovation.&lt;br&gt;Continent 🇨🇲</value>
   </data>
   <data name="Hero_Description" xml:space="preserve">
     <value>.NET Cameroun est un groupe de passionnés de .NET basés au Cameroun, engagés à promouvoir les technologies Microsoft et à favoriser l'intérêt dans la communauté locale.</value>

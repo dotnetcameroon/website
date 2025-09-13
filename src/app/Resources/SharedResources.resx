@@ -39,7 +39,7 @@
 
   <!-- Hero Section -->
   <data name="Hero_Title" xml:space="preserve">
-    <value>Community.<br>Open Source.<br>Innovative.<br>Continent 🇨🇲</value>
+    <value>Community.&lt;br&gt;Open Source.&lt;br&gt;Innovative.&lt;br&gt;Continent 🇨🇲</value>
   </data>
   <data name="Hero_Description" xml:space="preserve">
     <value>.NET Cameroon is a group of passionate .NET enthusiasts based in Cameroon, committed to promoting Microsoft technologies and fostering interest in the local community.</value>
