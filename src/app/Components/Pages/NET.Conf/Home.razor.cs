@@ -1,9 +1,15 @@
 using app.domain.ViewModels;
+using Microsoft.AspNetCore.Components;
 
 namespace app.Components.Pages.NET_Conf;
 
 public partial class Home
 {
+    [Inject]
+    private Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory { get; set; } = default!;
+
+    private Microsoft.Extensions.Localization.IStringLocalizer? _localizer;
+    private Microsoft.Extensions.Localization.IStringLocalizer L => _localizer ??= LocalizerFactory.Create("SharedResources", "app");
     private readonly Activity[] Activities = [
         new ("Inspiring Sessions and Conferences", "Dive into cutting-edge topics and explore the latest in .NET technology through insightful sessions and talks. Learn from experts as they cover a wide range of topics, from web and mobile development to cloud solutions and artificial intelligence", "/assets/activities/activity-2.jpeg", "Tech"),
         new ("Meet Microsoft Experts", "Gain exclusive insights from Microsoft employees who work directly on .NET and related technologies. This is your chance to hear directly from those shaping the future of .NET and to ask questions that matter to your projects.", "/assets/featured/net9.png", "Culture"),
