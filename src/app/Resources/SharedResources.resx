@@ -146,4 +146,123 @@
   <data name="Meta_Description" xml:space="preserve">
     <value>Welcome to the .NET Cameroon Community website! Join us to learn, share, and collaborate on .NET technologies. Stay updated with our latest events, resources, and news.</value>
   </data>
+
+  <!-- .NET Conf Page -->
+  <data name="NetConf_PageTitle" xml:space="preserve">
+    <value>.NET Conf 2024 Cameroon 🇨🇲</value>
+  </data>
+  <data name="NetConf_MetaDescription" xml:space="preserve">
+    <value>.NET Conf Cameroon is a premier event for developers, tech enthusiasts, and industry leaders to explore the latest in .NET, connect with the community, and drive innovation in software development. Join us for inspiring talks, hands-on sessions, and networking opportunities!</value>
+  </data>
+  <data name="NetConf_HeroTitle" xml:space="preserve">
+    <value>.NET Conf 2024 Cameroon 🚀🇨🇲</value>
+  </data>
+  <data name="NetConf_HeroSubtitle" xml:space="preserve">
+    <value>Join the .NET Revolution in Cameroon!</value>
+  </data>
+  <data name="NetConf_RegisterNow" xml:space="preserve">
+    <value>Register Now</value>
+  </data>
+  <data name="NetConf_BecomeApeaker" xml:space="preserve">
+    <value>Become a Speaker</value>
+  </data>
+  <data name="NetConf_SupportEvent" xml:space="preserve">
+    <value>Support the Event</value>
+  </data>
+  <data name="NetConf_Date" xml:space="preserve">
+    <value>11th Jan 2025</value>
+  </data>
+  <data name="NetConf_Location" xml:space="preserve">
+    <value>CODEC - Logbessou Immeuble BAO</value>
+  </data>
+  <data name="NetConf_GoogleMaps" xml:space="preserve">
+    <value>Google Maps Location</value>
+  </data>
+  <data name="NetConf_Days" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="NetConf_Hours" xml:space="preserve">
+    <value>Hours</value>
+  </data>
+  <data name="NetConf_Minutes" xml:space="preserve">
+    <value>Minutes</value>
+  </data>
+  <data name="NetConf_Seconds" xml:space="preserve">
+    <value>Seconds</value>
+  </data>
+  <data name="NetConf_GetReady" xml:space="preserve">
+    <value>Get ready to expand your skills, meet fellow developers, and dive into the latest trends in .NET at this year's event! Here's what awaits you</value>
+  </data>
+  <data name="NetConf_InspiringTalks" xml:space="preserve">
+    <value>Inspiring Talks from Experts</value>
+  </data>
+  <data name="NetConf_DotNet9Features" xml:space="preserve">
+    <value>Cutting-Edge .NET 9 features</value>
+  </data>
+  <data name="NetConf_BuildConnections" xml:space="preserve">
+    <value>Build Connections</value>
+  </data>
+  <data name="NetConf_EventOverview" xml:space="preserve">
+    <value>Event Overview</value>
+  </data>
+  <data name="NetConf_EventDescription" xml:space="preserve">
+    <value>Get ready to join developers, tech enthusiasts, and industry experts from across Cameroon and beyond for an exciting day dedicated to .NET innovation. Whether you're an experienced developer or just starting your journey, this conference offers something for everyone.</value>
+  </data>
+  <data name="NetConf_WhyAttend" xml:space="preserve">
+    <value>Why to attend?</value>
+  </data>
+  <data name="NetConf_WhyAttendDescription" xml:space="preserve">
+    <value>Whether you're an experienced developer or a newcomer to .NET, this event offers a valuable opportunity to grow, learn, and connect</value>
+  </data>
+  <data name="NetConf_StayAhead" xml:space="preserve">
+    <value>Stay Ahead with the Latest in .NET 9</value>
+  </data>
+  <data name="NetConf_GetInspired" xml:space="preserve">
+    <value>Get Inspired by Industry Leaders</value>
+  </data>
+  <data name="NetConf_BuildNetwork" xml:space="preserve">
+    <value>Build Your Professional Network</value>
+  </data>
+  <data name="NetConf_ShareExpertise" xml:space="preserve">
+    <value>Share Your Expertise at .NET Conf Cameroon!</value>
+  </data>
+  <data name="NetConf_SpeakerDescription" xml:space="preserve">
+    <value>Are you passionate about .NET, cutting-edge technologies, or building innovative solutions? Do you enjoy sharing your knowledge and inspiring others to grow? Then we want &lt;span class="font-bold"&gt;YOU&lt;/span&gt; to be part of .NET Conf Cameroon 2024!</value>
+  </data>
+  <data name="NetConf_Visibility" xml:space="preserve">
+    <value>&lt;strong class="font-bold"&gt;Visibility:&lt;/strong&gt; share your knowledge</value>
+  </data>
+  <data name="NetConf_Networking" xml:space="preserve">
+    <value>&lt;strong class="font-bold"&gt;Networking opportunities:&lt;/strong&gt; interact with experts</value>
+  </data>
+  <data name="NetConf_PersonalBranding" xml:space="preserve">
+    <value>&lt;strong class="font-bold"&gt;Personal branding:&lt;/strong&gt; elevate your image.</value>
+  </data>
+  <data name="NetConf_AgendaTitle" xml:space="preserve">
+    <value>Take a look at our Agenda</value>
+  </data>
+  <data name="NetConf_AgendaDescription" xml:space="preserve">
+    <value>Discover the lineup of engaging sessions and activities we have planned for .NET Conf! Dive into the day's agenda and join us for an inspiring journey through .NET innovation and community connections</value>
+  </data>
+  <data name="NetConf_SponsorsTitle" xml:space="preserve">
+    <value>Meet our amazing Sponsors and Partners</value>
+  </data>
+  <data name="NetConf_SponsorsDescription" xml:space="preserve">
+    <value>Our sponsors and partners power .NET Conf Cameroon, fostering innovation and growth in our tech community. Join us to showcase your brand and make a lasting impact!</value>
+  </data>
+  <data name="NetConf_BecomeSponsor" xml:space="preserve">
+    <value>Become a Sponsor</value>
+  </data>
+  <data name="NetConf_LastYearTitle" xml:space="preserve">
+    <value>About last year?</value>
+  </data>
+  <data name="NetConf_LastYearSubtitle" xml:space="preserve">
+    <value>A brief overview of the Infinite Days last year</value>
+  </data>
+  <data name="NetConf_LastYearDescription" xml:space="preserve">
+    <value>Last year, we hosted the Infinite Days event sponsored by &lt;a href="http://isolutions-intl.com/" target="_blank" class="font-bold link link-secondary"&gt;Infinite Solutions SARL&lt;/a&gt;, a tech company building enterprise level softwares and solutions. Here is a small recap by pictures of this amazing event !!</value>
+  </data>
+  <data name="NetConf_SeeAllPictures" xml:space="preserve">
+    <value>See all the pictures</value>
+  </data>
 </root>
