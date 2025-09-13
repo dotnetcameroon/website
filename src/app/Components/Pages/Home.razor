@@ -4,28 +4,29 @@
 @using app.shared.Utilities
 @attribute [StreamRendering]
 @inject IProjectService ProjectService
+@inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
 
-<PageTitle>.NET Cameroon 🇨🇲 | Home</PageTitle>
+<PageTitle>@L["PageTitle_Home"]</PageTitle>
 <HeadContent>
     <!-- Open Graph meta tags -->
-    <meta property="og:title" content=".NET Cameroon Community">
+    <meta property="og:title" content="@L["Meta_Title"]">
     <meta property="og:description"
-        content="Welcome to the .NET Cameroon Community website! Join us to learn, share, and collaborate on .NET technologies. Stay updated with our latest events, resources, and news.">
+        content="@L["Meta_Description"]">
     <meta property="og:image" content="https://dotnet.cm/assets/brand/logo.png">
     <meta property="og:url" content="https://dotnet.cm">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content=".NET Cameroon Community">
+    <meta property="og:site_name" content="@L["Meta_Title"]">
 
     <!-- Twitter Card meta tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content=".NET Cameroon Community">
+    <meta name="twitter:title" content="@L["Meta_Title"]">
     <meta name="twitter:description"
-        content="Welcome to the .NET Cameroon Community website! Join us to learn, share, and collaborate on .NET technologies. Stay updated with our latest events, resources, and news.">
+        content="@L["Meta_Description"]">
     <meta name="twitter:image" content="https://dotnet.cm/assets/brand/logo.png">
     <meta name="twitter:site" content="@@dotnetcameroon">
 
     <meta name="description"
-        content="Welcome to the .NET Cameroon Community website! Join us to learn, share, and collaborate on .NET technologies. Stay updated with our latest events, resources, and news.">
+        content="@L["Meta_Description"]">
 </HeadContent>
 
 <div>
@@ -39,13 +40,11 @@
                 class="lg:w-1/2 h-full flex flex-col justify-center md:gap-6 gap-4 md:translate-y-[-60px] translate-y-[-40px]">
                 <h1
                     class="text-white text-center md:text-start heading font-bold text-5xl md:text-7xl md:leading-[80px]">
-                    Community.<br>Open Source.<br>Innovative.<br>Continent 🇨🇲</h1>
-                <p class="text-white text-center md:text-start leading-[35px]">.NET Cameroon is a group of passionate
-                    .NET enthusiasts based in Cameroon, committed to promoting Microsoft technologies and fostering
-                    interest in the local community.</p>
+                    @((MarkupString)L["Hero_Title"].Value)</h1>
+                <p class="text-white text-center md:text-start leading-[35px]">@L["Hero_Description"]</p>
                 <div class="flex gap-4 justify-center md:justify-start">
-                    <a data-enhance-nav="false" href="/" class="btn btn-primary">Learn more</a>
-                    <a data-enhance-nav="false" href="/" class="btn btn-secondary">Join us</a>
+                    <a data-enhance-nav="false" href="/" class="btn btn-primary">@L["Hero_LearnMore"]</a>
+                    <a data-enhance-nav="false" href="/" class="btn btn-secondary">@L["Hero_JoinUs"]</a>
                 </div>
             </div>
         </div>
@@ -54,7 +53,7 @@
     <!-- What we do -->
     <section>
         <div class="section container mx-auto">
-            <h1 class="heading heading-1">What we do ?</h1>
+            <h1 class="heading heading-1">@L["WhatWeDo_Title"]</h1>
             <p class="md:w-2/3">At .NET Cameroon Community, we’re all about innovation, learning, and collaboration.
                 Join us to sharpen your skills, connect with fellow developers, and make an impact through our dynamic
                 activities.</p>
@@ -76,7 +75,7 @@
             class="absolute z-10 top-0 left-0 w-full h-full bg-secondary md:bg-transparent md:bg-gradient-to-r md:from-secondary md:via-secondary/70 md:to-transparent">
         </div>
         <div class="relative z-20 section container mx-auto">
-            <h1 class="heading heading-1 text-white">Benefits of membership</h1>
+            <h1 class="heading heading-1 text-white">@L["Membership_Title"]</h1>
             <p class="md:w-2/3 text-white">The .NET ecosystem is rapidly evolving, bringing cutting-edge innovations and
                 exciting opportunities for developers. By joining our community, you’ll be at the forefront of these
                 changes, connecting with fellow enthusiasts who share your passion for .NET.</p>
@@ -183,6 +182,10 @@
 
 @code {
     private Project[] _projects = [];
+    
+    private Microsoft.Extensions.Localization.IStringLocalizer? _localizer;
+    private Microsoft.Extensions.Localization.IStringLocalizer L => _localizer ??= LocalizerFactory.Create("SharedResources", "app");
+    
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();

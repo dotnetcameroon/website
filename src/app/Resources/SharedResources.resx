@@ -28,4 +28,122 @@
   <data name="Nav_Contact" xml:space="preserve">
     <value>Contact</value>
   </data>
+
+  <!-- Page Titles -->
+  <data name="PageTitle_Home" xml:space="preserve">
+    <value>.NET Cameroon 🇨🇲 | Home</value>
+  </data>
+  <data name="PageTitle_Login" xml:space="preserve">
+    <value>.NET Cameroon | Login</value>
+  </data>
+
+  <!-- Hero Section -->
+  <data name="Hero_Title" xml:space="preserve">
+    <value>Community.<br>Open Source.<br>Innovative.<br>Continent 🇨🇲</value>
+  </data>
+  <data name="Hero_Description" xml:space="preserve">
+    <value>.NET Cameroon is a group of passionate .NET enthusiasts based in Cameroon, committed to promoting Microsoft technologies and fostering interest in the local community.</value>
+  </data>
+  <data name="Hero_LearnMore" xml:space="preserve">
+    <value>Learn more</value>
+  </data>
+  <data name="Hero_JoinUs" xml:space="preserve">
+    <value>Join us</value>
+  </data>
+
+  <!-- What we do Section -->
+  <data name="WhatWeDo_Title" xml:space="preserve">
+    <value>What we do ?</value>
+  </data>
+  <data name="WhatWeDo_Description" xml:space="preserve">
+    <value>At .NET Cameroon Community, we're all about innovation, learning, and collaboration. Join us to sharpen your skills, connect with fellow developers, and make an impact through our dynamic activities.</value>
+  </data>
+  <data name="Activity_LiveCoding_Title" xml:space="preserve">
+    <value>Live Codings</value>
+  </data>
+  <data name="Activity_LiveCoding_Description" xml:space="preserve">
+    <value>Join our live coding sessions to collaborate, learn, and solve coding challenges in real-time.</value>
+  </data>
+  <data name="Activity_Conferences_Title" xml:space="preserve">
+    <value>Conferences and Meetups</value>
+  </data>
+  <data name="Activity_Conferences_Description" xml:space="preserve">
+    <value>Connect with fellow developers through insightful talks, workshops, and networking opportunities.</value>
+  </data>
+  <data name="Activity_OpenSource_Title" xml:space="preserve">
+    <value>Open Source Projects</value>
+  </data>
+  <data name="Activity_OpenSource_Description" xml:space="preserve">
+    <value>Contribute to impactful open source projects and collaborate with developers to make a difference.</value>
+  </data>
+  <data name="Activity_VisitGitHub" xml:space="preserve">
+    <value>Visit on GitHub</value>
+  </data>
+
+  <!-- Membership Section -->
+  <data name="Membership_Title" xml:space="preserve">
+    <value>Benefits of membership</value>
+  </data>
+  <data name="Membership_Description" xml:space="preserve">
+    <value>The .NET ecosystem is rapidly evolving, bringing cutting-edge innovations and exciting opportunities for developers. By joining our community, you'll be at the forefront of these changes, connecting with fellow enthusiasts who share your passion for .NET.</value>
+  </data>
+  <data name="Membership_Stats_Members" xml:space="preserve">
+    <value>Members in our <span class="font-bold">community groups</span></value>
+  </data>
+  <data name="Membership_Stats_Followers" xml:space="preserve">
+    <value><span class="font-bold">Followers</span> on our social media platforms</value>
+  </data>
+  <data name="Membership_Stats_Events" xml:space="preserve">
+    <value>Events, meetups and conferences</value>
+  </data>
+  <data name="Membership_Stats_Projects" xml:space="preserve">
+    <value>Active <span class="font-bold">Open source</span> projects and libraries</value>
+  </data>
+  <data name="Membership_BecomeMember" xml:space="preserve">
+    <value>Become a member</value>
+  </data>
+
+  <!-- Sponsors Section -->
+  <data name="Sponsors_Title" xml:space="preserve">
+    <value>Our sponsors</value>
+  </data>
+  <data name="Sponsors_Description" xml:space="preserve">
+    <value>We work with various companies, startups and communities</value>
+  </data>
+
+  <!-- Projects Section -->
+  <data name="Projects_Title" xml:space="preserve">
+    <value>Our Open Source Projects</value>
+  </data>
+  <data name="Projects_Description" xml:space="preserve">
+    <value>Explore the innovative open-source projects driving our community forward. Built with passion and collaboration, these projects reflect our commitment to sharing knowledge and building impactful solutions together.</value>
+  </data>
+
+  <!-- Login Form -->
+  <data name="Login_Welcome" xml:space="preserve">
+    <value>Hi Administrator !!, Welcome Back</value>
+  </data>
+  <data name="Login_Subtitle" xml:space="preserve">
+    <value>Hope you are doing well</value>
+  </data>
+  <data name="Login_EmailPlaceholder" xml:space="preserve">
+    <value>Your email</value>
+  </data>
+  <data name="Login_PasswordPlaceholder" xml:space="preserve">
+    <value>Your password</value>
+  </data>
+  <data name="Login_Button" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="Login_BackToHome" xml:space="preserve">
+    <value>Back to Home</value>
+  </data>
+
+  <!-- SEO Meta Tags -->
+  <data name="Meta_Title" xml:space="preserve">
+    <value>.NET Cameroon Community</value>
+  </data>
+  <data name="Meta_Description" xml:space="preserve">
+    <value>Welcome to the .NET Cameroon Community website! Join us to learn, share, and collaborate on .NET technologies. Stay updated with our latest events, resources, and news.</value>
+  </data>
 </root>

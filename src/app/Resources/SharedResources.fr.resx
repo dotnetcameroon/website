@@ -25,4 +25,122 @@
   <data name="Nav_Contact" xml:space="preserve">
     <value>Contact</value>
   </data>
+
+  <!-- Page Titles -->
+  <data name="PageTitle_Home" xml:space="preserve">
+    <value>.NET Cameroun 🇨🇲 | Accueil</value>
+  </data>
+  <data name="PageTitle_Login" xml:space="preserve">
+    <value>.NET Cameroun | Connexion</value>
+  </data>
+
+  <!-- Hero Section -->
+  <data name="Hero_Title" xml:space="preserve">
+    <value>Communauté.<br>Open Source.<br>Innovation.<br>Continent 🇨🇲</value>
+  </data>
+  <data name="Hero_Description" xml:space="preserve">
+    <value>.NET Cameroun est un groupe de passionnés de .NET basés au Cameroun, engagés à promouvoir les technologies Microsoft et à favoriser l'intérêt dans la communauté locale.</value>
+  </data>
+  <data name="Hero_LearnMore" xml:space="preserve">
+    <value>En savoir plus</value>
+  </data>
+  <data name="Hero_JoinUs" xml:space="preserve">
+    <value>Rejoignez-nous</value>
+  </data>
+
+  <!-- What we do Section -->
+  <data name="WhatWeDo_Title" xml:space="preserve">
+    <value>Que faisons-nous ?</value>
+  </data>
+  <data name="WhatWeDo_Description" xml:space="preserve">
+    <value>À la Communauté .NET Cameroun, nous sommes passionnés d'innovation, d'apprentissage et de collaboration. Rejoignez-nous pour améliorer vos compétences, vous connecter avec d'autres développeurs et avoir un impact grâce à nos activités dynamiques.</value>
+  </data>
+  <data name="Activity_LiveCoding_Title" xml:space="preserve">
+    <value>Codage en Direct</value>
+  </data>
+  <data name="Activity_LiveCoding_Description" xml:space="preserve">
+    <value>Rejoignez nos sessions de codage en direct pour collaborer, apprendre et résoudre des défis de programmation en temps réel.</value>
+  </data>
+  <data name="Activity_Conferences_Title" xml:space="preserve">
+    <value>Conférences et Rencontres</value>
+  </data>
+  <data name="Activity_Conferences_Description" xml:space="preserve">
+    <value>Connectez-vous avec d'autres développeurs grâce à des présentations perspicaces, des ateliers et des opportunités de réseautage.</value>
+  </data>
+  <data name="Activity_OpenSource_Title" xml:space="preserve">
+    <value>Projets Open Source</value>
+  </data>
+  <data name="Activity_OpenSource_Description" xml:space="preserve">
+    <value>Contribuez à des projets open source impactants et collaborez avec des développeurs pour faire une différence.</value>
+  </data>
+  <data name="Activity_VisitGitHub" xml:space="preserve">
+    <value>Visiter sur GitHub</value>
+  </data>
+
+  <!-- Membership Section -->
+  <data name="Membership_Title" xml:space="preserve">
+    <value>Avantages de l'adhésion</value>
+  </data>
+  <data name="Membership_Description" xml:space="preserve">
+    <value>L'écosystème .NET évolue rapidement, apportant des innovations de pointe et des opportunités passionnantes pour les développeurs. En rejoignant notre communauté, vous serez à l'avant-garde de ces changements, en vous connectant avec d'autres passionnés qui partagent votre passion pour .NET.</value>
+  </data>
+  <data name="Membership_Stats_Members" xml:space="preserve">
+    <value>Membres dans nos <span class="font-bold">groupes communautaires</span></value>
+  </data>
+  <data name="Membership_Stats_Followers" xml:space="preserve">
+    <value><span class="font-bold">Abonnés</span> sur nos plateformes de médias sociaux</value>
+  </data>
+  <data name="Membership_Stats_Events" xml:space="preserve">
+    <value>Événements, rencontres et conférences</value>
+  </data>
+  <data name="Membership_Stats_Projects" xml:space="preserve">
+    <value>Projets et bibliothèques <span class="font-bold">Open source</span> actifs</value>
+  </data>
+  <data name="Membership_BecomeMember" xml:space="preserve">
+    <value>Devenir membre</value>
+  </data>
+
+  <!-- Sponsors Section -->
+  <data name="Sponsors_Title" xml:space="preserve">
+    <value>Nos sponsors</value>
+  </data>
+  <data name="Sponsors_Description" xml:space="preserve">
+    <value>Nous travaillons avec diverses entreprises, startups et communautés</value>
+  </data>
+
+  <!-- Projects Section -->
+  <data name="Projects_Title" xml:space="preserve">
+    <value>Nos Projets Open Source</value>
+  </data>
+  <data name="Projects_Description" xml:space="preserve">
+    <value>Explorez les projets open source innovants qui font avancer notre communauté. Construits avec passion et collaboration, ces projets reflètent notre engagement à partager les connaissances et à créer des solutions impactantes ensemble.</value>
+  </data>
+
+  <!-- Login Form -->
+  <data name="Login_Welcome" xml:space="preserve">
+    <value>Salut Administrateur !!, Bon Retour</value>
+  </data>
+  <data name="Login_Subtitle" xml:space="preserve">
+    <value>J'espère que vous allez bien</value>
+  </data>
+  <data name="Login_EmailPlaceholder" xml:space="preserve">
+    <value>Votre email</value>
+  </data>
+  <data name="Login_PasswordPlaceholder" xml:space="preserve">
+    <value>Votre mot de passe</value>
+  </data>
+  <data name="Login_Button" xml:space="preserve">
+    <value>Se connecter</value>
+  </data>
+  <data name="Login_BackToHome" xml:space="preserve">
+    <value>Retour à l'accueil</value>
+  </data>
+
+  <!-- SEO Meta Tags -->
+  <data name="Meta_Title" xml:space="preserve">
+    <value>Communauté .NET Cameroun</value>
+  </data>
+  <data name="Meta_Description" xml:space="preserve">
+    <value>Bienvenue sur le site web de la Communauté .NET Cameroun ! Rejoignez-nous pour apprendre, partager et collaborer sur les technologies .NET. Restez informé de nos derniers événements, ressources et actualités.</value>
+  </data>
 </root>
