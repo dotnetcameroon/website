@@ -67,7 +67,9 @@
 
     private string GetSetCultureUrl(string culture)
     {
-        // Simplified approach - just use root path as return URL
-        return $"/setculture?culture={culture}&returnUrl=/";
+        // Use current page path as return URL so user stays on the same page after language switch
+        var currentPath = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        var returnUrl = string.IsNullOrEmpty(currentPath) ? "/" : $"/{currentPath}";
+        return $"/setculture?culture={culture}&returnUrl={Uri.EscapeDataString(returnUrl)}";
     }
 }
