@@ -79,11 +79,9 @@
 <section class="section bg-[rgb(12,5,56)]">
     <div class="container mx-auto p-4">
         <h1 class="heading heading-1 text-white text-center">@L["NetConf_EventOverview"]</h1>
-        <p class="text-white text-center">
-            Get ready to join developers, tech enthusiasts, and industry experts from across Cameroon and beyond for an
-            exciting day dedicated to .NET innovation. Whether you’re an experienced developer or just starting your
-            journey, this conference offers something for everyone.
-        </p>
+            <p class="text-white text-center">
+                @L["NetConf_EventDescription"]
+            </p>
     </div>
     <div class="flex flex-wrap justify-center gap-2 mt-12">
         @foreach(var activity in Activities)
@@ -108,7 +106,7 @@
         <div class="mt-4 md:flex md:items-center md:gap-6">
             <div class="md:w-1/2">
                 <h1 class="heading heading-1">@L["NetConf_WhyAttend"]</h1>
-                <p class="mb-6">Whether you’re an experienced developer or a newcomer to .NET, this event offers a valuable opportunity to grow, learn, and connect</p>
+                <p class="mb-6">@L["NetConf_WhyAttendDescription"]</p>
                 <ul class="mb-8">
                     <li class="font-bold mt-2"><i class="fa-regular fa-circle-check"></i> @L["NetConf_StayAhead"]</li>
                     <li class="font-bold mt-2"><i class="fa-regular fa-circle-check"></i> @L["NetConf_GetInspired"]</li>
