@@ -58,13 +58,13 @@
                 Join us to sharpen your skills, connect with fellow developers, and make an impact through our dynamic
                 activities.</p>
             <div class="flex gap-6 items-center justify-center flex-wrap mt-8">
-                <ActivityCard ImageName="@Assets["/assets/activities/activity-1.jpg"]" Title="Live Codings"
-                    Description="Join our live coding sessions to collaborate, learn, and solve coding challenges in real-time." />
-                <ActivityCard ImageName="@Assets["/assets/activities/activity-2.jpeg"]" Title="Conferences and Meetups"
-                    Description="Connect with fellow developers through insightful talks, workshops, and networking opportunities." />
+                <ActivityCard ImageName="@Assets["/assets/activities/activity-1.jpg"]" Title="@L["Activity_LiveCoding_Title"]"
+                    Description="@L["Activity_LiveCoding_Description"]" />
+                <ActivityCard ImageName="@Assets["/assets/activities/activity-2.jpeg"]" Title="@L["Activity_Conferences_Title"]"
+                    Description="@L["Activity_Conferences_Description"]" />
                 <ActivityCard ImageName="@Assets["/assets/activities/activity-3.png"]"
-                    Link="https://github.com/dotnetcameroon" LinkText="Visit on GitHub" Title="Open Source Projects"
-                    Description="Contribute to impactful open source projects and collaborate with developers to make a difference." />
+                    Link="https://github.com/dotnetcameroon" LinkText="@L["Activity_VisitGitHub"]" Title="@L["Activity_OpenSource_Title"]"
+                    Description="@L["Activity_OpenSource_Description"]" />
             </div>
         </div>
     </section>
@@ -84,35 +84,35 @@
                 <div class="md:flex gap-6">
                     <div class="w-1/2">
                         <h2 class="heading heading-3 text-white">600+</h2>
-                        <p class="text-white">Members in our <span class="font-bold">community groups</span></p>
+                        <p class="text-white">@((MarkupString)L["Membership_Stats_Members"].Value)</p>
                     </div>
                     <div class="w-1/2">
                         <h2 class="heading heading-3 text-white">2k+</h2>
-                        <p class="text-white"><span class="font-bold">Followers</span> on our social media platforms</p>
+                        <p class="text-white">@((MarkupString)L["Membership_Stats_Followers"].Value)</p>
                     </div>
                 </div>
                 <div class="md:flex gap-6">
                     <div class="w-1/2">
                         <h2 class="heading heading-3 text-white">60+</h2>
-                        <p class="text-white">Events, meetups and conferences</p>
+                        <p class="text-white">@L["Membership_Stats_Events"]</p>
                     </div>
                     <div class="w-1/2">
                         <h2 class="heading heading-3 text-white">6+</h2>
-                        <p class="text-white">Active <span class="font-bold">Open source</span> projects and libraries
+                        <p class="text-white">@((MarkupString)L["Membership_Stats_Projects"].Value)
                         </p>
                     </div>
                 </div>
             </div>
 
-            <a data-enhance-nav="false" href="/" class="btn btn-outline-white mt-6 block size-fit">Become a member</a>
+            <a data-enhance-nav="false" href="/" class="btn btn-outline-white mt-6 block size-fit">@L["Membership_BecomeMember"]</a>
         </div>
     </section>
 
     <!-- Partners -->
     <section>
         <div class="section container mx-auto">
-            <h1 class="heading heading-1 text-center">Our sponsors</h1>
-            <p class="text-center">We work with various companies, startups and communities</p>
+            <h1 class="heading heading-1 text-center">@L["Sponsors_Title"]</h1>
+            <p class="text-center">@L["Sponsors_Description"]</p>
             <div class="flex flex-wrap gap-8 justify-center items-center mt-8">
                 <a data-enhance-nav="false" href="https://dotnetfoundation.org"><img src="@Assets["/assets/sponsors/dotnetfondation.webp"]"
                         alt=".NET Foundation" class="h-[100px]" /></a>
@@ -138,11 +138,9 @@
     {
         <section>
             <div class="section container mx-auto">
-                <h1 class="heading heading-1">Our Open Source Projects</h1>
+                <h1 class="heading heading-1">@L["Projects_Title"]</h1>
                 <p class="md:w-2/3">
-                    Explore the innovative open-source projects driving our community forward. Built with passion and
-                    collaboration, these projects reflect our commitment to sharing knowledge and building impactful
-                    solutions together.
+                    @L["Projects_Description"]
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
                     @foreach (var project in _projects)

@@ -1,3 +1,6 @@
+@inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
+@using app.Resources
+
 <section class="text-white bg-secondary bg-opacity-85">
     <div class=" relative mt-2 p-4 py-8 container mx-auto">
         <div class="flex flex-col gap-6 md:flex-row md:items-start md:gap-0 md:justify-between">
@@ -8,30 +11,30 @@
                 <!-- Newsletter form -->
             </div>
             <nav>
-                <h2 class="heading heading-4">Resources</h2>
+                <h2 class="heading heading-4">@L["Footer_Resources"]</h2>
                 <ul>
                     <li class="flex w-fit items-center hover:translate-x-2 transition-all">
-                        <a data-enhance-nav="false" href="/" class="py-1" aria-label="Home"><i class="fa-solid fa-arrow-right"></i> Home</a>
+                        <a data-enhance-nav="false" href="/" class="py-1" aria-label="Home"><i class="fa-solid fa-arrow-right"></i> @L["Footer_Home"]</a>
                     </li>
                     <li class="flex w-fit items-center hover:translate-x-2 transition-all">
-                        <a data-enhance-nav="false" href="/events" class="py-1" aria-label="Events"><i class="fa-solid fa-arrow-right"></i> Events</a>
+                        <a data-enhance-nav="false" href="/events" class="py-1" aria-label="Events"><i class="fa-solid fa-arrow-right"></i> @L["Footer_Events"]</a>
                     </li>
                     <li class="flex w-fit items-center hover:translate-x-2 transition-all">
-                        <a data-enhance-nav="false" href="/" class="py-1" aria-label="About"><i class="fa-solid fa-arrow-right"></i> About <span class="ml-2 text-[10px] py-1 px-2 rounded-full bg-primary text-white">Soon</span></a>
+                        <a data-enhance-nav="false" href="/" class="py-1" aria-label="About"><i class="fa-solid fa-arrow-right"></i> @L["Footer_About"] <span class="ml-2 text-[10px] py-1 px-2 rounded-full bg-primary text-white">@L["Footer_Soon"]</span></a>
                     </li>
                     <li class="flex w-fit items-center hover:translate-x-2 transition-all">
-                        <a data-enhance-nav="false" href="/" class="py-1" aria-label="Projects"><i class="fa-solid fa-arrow-right"></i> Projects <span class="ml-2 text-[10px] py-1 px-2 rounded-full bg-primary text-white">Soon</span></a>
+                        <a data-enhance-nav="false" href="/" class="py-1" aria-label="Projects"><i class="fa-solid fa-arrow-right"></i> @L["Footer_Projects"] <span class="ml-2 text-[10px] py-1 px-2 rounded-full bg-primary text-white">@L["Footer_Soon"]</span></a>
                     </li>
                     <li class="flex w-fit items-center hover:translate-x-2 transition-all">
-                        <a data-enhance-nav="false" href="/" class="py-1" aria-label="Resources"><i class="fa-solid fa-arrow-right"></i> Resources</a>
+                        <a data-enhance-nav="false" href="/" class="py-1" aria-label="Resources"><i class="fa-solid fa-arrow-right"></i> @L["Footer_Resources"]</a>
                     </li>
                     <li class="flex w-fit items-center hover:translate-x-2 transition-all">
-                        <a data-enhance-nav="false" href="/" class="py-1" aria-label="Contact"><i class="fa-solid fa-arrow-right"></i> Contact</a>
+                        <a data-enhance-nav="false" href="/" class="py-1" aria-label="Contact"><i class="fa-solid fa-arrow-right"></i> @L["Footer_Contact"]</a>
                     </li>
                 </ul>
             </nav>
             <div>
-                <h2 class="heading heading-4">Contact</h2>
+                <h2 class="heading heading-4">@L["Footer_Contact"]</h2>
                 <ul>
                     <li class="py-1"><i class="fa-solid fa-location-dot"></i> Douala, Cameroon</li>
                     <li class="py-1"><a data-enhance-nav="false" href="mailto:dotnetcameroon@outlook.com" class="link link-white" aria-label="Email dotnetcameroon"><i class="fa-solid fa-envelope"></i> dotnetcameroon@outlook.com</a></li>
@@ -39,8 +42,8 @@
                 </ul>
             </div>
             <div>
-                <h2 class="heading heading-4">Join us</h2>
-                <p>Join us on our different platforms</p>
+                <h2 class="heading heading-4">@L["Footer_JoinUs"]</h2>
+                <p>@L["Footer_JoinDescription"]</p>
                 <ul class="flex gap-2 mt-3">
                     <li><a data-enhance-nav="false" href="https://discord.gg/npkCMRgqdm" class="btn btn-primary" target="_blank" aria-label="Join Discord"><i class="fa-brands fa-discord"></i></a></li>
                     <li><a data-enhance-nav="false" href="https://chat.whatsapp.com/KlBkiJX85Y8KFS28tIm1UU" class="btn btn-primary" target="_blank" aria-label="Join WhatsApp"><i class="fa-brands fa-whatsapp"></i></a></li>
@@ -50,10 +53,17 @@
                 </ul>
             </div>
         </div>
-        <p class="text-center mt-8">Copyright &copy; .NET Cameroon @Year</p>
+        <p class="text-center mt-8">@L["Footer_Copyright"] &copy; .NET Cameroon @Year</p>
     </div>
 </section>
 
 @code{
+    private Microsoft.Extensions.Localization.IStringLocalizer L = default!;
+
+    protected override void OnInitialized()
+    {
+        L = LocalizerFactory.Create(typeof(SharedResources));
+    }
+
     public int Year => DateTime.Now.Year;
 }

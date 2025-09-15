@@ -265,4 +265,34 @@
   <data name="NetConf_SeeAllPictures" xml:space="preserve">
     <value>See all the pictures</value>
   </data>
+  <data name="Footer_Resources" xml:space="preserve">
+    <value>Resources</value>
+  </data>
+  <data name="Footer_Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Footer_Events" xml:space="preserve">
+    <value>Events</value>
+  </data>
+  <data name="Footer_About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Footer_Projects" xml:space="preserve">
+    <value>Projects</value>
+  </data>
+  <data name="Footer_Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="Footer_Soon" xml:space="preserve">
+    <value>Soon</value>
+  </data>
+  <data name="Footer_JoinUs" xml:space="preserve">
+    <value>Join us</value>
+  </data>
+  <data name="Footer_JoinDescription" xml:space="preserve">
+    <value>Join us on our different platforms</value>
+  </data>
+  <data name="Footer_Copyright" xml:space="preserve">
+    <value>Copyright</value>
+  </data>
 </root>

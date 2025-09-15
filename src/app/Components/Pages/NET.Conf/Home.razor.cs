@@ -80,7 +80,7 @@ public partial class Home
             new TimeOnly(12, 00),
             SessionType.Talk, Room.Dotnet),
         new(
-            "Microsoft Power BI - Initiation à Power BI : Exploration des données et création de tableaux de bord interactifs",
+            "Microsoft Power BI - Introduction to Power BI: Data Exploration and Interactive Dashboard Creation",
             null,
             [ new Speaker("BITÉE Méryl", "Ing @ ARII, Architecte des Technologies du Numériques", "", null, null, null)],
             new TimeOnly(12, 00),
@@ -108,7 +108,7 @@ public partial class Home
             new TimeOnly(13, 15),
             SessionType.Advertisement, Room.Dotnet),
         new(
-            "Le Domain-Driven Design du point de vue du client",
+            "Domain-Driven Design from the Client Perspective",
             null,
             [ new Speaker("Aguekeng Arolle", "Software Engineer @ RHOPEN LABS", "", null, null, null)],
             new TimeOnly(13, 15),

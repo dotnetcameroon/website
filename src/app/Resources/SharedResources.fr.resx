@@ -262,4 +262,34 @@
   <data name="NetConf_SeeAllPictures" xml:space="preserve">
     <value>Voir Toutes les Photos</value>
   </data>
+  <data name="Footer_Resources" xml:space="preserve">
+    <value>Ressources</value>
+  </data>
+  <data name="Footer_Home" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="Footer_Events" xml:space="preserve">
+    <value>Événements</value>
+  </data>
+  <data name="Footer_About" xml:space="preserve">
+    <value>À propos</value>
+  </data>
+  <data name="Footer_Projects" xml:space="preserve">
+    <value>Projets</value>
+  </data>
+  <data name="Footer_Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="Footer_Soon" xml:space="preserve">
+    <value>Bientôt</value>
+  </data>
+  <data name="Footer_JoinUs" xml:space="preserve">
+    <value>Rejoignez-nous</value>
+  </data>
+  <data name="Footer_JoinDescription" xml:space="preserve">
+    <value>Rejoignez-nous sur nos différentes plateformes</value>
+  </data>
+  <data name="Footer_Copyright" xml:space="preserve">
+    <value>Copyright</value>
+  </data>
 </root>
