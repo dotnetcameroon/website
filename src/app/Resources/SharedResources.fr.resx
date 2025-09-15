@@ -227,13 +227,13 @@
     <value>Êtes-vous passionné par .NET, les technologies de pointe ou la création de solutions innovantes ? Aimez-vous partager vos connaissances et inspirer les autres à grandir ? Alors nous voulons que &lt;span class="font-bold"&gt;VOUS&lt;/span&gt; fassiez partie de .NET Conf Cameroun 2024 !</value>
   </data>
   <data name="NetConf_Visibility" xml:space="preserve">
-    <value>&lt;strong class="font-bold"&gt;Visibilité :&lt;/strong&gt; partagez vos connaissances</value>
+    <value>&lt;strong class="font-bold"&gt;Visibilité :&lt;/strong&gt; Partagez vos connaissances</value>
   </data>
   <data name="NetConf_Networking" xml:space="preserve">
-    <value>&lt;strong class="font-bold"&gt;Opportunités de réseautage :&lt;/strong&gt; interagissez avec des experts</value>
+    <value>&lt;strong class="font-bold"&gt;Opportunités de réseautage :&lt;/strong&gt; Interagissez avec des experts</value>
   </data>
   <data name="NetConf_PersonalBranding" xml:space="preserve">
-    <value>&lt;strong class="font-bold"&gt;Image personnelle :&lt;/strong&gt; élevez votre image.</value>
+    <value>&lt;strong class="font-bold"&gt;Image personnelle :&lt;/strong&gt; Élevez votre image</value>
   </data>
   <data name="NetConf_AgendaTitle" xml:space="preserve">
     <value>Jetez un Œil à Notre Agenda</value>
@@ -291,5 +291,14 @@
   </data>
   <data name="Footer_Copyright" xml:space="preserve">
     <value>Copyright</value>
+  </data>
+  <data name="Footer_Location" xml:space="preserve">
+    <value>Douala, Cameroun</value>
+  </data>
+  <data name="Footer_Email" xml:space="preserve">
+    <value>dotnetcameroon@outlook.com</value>
+  </data>
+  <data name="Footer_Phone" xml:space="preserve">
+    <value>+237 699254549, +237 653953452</value>
   </data>
 </root>
