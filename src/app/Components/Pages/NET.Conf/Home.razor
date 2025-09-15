@@ -2,7 +2,7 @@
 @using app.domain.ViewModels
 @using app.shared.Utilities
 
-<PageTitle>.NET Conf 2                <p class="mb-6">@L["NetConf_WhyAttendDescription"]</p>24 @L["Site_Name"] 🇨🇲</PageTitle>
+<PageTitle>.NET Conf 2024 @L["Site_Name"] 🇨🇲</PageTitle>
 <HeadContent>
     <!-- Open Graph meta tags -->
     <meta property="og:title" content="@L["NetConf_PageTitle"]">
@@ -126,22 +126,22 @@
         <div class="mt-4 md:flex md:items-center md:gap-6">
             <div class="block md:hidden">
                 <h1 class="heading heading-1">@L["NetConf_ShareExpertise"]</h1>
-                <p class="mb-6">@L["NetConf_SpeakerDescription"]</p>
+                <p class="mb-6">@((MarkupString)L["NetConf_SpeakerDescription"].Value)</p>
                 <ul class="mb-8">
-                    <li class="mt-2"><i class="fa-regular fa-circle-check"></i> @L["NetConf_Visibility"]</li>
-                    <li class="mt-2"><i class="fa-regular fa-circle-check"></i> @L["NetConf_Networking"]</li>
-                    <li class="mt-2"><i class="fa-regular fa-circle-check"></i> @L["NetConf_PersonalBranding"]</li>
+                    <li class="mt-2"><i class="fa-regular fa-circle-check"></i> @((MarkupString)L["NetConf_Visibility"].Value)</li>
+                    <li class="mt-2"><i class="fa-regular fa-circle-check"></i> @((MarkupString)L["NetConf_Networking"].Value)</li>
+                    <li class="mt-2"><i class="fa-regular fa-circle-check"></i> @((MarkupString)L["NetConf_PersonalBranding"].Value)</li>
                 </ul>
                 <a class="btn btn-disabled">@L["NetConf_BecomeApeaker"] <i class="fa-solid fa-arrow-right -rotate-45"></i></a>
             </div>
             <img src="@Assets["/assets/infinite-days/image-11.jpeg"]" alt="Call to speaker photo" class="w-full mt-4 md:mt-0 md:w-1/2 md:aspect-square md:object-cover">
             <div class="hidden md:block md:w-1/2">
                 <h1 class="heading heading-1">@L["NetConf_ShareExpertise"]</h1>
-                <p class="mb-6">@L["NetConf_SpeakerDescription"]</p>
+                <p class="mb-6">@((MarkupString)L["NetConf_SpeakerDescription"].Value)</p>
                 <ul class="mb-8">
-                    <li class="mt-2"><i class="fa-regular fa-circle-check"></i> @L["NetConf_Visibility"]</li>
-                    <li class="mt-2"><i class="fa-regular fa-circle-check"></i> @L["NetConf_Networking"]</li>
-                    <li class="mt-2"><i class="fa-regular fa-circle-check"></i> @L["NetConf_PersonalBranding"]</li>
+                    <li class="mt-2"><i class="fa-regular fa-circle-check"></i> @((MarkupString)L["NetConf_Visibility"].Value)</li>
+                    <li class="mt-2"><i class="fa-regular fa-circle-check"></i> @((MarkupString)L["NetConf_Networking"].Value)</li>
+                    <li class="mt-2"><i class="fa-regular fa-circle-check"></i> @((MarkupString)L["NetConf_PersonalBranding"].Value)</li>
                 </ul>
                 <a class="btn btn-disabled">@L["NetConf_BecomeApeaker"] <i class="fa-solid fa-arrow-right -rotate-45"></i></a>
             </div>
@@ -194,7 +194,7 @@
     <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
         <h2 class="text-center text-base/7 font-semibold text-secondary">@L["NetConf_LastYearTitle"]</h2>
         <p class="mx-auto mt-2 max-w-xl text-balance text-center heading heading-1">@L["NetConf_LastYearSubtitle"]</p>
-        <p class="mt-2 p-4 container text-center mx-auto text-balance">@L["NetConf_LastYearDescription"]</p>
+        <p class="mt-2 p-4 container text-center mx-auto text-balance">@((MarkupString)L["NetConf_LastYearDescription"].Value)</p>
     </div>
     <div class="flex flex-col gap-2 lg:grid lg:grid-cols-4 lg:grid-rows-3">
         <div class="flex lg:block lg:row-span-2 border-gray-600 border-opacity-15 rounded-lg border-[1px] overflow-hidden">
