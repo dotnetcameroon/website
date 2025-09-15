@@ -1,5 +1,6 @@
 @inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
 @using app.Resources
+@using Microsoft.Extensions.Localization
 
 <section class="text-white bg-secondary bg-opacity-85">
     <div class=" relative mt-2 p-4 py-8 container mx-auto">
@@ -24,9 +25,6 @@
                     </li>
                     <li class="flex w-fit items-center hover:translate-x-2 transition-all">
                         <a data-enhance-nav="false" href="/" class="py-1" aria-label="Projects"><i class="fa-solid fa-arrow-right"></i> @L["Footer_Projects"] <span class="ml-2 text-[10px] py-1 px-2 rounded-full bg-primary text-white">@L["Footer_Soon"]</span></a>
-                    </li>
-                    <li class="flex w-fit items-center hover:translate-x-2 transition-all">
-                        <a data-enhance-nav="false" href="/" class="py-1" aria-label="Resources"><i class="fa-solid fa-arrow-right"></i> @L["Footer_Resources"]</a>
                     </li>
                     <li class="flex w-fit items-center hover:translate-x-2 transition-all">
                         <a data-enhance-nav="false" href="/" class="py-1" aria-label="Contact"><i class="fa-solid fa-arrow-right"></i> @L["Footer_Contact"]</a>
@@ -58,12 +56,8 @@
 </section>
 
 @code{
-    private Microsoft.Extensions.Localization.IStringLocalizer L = default!;
-
-    protected override void OnInitialized()
-    {
-        L = LocalizerFactory.Create(typeof(SharedResources));
-    }
+    private Microsoft.Extensions.Localization.IStringLocalizer? _localizer;
+    private Microsoft.Extensions.Localization.IStringLocalizer L => _localizer ??= LocalizerFactory.Create("SharedResources", "app");
 
     public int Year => DateTime.Now.Year;
 }
