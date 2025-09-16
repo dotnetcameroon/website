@@ -86,7 +86,7 @@ app.MapGet("/setculture", (HttpContext http, string culture, string? returnUrl) 
     var cookieOptions = new CookieOptions
     {
         Expires = DateTimeOffset.UtcNow.AddYears(1),
-        HttpOnly = false,
+        HttpOnly = true,
         IsEssential = true,
         SameSite = SameSiteMode.Lax,
         Secure = http.Request.IsHttps
