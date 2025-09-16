@@ -92,7 +92,7 @@ app.MapGet("/setculture", (HttpContext http, string culture, string? returnUrl) 
         Secure = http.Request.IsHttps
     };
     http.Response.Cookies.Append("AppCulture", cookieValue, cookieOptions);
-    
+
     return Results.Redirect(string.IsNullOrEmpty(returnUrl) ? "/" : returnUrl);
 });
 
@@ -108,6 +108,6 @@ app.MapRazorComponents<App>()
 app.MapProjectsApi();
 app.MapIdentityApi();
 
-app.Run(); 
+app.Run();
 
 //
