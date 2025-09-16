@@ -108,4 +108,6 @@ app.MapRazorComponents<App>()
 app.MapProjectsApi();
 app.MapIdentityApi();
 
-app.Run();
+app.Run(); 
+
+//
