@@ -1,21 +1,24 @@
+@using Microsoft.Extensions.Localization
+@using app.Resources
+
 @inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
 
 <div id="@CountDownName-countdown" class="flex w-full items-center justify-between">
     <div>
         <span id="@CountDownName-days" class="block text-4xl font-heading font-bold text-white text-center"></span>
-        <span class="block text-white text-center font-bold">@L["NetConf_Days"]</span>
+        <span class="block text-white text-center font-bold">@SharedLocalizer["NetConf_Days"]</span>
     </div>
     <div>
         <span id="@CountDownName-hours" class="block text-4xl font-heading font-bold text-white text-center"></span>
-        <span class="block text-white text-center font-bold">@L["NetConf_Hours"]</span>
+        <span class="block text-white text-center font-bold">@SharedLocalizer["NetConf_Hours"]</span>
     </div>
     <div>
         <span id="@CountDownName-minutes" class="block text-4xl font-heading font-bold text-white text-center"></span>
-        <span class="block text-white text-center font-bold">@L["NetConf_Minutes"]</span>
+        <span class="block text-white text-center font-bold">@SharedLocalizer["NetConf_Minutes"]</span>
     </div>
     <div>
         <span id="@CountDownName-seconds" class="block text-4xl font-heading font-bold text-white text-center"></span>
-        <span class="block text-white text-center font-bold">@L["NetConf_Seconds"]</span>
+        <span class="block text-white text-center font-bold">@SharedLocalizer["NetConf_Seconds"]</span>
     </div>
 </div>
 
@@ -66,6 +69,6 @@
     [Parameter]
     public string CountDownName { get; set; } = Guid.NewGuid().ToString();
 
-    private Microsoft.Extensions.Localization.IStringLocalizer? _localizer;
-    private Microsoft.Extensions.Localization.IStringLocalizer L => _localizer ??= LocalizerFactory.Create("SharedResources", "app");
+    private IStringLocalizer? _sharedLocalizer;
+    private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
 }
