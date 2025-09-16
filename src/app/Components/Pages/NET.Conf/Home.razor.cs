@@ -1,15 +1,16 @@
 using app.domain.ViewModels;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 
 namespace app.Components.Pages.NET_Conf;
 
 public partial class Home
 {
     [Inject]
-    private Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory { get; set; } = default!;
+    private IStringLocalizerFactory LocalizerFactory { get; set; } = default!;
 
-    private Microsoft.Extensions.Localization.IStringLocalizer? _localizer;
-    private Microsoft.Extensions.Localization.IStringLocalizer L => _localizer ??= LocalizerFactory.Create("SharedResources", "app");
+    private IStringLocalizer? _sharedLocalizer;
+    private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
     private readonly Activity[] Activities = [
         new ("Inspiring Sessions and Conferences", "Dive into cutting-edge topics and explore the latest in .NET technology through insightful sessions and talks. Learn from experts as they cover a wide range of topics, from web and mobile development to cloud solutions and artificial intelligence", "/assets/activities/activity-2.jpeg", "Tech"),
         new ("Meet Microsoft Experts", "Gain exclusive insights from Microsoft employees who work directly on .NET and related technologies. This is your chance to hear directly from those shaping the future of .NET and to ask questions that matter to your projects.", "/assets/featured/net9.png", "Culture"),
@@ -150,6 +151,62 @@ public partial class Home
             new TimeOnly(15, 45),
             SessionType.Advertisement, Room.Dotnet),
     ];
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        // Localize specific session titles that should use the localization system
+        var powerBiKey = "Session_PowerBI_Title";
+        var localizedPowerBiTitle = SharedLocalizer[powerBiKey];
+        const string originalPowerBiTitle = "Microsoft Power BI - Introduction to Power BI: Data Exploration and Interactive Dashboard Creation";
+
+        for (int i = 0; i < DotnetSessions.Length; i++)
+        {
+            if (DotnetSessions[i].Title == originalPowerBiTitle)
+            {
+                var s = DotnetSessions[i];
+                DotnetSessions[i] = new Session(localizedPowerBiTitle, s.Description, s.Speakers, s.StartTime, s.EndTime, s.Type, s.Room);
+                break;
+            }
+        }
+
+        // Localize other selected session titles
+        ReplaceTitle(
+            original: "Deploy .NET Aspire app to Kubernetes using Azure DevOps pipelines",
+            key: "Session_DeployAspire_Title");
+        ReplaceTitle(
+            original: "Git and GitHub for Dummies",
+            key: "Session_GitForDummies_Title");
+        ReplaceTitle(
+            original: "Domain-Driven Design from the Client Perspective",
+            key: "Session_DDDClient_Title");
+        ReplaceTitle(
+            original: "Cross-Platform Development Simplified: Building a Sync-Enabled To-Do App with .NET MAUI and Parse",
+            key: "Session_MAUIParse_Title");
+        ReplaceTitle(
+            original: "Développer une application web moderne avec Python et .NET : Une approche hybride pour les développeurs web",
+            key: "Session_PythonDotNetHybrid_Title");
+        ReplaceTitle(
+            original: "Overview of Microsoft AI solutions",
+            key: "Session_MS_AI_Overview_Title");
+        ReplaceTitle(
+            original: "Keynote",
+            key: "Session_Keynote_Title");
+    }
+
+    private void ReplaceTitle(string original, string key)
+    {
+        for (int i = 0; i < DotnetSessions.Length; i++)
+        {
+            if (DotnetSessions[i].Title == original)
+            {
+                var s = DotnetSessions[i];
+                DotnetSessions[i] = new Session(SharedLocalizer[key], s.Description, s.Speakers, s.StartTime, s.EndTime, s.Type, s.Room);
+                return;
+            }
+        }
+    }
 
     record Activity(
         string Title,

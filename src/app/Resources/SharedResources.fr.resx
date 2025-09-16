@@ -262,6 +262,11 @@
   <data name="NetConf_SeeAllPictures" xml:space="preserve">
     <value>Voir Toutes les Photos</value>
   </data>
+  
+  <!-- Session Titles (.NET Conf) -->
+  <data name="Session_PowerBI_Title" xml:space="preserve">
+    <value>Microsoft Power BI - Introduction à Power BI : Exploration des données et création de tableaux de bord interactifs</value>
+  </data>
   <data name="Footer_Resources" xml:space="preserve">
     <value>Ressources</value>
   </data>
@@ -300,5 +305,39 @@
   </data>
   <data name="Footer_Phone" xml:space="preserve">
     <value>+237 699254549, +237 653953452</value>
+  </data>
+
+  <!-- Session Labels -->
+  <data name="Session_Keynote" xml:space="preserve">
+    <value>Discours d'ouverture</value>
+  </data>
+  <data name="Session_Break" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="Session_SponsorTime" xml:space="preserve">
+    <value>Temps sponsor - {0}</value>
+  </data>
+
+  <!-- Session Titles (localized) -->
+  <data name="Session_Keynote_Title" xml:space="preserve">
+    <value>Discours d'ouverture</value>
+  </data>
+  <data name="Session_DeployAspire_Title" xml:space="preserve">
+    <value>Déployer une application .NET Aspire sur Kubernetes à l'aide des pipelines Azure DevOps</value>
+  </data>
+  <data name="Session_GitForDummies_Title" xml:space="preserve">
+    <value>Git et GitHub pour les nuls</value>
+  </data>
+  <data name="Session_DDDClient_Title" xml:space="preserve">
+    <value>Conception pilotée par le domaine du point de vue du client</value>
+  </data>
+  <data name="Session_MAUIParse_Title" xml:space="preserve">
+    <value>Développement multiplateforme simplifié : Créer une application To-Do avec synchronisation avec .NET MAUI et Parse</value>
+  </data>
+  <data name="Session_PythonDotNetHybrid_Title" xml:space="preserve">
+    <value>Développer une application web moderne avec Python et .NET : Une approche hybride pour les développeurs web</value>
+  </data>
+  <data name="Session_MS_AI_Overview_Title" xml:space="preserve">
+    <value>Aperçu des solutions d'IA de Microsoft</value>
   </data>
 </root>
