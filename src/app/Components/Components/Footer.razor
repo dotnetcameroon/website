@@ -56,8 +56,8 @@
 </section>
 
 @code{
-    private Microsoft.Extensions.Localization.IStringLocalizer? _localizer;
-    private Microsoft.Extensions.Localization.IStringLocalizer L => _localizer ??= LocalizerFactory.Create("SharedResources", "app");
+    private Microsoft.Extensions.Localization.IStringLocalizer? _sharedLocalizer;
+    private Microsoft.Extensions.Localization.IStringLocalizer L => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
 
     public int Year => DateTime.Now.Year;
 }
