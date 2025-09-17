@@ -2,30 +2,32 @@
 @using app.business.Services
 @using app.domain.Models.ProjectsAggregate
 @using app.shared.Utilities
+ @using Microsoft.Extensions.Localization 
 @attribute [StreamRendering]
 @inject IProjectService ProjectService
+@inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
 
-<PageTitle>.NET Cameroon 🇨🇲 | Home</PageTitle>
+<PageTitle>@SharedLocalizer["PageTitle_Home"]</PageTitle>
 <HeadContent>
     <!-- Open Graph meta tags -->
-    <meta property="og:title" content=".NET Cameroon Community">
+    <meta property="og:title" content="@SharedLocalizer["Meta_Title"]">
     <meta property="og:description"
-        content="Welcome to the .NET Cameroon Community website! Join us to learn, share, and collaborate on .NET technologies. Stay updated with our latest events, resources, and news.">
+        content="@SharedLocalizer["Meta_Description"]">
     <meta property="og:image" content="https://dotnet.cm/assets/brand/logo.png">
     <meta property="og:url" content="https://dotnet.cm">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content=".NET Cameroon Community">
+    <meta property="og:site_name" content="@SharedLocalizer["Meta_Title"]">
 
     <!-- Twitter Card meta tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content=".NET Cameroon Community">
+    <meta name="twitter:title" content="@SharedLocalizer["Meta_Title"]">
     <meta name="twitter:description"
-        content="Welcome to the .NET Cameroon Community website! Join us to learn, share, and collaborate on .NET technologies. Stay updated with our latest events, resources, and news.">
+        content="@SharedLocalizer["Meta_Description"]">
     <meta name="twitter:image" content="https://dotnet.cm/assets/brand/logo.png">
     <meta name="twitter:site" content="@@dotnetcameroon">
 
     <meta name="description"
-        content="Welcome to the .NET Cameroon Community website! Join us to learn, share, and collaborate on .NET technologies. Stay updated with our latest events, resources, and news.">
+        content="@SharedLocalizer["Meta_Description"]">
 </HeadContent>
 
 <div>
@@ -39,13 +41,11 @@
                 class="lg:w-1/2 h-full flex flex-col justify-center md:gap-6 gap-4 md:translate-y-[-60px] translate-y-[-40px]">
                 <h1
                     class="text-white text-center md:text-start heading font-bold text-5xl md:text-7xl md:leading-[80px]">
-                    Community.<br>Open Source.<br>Innovative.<br>Continent 🇨🇲</h1>
-                <p class="text-white text-center md:text-start leading-[35px]">.NET Cameroon is a group of passionate
-                    .NET enthusiasts based in Cameroon, committed to promoting Microsoft technologies and fostering
-                    interest in the local community.</p>
+                    @((MarkupString)SharedLocalizer["Hero_Title"].Value)</h1>
+                <p class="text-white text-center md:text-start leading-[35px]">@SharedLocalizer["Hero_Description"]</p>
                 <div class="flex gap-4 justify-center md:justify-start">
-                    <a data-enhance-nav="false" href="/" class="btn btn-primary">Learn more</a>
-                    <a data-enhance-nav="false" href="/" class="btn btn-secondary">Join us</a>
+                    <a data-enhance-nav="false" href="/" class="btn btn-primary">@SharedLocalizer["Hero_LearnMore"]</a>
+                    <a data-enhance-nav="false" href="/" class="btn btn-secondary">@SharedLocalizer["Hero_JoinUs"]</a>
                 </div>
             </div>
         </div>
@@ -54,18 +54,16 @@
     <!-- What we do -->
     <section>
         <div class="section container mx-auto">
-            <h1 class="heading heading-1">What we do ?</h1>
-            <p class="md:w-2/3">At .NET Cameroon Community, we’re all about innovation, learning, and collaboration.
-                Join us to sharpen your skills, connect with fellow developers, and make an impact through our dynamic
-                activities.</p>
+            <h1 class="heading heading-1">@SharedLocalizer["WhatWeDo_Title"]</h1>
+            <p class="md:w-2/3">@SharedLocalizer["WhatWeDo_Description"]</p>
             <div class="flex gap-6 items-center justify-center flex-wrap mt-8">
-                <ActivityCard ImageName="@Assets["/assets/activities/activity-1.jpg"]" Title="Live Codings"
-                    Description="Join our live coding sessions to collaborate, learn, and solve coding challenges in real-time." />
-                <ActivityCard ImageName="@Assets["/assets/activities/activity-2.jpeg"]" Title="Conferences and Meetups"
-                    Description="Connect with fellow developers through insightful talks, workshops, and networking opportunities." />
+                <ActivityCard ImageName="@Assets["/assets/activities/activity-1.jpg"]" Title="@SharedLocalizer["Activity_LiveCoding_Title"]"
+                    Description="@SharedLocalizer["Activity_LiveCoding_Description"]" />
+                <ActivityCard ImageName="@Assets["/assets/activities/activity-2.jpeg"]" Title="@SharedLocalizer["Activity_Conferences_Title"]"
+                    Description="@SharedLocalizer["Activity_Conferences_Description"]" />
                 <ActivityCard ImageName="@Assets["/assets/activities/activity-3.png"]"
-                    Link="https://github.com/dotnetcameroon" LinkText="Visit on GitHub" Title="Open Source Projects"
-                    Description="Contribute to impactful open source projects and collaborate with developers to make a difference." />
+                    Link="https://github.com/dotnetcameroon" LinkText="@SharedLocalizer["Activity_VisitGitHub"]" Title="@SharedLocalizer["Activity_OpenSource_Title"]"
+                    Description="@SharedLocalizer["Activity_OpenSource_Description"]" />
             </div>
         </div>
     </section>
@@ -76,44 +74,42 @@
             class="absolute z-10 top-0 left-0 w-full h-full bg-secondary md:bg-transparent md:bg-gradient-to-r md:from-secondary md:via-secondary/70 md:to-transparent">
         </div>
         <div class="relative z-20 section container mx-auto">
-            <h1 class="heading heading-1 text-white">Benefits of membership</h1>
-            <p class="md:w-2/3 text-white">The .NET ecosystem is rapidly evolving, bringing cutting-edge innovations and
-                exciting opportunities for developers. By joining our community, you’ll be at the forefront of these
-                changes, connecting with fellow enthusiasts who share your passion for .NET.</p>
+            <h1 class="heading heading-1 text-white">@SharedLocalizer["Membership_Title"]</h1>
+            <p class="md:w-2/3 text-white">@SharedLocalizer["Membership_Description"]</p>
 
             <div class="md:mt-6 md:w-[500px] flex flex-col gap-7">
                 <div class="md:flex gap-6">
                     <div class="w-1/2">
                         <h2 class="heading heading-3 text-white">600+</h2>
-                        <p class="text-white">Members in our <span class="font-bold">community groups</span></p>
+                        <p class="text-white">@((MarkupString)SharedLocalizer["Membership_Stats_Members"].Value)</p>
                     </div>
                     <div class="w-1/2">
                         <h2 class="heading heading-3 text-white">2k+</h2>
-                        <p class="text-white"><span class="font-bold">Followers</span> on our social media platforms</p>
+                        <p class="text-white">@((MarkupString)SharedLocalizer["Membership_Stats_Followers"].Value)</p>
                     </div>
                 </div>
                 <div class="md:flex gap-6">
                     <div class="w-1/2">
                         <h2 class="heading heading-3 text-white">60+</h2>
-                        <p class="text-white">Events, meetups and conferences</p>
+                        <p class="text-white">@SharedLocalizer["Membership_Stats_Events"]</p>
                     </div>
                     <div class="w-1/2">
                         <h2 class="heading heading-3 text-white">6+</h2>
-                        <p class="text-white">Active <span class="font-bold">Open source</span> projects and libraries
+                        <p class="text-white">@((MarkupString)SharedLocalizer["Membership_Stats_Projects"].Value)
                         </p>
                     </div>
                 </div>
             </div>
 
-            <a data-enhance-nav="false" href="/" class="btn btn-outline-white mt-6 block size-fit">Become a member</a>
+            <a data-enhance-nav="false" href="/" class="btn btn-outline-white mt-6 block size-fit">@SharedLocalizer["Membership_BecomeMember"]</a>
         </div>
     </section>
 
     <!-- Partners -->
     <section>
         <div class="section container mx-auto">
-            <h1 class="heading heading-1 text-center">Our sponsors</h1>
-            <p class="text-center">We work with various companies, startups and communities</p>
+            <h1 class="heading heading-1 text-center">@SharedLocalizer["Sponsors_Title"]</h1>
+            <p class="text-center">@SharedLocalizer["Sponsors_Description"]</p>
             <div class="flex flex-wrap gap-8 justify-center items-center mt-8">
                 <a data-enhance-nav="false" href="https://dotnetfoundation.org"><img src="@Assets["/assets/sponsors/dotnetfondation.webp"]"
                         alt=".NET Foundation" class="h-[100px]" /></a>
@@ -139,11 +135,9 @@
     {
         <section>
             <div class="section container mx-auto">
-                <h1 class="heading heading-1">Our Open Source Projects</h1>
+                <h1 class="heading heading-1">@SharedLocalizer["Projects_Title"]</h1>
                 <p class="md:w-2/3">
-                    Explore the innovative open-source projects driving our community forward. Built with passion and
-                    collaboration, these projects reflect our commitment to sharing knowledge and building impactful
-                    solutions together.
+                    @SharedLocalizer["Projects_Description"]
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
                     @foreach (var project in _projects)
@@ -183,6 +177,10 @@
 
 @code {
     private Project[] _projects = [];
+    
+    private IStringLocalizer? _sharedLocalizer;
+    private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
+    
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();

@@ -3,8 +3,9 @@
 @layout BlankLayout
 @inject NavigationManager NavigationManager
 @inject IIdentityService IdentityService
+@inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
 
-<PageTitle>.NET Cameroon | Login</PageTitle>
+<PageTitle>@L["PageTitle_Login"]</PageTitle>
 
 <div class="h-[100svh] flex">
     <div class="relative hidden md:flex md:flex-col items-start md:w-1/2 bg-primary p-12 bg-[url('/assets/featured/carousel-3.png')] bg-bottom bg-cover bg-no-repeat">
@@ -17,8 +18,8 @@
         <div class="flex flex-col gap-6 w-[400px] p-4">
             <img src="@Assets["/assets/brand/logo-rounded.png"]" alt=".NET Cameroon logo" class="block justify-self-center self-center my-4 size-20"/>
             <div>
-                <h1 class="heading heading-1 text-center">Hi Administrator !!, Welcome Back</h1>
-                <p class="text-center text-gray-500">Hope you are doing well</p>
+                <h1 class="heading heading-1 text-center">@L["Login_Welcome"]</h1>
+                <p class="text-center text-gray-500">@L["Login_Subtitle"]</p>
                 <ul>
                     @foreach(var message in _errorMessages)
                     {
@@ -29,14 +30,14 @@
             <EditForm class="flex flex-col gap-4" OnValidSubmit="@HandleLogin" Model="@Model" FormName="login-form">
                 <label for="email-input" class="flex items-center px-4 gap-1 border border-gray-400 rounded-lg">
                     <i class="fa-regular fa-envelope"></i>
-                    <InputText class="p-2 w-full" id="email-input" @bind-Value="@Model.Email" title="email" required type="email" placeholder="Your email"/>
+                    <InputText class="p-2 w-full" id="email-input" @bind-Value="@Model.Email" title="email" required type="email" placeholder="@L["Login_EmailPlaceholder"]"/>
                 </label>
                 <label for="password-input" class="flex items-center px-4 gap-1 border border-gray-400 rounded-lg">
                     <i class="fa-solid fa-lock"></i>
-                    <InputText class="p-2 w-full" id="password-input" @bind-Value="@Model.Password" title="password" required type="password" placeholder="Your password"/>
+                    <InputText class="p-2 w-full" id="password-input" @bind-Value="@Model.Password" title="password" required type="password" placeholder="@L["Login_PasswordPlaceholder"]"/>
                 </label>
-                <button class="btn btn-primary center mt-6" type="submit">Log in</button>
-                <a data-enhance-nav="false" href="/" class="link link-secondary text-center"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+                <button class="btn btn-primary center mt-6" type="submit">@L["Login_Button"]</button>
+                <a data-enhance-nav="false" href="/" class="link link-secondary text-center"><i class="fa-solid fa-arrow-left"></i> @L["Login_BackToHome"]</a>
             </EditForm>
         </div>
     </div>
@@ -50,6 +51,10 @@
     [SupplyParameterFromForm]
     private LoginModel Model { get; set; } = new();
     private string[] _errorMessages = [];
+    
+    private Microsoft.Extensions.Localization.IStringLocalizer? _localizer;
+    private Microsoft.Extensions.Localization.IStringLocalizer L => _localizer ??= LocalizerFactory.Create("SharedResources", "app");
+    
     private async Task HandleLogin()
     {
         var userResult = await IdentityService.LoginAsync(Model.Email, Model.Password);

@@ -1,19 +1,24 @@
+@using Microsoft.Extensions.Localization
+@using app.Resources
+
+@inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
+
 <div id="@CountDownName-countdown" class="flex w-full items-center justify-between">
     <div>
         <span id="@CountDownName-days" class="block text-4xl font-heading font-bold text-white text-center"></span>
-        <span class="block text-white text-center font-bold">Days</span>
+        <span class="block text-white text-center font-bold">@SharedLocalizer["NetConf_Days"]</span>
     </div>
     <div>
         <span id="@CountDownName-hours" class="block text-4xl font-heading font-bold text-white text-center"></span>
-        <span class="block text-white text-center font-bold">Hours</span>
+        <span class="block text-white text-center font-bold">@SharedLocalizer["NetConf_Hours"]</span>
     </div>
     <div>
         <span id="@CountDownName-minutes" class="block text-4xl font-heading font-bold text-white text-center"></span>
-        <span class="block text-white text-center font-bold">Minutes</span>
+        <span class="block text-white text-center font-bold">@SharedLocalizer["NetConf_Minutes"]</span>
     </div>
     <div>
         <span id="@CountDownName-seconds" class="block text-4xl font-heading font-bold text-white text-center"></span>
-        <span class="block text-white text-center font-bold">Seconds</span>
+        <span class="block text-white text-center font-bold">@SharedLocalizer["NetConf_Seconds"]</span>
     </div>
 </div>
 
@@ -63,4 +68,7 @@
 
     [Parameter]
     public string CountDownName { get; set; } = Guid.NewGuid().ToString();
+
+    private IStringLocalizer? _sharedLocalizer;
+    private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
 }

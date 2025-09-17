@@ -1,0 +1,16 @@
+@using System.Reflection
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.WebAssembly.Hosting
+
+<Router AppAssembly="@typeof(app.client.Pages.Counter).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="routeData" />
+    </Found>
+    <NotFound>
+        <p>Sorry, there's nothing at this address.</p>
+    </NotFound>
+</Router>
+
+<HeadOutlet />
