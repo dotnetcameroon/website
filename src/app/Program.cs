@@ -1,3 +1,4 @@
+using app.Api.Culture;
 using app.Api.DebugMode;
 using app.Api.Identity;
 using app.Api.Projects;
@@ -80,24 +81,6 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-// Map setculture endpoint BEFORE antiforgery to avoid conflicts
-app.MapGet("/setculture", (HttpContext http, string culture, string? returnUrl) =>
-{
-    if (string.IsNullOrEmpty(culture)) culture = "en-US";
-    var cookieValue = CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture));
-    var cookieOptions = new CookieOptions
-    {
-        Expires = DateTimeOffset.UtcNow.AddYears(1),
-        HttpOnly = true,
-        IsEssential = true,
-        SameSite = SameSiteMode.Lax,
-        Secure = http.Request.IsHttps
-    };
-    http.Response.Cookies.Append("AppCulture", cookieValue, cookieOptions);
-
-    return Results.Redirect(string.IsNullOrEmpty(returnUrl) ? "/" : returnUrl);
-});
-
 app.UseAntiforgery();
 
 // app.MapHangfireJobs();
@@ -110,7 +93,6 @@ app.MapRazorComponents<App>()
 app.MapProjectsApi();
 app.MapIdentityApi();
 app.MapDebugModeApi();
+app.MapCultureApi();
 
 app.Run();
-
-//

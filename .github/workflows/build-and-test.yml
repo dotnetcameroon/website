@@ -8,6 +8,8 @@ on:
       - feature*
     paths:
       - "src/**"
+      - "tests/**"
+      - "dotnetcameroon.slnx"
       - ".github/workflows/build-and-test.yml"
   pull_request:
     branches:
@@ -16,6 +18,8 @@ on:
       - feature*
     paths:
       - "src/**"
+      - "tests/**"
+      - "dotnetcameroon.slnx"
       - ".github/workflows/build-and-test.yml"
 jobs:
   build-and-test:
@@ -39,13 +43,13 @@ jobs:
         restore-keys: ${{ runner.os }}-nuget-
 
     - name: Restore dependencies
-      run: dotnet restore src
+      run: dotnet restore
 
     - name: Check code formatting
-      run: dotnet format src --verify-no-changes --verbosity diagnostic
+      run: dotnet format --verify-no-changes --verbosity diagnostic
 
     - name: Build solution
-      run: dotnet build src --configuration Release --no-restore
+      run: dotnet build --configuration Release --no-restore
 
     - name: Run tests
-      run: dotnet test src
+      run: dotnet test

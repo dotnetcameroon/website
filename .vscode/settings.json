@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
+        "antiforgery",
         "Beinjamin",
         "cameroon",
         "Cédric",
@@ -7,6 +8,7 @@
         "dotnet",
         "dotnetfondation",
         "Grotesk",
+        "Hasher",
         "Jaures",
         "jetbrains",
         "jetbrainslogo",
@@ -20,6 +22,7 @@
         "postgres",
         "proditech",
         "pyodbc",
-        "Referer"
+        "Referer",
+        "setculture"
     ]
 }
