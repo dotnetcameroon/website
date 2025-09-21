@@ -2,7 +2,7 @@ using app.domain.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 
-namespace app.Components.Pages.NET_Conf;
+namespace app.Components.Pages.NET_Conf.Year2024;
 
 public partial class Home
 {
