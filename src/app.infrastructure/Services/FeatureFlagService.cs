@@ -36,20 +36,33 @@ public class FeatureFlagService : IFeatureFlagService
         bool isEnabled;
 
         // Check environment-specific settings
-        if (_environment.IsProduction())
+        if (_devModeService.IsDevMode)
+        {
+            isEnabled = feature.EnabledInDevMode;
+        }
+        else if (_environment.IsProduction())
         {
             isEnabled = feature.EnabledInProduction;
         }
-        else if (_devModeService.IsDevMode && _options.EnableDevModeOverride)
-        {
-            // In Dev Mode, use dev mode specific flag
-            isEnabled = feature.EnabledInDevMode;
-        }
         else
         {
-            // Default to the general enabled flag
             isEnabled = feature.Enabled;
         }
+
+        // if (_environment.IsProduction())
+        // {
+        //     isEnabled = feature.EnabledInProduction;
+        // }
+        // else if (_devModeService.IsDevMode && _options.EnableDevModeOverride)
+        // {
+        //     // In Dev Mode, use dev mode specific flag
+        //     isEnabled = feature.EnabledInDevMode;
+        // }
+        // else
+        // {
+        //     // Default to the general enabled flag
+        //     isEnabled = feature.Enabled;
+        // }
 
         return Task.FromResult(isEnabled);
     }

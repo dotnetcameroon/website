@@ -2,9 +2,12 @@ using app.Api.Culture;
 using app.Api.DebugMode;
 using app.Api.Identity;
 using app.Api.Projects;
+using app.business.Services;
+using app.Components;
 using app.Extensions;
 using EntityFrameworkCore.Seeder.Extensions;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Localization;
 using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
