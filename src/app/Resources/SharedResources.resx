@@ -465,12 +465,20 @@
     <value>Contact</value>
     <comment/>
   </data>
+  <data name="Footer_Navigation" xml:space="preserve">
+    <value>Navigation</value>
+    <comment/>
+  </data>
+  <data name="Footer_Line" xml:space="preserve">
+    <value>.NET Cameroon – Building community by connecting passionate developers, sharing knowledge through events and open source, and growing together to strengthen the tech ecosystem in Cameroon and beyond.</value>
+    <comment/>
+  </data>
   <data name="Footer_Soon" xml:space="preserve">
     <value>Soon</value>
     <comment/>
   </data>
-  <data name="Footer_JoinUs" xml:space="preserve">
-    <value>Join us</value>
+  <data name="Footer_Social" xml:space="preserve">
+    <value>Social</value>
     <comment/>
   </data>
   <data name="Footer_JoinDescription" xml:space="preserve">
