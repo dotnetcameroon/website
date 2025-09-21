@@ -8,9 +8,10 @@
   },
   "scripts": {
     "test": "dotnet test src",
-    "start": "dotnet run --project ./src/app",
-    "watch": "dotnet watch --project ./src/app",
-    "tailwind": "npx @tailwindcss/cli -i ./src/app/styles/input.css -o ./src/app/wwwroot/app.css --watch"
+    "start": "npm run tailwind && dotnet run --project ./src/app",
+    "watch": "npm run tailwind && dotnet watch --project ./src/app",
+    "tailwind": "npx @tailwindcss/cli -i ./src/app/styles/input.css -o ./src/app/wwwroot/app.css",
+    "tailwind-watch": "npx @tailwindcss/cli -i ./src/app/styles/input.css -o ./src/app/wwwroot/app.css --watch"
   },
   "repository": {
     "type": "git",

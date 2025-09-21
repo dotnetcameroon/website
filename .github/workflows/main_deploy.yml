@@ -22,6 +22,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Generate CSS
+        run: npm run tailwind
+
       - name: App Settings Variable Substitution
         uses: microsoft/variable-substitution@v1
         with:

@@ -3,6 +3,9 @@
 ##
 ## Get latest from `dotnet new gitignore`
 
+# Generated css
+src/app/wwwroot/app.css
+
 # secret files
 secrets/
 hangfire.db*
