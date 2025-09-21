@@ -1,5 +1,7 @@
+using app.Api.DebugMode;
 using app.Api.Identity;
 using app.Api.Projects;
+using app.business.Services;
 using app.Components;
 using app.Extensions;
 using EntityFrameworkCore.Seeder.Extensions;
@@ -107,6 +109,7 @@ app.MapRazorComponents<App>()
 
 app.MapProjectsApi();
 app.MapIdentityApi();
+app.MapDebugModeApi();
 
 app.Run();
 

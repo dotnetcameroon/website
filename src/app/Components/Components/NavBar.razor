@@ -1,7 +1,9 @@
+@using app.business.Services
 @using app.shared.Utilities
 @using Microsoft.AspNetCore.Components  
 @using Microsoft.Extensions.Localization  
-
+@inject IFeatureFlagService FeatureFlagService
+@inject IDevModeService DevModeService
 
 <header>
     <nav id="navbar" class="relative w-full z-50 @NavBarClass">
@@ -45,6 +47,11 @@
                     <a class="text-white hover:underline" href="@GetSetCultureUrl("en-US")" data-enhance-nav="false">EN</a>
                     <a class="text-white hover:underline" href="@GetSetCultureUrl("fr-FR")" data-enhance-nav="false">FR</a>
                 </div>
+
+                @if (DevModeService.IsDevMode)
+                {
+                    <span class="bg-primary text-white p-2">Dev mode</span>
+                }
                 <button id="hamburger" onclick="toggleNavbar()" title="Hamburger menu" aria-label="Hamburger menu">
                     <span></span>
                 </button>

@@ -37,6 +37,9 @@ public static class Extensions
             services.AddExceptionHandler<ExceptionHandlerMiddleware>();
         }
 
+        // Add HttpContextAccessor for DevModeService
+        services.AddHttpContextAccessor();
+
         // services.AddHangfire(cfg => cfg
         //     .UseSimpleAssemblyNameTypeSerializer()
         //     .UseRecommendedSerializerSettings()
@@ -60,6 +63,8 @@ public static class Extensions
         services.AddScoped<IIdentityService, IdentityService>();
         services.AddScoped<IExternalAppService, ExternalAppService>();
         services.AddScoped<IPasswordHasher<Application>>(sp => new PasswordHasher<Application>());
+        services.AddScoped<IDevModeService, DevModeService>();
+        services.AddScoped<IFeatureFlagService, FeatureFlagService>();
         services.AddScoped<DomainEventsInterceptor>();
         services.AddSqlite<ProjectDbContext>(configuration.GetConnectionString(Sqlite));
         services.AddSqlServer<AppDbContext>(configuration.GetConnectionString(SqlServer));
@@ -72,6 +77,7 @@ public static class Extensions
             .AddEntityFrameworkStores<AppDbContext>();
         services.Configure<CookiesOptions>(configuration.GetRequiredSection(CookiesOptions.SectionName));
         services.Configure<JwtOptions>(configuration.GetRequiredSection(JwtOptions.SectionName));
+        services.Configure<FeatureFlagOptions>(configuration.GetSection(FeatureFlagOptions.SectionName));
         services.AddAuth(configuration);
 
         // Seeders
