@@ -1,343 +1,540 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
-
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
   <data name="WelcomeUser" xml:space="preserve">
     <value>Bienvenue, {0}!</value>
+    <comment/>
   </data>
   <data name="Site_Name" xml:space="preserve">
     <value>Cameroun</value>
+    <comment/>
   </data>
   <data name="Nav_Home" xml:space="preserve">
     <value>Accueil</value>
+    <comment/>
   </data>
   <data name="Nav_NetConf" xml:space="preserve">
     <value>.NET Conf 2024</value>
+    <comment/>
   </data>
   <data name="Nav_Projects" xml:space="preserve">
     <value>Projets</value>
+    <comment/>
   </data>
   <data name="Nav_Resources" xml:space="preserve">
     <value>Ressources</value>
+    <comment/>
   </data>
   <data name="Nav_Contact" xml:space="preserve">
     <value>Contact</value>
+    <comment/>
   </data>
-
-  <!-- Page Titles -->
   <data name="PageTitle_Home" xml:space="preserve">
     <value>.NET Cameroun 🇨🇲 | Accueil</value>
+    <comment/>
   </data>
   <data name="PageTitle_Login" xml:space="preserve">
     <value>.NET Cameroun | Connexion</value>
+    <comment/>
   </data>
-
-  <!-- Hero Section -->
   <data name="Hero_Title" xml:space="preserve">
     <value>Communauté.&lt;br&gt;Open Source.&lt;br&gt;Innovation.&lt;br&gt;Continent 🇨🇲</value>
+    <comment/>
   </data>
   <data name="Hero_Description" xml:space="preserve">
     <value>.NET Cameroun est un groupe de passionnés de .NET basés au Cameroun, engagés à promouvoir les technologies Microsoft et à favoriser l'intérêt dans la communauté locale.</value>
+    <comment/>
   </data>
   <data name="Hero_LearnMore" xml:space="preserve">
     <value>En savoir plus</value>
+    <comment/>
   </data>
   <data name="Hero_JoinUs" xml:space="preserve">
     <value>Rejoignez-nous</value>
+    <comment/>
   </data>
-
-  <!-- What we do Section -->
   <data name="WhatWeDo_Title" xml:space="preserve">
     <value>Que faisons-nous ?</value>
+    <comment/>
   </data>
   <data name="WhatWeDo_Description" xml:space="preserve">
     <value>À la Communauté .NET Cameroun, nous sommes passionnés d'innovation, d'apprentissage et de collaboration. Rejoignez-nous pour améliorer vos compétences, vous connecter avec d'autres développeurs et avoir un impact grâce à nos activités dynamiques.</value>
+    <comment/>
   </data>
   <data name="Activity_LiveCoding_Title" xml:space="preserve">
     <value>Codage en Direct</value>
+    <comment/>
   </data>
   <data name="Activity_LiveCoding_Description" xml:space="preserve">
     <value>Rejoignez nos sessions de codage en direct pour collaborer, apprendre et résoudre des défis de programmation en temps réel.</value>
+    <comment/>
   </data>
   <data name="Activity_Conferences_Title" xml:space="preserve">
     <value>Conférences et Rencontres</value>
+    <comment/>
   </data>
   <data name="Activity_Conferences_Description" xml:space="preserve">
     <value>Connectez-vous avec d'autres développeurs grâce à des présentations perspicaces, des ateliers et des opportunités de réseautage.</value>
+    <comment/>
   </data>
   <data name="Activity_OpenSource_Title" xml:space="preserve">
     <value>Projets Open Source</value>
+    <comment/>
   </data>
   <data name="Activity_OpenSource_Description" xml:space="preserve">
     <value>Contribuez à des projets open source impactants et collaborez avec des développeurs pour faire une différence.</value>
+    <comment/>
   </data>
   <data name="Activity_VisitGitHub" xml:space="preserve">
     <value>Visiter sur GitHub</value>
+    <comment/>
   </data>
-
-  <!-- Membership Section -->
   <data name="Membership_Title" xml:space="preserve">
     <value>Avantages de l'adhésion</value>
+    <comment/>
   </data>
   <data name="Membership_Description" xml:space="preserve">
     <value>L'écosystème .NET évolue rapidement, apportant des innovations de pointe et des opportunités passionnantes pour les développeurs. En rejoignant notre communauté, vous serez à l'avant-garde de ces changements, en vous connectant avec d'autres passionnés qui partagent votre passion pour .NET.</value>
+    <comment/>
   </data>
   <data name="Membership_Stats_Members" xml:space="preserve">
-    <value>Membres dans nos <span class="font-bold">groupes communautaires</span></value>
+    <value>[object Object]</value>
+    <comment/>
   </data>
   <data name="Membership_Stats_Followers" xml:space="preserve">
-    <value><span class="font-bold">Abonnés</span> sur nos plateformes de médias sociaux</value>
+    <value>[object Object]</value>
+    <comment/>
   </data>
   <data name="Membership_Stats_Events" xml:space="preserve">
     <value>Événements, rencontres et conférences</value>
+    <comment/>
   </data>
   <data name="Membership_Stats_Projects" xml:space="preserve">
-    <value>Projets et bibliothèques <span class="font-bold">Open source</span> actifs</value>
+    <value>[object Object]</value>
+    <comment/>
   </data>
   <data name="Membership_BecomeMember" xml:space="preserve">
     <value>Devenir membre</value>
+    <comment/>
   </data>
-
-  <!-- Sponsors Section -->
   <data name="Sponsors_Title" xml:space="preserve">
     <value>Nos sponsors</value>
+    <comment/>
   </data>
   <data name="Sponsors_Description" xml:space="preserve">
     <value>Nous travaillons avec diverses entreprises, startups et communautés</value>
+    <comment/>
   </data>
-
-  <!-- Projects Section -->
   <data name="Projects_Title" xml:space="preserve">
     <value>Nos Projets Open Source</value>
+    <comment/>
   </data>
   <data name="Projects_Description" xml:space="preserve">
     <value>Explorez les projets open source innovants qui font avancer notre communauté. Construits avec passion et collaboration, ces projets reflètent notre engagement à partager les connaissances et à créer des solutions impactantes ensemble.</value>
+    <comment/>
   </data>
-
-  <!-- Login Form -->
   <data name="Login_Welcome" xml:space="preserve">
     <value>Salut Administrateur !!, Bon Retour</value>
+    <comment/>
   </data>
   <data name="Login_Subtitle" xml:space="preserve">
     <value>J'espère que vous allez bien</value>
+    <comment/>
   </data>
   <data name="Login_EmailPlaceholder" xml:space="preserve">
     <value>Votre email</value>
+    <comment/>
   </data>
   <data name="Login_PasswordPlaceholder" xml:space="preserve">
     <value>Votre mot de passe</value>
+    <comment/>
   </data>
   <data name="Login_Button" xml:space="preserve">
     <value>Se connecter</value>
+    <comment/>
   </data>
   <data name="Login_BackToHome" xml:space="preserve">
     <value>Retour à l'accueil</value>
+    <comment/>
   </data>
-
-  <!-- SEO Meta Tags -->
   <data name="Meta_Title" xml:space="preserve">
     <value>Communauté .NET Cameroun</value>
+    <comment/>
   </data>
   <data name="Meta_Description" xml:space="preserve">
     <value>Bienvenue sur le site web de la Communauté .NET Cameroun ! Rejoignez-nous pour apprendre, partager et collaborer sur les technologies .NET. Restez informé de nos derniers événements, ressources et actualités.</value>
+    <comment/>
   </data>
-
-  <!-- .NET Conf Page -->
   <data name="NetConf_PageTitle" xml:space="preserve">
     <value>.NET Conf 2024 Cameroun 🇨🇲</value>
+    <comment/>
   </data>
   <data name="NetConf_MetaDescription" xml:space="preserve">
     <value>.NET Conf Cameroun est un événement de premier plan pour les développeurs, les passionnés de technologie et les leaders de l'industrie pour explorer les dernières nouveautés de .NET, se connecter avec la communauté et stimuler l'innovation dans le développement logiciel. Rejoignez-nous pour des présentations inspirantes, des sessions pratiques et des opportunités de réseautage !</value>
+    <comment/>
   </data>
   <data name="NetConf_HeroTitle" xml:space="preserve">
     <value>.NET Conf 2024 Cameroun 🚀🇨🇲</value>
+    <comment/>
   </data>
   <data name="NetConf_HeroSubtitle" xml:space="preserve">
     <value>Rejoignez la Révolution .NET au Cameroun !</value>
+    <comment/>
   </data>
   <data name="NetConf_RegisterNow" xml:space="preserve">
     <value>S'inscrire Maintenant</value>
+    <comment/>
   </data>
   <data name="NetConf_BecomeApeaker" xml:space="preserve">
     <value>Devenir Orateur</value>
+    <comment/>
   </data>
   <data name="NetConf_SupportEvent" xml:space="preserve">
     <value>Soutenir l'Événement</value>
+    <comment/>
   </data>
   <data name="NetConf_Date" xml:space="preserve">
     <value>11 Janvier 2025</value>
+    <comment/>
   </data>
   <data name="NetConf_Location" xml:space="preserve">
     <value>CODEC - Logbessou Immeuble BAO</value>
+    <comment/>
   </data>
   <data name="NetConf_GoogleMaps" xml:space="preserve">
     <value>Localisation Google Maps</value>
+    <comment/>
   </data>
   <data name="NetConf_Days" xml:space="preserve">
     <value>Jours</value>
+    <comment/>
   </data>
   <data name="NetConf_Hours" xml:space="preserve">
     <value>Heures</value>
+    <comment/>
   </data>
   <data name="NetConf_Minutes" xml:space="preserve">
     <value>Minutes</value>
+    <comment/>
   </data>
   <data name="NetConf_Seconds" xml:space="preserve">
     <value>Secondes</value>
+    <comment/>
   </data>
   <data name="NetConf_GetReady" xml:space="preserve">
     <value>Préparez-vous à développer vos compétences, rencontrer d'autres développeurs et plonger dans les dernières tendances de .NET lors de l'événement de cette année ! Voici ce qui vous attend</value>
+    <comment/>
   </data>
   <data name="NetConf_InspiringTalks" xml:space="preserve">
     <value>Présentations Inspirantes d'Experts</value>
+    <comment/>
   </data>
   <data name="NetConf_DotNet9Features" xml:space="preserve">
     <value>Fonctionnalités de Pointe de .NET 9</value>
+    <comment/>
   </data>
   <data name="NetConf_BuildConnections" xml:space="preserve">
     <value>Créer des Connexions</value>
+    <comment/>
   </data>
   <data name="NetConf_EventOverview" xml:space="preserve">
     <value>Aperçu de l'Événement</value>
+    <comment/>
   </data>
   <data name="NetConf_EventDescription" xml:space="preserve">
     <value>Préparez-vous à rejoindre des développeurs, des passionnés de technologie et des experts de l'industrie du Cameroun et d'ailleurs pour une journée passionnante dédiée à l'innovation .NET. Que vous soyez un développeur expérimenté ou que vous commenciez votre parcours, cette conférence offre quelque chose pour tout le monde.</value>
+    <comment/>
   </data>
   <data name="NetConf_WhyAttend" xml:space="preserve">
     <value>Pourquoi participer ?</value>
+    <comment/>
   </data>
   <data name="NetConf_WhyAttendDescription" xml:space="preserve">
     <value>Que vous soyez un développeur expérimenté ou un nouveau venu dans .NET, cet événement offre une opportunité précieuse de grandir, d'apprendre et de se connecter</value>
+    <comment/>
   </data>
   <data name="NetConf_StayAhead" xml:space="preserve">
     <value>Restez à la Pointe avec les Dernières Nouveautés de .NET 9</value>
+    <comment/>
   </data>
   <data name="NetConf_GetInspired" xml:space="preserve">
     <value>Inspirez-vous des Leaders de l'Industrie</value>
+    <comment/>
   </data>
   <data name="NetConf_BuildNetwork" xml:space="preserve">
     <value>Développez Votre Réseau Professionnel</value>
+    <comment/>
   </data>
   <data name="NetConf_ShareExpertise" xml:space="preserve">
     <value>Partagez Votre Expertise à .NET Conf Cameroun !</value>
+    <comment/>
   </data>
   <data name="NetConf_SpeakerDescription" xml:space="preserve">
     <value>Êtes-vous passionné par .NET, les technologies de pointe ou la création de solutions innovantes ? Aimez-vous partager vos connaissances et inspirer les autres à grandir ? Alors nous voulons que &lt;span class="font-bold"&gt;VOUS&lt;/span&gt; fassiez partie de .NET Conf Cameroun 2024 !</value>
+    <comment/>
   </data>
   <data name="NetConf_Visibility" xml:space="preserve">
     <value>&lt;strong class="font-bold"&gt;Visibilité :&lt;/strong&gt; Partagez vos connaissances</value>
+    <comment/>
   </data>
   <data name="NetConf_Networking" xml:space="preserve">
     <value>&lt;strong class="font-bold"&gt;Opportunités de réseautage :&lt;/strong&gt; Interagissez avec des experts</value>
+    <comment/>
   </data>
   <data name="NetConf_PersonalBranding" xml:space="preserve">
     <value>&lt;strong class="font-bold"&gt;Image personnelle :&lt;/strong&gt; Élevez votre image</value>
+    <comment/>
   </data>
   <data name="NetConf_AgendaTitle" xml:space="preserve">
     <value>Jetez un Œil à Notre Agenda</value>
+    <comment/>
   </data>
   <data name="NetConf_AgendaDescription" xml:space="preserve">
     <value>Découvrez la programmation de sessions et d'activités engageantes que nous avons prévues pour .NET Conf ! Plongez dans l'agenda de la journée et rejoignez-nous pour un voyage inspirant à travers l'innovation .NET et les connexions communautaires</value>
+    <comment/>
   </data>
   <data name="NetConf_SponsorsTitle" xml:space="preserve">
     <value>Rencontrez nos Formidables Sponsors et Partenaires</value>
+    <comment/>
   </data>
   <data name="NetConf_SponsorsDescription" xml:space="preserve">
     <value>Nos sponsors et partenaires alimentent .NET Conf Cameroun, favorisant l'innovation et la croissance dans notre communauté technologique. Rejoignez-nous pour présenter votre marque et avoir un impact durable !</value>
+    <comment/>
   </data>
   <data name="NetConf_BecomeSponsor" xml:space="preserve">
     <value>Devenir Sponsor</value>
+    <comment/>
   </data>
   <data name="NetConf_LastYearTitle" xml:space="preserve">
     <value>À propos de l'année dernière ?</value>
+    <comment/>
   </data>
   <data name="NetConf_LastYearSubtitle" xml:space="preserve">
     <value>Un bref aperçu des Infinite Days de l'année dernière</value>
+    <comment/>
   </data>
   <data name="NetConf_LastYearDescription" xml:space="preserve">
     <value>L'année dernière, nous avons organisé l'événement Infinite Days sponsorisé par &lt;a href="http://isolutions-intl.com/" target="_blank" class="font-bold link link-secondary"&gt;Infinite Solutions SARL&lt;/a&gt;, une entreprise technologique qui développe des logiciels et solutions de niveau entreprise. Voici un petit récapitulatif en images de cet événement formidable !!</value>
+    <comment/>
   </data>
   <data name="NetConf_SeeAllPictures" xml:space="preserve">
     <value>Voir Toutes les Photos</value>
+    <comment/>
   </data>
-  
-  <!-- Session Titles (.NET Conf) -->
   <data name="Session_PowerBI_Title" xml:space="preserve">
     <value>Microsoft Power BI - Introduction à Power BI : Exploration des données et création de tableaux de bord interactifs</value>
+    <comment/>
   </data>
   <data name="Footer_Resources" xml:space="preserve">
     <value>Ressources</value>
+    <comment/>
   </data>
   <data name="Footer_Home" xml:space="preserve">
     <value>Accueil</value>
+    <comment/>
   </data>
   <data name="Footer_Events" xml:space="preserve">
     <value>Événements</value>
+    <comment/>
   </data>
   <data name="Footer_About" xml:space="preserve">
     <value>À propos</value>
+    <comment/>
   </data>
   <data name="Footer_Projects" xml:space="preserve">
     <value>Projets</value>
+    <comment/>
   </data>
   <data name="Footer_Contact" xml:space="preserve">
     <value>Contact</value>
+    <comment/>
   </data>
   <data name="Footer_Soon" xml:space="preserve">
     <value>Bientôt</value>
+    <comment/>
   </data>
   <data name="Footer_JoinUs" xml:space="preserve">
     <value>Rejoignez-nous</value>
+    <comment/>
   </data>
   <data name="Footer_JoinDescription" xml:space="preserve">
     <value>Rejoignez-nous sur nos différentes plateformes</value>
+    <comment/>
   </data>
   <data name="Footer_Copyright" xml:space="preserve">
     <value>Copyright</value>
+    <comment/>
   </data>
   <data name="Footer_Location" xml:space="preserve">
     <value>Douala, Cameroun</value>
+    <comment/>
   </data>
   <data name="Footer_Email" xml:space="preserve">
     <value>dotnetcameroon@outlook.com</value>
+    <comment/>
   </data>
   <data name="Footer_Phone" xml:space="preserve">
     <value>+237 699254549, +237 653953452</value>
+    <comment/>
   </data>
-
-  <!-- Session Labels -->
   <data name="Session_Keynote" xml:space="preserve">
     <value>Discours d'ouverture</value>
+    <comment/>
   </data>
   <data name="Session_Break" xml:space="preserve">
     <value>Pause</value>
+    <comment/>
   </data>
   <data name="Session_SponsorTime" xml:space="preserve">
     <value>Temps sponsor - {0}</value>
+    <comment/>
   </data>
-
-  <!-- Session Titles (localized) -->
   <data name="Session_Keynote_Title" xml:space="preserve">
     <value>Discours d'ouverture</value>
+    <comment/>
   </data>
   <data name="Session_DeployAspire_Title" xml:space="preserve">
     <value>Déployer une application .NET Aspire sur Kubernetes à l'aide des pipelines Azure DevOps</value>
+    <comment/>
   </data>
   <data name="Session_GitForDummies_Title" xml:space="preserve">
     <value>Git et GitHub pour les nuls</value>
+    <comment/>
   </data>
   <data name="Session_DDDClient_Title" xml:space="preserve">
     <value>Conception pilotée par le domaine du point de vue du client</value>
+    <comment/>
   </data>
   <data name="Session_MAUIParse_Title" xml:space="preserve">
     <value>Développement multiplateforme simplifié : Créer une application To-Do avec synchronisation avec .NET MAUI et Parse</value>
+    <comment/>
   </data>
   <data name="Session_PythonDotNetHybrid_Title" xml:space="preserve">
     <value>Développer une application web moderne avec Python et .NET : Une approche hybride pour les développeurs web</value>
+    <comment/>
   </data>
   <data name="Session_MS_AI_Overview_Title" xml:space="preserve">
     <value>Aperçu des solutions d'IA de Microsoft</value>
+    <comment/>
+  </data>
+  <data name="Nav_NetConf2025" xml:space="preserve">
+    <value>.NET Conf 2025</value>
+    <comment/>
   </data>
 </root>
