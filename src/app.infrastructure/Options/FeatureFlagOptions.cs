@@ -3,7 +3,7 @@ namespace app.infrastructure.Options;
 public class FeatureFlagOptions
 {
     public const string SectionName = "FeatureFlags";
-    public Dictionary<string, FeatureFlag> Features { get; set; } = new();
+    public Dictionary<string, FeatureFlag> Features { get; set; } = [];
     public bool EnableDevModeOverride { get; set; } = true;
 }
 
