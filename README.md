@@ -109,7 +109,7 @@ The application is running on <localhost:8000>.
 Once you are all set up, you can start the Tailwindcss listening server by running the command
 
 ```sh
-npm run tailwind
+npm run tailwind-watch
 ```
 
 ## Credits

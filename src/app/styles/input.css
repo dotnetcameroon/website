@@ -13,11 +13,13 @@
   --color-primary-dark: #0a855f;
   --color-primary-accentuation: #0aa072;
 
+  --color-dark-purple: #1f143b;
+
   --color-secondary: #512bd4;
   --color-secondary-dark: #3b12c8;
   --color-secondary-accentuation: #7352e7;
 
-  --color-tertiary: #ebc006;
+  --color-tertiary: #e1a325;
   --color-tertiary-dark: #b79918;
   --color-tertiary-accentuation: #f9d32c;
 
@@ -60,12 +62,18 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
+    border-color: var(--color-gray-200, currentcolor);font-family: Lexend, "Noto Sans", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 300;
+  }
+}
+
+@layer components {
+  *{
+    @apply text-dark-purple;
   }
 }
 
 * {
-  font-family: Lexend, "Noto Sans", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   scroll-behavior: smooth;
 }
 
@@ -107,7 +115,7 @@
 
 /* Buttons */
 .btn {
-  @apply px-4 py-2 transition-all rounded-md;
+  @apply px-6 py-4 transition-all rounded-xl;
 }
 
 .btn.btn-primary {
@@ -120,6 +128,10 @@
 
 .btn.btn-tertiary {
   @apply bg-tertiary hover:bg-tertiary-accentuation transition-all active:bg-tertiary text-white;
+}
+
+.btn.btn-outline {
+  @apply border border-gray-500 bg-transparent hover:bg-primary transition-all active:bg-primary-accentuation text-dark-purple hover:text-white;
 }
 
 .btn.btn-outline-primary {
