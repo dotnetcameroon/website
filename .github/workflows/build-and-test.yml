@@ -8,6 +8,8 @@ on:
       - feature*
     paths:
       - "src/**"
+      - "tests/**"
+      - "dotnetcameroon.slnx"
       - ".github/workflows/build-and-test.yml"
   pull_request:
     branches:
@@ -16,6 +18,8 @@ on:
       - feature*
     paths:
       - "src/**"
+      - "tests/**"
+      - "dotnetcameroon.slnx"
       - ".github/workflows/build-and-test.yml"
 jobs:
   build-and-test:
