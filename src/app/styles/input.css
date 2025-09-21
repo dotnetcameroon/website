@@ -71,6 +71,10 @@
   *{
     @apply text-dark-purple;
   }
+
+  svg {
+    fill: inherit;
+  }
 }
 
 * {
@@ -119,39 +123,39 @@
 }
 
 .btn.btn-primary {
-  @apply bg-primary hover:bg-primary-accentuation active:bg-primary transition-all text-white;
+  @apply bg-primary hover:bg-primary-accentuation active:bg-primary transition-all text-white fill-white;
 }
 
 .btn.btn-secondary {
-  @apply bg-secondary hover:bg-secondary-accentuation transition-all active:bg-secondary text-white;
+  @apply bg-secondary hover:bg-secondary-accentuation transition-all active:bg-secondary text-white fill-white;
 }
 
 .btn.btn-tertiary {
-  @apply bg-tertiary hover:bg-tertiary-accentuation transition-all active:bg-tertiary text-white;
+  @apply bg-tertiary hover:bg-tertiary-accentuation transition-all active:bg-tertiary text-white fill-white;
 }
 
 .btn.btn-outline {
-  @apply border border-gray-500 bg-transparent hover:bg-primary transition-all active:bg-primary-accentuation text-dark-purple hover:text-white;
+  @apply border border-gray-500 bg-transparent hover:bg-primary transition-all active:bg-primary-accentuation text-dark-purple fill-dark-purple hover:text-white hover:fill-white;
 }
 
 .btn.btn-outline-primary {
-  @apply border border-primary bg-transparent hover:bg-primary transition-all active:bg-primary-accentuation text-primary hover:text-white;
+  @apply border border-primary bg-transparent hover:bg-primary transition-all active:bg-primary-accentuation text-primary fill-primary hover:text-white hover:fill-white;
 }
 
 .btn.btn-outline-secondary {
-  @apply border border-secondary bg-transparent hover:bg-secondary transition-all active:bg-secondary-accentuation text-secondary hover:text-white;
+  @apply border border-secondary bg-transparent hover:bg-secondary transition-all active:bg-secondary-accentuation text-secondary fill-secondary hover:text-white hover:fill-white;
 }
 
 .btn.btn-outline-tertiary {
-  @apply border border-tertiary bg-transparent hover:bg-tertiary transition-all active:bg-tertiary-accentuation text-tertiary hover:text-white;
+  @apply border border-tertiary bg-transparent hover:bg-tertiary transition-all active:bg-tertiary-accentuation text-tertiary fill-tertiary hover:text-white hover:fill-white;
 }
 
 .btn.btn-outline-white {
-  @apply border border-white bg-transparent hover:bg-white transition-all active:bg-slate-100 text-white hover:text-secondary;
+  @apply border border-white bg-transparent hover:bg-white transition-all active:bg-slate-100 text-white fill-white hover:text-secondary hover:fill-secondary;
 }
 
 .btn.btn-disabled {
-  @apply bg-blue-500 text-white font-semibold cursor-not-allowed opacity-50;
+  @apply bg-blue-500 text-white font-semibold cursor-not-allowed opacity-50 fill-white;
 }
 
 /* Links */
