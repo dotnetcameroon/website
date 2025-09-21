@@ -19,6 +19,7 @@
         "Postgre",
         "postgres",
         "proditech",
-        "pyodbc"
+        "pyodbc",
+        "Referer"
     ]
 }
