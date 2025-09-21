@@ -469,8 +469,16 @@
     <value>Bientôt</value>
     <comment/>
   </data>
-  <data name="Footer_JoinUs" xml:space="preserve">
-    <value>Rejoignez-nous</value>
+  <data name="Footer_Social" xml:space="preserve">
+    <value>Social</value>
+    <comment/>
+  </data>
+  <data name="Footer_Navigation" xml:space="preserve">
+    <value>Navigation</value>
+    <comment/>
+  </data>
+  <data name="Footer_Line" xml:space="preserve">
+    <value>.NET Cameroun – Construire une communauté en connectant des développeurs passionnés, en partageant des connaissances à travers des événements et de l'open source, et en grandissant ensemble pour renforcer l'écosystème technologique au Cameroun et au-delà.</value>
     <comment/>
   </data>
   <data name="Footer_JoinDescription" xml:space="preserve">

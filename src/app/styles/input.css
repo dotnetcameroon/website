@@ -179,10 +179,6 @@
   @apply text-white hover:text-white;
 }
 
-.container {
-  max-width: 1200px;
-}
-
 /* Sections */
 .section {
   @apply p-4 py-20 relative;
