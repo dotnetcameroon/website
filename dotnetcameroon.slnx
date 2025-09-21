@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="src/app.business/app.business.csproj" />
+  <Project Path="src/app.client/app.client.csproj" />
+  <Project Path="src/app.domain/app.domain.csproj" />
+  <Project Path="src/app.infrastructure/app.infrastructure.csproj" />
+  <Project Path="src/app.shared/app.shared.csproj" />
+  <Project Path="src/app/app.csproj" />
+  <Project Path="src/dotnet-ef-seeder/dotnet-ef-seeder.csproj" />
+</Solution>
