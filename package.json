@@ -7,10 +7,10 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "dotnet test",
-    "start": "dotnet run --project ./app",
-    "watch": "dotnet watch --project ./app",
-    "tailwind": "npx tailwindcss -i ./app/styles/input.css -o ./app/wwwroot/app.css --watch"
+    "test": "dotnet test src",
+    "start": "dotnet run --project ./src/app",
+    "watch": "dotnet watch --project ./src/app",
+    "tailwind": "npx @tailwindcss/cli -i ./src/app/styles/input.css -o ./src/app/wwwroot/app.css --watch"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/dotnetcameroon/website#readme",
   "dependencies": {
+    "@tailwindcss/cli": "^4.1.13",
     "@vercel/analytics": "^1.4.1",
-    "tailwindcss": "^3.4.9"
+    "tailwindcss": "^4.1.13"
   }
 }
