@@ -1,0 +1,28 @@
+@using Microsoft.Extensions.Localization
+@inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
+
+<div class="flex items-center space-x-8 py-6">
+    <div class="text-start">
+        <div class="text-xl font-heading font-semibold text-secondary">@PlacesAvailable @SharedLocalizer["NetConf_2025_Stats_PlacesUnit"]</div>
+        <div class="text-sm text-gray-500">@SharedLocalizer["NetConf_2025_Stats_Available"]</div>
+    </div>
+    <div class="w-px h-12 bg-gray-300"></div>
+    <div class="text-start">
+        <div class="text-xl font-heading font-semibold text-secondary">@Location</div>
+        <div class="text-sm text-gray-600">@SharedLocalizer["NetConf_2025_Stats_Location"]</div>
+    </div>
+    <div class="w-px h-12 bg-gray-300"></div>
+    <div class="text-start">
+        <div class="text-xl font-heading font-semibold text-secondary">+@SpeakerCount</div>
+        <div class="text-sm text-gray-600">@SharedLocalizer["NetConf_2025_Stats_Speakers"]</div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public int PlacesAvailable { get; set; } = 100;
+    [Parameter] public string Location { get; set; } = "Akwa Palace";
+    [Parameter] public int SpeakerCount { get; set; } = 8;
+
+    private IStringLocalizer? _sharedLocalizer;
+    private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
+}

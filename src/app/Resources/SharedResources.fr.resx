@@ -545,4 +545,60 @@
     <value>.NET Conf 2025</value>
     <comment/>
   </data>
+  <data name="NetConf_2025_TagLine" xml:space="preserve">
+    <value>Événement tech incontournable pour l'écosystème Microsoft au Cameroun</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Title" xml:space="preserve">
+    <value>Conférence Communautaire .NET 2025 | 2ème édition</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Description" xml:space="preserve">
+    <value>Rejoignez des centaines de développeurs passionnés pour une journée dédiée à l'écosystème .NET. Partagez vos expériences et construisons ensemble l'avenir du développement.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_SubscribeButton" xml:space="preserve">
+    <value>S'inscrire à l'événement</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_BecomeSponsorButton" xml:space="preserve">
+    <value>Devenir Sponsor</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Stats_PlacesUnit" xml:space="preserve">
+    <value>places</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Stats_Available" xml:space="preserve">
+    <value>Disponibles</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Stats_Location" xml:space="preserve">
+    <value>Lieu</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Stats_Speakers" xml:space="preserve">
+    <value>Intervenants</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_TimeLeft" xml:space="preserve">
+    <value>Temps restant</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Days" xml:space="preserve">
+    <value>Jours</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Hours" xml:space="preserve">
+    <value>h</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Seconds" xml:space="preserve">
+    <value>s</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_DateLabel" xml:space="preserve">
+    <value>Date</value>
+    <comment/>
+  </data>
 </root>

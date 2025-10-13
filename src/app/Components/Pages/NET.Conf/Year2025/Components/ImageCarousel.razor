@@ -1,0 +1,56 @@
+<div class="py-16">
+    <div class="mx-auto">
+        <div class="relative overflow-hidden">
+            <!-- Scrolling Container -->
+            <div class="flex space-x-4 animate-scroll" id="carousel-container">
+                <!-- Carousel Items -->
+                @foreach (var image in carouselImages)
+                {
+                    <div class="flex-shrink-0 w-72 h-80 rounded-2xl overflow-hidden">
+                        <img src="@image" alt="Conference moment" class="w-full h-full object-cover" />
+                    </div>
+                }
+                <!-- Duplicate items for seamless loop -->
+                @foreach (var image in carouselImages)
+                {
+                    <div class="flex-shrink-0 w-72 h-80 rounded-2xl overflow-hidden">
+                        <img src="@image" alt="Conference moment" class="w-full h-full object-cover" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    @@keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    .animate-scroll {
+        animation: scroll 30s linear infinite;
+    }
+
+</style>
+
+@code {
+    private string[] carouselImages = new[]
+    {
+        "/assets/infinite-days/image-1.jpeg",
+        "/assets/infinite-days/image-2.jpeg",
+        "/assets/infinite-days/image-3.jpeg",
+        "/assets/infinite-days/image-4.jpeg",
+        "/assets/infinite-days/image-5.jpeg",
+        "/assets/infinite-days/image-6.jpeg",
+        "/assets/infinite-days/image-7.jpeg",
+        "/assets/infinite-days/image-8.jpeg",
+        "/assets/infinite-days/image-9.jpeg",
+        "/assets/infinite-days/image-10.jpeg"
+    };
+}
