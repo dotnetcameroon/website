@@ -8,7 +8,7 @@
 
         <!-- Countdown Display -->
         <span class="inline-block text-4xl py-4 px-6 rounded-xl text-black bg-tertiary font-heading">
-            <strong class="font-bold font-heading"><span class="font-bold font-heading" id="@CountDownId-days">0</span> Days</strong> : <span id="@CountDownId-hours">00</span> min : <span id="@CountDownId-seconds">00</span> s
+            <strong class="font-bold font-heading"><span class="font-bold font-heading" id="@CountDownId-days">0</span> Days</strong> : <span id="@CountDownId-hours">00</span> h : <span id="@CountDownId-seconds">00</span> s
         </span>
 
         <!-- Event Date -->
@@ -36,7 +36,7 @@
                 const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
                 daysElement.innerText = days;
-                hoursElement.innerText = minutes.toString().padStart(2, "0");
+                hoursElement.innerText = hours.toString().padStart(2, "0");
                 secondsElement.innerText = seconds.toString().padStart(2, "0");
             } else {
                 daysElement.innerText = "0";

@@ -1,8 +1,21 @@
 <div class="bg-white">
-    <div class="container mx-auto px-4 py-20">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-            <!-- Left Panel - Event Details -->
-            <div class="space-y-8">
+    <div class="container mx-auto px-4 py-8 lg:py-20">
+        <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <!-- Right Panel - Countdown and Date (shows first on mobile) -->
+            <div class="relative order-1 lg:order-2">
+                <!-- Background Pattern -->
+                <div class="absolute inset-0 opacity-10 text-gray-400 text-xs leading-relaxed font-mono hidden lg:block">
+                    <img src="/assets/featured/pattern.png" alt="">
+                </div>
+
+                <!-- Countdown Timer -->
+                <div class="relative z-10">
+                    <CountdownTimer />
+                </div>
+            </div>
+
+            <!-- Left Panel - Event Details (shows second on mobile) -->
+            <div class="space-y-6 lg:space-y-8 order-2 lg:order-1">
                 <!-- Header Tag -->
                 <div class="inline-block">
                     <span
@@ -24,26 +37,13 @@
                 <EventStats />
 
                 <!-- Action Buttons -->
-                <div class="flex flex-col sm:flex-row gap-2">
-                    <button class="btn btn-primary">
+                <div class="flex flex-col md:flex-row gap-2">
+                    <button class="btn btn-primary w-full">
                         Subscribe to event
                     </button>
-                    <button class="btn btn-outline">
-                        Become sponsor
+                    <button class="btn btn-outline w-full">
+                        Share event
                     </button>
-                </div>
-            </div>
-
-            <!-- Right Panel - Countdown and Date -->
-            <div class="relative">
-                <!-- Background Pattern -->
-                <div class="absolute inset-0 opacity-10 text-gray-400 text-xs leading-relaxed font-mono">
-                    <img src="/assets/featured/pattern.png" alt="">
-                </div>
-
-                <!-- Countdown Timer -->
-                <div class="relative z-10">
-                    <CountdownTimer />
                 </div>
             </div>
         </div>
