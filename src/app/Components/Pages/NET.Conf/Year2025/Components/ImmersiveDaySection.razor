@@ -1,0 +1,67 @@
+@using Microsoft.Extensions.Localization
+@using app.domain.ViewModels
+@inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
+
+@if (Sessions.Length > 0)
+{
+    <section class="bg-gray-50 py-16">
+        <div class="mx-auto container overflow-visible px-4">
+            <h2 class="heading heading-1 mb-12">
+                @SharedLocalizer["NetConf_2025_ImmersiveDay_Title"]
+            </h2>
+
+            <div class="overflow-x-auto pb-4 scrollbar-hide">
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-6 min-w-max px-4 py-4">
+                    @for (int i = 0; i < Sessions.Length; i++)
+                    {
+                        <div class="flex-col gap-4 w-80 @GetTransformYClass(i)">
+                            <div class="@GetAlternateBackgroundColor(i) w-80 aspect-square rounded-3xl p-8 h-64 flex items-center justify-center">
+                                <h3 class="text-white text-3xl font-heading font-bold mb-2">@Sessions[i].Type</h3>
+                            </div>
+
+                            <div>
+                                <p class="font-bold text-lg mt-6">@(i + 1). @Sessions[i].Title</p>
+                                <p class="text-gray-400 font-light">@Sessions[i].Speakers[0].Name</p>
+                                <p class="text-gray-400 font-light">@Sessions[i].Speakers[0].Occupation</p>
+                                <p class="text-gray-400 font-light">@Sessions[i].StartTime - @Sessions[i].EndTime</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<style>
+    .scrollbar-hide {
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        scrollbar-width: none;  /* Firefox */
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;  /* Safari and Chrome */
+    }
+</style>
+
+@code {
+    private IStringLocalizer? _sharedLocalizer;
+    private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
+
+    private readonly Session[] Sessions = [];
+
+    private string GetAlternateBackgroundColor(int i)
+    {
+        var remaining = i % 3;
+        return remaining switch
+        {
+            0 => "bg-secondary",
+            1 => "bg-primary",
+            _ => "bg-tertiary"
+        };
+    }
+
+    private string GetTransformYClass(int i)
+    {
+        return i % 2 == 0 ? string.Empty : "md:translate-y-6";
+    }
+}
