@@ -1,10 +1,11 @@
 const navbarThreshold = 900;
 function toggleNavbar() {
   const hamburger = document.getElementById("hamburger");
-  const navLinks = document.getElementById("nav-links");
+  const mobileNav = document.getElementById("mobile-nav");
 
   hamburger.classList.toggle("active");
-  navLinks.classList.toggle("active");
+  mobileNav.classList.toggle("active");
+  mobileNav.classList.toggle("hidden");
 }
 
 window.addEventListener("scroll", (e) => {
