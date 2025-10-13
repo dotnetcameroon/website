@@ -1,0 +1,69 @@
+<div class="space-y-6">
+    <!-- Time Left Label -->
+    <div class="inline-block">
+        <span class="bg-secondary text-white px-4 py-2 rounded-full text-sm font-medium">
+            Time left
+        </span>
+    </div>
+
+    <!-- Countdown Display -->
+    <div class="text-4xl lg:text-6xl font-bold text-tertiary">
+        @Days Days: @Hours min: @Seconds s
+    </div>
+
+    <!-- Event Date -->
+    <div class="inline-block">
+        <span class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium">
+            Date November 12, 2025
+        </span>
+    </div>
+</div>
+
+@code {
+    private int Days = 2;
+    private int Hours = 12;
+    private int Minutes = 33;
+    private int Seconds = 0;
+    private Timer? _timer;
+
+    protected override void OnInitialized()
+    {
+        _timer = new Timer(UpdateCountdown, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
+    }
+
+    private void UpdateCountdown(object? state)
+    {
+        InvokeAsync(() =>
+        {
+            if (Seconds > 0)
+            {
+                Seconds--;
+            }
+            else if (Minutes > 0)
+            {
+                Minutes--;
+                Seconds = 59;
+            }
+            else if (Hours > 0)
+            {
+                Hours--;
+                Minutes = 59;
+                Seconds = 59;
+            }
+            else if (Days > 0)
+            {
+                Days--;
+                Hours = 23;
+                Minutes = 59;
+                Seconds = 59;
+            }
+
+            StateHasChanged();
+        });
+    }
+
+    public void Dispose()
+    {
+        _timer?.Dispose();
+    }
+}

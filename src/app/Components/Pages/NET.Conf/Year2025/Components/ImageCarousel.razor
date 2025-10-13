@@ -1,0 +1,68 @@
+<div class="bg-gray-50 py-16">
+    <div class="container mx-auto px-4">
+        <div class="relative overflow-hidden">
+            <!-- Scrolling Container -->
+            <div class="flex space-x-6 animate-scroll" id="carousel-container">
+                <!-- Carousel Items -->
+                <div
+                    class="flex-shrink-0 w-80 h-48 bg-gradient-to-br from-primary to-primary-accentuation rounded-lg flex items-center justify-center">
+                    <span class="text-white text-lg font-semibold">Conference 2024</span>
+                </div>
+                <div
+                    class="flex-shrink-0 w-80 h-48 bg-gradient-to-br from-secondary to-secondary-accentuation rounded-lg flex items-center justify-center">
+                    <span class="text-white text-lg font-semibold">Speakers</span>
+                </div>
+                <div
+                    class="flex-shrink-0 w-80 h-48 bg-gradient-to-br from-tertiary to-tertiary-accentuation rounded-lg flex items-center justify-center">
+                    <span class="text-white text-lg font-semibold">Workshops</span>
+                </div>
+                <div
+                    class="flex-shrink-0 w-80 h-48 bg-gradient-to-br from-primary to-primary-accentuation rounded-lg flex items-center justify-center">
+                    <span class="text-white text-lg font-semibold">Networking</span>
+                </div>
+                <div
+                    class="flex-shrink-0 w-80 h-48 bg-gradient-to-br from-secondary to-secondary-accentuation rounded-lg flex items-center justify-center">
+                    <span class="text-white text-lg font-semibold">Sponsors</span>
+                </div>
+                <div
+                    class="flex-shrink-0 w-80 h-48 bg-gradient-to-br from-tertiary to-tertiary-accentuation rounded-lg flex items-center justify-center">
+                    <span class="text-white text-lg font-semibold">Community</span>
+                </div>
+                <!-- Duplicate items for seamless loop -->
+                <div
+                    class="flex-shrink-0 w-80 h-48 bg-gradient-to-br from-primary to-primary-accentuation rounded-lg flex items-center justify-center">
+                    <span class="text-white text-lg font-semibold">Conference 2024</span>
+                </div>
+                <div
+                    class="flex-shrink-0 w-80 h-48 bg-gradient-to-br from-secondary to-secondary-accentuation rounded-lg flex items-center justify-center">
+                    <span class="text-white text-lg font-semibold">Speakers</span>
+                </div>
+                <div
+                    class="flex-shrink-0 w-80 h-48 bg-gradient-to-br from-tertiary to-tertiary-accentuation rounded-lg flex items-center justify-center">
+                    <span class="text-white text-lg font-semibold">Workshops</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    @@keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    .animate-scroll {
+        animation: scroll 30s linear infinite;
+    }
+
+    .animate-scroll:hover {
+        animation-play-state: paused;
+    }
+</style>

@@ -1,0 +1,22 @@
+<div class="flex items-center space-x-8 py-6">
+    <div class="text-start">
+        <div class="text-xl font-heading font-semibold text-secondary">@PlacesAvailable places</div>
+        <div class="text-sm text-gray-500">Available</div>
+    </div>
+    <div class="w-px h-12 bg-gray-300"></div>
+    <div class="text-start">
+        <div class="text-xl font-heading font-semibold text-secondary">@Location</div>
+        <div class="text-sm text-gray-600">Location</div>
+    </div>
+    <div class="w-px h-12 bg-gray-300"></div>
+    <div class="text-start">
+        <div class="text-xl font-heading font-semibold text-secondary">+@SpeakerCount</div>
+        <div class="text-sm text-gray-600">Speakers</div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public int PlacesAvailable { get; set; } = 100;
+    [Parameter] public string Location { get; set; } = "Black coffee";
+    [Parameter] public int SpeakerCount { get; set; } = 12;
+}

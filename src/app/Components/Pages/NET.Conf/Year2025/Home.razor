@@ -1,3 +1,40 @@
 @page "/dotnet-conf-2025"
+@using app.Components.Pages.NET_Conf.Year2025.Components
+@using Microsoft.Extensions.Localization
+@inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
 
-<h1>Hello .NET Conf 2025</h1>
+<PageTitle>@SharedLocalizer["PageTitle_Home"]</PageTitle>
+<HeadContent>
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="@SharedLocalizer["Meta_Title"]">
+    <meta property="og:description" content="@SharedLocalizer["Meta_Description"]">
+    <meta property="og:image" content="https://dotnet.cm/assets/brand/logo.png">
+    <meta property="og:url" content="https://dotnet.cm">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="@SharedLocalizer["Meta_Title"]">
+
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@SharedLocalizer["Meta_Title"]">
+    <meta name="twitter:description" content="@SharedLocalizer["Meta_Description"]">
+    <meta name="twitter:image" content="https://dotnet.cm/assets/brand/logo.png">
+    <meta name="twitter:site" content="@@dotnetcameroon">
+
+    <meta name="description" content="@SharedLocalizer["Meta_Description"]">
+</HeadContent>
+
+
+<div>
+    <!-- Hero Section -->
+    <section class="relative h-[100svh] bg-[url(/assets/featured/carousel-1.png)] bg-cover bg-fixed">
+        <NavBar Type=@NavType.Transparent />
+        <HeroSection />
+    </section>
+
+</div>
+
+@code {
+
+    private IStringLocalizer? _sharedLocalizer;
+    private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
+}
