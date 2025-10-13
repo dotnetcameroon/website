@@ -1,48 +1,23 @@
-<div class="bg-gray-50 py-16">
-    <div class="container mx-auto px-4">
+<div class="py-16">
+    <div class="mx-auto">
         <div class="relative overflow-hidden">
             <!-- Scrolling Container -->
-            <div class="flex space-x-6 animate-scroll" id="carousel-container">
+            <div class="flex space-x-4 animate-scroll" id="carousel-container">
                 <!-- Carousel Items -->
-                <div
-                    class="flex-shrink-0 w-80 h-48 bg-gradient-to-br from-primary to-primary-accentuation rounded-lg flex items-center justify-center">
-                    <span class="text-white text-lg font-semibold">Conference 2024</span>
-                </div>
-                <div
-                    class="flex-shrink-0 w-80 h-48 bg-gradient-to-br from-secondary to-secondary-accentuation rounded-lg flex items-center justify-center">
-                    <span class="text-white text-lg font-semibold">Speakers</span>
-                </div>
-                <div
-                    class="flex-shrink-0 w-80 h-48 bg-gradient-to-br from-tertiary to-tertiary-accentuation rounded-lg flex items-center justify-center">
-                    <span class="text-white text-lg font-semibold">Workshops</span>
-                </div>
-                <div
-                    class="flex-shrink-0 w-80 h-48 bg-gradient-to-br from-primary to-primary-accentuation rounded-lg flex items-center justify-center">
-                    <span class="text-white text-lg font-semibold">Networking</span>
-                </div>
-                <div
-                    class="flex-shrink-0 w-80 h-48 bg-gradient-to-br from-secondary to-secondary-accentuation rounded-lg flex items-center justify-center">
-                    <span class="text-white text-lg font-semibold">Sponsors</span>
-                </div>
-                <div
-                    class="flex-shrink-0 w-80 h-48 bg-gradient-to-br from-tertiary to-tertiary-accentuation rounded-lg flex items-center justify-center">
-                    <span class="text-white text-lg font-semibold">Community</span>
-                </div>
+                @foreach (var image in carouselImages)
+                {
+                    <div class="flex-shrink-0 w-72 h-80 rounded-2xl overflow-hidden">
+                        <img src="@image" alt="Conference moment" class="w-full h-full object-cover" />
+                    </div>
+                }
                 <!-- Duplicate items for seamless loop -->
-                <div
-                    class="flex-shrink-0 w-80 h-48 bg-gradient-to-br from-primary to-primary-accentuation rounded-lg flex items-center justify-center">
-                    <span class="text-white text-lg font-semibold">Conference 2024</span>
-                </div>
-                <div
-                    class="flex-shrink-0 w-80 h-48 bg-gradient-to-br from-secondary to-secondary-accentuation rounded-lg flex items-center justify-center">
-                    <span class="text-white text-lg font-semibold">Speakers</span>
-                </div>
-                <div
-                    class="flex-shrink-0 w-80 h-48 bg-gradient-to-br from-tertiary to-tertiary-accentuation rounded-lg flex items-center justify-center">
-                    <span class="text-white text-lg font-semibold">Workshops</span>
-                </div>
+                @foreach (var image in carouselImages)
+                {
+                    <div class="flex-shrink-0 w-72 h-80 rounded-2xl overflow-hidden">
+                        <img src="@image" alt="Conference moment" class="w-full h-full object-cover" />
+                    </div>
+                }
             </div>
-
         </div>
     </div>
 </div>
@@ -62,7 +37,20 @@
         animation: scroll 30s linear infinite;
     }
 
-    .animate-scroll:hover {
-        animation-play-state: paused;
-    }
 </style>
+
+@code {
+    private string[] carouselImages = new[]
+    {
+        "/assets/infinite-days/image-1.jpeg",
+        "/assets/infinite-days/image-2.jpeg",
+        "/assets/infinite-days/image-3.jpeg",
+        "/assets/infinite-days/image-4.jpeg",
+        "/assets/infinite-days/image-5.jpeg",
+        "/assets/infinite-days/image-6.jpeg",
+        "/assets/infinite-days/image-7.jpeg",
+        "/assets/infinite-days/image-8.jpeg",
+        "/assets/infinite-days/image-9.jpeg",
+        "/assets/infinite-days/image-10.jpeg"
+    };
+}
