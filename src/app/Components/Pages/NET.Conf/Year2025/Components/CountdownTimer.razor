@@ -8,7 +8,7 @@
 
         <!-- Countdown Display -->
         <span class="inline-block text-4xl py-4 px-6 rounded-xl text-black bg-tertiary font-heading">
-            <strong class="font-bold font-heading">@Days Days</strong> : @Hours h : @Seconds s
+            <strong class="font-bold font-heading"><span class="font-bold font-heading" id="@CountDownId-days">0</span> Days</strong> : <span id="@CountDownId-hours">00</span> min : <span id="@CountDownId-seconds">00</span> s
         </span>
 
         <!-- Event Date -->
@@ -18,51 +18,45 @@
     </div>
 </div>
 
+<script defer>
+    function startCountdownTimer(eventDate) {
+        const daysElement = document.getElementById("@CountDownId-days");
+        const hoursElement = document.getElementById("@CountDownId-hours");
+        const secondsElement = document.getElementById("@CountDownId-seconds");
+
+        function updateCountdown() {
+            const now = new Date();
+            const targetDate = new Date(eventDate);
+            const timeRemaining = targetDate.getTime() - now.getTime();
+
+            if (timeRemaining > 0) {
+                const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                daysElement.innerText = days;
+                hoursElement.innerText = minutes.toString().padStart(2, "0");
+                secondsElement.innerText = seconds.toString().padStart(2, "0");
+            } else {
+                daysElement.innerText = "0";
+                hoursElement.innerText = "00";
+                secondsElement.innerText = "00";
+                clearInterval(interval);
+            }
+        }
+
+        const interval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+    }
+
+    const eventDate = `@DueDate.ToString("O")`;
+    startCountdownTimer(eventDate);
+</script>
+
 @code {
-    private int Days = 2;
-    private int Hours = 12;
-    private int Minutes = 28;
-    private int Seconds = 33;
-    private Timer? _timer;
+    [Parameter]
+    public DateTime DueDate { get; set; } = new DateTime(2025, 12, 20, 0, 0, 0, DateTimeKind.Utc);
 
-    protected override void OnInitialized()
-    {
-        _timer = new Timer(UpdateCountdown, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
-    }
-
-    private void UpdateCountdown(object? state)
-    {
-        InvokeAsync(() =>
-        {
-            if (Seconds > 0)
-            {
-                Seconds--;
-            }
-            else if (Minutes > 0)
-            {
-                Minutes--;
-                Seconds = 59;
-            }
-            else if (Hours > 0)
-            {
-                Hours--;
-                Minutes = 59;
-                Seconds = 59;
-            }
-            else if (Days > 0)
-            {
-                Days--;
-                Hours = 23;
-                Minutes = 59;
-                Seconds = 59;
-            }
-
-            StateHasChanged();
-        });
-    }
-
-    public void Dispose()
-    {
-        _timer?.Dispose();
-    }
+    private string CountDownId { get; set; } = Guid.NewGuid().ToString("N");
 }
