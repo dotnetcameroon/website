@@ -207,7 +207,7 @@
   position: fixed;
   animation-name: expand-nav;
   animation-duration: .3s;
-  overflow: hidden;
+  overflow: visible;
   @apply bg-white pt-0 transition-all shadow-lg;
 }
 
@@ -324,6 +324,12 @@
 .language-dropdown .group:hover .absolute {
   opacity: 1;
   visibility: visible;
+}
+
+/* Ensure dropdown is visible when navbar is scrolled */
+#navbar.scrolled .language-dropdown .absolute,
+#navbar.scrolled .dropdown .absolute {
+  z-index: 9999;
 }
 
 @media (max-width: 767px) {
