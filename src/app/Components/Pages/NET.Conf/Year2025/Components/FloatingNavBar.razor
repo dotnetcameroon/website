@@ -15,11 +15,14 @@
                     </button>
                 </li>
             }
-            <li class="flex">
-                <a target="_blank" href="https://forms.office.com/r/da0rtC4m8X" class="btn btn-primary text-sm whitespace-nowrap">
-                    @SharedLocalizer["NetConf_2025_SubscribeButton"]
-                </a>
-            </li>
+            @if (ShowSubscribeButton && !string.IsNullOrEmpty(SubscribeButtonUrl))
+            {
+                <li class="flex">
+                    <a target="_blank" href="@SubscribeButtonUrl" class="btn btn-primary text-sm whitespace-nowrap">
+                        @SharedLocalizer[SubscribeButtonLabelKey]
+                    </a>
+                </li>
+            }
         </ul>
     </nav>
 </div>
@@ -118,22 +121,32 @@
 </script>
 
 @code {
-    private string ActiveSection { get; set; } = "planning";
-    private string AssemblyName => GetType().Assembly.GetName().Name ?? "app";
+    [Parameter]
+    public List<NavItem> NavItems { get; set; } = new();
 
-    private List<NavItem> NavItems = new()
-    {
-        new NavItem { Id = "planning", LabelKey = "NetConf_2025_Nav_Planning" },
-        new NavItem { Id = "speakers", LabelKey = "NetConf_2025_Nav_Speakers" },
-        new NavItem { Id = "core-team", LabelKey = "NetConf_2025_Nav_CoreTeam" },
-        new NavItem { Id = "sponsors", LabelKey = "NetConf_2025_Nav_Sponsors" },
-        new NavItem { Id = "archives", LabelKey = "NetConf_2025_Nav_Archives" }
-    };
+    [Parameter]
+    public string? SubscribeButtonUrl { get; set; }
+
+    [Parameter]
+    public string SubscribeButtonLabelKey { get; set; } = "NetConf_2025_SubscribeButton";
+
+    [Parameter]
+    public bool ShowSubscribeButton { get; set; } = true;
+
+    private string ActiveSection { get; set; } = "";
 
     private IStringLocalizer? _sharedLocalizer;
     private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
 
-    private class NavItem
+    protected override void OnInitialized()
+    {
+        if (NavItems.Any())
+        {
+            ActiveSection = NavItems.First().Id;
+        }
+    }
+
+    public class NavItem
     {
         public string Id { get; set; } = "";
         public string LabelKey { get; set; } = "";
