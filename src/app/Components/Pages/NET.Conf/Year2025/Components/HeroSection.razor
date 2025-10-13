@@ -40,12 +40,12 @@
 
                 <!-- Action Buttons -->
                 <div class="flex flex-col md:flex-row gap-2">
-                    <button class="btn btn-primary w-full md:w-fit">
+                    <a target="_blank" href="@InscriptionFormLink" class="btn btn-primary w-full md:w-fit">
                         @SharedLocalizer["NetConf_2025_SubscribeButton"]
-                    </button>
-                    <button class="btn btn-outline w-full md:w-fit">
+                    </a>
+                    <a target="_blank" href="@SponsorshipFormLink" class="btn btn-outline w-full md:w-fit">
                         @SharedLocalizer["NetConf_2025_BecomeSponsorButton"]
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -55,4 +55,6 @@
 @code {
     private IStringLocalizer? _sharedLocalizer;
     private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
+    private string InscriptionFormLink = "https://forms.office.com/r/da0rtC4m8X";
+    private string SponsorshipFormLink = "https://forms.office.com/r/6cYC5bRQLF";
 }
