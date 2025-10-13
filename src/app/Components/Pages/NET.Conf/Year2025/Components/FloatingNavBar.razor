@@ -1,0 +1,141 @@
+@using Microsoft.Extensions.Localization
+@inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
+
+<div id="floating-nav" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 hidden md:block">
+    <nav class="bg-white backdrop-blur-sm bg-opacity-95 rounded-lg shadow-2xl px-2 py-2">
+        <ul class="flex items-center gap-4">
+            @foreach (var item in NavItems)
+            {
+                <li class="flex whitespace-nowrap">
+                    <button type="button"
+                       data-section="@item.Id"
+                       class="nav-item text-dark-purple text-sm font-medium px-4 py-4 rounded-lg transition-all duration-300 hover:bg-gray-100 @(ActiveSection == item.Id ? "bg-gray-100" : "")"
+                       onclick="scrollToSection('@item.Id')">
+                        @SharedLocalizer[item.LabelKey]
+                    </button>
+                </li>
+            }
+            <li class="flex">
+                <a target="_blank" href="https://forms.office.com/r/da0rtC4m8X" class="btn btn-primary text-sm whitespace-nowrap">
+                    @SharedLocalizer["NetConf_2025_SubscribeButton"]
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<script>
+    let activeSection = '';
+    let isScrolling = false;
+    let ticking = false;
+
+    function initFloatingNav() {
+        const sections = document.querySelectorAll('[data-section-id]');
+        const navLinks = document.querySelectorAll('.nav-item');
+        const floatingNav = document.getElementById('floating-nav');
+
+        // Use scroll event instead of Intersection Observer for more reliable tracking
+        window.addEventListener('scroll', () => {
+            if (!ticking && !isScrolling) {
+                window.requestAnimationFrame(() => {
+                    // Show/hide floating nav based on scroll position
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                    if (scrollTop > 300) {
+                        floatingNav.classList.remove('hidden');
+                        floatingNav.classList.add('md:block');
+                    } else {
+                        floatingNav.classList.add('hidden');
+                        floatingNav.classList.remove('md:block');
+                    }
+
+                    // Update active section based on scroll position
+                    let currentSection = '';
+                    const scrollPosition = window.scrollY + window.innerHeight / 3;
+
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.offsetHeight;
+
+                        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                            currentSection = section.getAttribute('data-section-id');
+                        }
+                    });
+
+                    if (currentSection && currentSection !== activeSection) {
+                        updateActiveSection(currentSection);
+                    }
+
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Initialize active section on load
+        const initialScrollPosition = window.scrollY + window.innerHeight / 3;
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+
+            if (initialScrollPosition >= sectionTop && initialScrollPosition < sectionTop + sectionHeight) {
+                updateActiveSection(section.getAttribute('data-section-id'));
+            }
+        });
+    }
+
+    function updateActiveSection(sectionId) {
+        if (activeSection === sectionId) return;
+
+        activeSection = sectionId;
+
+        const navLinks = document.querySelectorAll('.nav-item');
+        navLinks.forEach(link => {
+            const linkSection = link.getAttribute('data-section');
+            if (linkSection === sectionId) {
+                link.classList.add('bg-gray-100');
+            } else {
+                link.classList.remove('bg-gray-100');
+            }
+        });
+    }
+
+    function scrollToSection(sectionId) {
+        isScrolling = true;
+        const element = document.querySelector(`[data-section-id="${sectionId}"]`);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            updateActiveSection(sectionId);
+            setTimeout(() => { isScrolling = false; }, 1000);
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initFloatingNav);
+    } else {
+        initFloatingNav();
+    }
+</script>
+
+@code {
+    private string ActiveSection { get; set; } = "planning";
+    private string AssemblyName => GetType().Assembly.GetName().Name ?? "app";
+
+    private List<NavItem> NavItems = new()
+    {
+        new NavItem { Id = "planning", LabelKey = "NetConf_2025_Nav_Planning" },
+        new NavItem { Id = "speakers", LabelKey = "NetConf_2025_Nav_Speakers" },
+        new NavItem { Id = "core-team", LabelKey = "NetConf_2025_Nav_CoreTeam" },
+        new NavItem { Id = "sponsors", LabelKey = "NetConf_2025_Nav_Sponsors" },
+        new NavItem { Id = "archives", LabelKey = "NetConf_2025_Nav_Archives" }
+    };
+
+    private IStringLocalizer? _sharedLocalizer;
+    private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
+
+    private class NavItem
+    {
+        public string Id { get; set; } = "";
+        public string LabelKey { get; set; } = "";
+    }
+}
