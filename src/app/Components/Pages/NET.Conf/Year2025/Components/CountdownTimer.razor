@@ -1,19 +1,21 @@
-<div class="relative w-fit">
-    <!-- Time Left Label -->
-    <span
-        class="top-0 left-0 -translate-y-[calc(100%+3px)] rotate-6 absolute bg-secondary text-white px-4 py-1 rounded-lg outline-4 outline-white text-sm font-heading">
-        Time left
-    </span>
+<div class="flex w-fill items-center justify-center">
+    <div class="relative w-fit">
+        <!-- Time Left Label -->
+        <span
+            class="top-0 left-0 -translate-y-[calc(100%+3px)] rotate-6 absolute bg-secondary text-white px-4 py-1 rounded-lg outline-4 outline-white text-sm font-heading">
+            Time left
+        </span>
 
-    <!-- Countdown Display -->
-    <span class="inline-block text-4xl py-4 px-6 rounded-xl text-dark-purple bg-tertiary font-heading">
-        <strong class="font-bold font-heading">@Days Days:</strong> @Hours h: @Minutes min
-    </span>
+        <!-- Countdown Display -->
+        <span class="inline-block text-4xl py-4 px-6 rounded-xl text-black bg-tertiary font-heading">
+            <strong class="font-bold font-heading">@Days Days</strong> : @Hours h : @Seconds s
+        </span>
 
-    <!-- Event Date -->
-    <span class="absolute bottom-0 left-full bg-primary text-white px-4 py-1 rounded-lg outline-4 outline-white text-sm font-heading">
-        Date <strong class="text-white font-heading font-bold">Décembre 20, 2025</strong>
-    </span>
+        <!-- Event Date -->
+        <span class="absolute bottom-0 left-full -translate-x-full translate-y-[calc(100%+3px)] -rotate-4 bg-primary text-white px-4 py-1 rounded-lg text-sm font-heading whitespace-nowrap outline-4 outline-white">
+            Date <strong class="text-white font-heading font-bold">Décembre 20, 2025</strong>
+        </span>
+    </div>
 </div>
 
 @code {
