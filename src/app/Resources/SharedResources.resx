@@ -545,4 +545,60 @@
     <value>.NET Conf 2025</value>
     <comment/>
   </data>
+  <data name="NetConf_2025_TagLine" xml:space="preserve">
+    <value>Must-attend tech event for the Microsoft Ecosystem in Cameroon</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Title" xml:space="preserve">
+    <value>.NET Community Conference 2025 | 2nd edition</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Description" xml:space="preserve">
+    <value>Join hundreds of passionate developers for a day dedicated to the .NET ecosystem. Share your experiences and let's build the future of development together.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_SubscribeButton" xml:space="preserve">
+    <value>Subscribe to event</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_BecomeSponsorButton" xml:space="preserve">
+    <value>Become Sponsor</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Stats_PlacesUnit" xml:space="preserve">
+    <value>places</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Stats_Available" xml:space="preserve">
+    <value>Available</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Stats_Location" xml:space="preserve">
+    <value>Location</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Stats_Speakers" xml:space="preserve">
+    <value>Speakers</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_TimeLeft" xml:space="preserve">
+    <value>Time left</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Days" xml:space="preserve">
+    <value>Days</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Hours" xml:space="preserve">
+    <value>h</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Seconds" xml:space="preserve">
+    <value>s</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_DateLabel" xml:space="preserve">
+    <value>Date</value>
+    <comment/>
+  </data>
 </root>

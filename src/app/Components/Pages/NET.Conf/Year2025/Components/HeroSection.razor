@@ -1,3 +1,6 @@
+@using Microsoft.Extensions.Localization
+@inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
+
 <div class="bg-white">
     <div class="container mx-auto px-4 py-8 lg:py-20">
         <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -20,17 +23,16 @@
                 <div class="inline-block">
                     <span
                         class="bg-transparent text-gray-600 px-2 py-1 rounded-full text-xs font-sm border-[1px] border-gray-200">
-                        Must-attend tech event for the Microsoft Ecosystem in Cameroon
+                        @SharedLocalizer["NetConf_2025_TagLine"]
                     </span>
                 </div>
 
                 <!-- Main Title -->
-                <h1 class="heading heading-1">.NET Community Conference 2025 | 8th edition  </h1>
+                <h1 class="heading heading-1">@SharedLocalizer["NetConf_2025_Title"]</h1>
 
                 <!-- Description -->
                 <p>
-                    Join hundreds of passionate developers for a day dedicated to the .NET ecosystem.
-                    Share your experiences and let's build the future of development together.
+                    @SharedLocalizer["NetConf_2025_Description"]
                 </p>
 
                 <!-- Event Statistics -->
@@ -39,13 +41,18 @@
                 <!-- Action Buttons -->
                 <div class="flex flex-col md:flex-row gap-2">
                     <button class="btn btn-primary w-full">
-                        Subscribe to event
+                        @SharedLocalizer["NetConf_2025_SubscribeButton"]
                     </button>
                     <button class="btn btn-outline w-full">
-                        Share event
+                        @SharedLocalizer["NetConf_2025_BecomeSponsorButton"]
                     </button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@code {
+    private IStringLocalizer? _sharedLocalizer;
+    private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
+}

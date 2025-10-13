@@ -1,19 +1,22 @@
+@using Microsoft.Extensions.Localization
+@inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
+
 <div class="flex w-fill items-center justify-center">
     <div class="relative w-fit">
         <!-- Time Left Label -->
         <span
             class="top-0 left-0 -translate-y-[calc(100%+3px)] rotate-6 absolute bg-secondary text-white px-4 py-1 rounded-lg outline-4 outline-white text-sm font-heading">
-            Time left
+            @SharedLocalizer["NetConf_2025_TimeLeft"]
         </span>
 
         <!-- Countdown Display -->
         <span class="inline-block text-4xl py-4 px-6 rounded-xl text-black bg-tertiary font-heading">
-            <strong class="font-bold font-heading"><span class="font-bold font-heading" id="@CountDownId-days">0</span> Days</strong> : <span id="@CountDownId-hours">00</span> h : <span id="@CountDownId-seconds">00</span> s
+            <strong class="font-bold font-heading"><span class="font-bold font-heading" id="@CountDownId-days">0</span> @SharedLocalizer["NetConf_2025_Days"]</strong> : <span id="@CountDownId-hours">00</span> @SharedLocalizer["NetConf_2025_Hours"] : <span id="@CountDownId-seconds">00</span> @SharedLocalizer["NetConf_2025_Seconds"]
         </span>
 
         <!-- Event Date -->
         <span class="absolute bottom-0 left-full -translate-x-full translate-y-[calc(100%+3px)] -rotate-4 bg-primary text-white px-4 py-1 rounded-lg text-sm font-heading whitespace-nowrap outline-4 outline-white">
-            Date <strong class="text-white font-heading font-bold">Décembre 20, 2025</strong>
+            @SharedLocalizer["NetConf_2025_DateLabel"] <strong class="text-white font-heading font-bold">@EventDateFormatted</strong>
         </span>
     </div>
 </div>
@@ -59,4 +62,9 @@
     public DateTime DueDate { get; set; } = new DateTime(2025, 12, 20, 0, 0, 0, DateTimeKind.Utc);
 
     private string CountDownId { get; set; } = Guid.NewGuid().ToString("N");
+
+    private IStringLocalizer? _sharedLocalizer;
+    private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
+
+    private string EventDateFormatted => DueDate.ToString("MMMM dd, yyyy", System.Globalization.CultureInfo.CurrentCulture);
 }
