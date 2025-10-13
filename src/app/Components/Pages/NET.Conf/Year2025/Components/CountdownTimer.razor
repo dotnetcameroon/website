@@ -1,29 +1,26 @@
-<div class="space-y-6">
+<div class="relative w-fit">
     <!-- Time Left Label -->
-    <div class="inline-block">
-        <span class="bg-secondary text-white px-4 py-2 rounded-full text-sm font-medium">
-            Time left
-        </span>
-    </div>
+    <span
+        class="top-0 left-0 -translate-y-[calc(100%+3px)] rotate-6 absolute bg-secondary text-white px-4 py-1 rounded-lg outline-4 outline-white text-sm font-heading">
+        Time left
+    </span>
 
     <!-- Countdown Display -->
-    <div class="text-4xl lg:text-6xl font-bold text-tertiary">
-        @Days Days: @Hours min: @Seconds s
-    </div>
+    <span class="inline-block text-4xl py-4 px-6 rounded-xl text-dark-purple bg-tertiary font-heading">
+        <strong class="font-bold font-heading">@Days Days:</strong> @Hours h: @Minutes min
+    </span>
 
     <!-- Event Date -->
-    <div class="inline-block">
-        <span class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium">
-            Date November 12, 2025
-        </span>
-    </div>
+    <span class="absolute bottom-0 left-full bg-primary text-white px-4 py-1 rounded-lg outline-4 outline-white text-sm font-heading">
+        Date <strong class="text-white font-heading font-bold">Décembre 20, 2025</strong>
+    </span>
 </div>
 
 @code {
     private int Days = 2;
     private int Hours = 12;
-    private int Minutes = 33;
-    private int Seconds = 0;
+    private int Minutes = 28;
+    private int Seconds = 33;
     private Timer? _timer;
 
     protected override void OnInitialized()
