@@ -32,10 +32,17 @@
     </section>
     <ImageCarousel/>
 
+    <!-- Floating Navigation Bar -->
+    <FloatingNavBar NavItems="@navigationItems"
+                   SubscribeButtonUrl="https://forms.office.com/r/da0rtC4m8X"
+                   ShowSubscribeButton="true" />
+
 </div>
 
 @code {
 
     private IStringLocalizer? _sharedLocalizer;
     private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
+
+    private List<FloatingNavBar.NavItem> navigationItems = [];
 }

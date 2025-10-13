@@ -601,4 +601,24 @@
     <value>Date</value>
     <comment/>
   </data>
+  <data name="NetConf_2025_Nav_Planning" xml:space="preserve">
+    <value>Planning</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Nav_Speakers" xml:space="preserve">
+    <value>Intervenants</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Nav_CoreTeam" xml:space="preserve">
+    <value>Équipe principale</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Nav_Sponsors" xml:space="preserve">
+    <value>Sponsors</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Nav_Archives" xml:space="preserve">
+    <value>Archives</value>
+    <comment/>
+  </data>
 </root>
