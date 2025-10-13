@@ -1,0 +1,106 @@
+@using Microsoft.Extensions.Localization
+@inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
+
+<section class="bg-gray-50 py-16">
+    <div class="container mx-auto px-4">
+        <h2 class="heading heading-1 text-center mb-12">
+            @SharedLocalizer["NetConf_2025_ImmersiveDay_Title"]
+        </h2>
+
+        <div class="overflow-x-auto pb-4">
+            <div class="flex gap-6 min-w-max px-4">
+                @foreach (var session in Sessions)
+                {
+                    <div class="flex-shrink-0 w-80">
+                        <div class="@session.BackgroundClass rounded-3xl p-8 h-64 flex flex-col justify-between relative overflow-hidden">
+                            <div class="absolute inset-0 opacity-10">
+                                <div class="w-full h-full" style="background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.3) 0%, transparent 50%);"></div>
+                            </div>
+
+                            <div class="relative z-10">
+                                <h3 class="text-white text-3xl font-heading font-bold mb-2">@SharedLocalizer[session.TypeKey]</h3>
+                            </div>
+
+                            <div class="relative z-10">
+                                <p class="text-white font-bold text-lg mb-1">@session.Number @SharedLocalizer[session.TitleKey]</p>
+                                <p class="text-white text-sm mb-1">@SharedLocalizer[session.SpeakerKey]</p>
+                                <p class="text-white text-sm opacity-90">@SharedLocalizer[session.RoleKey]</p>
+                                <p class="text-white text-sm font-medium mt-2">@session.Time</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    private IStringLocalizer? _sharedLocalizer;
+    private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
+
+    private List<Session> Sessions = new()
+    {
+        new Session
+        {
+            BackgroundClass = "bg-[#6C5CE7]",
+            TypeKey = "NetConf_2025_Session_Keynote",
+            Number = "1.",
+            TitleKey = "NetConf_2025_Session1_Title",
+            SpeakerKey = "NetConf_2025_Session1_Speaker",
+            RoleKey = "NetConf_2025_Session1_Role",
+            Time = "09:00 AM - 09:30 AM"
+        },
+        new Session
+        {
+            BackgroundClass = "bg-[#2D7A6E]",
+            TypeKey = "NetConf_2025_Session_Conference",
+            Number = "2.",
+            TitleKey = "NetConf_2025_Session2_Title",
+            SpeakerKey = "NetConf_2025_Session2_Speaker",
+            RoleKey = "NetConf_2025_Session2_Role",
+            Time = "09:30 AM - 10:00 AM"
+        },
+        new Session
+        {
+            BackgroundClass = "bg-[#E59A3C]",
+            TypeKey = "NetConf_2025_Session_Conference",
+            Number = "3.",
+            TitleKey = "NetConf_2025_Session3_Title",
+            SpeakerKey = "NetConf_2025_Session3_Speaker",
+            RoleKey = "NetConf_2025_Session3_Role",
+            Time = "10:00 AM - 10:30 AM"
+        },
+        new Session
+        {
+            BackgroundClass = "bg-[#6C5CE7]",
+            TypeKey = "NetConf_2025_Session_SponsorTime",
+            Number = "4.",
+            TitleKey = "NetConf_2025_Session4_Title",
+            SpeakerKey = "NetConf_2025_Session4_Speaker",
+            RoleKey = "NetConf_2025_Session4_Role",
+            Time = "10:30 AM - 10:45 AM"
+        },
+        new Session
+        {
+            BackgroundClass = "bg-[#E59A3C]",
+            TypeKey = "NetConf_2025_Session_Conference",
+            Number = "5.",
+            TitleKey = "NetConf_2025_Session5_Title",
+            SpeakerKey = "NetConf_2025_Session5_Speaker",
+            RoleKey = "NetConf_2025_Session5_Role",
+            Time = "10:45 AM - 11:15 AM"
+        }
+    };
+
+    private class Session
+    {
+        public string BackgroundClass { get; set; } = "";
+        public string TypeKey { get; set; } = "";
+        public string Number { get; set; } = "";
+        public string TitleKey { get; set; } = "";
+        public string SpeakerKey { get; set; } = "";
+        public string RoleKey { get; set; } = "";
+        public string Time { get; set; } = "";
+    }
+}

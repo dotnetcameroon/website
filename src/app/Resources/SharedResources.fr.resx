@@ -621,4 +621,124 @@
     <value>Archives</value>
     <comment/>
   </data>
+  <data name="NetConf_2025_WhyAttend_Title" xml:space="preserve">
+    <value>Pourquoi venir, et</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_WhyAttend_TitleHighlight" xml:space="preserve">
+    <value>pourquoi maintenant?</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_WhyAttend_Description" xml:space="preserve">
+    <value>Bien plus qu'une conférence, c'est une expérience d'apprentissage, une chance de partager et de découvrir des opportunités qui peuvent transformer votre carrière.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_WhyAttend_Benefit1_Title" xml:space="preserve">
+    <value>Boostez votre carrière</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_WhyAttend_Benefit1_Description" xml:space="preserve">
+    <value>Contenu pertinent, feedback en temps réel, meilleures pratiques, coaching de carrière, revue de CV ou de profil LinkedIn.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_WhyAttend_Benefit2_Title" xml:space="preserve">
+    <value>Apprendre en pratiquant</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_WhyAttend_Benefit2_Description" xml:space="preserve">
+    <value>Des ateliers et des labs guidés vous permettent de coder, tester et expérimenter.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_WhyAttend_Benefit3_Title" xml:space="preserve">
+    <value>Rencontrez l'écosystème</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_WhyAttend_Benefit3_Description" xml:space="preserve">
+    <value>L'opportunité parfaite pour élargir votre réseau, échanger des idées et trouver de nouveaux collaborateurs ou opportunités professionnelles.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_WhyAttend_Benefit4_Title" xml:space="preserve">
+    <value>Restez à jour</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_WhyAttend_Benefit4_Description" xml:space="preserve">
+    <value>Les experts et praticiens révèlent les derniers développements en .NET, C#, Azure, IA, DevOps, sécurité et architecture moderne.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_ImmersiveDay_Title" xml:space="preserve">
+    <value>Une journée immersive dans le monde de .NET</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Session_Keynote" xml:space="preserve">
+    <value>Keynote</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Session_Conference" xml:space="preserve">
+    <value>Conférence</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Session_SponsorTime" xml:space="preserve">
+    <value>Temps Sponsor</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Session1_Title" xml:space="preserve">
+    <value>Keynote</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Session1_Speaker" xml:space="preserve">
+    <value>Doriane Mangotheuth</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Session1_Role" xml:space="preserve">
+    <value>Analyste M365 | Power Platform | Microsoft Dynamics 365</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Session2_Title" xml:space="preserve">
+    <value>Keynote</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Session2_Speaker" xml:space="preserve">
+    <value>Boris Gautier</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Session2_Role" xml:space="preserve">
+    <value>Logiciel, SI, DevOps et Ingénieur Principal</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Session3_Title" xml:space="preserve">
+    <value>Copilot: prise en main de copilot sur Microsoft 365</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Session3_Speaker" xml:space="preserve">
+    <value>Tchassem Eric</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Session3_Role" xml:space="preserve">
+    <value>PDG de PRODITECH</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Session4_Title" xml:space="preserve">
+    <value>Temps Sponsor - ITIA</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Session4_Speaker" xml:space="preserve">
+    <value>Vahid Farahmandian</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Session4_Role" xml:space="preserve">
+    <value>PDG de Spoota Co</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Session5_Title" xml:space="preserve">
+    <value>Déployer des applications .NET sur Kubernetes avec Azure DevOps</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Session5_Speaker" xml:space="preserve">
+    <value>À définir</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Session5_Role" xml:space="preserve">
+    <value>À définir</value>
+    <comment/>
+  </data>
 </root>
