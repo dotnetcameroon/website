@@ -214,11 +214,11 @@
     <comment/>
   </data>
   <data name="Membership_Stats_Members" xml:space="preserve">
-    <value>[object Object]</value>
+    <value>Membres actifs</value>
     <comment/>
   </data>
   <data name="Membership_Stats_Followers" xml:space="preserve">
-    <value>[object Object]</value>
+    <value>Followers</value>
     <comment/>
   </data>
   <data name="Membership_Stats_Events" xml:space="preserve">
@@ -226,7 +226,7 @@
     <comment/>
   </data>
   <data name="Membership_Stats_Projects" xml:space="preserve">
-    <value>[object Object]</value>
+    <value>Projets en cours</value>
     <comment/>
   </data>
   <data name="Membership_BecomeMember" xml:space="preserve">
