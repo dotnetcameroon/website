@@ -1,0 +1,86 @@
+@using Microsoft.Extensions.Localization
+@using app.domain.ViewModels
+@inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
+
+@if (Experts.Length > 0)
+{
+    <section class="bg-[#1a1a2e] py-16">
+        <div class="mx-auto container px-4">
+            <div class="mb-12">
+                <h2 class="heading heading-1 text-white mb-2">
+                    Renowned experts
+                </h2>
+                <p class="text-purple-400 text-xl font-light">
+                    to inspire you
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                @foreach (var expert in Experts)
+                {
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                        <div class="p-6">
+                            <div class="w-16 h-16 rounded-xl overflow-hidden mb-4">
+                                <img src="@expert.ImageUrl" alt="@expert.Name" class="w-full h-full object-cover" />
+                            </div>
+
+                            <h3 class="text-lg font-bold mb-1">@expert.Name</h3>
+                            <p class="text-sm text-gray-600 mb-4">@expert.Occupation</p>
+
+                            <ul class="text-sm text-gray-700 space-y-1 mb-4">
+                                <li>• 15+ years of .NET experience</li>
+                                <li>• Microsoft MVP for 8 years</li>
+                                <li>• Author of 3 books on software architecture</li>
+                            </ul>
+
+                            <p class="text-sm text-gray-600 italic">
+                                Session: "Revolutionize your applications with .NET 9 and AI"
+                            </p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+@code {
+    private IStringLocalizer? _sharedLocalizer;
+    private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
+
+    private readonly Speaker[] Experts =
+    [
+        new Speaker(
+            Name: "Jean-Marc ONANA",
+            Occupation: "Principal Solution Architect",
+            ImageUrl: "/assets/speakers/jean-marc-onana.jpg",
+            LinkedIn: null,
+            Twitter: null,
+            Github: null
+        ),
+        new Speaker(
+            Name: "Thomas NKUISSI",
+            Occupation: "Principal Solution Architect",
+            ImageUrl: "/assets/speakers/thomas-nkuissi.jpg",
+            LinkedIn: null,
+            Twitter: null,
+            Github: null
+        ),
+        new Speaker(
+            Name: "Georges FOTSO",
+            Occupation: "Principal Solution Architect",
+            ImageUrl: "/assets/speakers/georges-fotso.jpg",
+            LinkedIn: null,
+            Twitter: null,
+            Github: null
+        ),
+        new Speaker(
+            Name: "Paul MBARGA",
+            Occupation: "Principal Solution Architect",
+            ImageUrl: "/assets/speakers/paul-mbarga.jpg",
+            LinkedIn: null,
+            Twitter: null,
+            Github: null
+        )
+    ];
+}

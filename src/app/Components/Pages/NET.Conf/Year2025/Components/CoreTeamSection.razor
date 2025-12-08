@@ -1,0 +1,67 @@
+@using Microsoft.Extensions.Localization
+@using app.domain.ViewModels
+@inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
+
+@if (TeamMembers.Length > 0)
+{
+    <section class="bg-[#1a1a2e] py-16">
+        <div class="mx-auto container px-4">
+            <h2 class="heading heading-1 text-white mb-12">
+                Core team
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                @foreach (var member in TeamMembers)
+                {
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                        <div class="flex flex-col h-full">
+                            <!-- Image Section -->
+                            <div class="w-full h-64 bg-gray-100 overflow-hidden">
+                                <img src="@member.ImageUrl" alt="@member.Name" class="w-full h-full object-cover" />
+                            </div>
+
+                            <!-- Content Section -->
+                            <div class="p-8 flex flex-col flex-grow">
+                                <h3 class="text-2xl font-bold mb-2 text-gray-900">@member.Name</h3>
+                                <p class="text-base text-gray-500 mb-4">@member.Role</p>
+
+                                <hr class="border-gray-200 mb-4" />
+
+                                <p class="text-base text-gray-600 leading-relaxed">
+                                    @member.Description
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+@code {
+    private IStringLocalizer? _sharedLocalizer;
+    private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
+
+    private readonly TeamMember[] TeamMembers =
+    [
+        new TeamMember(
+            Name: "Djoufson CHE BENE",
+            Role: "Software Engineer",
+            ImageUrl: "/assets/team/djoufson-che.png",
+            Description: "Experienced backend engineer, co-Founder of .NET Cameroon. Advocate for open source and developer growth through community."
+            ),
+        new TeamMember(
+            Name: "Jaures Beinjamin",
+            Role: "Software Engineer - 2x Microsoft MVP",
+            ImageUrl: "/assets/team/jaures-fotsing.png",
+            Description: "Jaures Beinjamin is a Software Engineer 2x Microsoft MVP in Developer Technologies category, specialized in .NET and Web development"
+            ),
+        new TeamMember(
+            Name: "Franck Loïc NTONGA",
+            Role: "Cloud/DevOps Engineer",
+            ImageUrl: "/assets/team/franck-ntonga.jpeg",
+            Description: "Experienced Cloud Engineer, Python/DevOps Developer, and community builder (MLSA) with a strong background in migrating infrastructures to the cloud, automating system administration tasks, and building user-focused applications."
+            ),
+        ];
+}
