@@ -43,6 +43,9 @@
                     <a target="_blank" href="@InscriptionFormLink" class="btn btn-primary w-full md:w-fit">
                         @SharedLocalizer["NetConf_2025_SubscribeButton"]
                     </a>
+                    <a target="_blank" href="@SpeakersFormLink" class="btn btn-primary w-full md:w-fit">
+                        @SharedLocalizer["NetConf_2025_SpeakersSubscribeButton"]
+                    </a>
                     <a target="_blank" href="@SponsorshipFormLink" class="btn btn-outline w-full md:w-fit">
                         @SharedLocalizer["NetConf_2025_BecomeSponsorButton"]
                     </a>
@@ -56,5 +59,6 @@
     private IStringLocalizer? _sharedLocalizer;
     private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
     private string InscriptionFormLink = "https://forms.office.com/r/da0rtC4m8X";
+    private string SpeakersFormLink = "https://forms.office.com/r/3CgM0v2dgz";
     private string SponsorshipFormLink = "https://forms.office.com/r/6cYC5bRQLF";
 }
