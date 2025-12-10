@@ -6,5 +6,7 @@ public record Speaker(
     string ImageUrl,
     string? LinkedIn,
     string? Twitter,
-    string? Github
+    string? Github,
+    string? Website = null,
+    string Description = ""
 );
