@@ -1,6 +1,7 @@
 ﻿using Hangfire.Dashboard;
 
 namespace app.Filters;
+
 public class HangfireAuthFilter : IDashboardAuthorizationFilter
 {
     public bool Authorize(DashboardContext context)

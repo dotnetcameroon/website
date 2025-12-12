@@ -3,6 +3,7 @@ using app.domain.Models.EventAggregate.ValueObjects;
 using Host = app.domain.Models.EventAggregate.ValueObjects.Host;
 
 namespace app.domain.Models.EventAggregate.Entities;
+
 public sealed class Activity : Entity<Guid>
 {
     public string Title { get; private set; } = string.Empty;

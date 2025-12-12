@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 
 namespace app.infrastructure.Services;
+
 public class TokenProvider(IOptions<JwtOptions> jwtOptions) : ITokenProvider
 {
     public string Generate(IEnumerable<Claim> claims)

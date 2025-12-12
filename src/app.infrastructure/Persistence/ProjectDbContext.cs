@@ -2,6 +2,7 @@ using app.domain.Models.ProjectsAggregate;
 using Microsoft.EntityFrameworkCore;
 
 namespace app.infrastructure.Persistence;
+
 public class ProjectDbContext(DbContextOptions<ProjectDbContext> options) : DbContext(options)
 {
     public DbSet<Project> Projects { get; set; } = default!;

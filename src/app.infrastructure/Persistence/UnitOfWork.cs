@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace app.infrastructure.Persistence;
+
 public class UnitOfWork(IDbContext dbContext) : IUnitOfWork
 {
     private readonly IDbContext _dbContext = dbContext;

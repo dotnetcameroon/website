@@ -3,6 +3,7 @@ using app.Notifications;
 using MediatR;
 
 namespace app.Handlers;
+
 public class RequestMade_AwakeTheDatabase(IDbContext dbContext, ILogger<RequestMade_AwakeTheDatabase> logger) : INotificationHandler<RequestMade>
 {
     private readonly IDbContext _dbContext = dbContext;

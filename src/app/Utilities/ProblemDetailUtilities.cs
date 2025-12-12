@@ -2,6 +2,7 @@ using System.Dynamic;
 using ErrorOr;
 
 namespace app.Utilities;
+
 public static class ProblemUtilities
 {
     public static IResult Problem(List<Error>? errors = null)

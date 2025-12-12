@@ -4,6 +4,7 @@ using ErrorOr;
 using Microsoft.AspNetCore.Identity;
 
 namespace app.business.Services;
+
 public interface IExternalAppService
 {
     Task<ErrorOr<PagedList<Application>>> GetAllAsync(int page = 1, int size = 10, CancellationToken cancellationToken = default);

@@ -3,6 +3,7 @@ using app.domain.Models.EventAggregate.Enums;
 using app.domain.Models.EventAggregate.ValueObjects;
 
 namespace app.domain.ViewModels;
+
 public class EventModel
 {
     public string Title { get; set; } = string.Empty;

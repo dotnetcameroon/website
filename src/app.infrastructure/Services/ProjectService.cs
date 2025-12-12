@@ -4,6 +4,7 @@ using app.infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace app.infrastructure.Services;
+
 public class ProjectService(ProjectDbContext context) : IProjectService
 {
     public Task<Project[]> GetAllAsync()

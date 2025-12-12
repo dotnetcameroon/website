@@ -1,4 +1,5 @@
 namespace app.domain.Models.ProjectsAggregate;
+
 public class Project
 {
     public Guid Id { get; set; }

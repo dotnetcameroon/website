@@ -5,6 +5,7 @@ using app.shared.Utilities;
 using ErrorOr;
 
 namespace app.business.Services;
+
 public interface IEventService
 {
     Task<ErrorOr<Event[]>> GetUpcomingAsync(int page = 1, int size = 2, CancellationToken cancellationToken = default);

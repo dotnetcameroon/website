@@ -7,6 +7,7 @@ using ErrorOr;
 using Microsoft.EntityFrameworkCore;
 
 namespace app.infrastructure.Services;
+
 public class PartnerService(IRepository<Partner, Guid> repository) : IPartnerService
 {
     private readonly IRepository<Partner, Guid> _repository = repository;

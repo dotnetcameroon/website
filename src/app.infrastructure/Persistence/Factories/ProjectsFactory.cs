@@ -3,6 +3,7 @@ using Bogus;
 using EntityFrameworkCore.Seeder.Base;
 
 namespace app.infrastructure.Persistence.Factories;
+
 public class ProjectsFactory : Factory<Project>
 {
     protected override Faker<Project> BuildRules()

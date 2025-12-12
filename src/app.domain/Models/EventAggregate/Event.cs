@@ -6,6 +6,7 @@ using app.domain.ViewModels;
 using Host = app.domain.Models.EventAggregate.ValueObjects.Host;
 
 namespace app.domain.Models.EventAggregate;
+
 public sealed class Event : Entity<Guid>, IAggregateRoot
 {
     private readonly List<Partner> _partners = [];

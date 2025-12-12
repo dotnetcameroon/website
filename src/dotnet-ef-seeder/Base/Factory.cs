@@ -1,6 +1,7 @@
 using Bogus;
 
 namespace EntityFrameworkCore.Seeder.Base;
+
 public abstract class Factory<TEntity>
     where TEntity : class
 {

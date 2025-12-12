@@ -3,6 +3,7 @@ using app.domain.Models.EventAggregate.Entities;
 using EntityFrameworkCore.Seeder.Base;
 
 namespace app.infrastructure.Persistence.Seeders;
+
 public class PartnersSeeder(IDbContext dbContext, IUnitOfWork unitOfWork) : ISeeder
 {
     private readonly IDbContext _dbContext = dbContext;

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace app.infrastructure.Persistence.Interceptors;
+
 public class DomainEventsInterceptor(IPublisher publisher) : SaveChangesInterceptor
 {
     private readonly IPublisher _publisher = publisher;

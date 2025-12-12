@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace app.infrastructure.Persistence.Configurations;
+
 public class ApplicationConfigurations : IEntityTypeConfiguration<Application>
 {
     public void Configure(EntityTypeBuilder<Application> builder)

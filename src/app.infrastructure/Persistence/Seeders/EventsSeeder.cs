@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace app.infrastructure.Persistence.Seeders;
+
 public class EventsSeeder(IDbContext dbContext, ILogger<EventsSeeder> logger, IUnitOfWork unitOfWork) : ISeeder
 {
     private readonly IDbContext _dbContext = dbContext;

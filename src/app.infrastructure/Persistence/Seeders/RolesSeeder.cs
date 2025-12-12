@@ -3,6 +3,7 @@ using EntityFrameworkCore.Seeder.Base;
 using Microsoft.AspNetCore.Identity;
 
 namespace app.infrastructure.Persistence.Seeders;
+
 public class RolesSeeder(RoleManager<IdentityRole> roleManager) : ISeeder
 {
     private readonly RoleManager<IdentityRole> _roleManager = roleManager;

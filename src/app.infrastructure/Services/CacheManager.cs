@@ -3,6 +3,7 @@ using app.business.Services;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace app.infrastructure.Services;
+
 public sealed class CacheManager(IMemoryCache memoryCache) : ICacheManager
 {
     private readonly IMemoryCache _memoryCache = memoryCache;

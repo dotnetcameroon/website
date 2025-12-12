@@ -5,6 +5,7 @@ using Bogus;
 using EntityFrameworkCore.Seeder.Base;
 
 namespace app.infrastructure.Persistence.Factories;
+
 public class EventsFactory : Factory<Event>
 {
     private static readonly StringBuilder _imagesStringBuilder = new();

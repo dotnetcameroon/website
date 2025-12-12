@@ -3,6 +3,7 @@ using app.domain.Models.Common;
 using Microsoft.AspNetCore.Identity;
 
 namespace app.domain.Models.ExternalAppAggregate;
+
 public class Application : Entity<Guid>, IAggregateRoot
 {
     public string ClientName { get; private set; } = string.Empty;

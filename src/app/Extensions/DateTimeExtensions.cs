@@ -1,4 +1,5 @@
 namespace app.Extensions;
+
 public static class DateTimeExtensions
 {
     public static string ToCustomDateString(this DateTime dateTime)

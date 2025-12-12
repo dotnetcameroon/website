@@ -18,6 +18,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 namespace app.Extensions;
+
 public static class Extensions
 {
     private const string SqlServer = "SqlServer";

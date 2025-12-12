@@ -1,6 +1,7 @@
 using app.business.Services;
 
 namespace app.infrastructure.Services;
+
 public class FileUploader : IFileUploader
 {
     public Task<string> UploadAsync(Stream stream, string fileName, string relativeLocation, CancellationToken cancellationToken = default)

@@ -1,4 +1,5 @@
 namespace app.infrastructure.Options;
+
 public sealed class CookiesOptions
 {
     public const string SectionName = "CookiesOptions";

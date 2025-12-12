@@ -3,6 +3,7 @@ using app.Jobs.Base;
 using Hangfire;
 
 namespace app.Jobs;
+
 public class MarkEventsAsPassed(IEventService eventService) : IJob
 {
     private const string JobName = nameof(MarkEventsAsPassed);

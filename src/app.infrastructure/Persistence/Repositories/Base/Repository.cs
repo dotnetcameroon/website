@@ -3,6 +3,7 @@ using app.domain.Models.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace app.infrastructure.Persistence.Repositories.Base;
+
 public class Repository<TEntity, TId>(DbContext dbContext) : IRepository<TEntity, TId>
     where TEntity : Entity<TId>
 {

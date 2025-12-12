@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace app.infrastructure.Services;
+
 public class ExternalAppService(
     IUnitOfWork unitOfWork,
     IRepository<Application, Guid> applicationRepository

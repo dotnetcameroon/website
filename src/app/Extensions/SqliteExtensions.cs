@@ -1,6 +1,7 @@
 using app.infrastructure.Persistence;
 
 namespace app.Extensions;
+
 public static class SqliteExtensions
 {
     public static void EnsureDatabaseCreated(this IApplicationBuilder app)

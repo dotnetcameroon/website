@@ -8,6 +8,7 @@ using ErrorOr;
 using Microsoft.AspNetCore.Identity;
 
 namespace app.infrastructure.Services;
+
 public class IdentityService(
     UserManager<User> userManager,
     SignInManager<User> signInManager,

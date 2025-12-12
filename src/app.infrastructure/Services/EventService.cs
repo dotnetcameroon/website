@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Host = app.domain.Models.EventAggregate.ValueObjects.Host;
 
 namespace app.infrastructure.Services;
+
 public class EventService(
     IUnitOfWork unitOfWork,
     IRepository<Event, Guid> eventRepository,

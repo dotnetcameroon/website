@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace app.infrastructure.Persistence;
+
 public sealed partial class AppDbContext(
     DbContextOptions<AppDbContext> options,
     DomainEventsInterceptor domainEventsInterceptor) : IdentityDbContext<User>(options), IDbContext

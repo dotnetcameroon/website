@@ -1,6 +1,7 @@
 using app.domain.Models.EventAggregate.ValueObjects;
 
 namespace app.domain.ViewModels;
+
 public class ActivityModel
 {
     public string Title { get; set; } = string.Empty;

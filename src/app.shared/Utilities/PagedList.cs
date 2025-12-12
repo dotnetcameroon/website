@@ -1,4 +1,5 @@
 namespace app.shared.Utilities;
+
 public class PagedList<T> : PagedList
 {
     public List<T> Items { get; private set; } = [];

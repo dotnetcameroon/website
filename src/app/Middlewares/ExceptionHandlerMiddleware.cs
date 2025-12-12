@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Diagnostics;
 
 namespace app.Middlewares;
+
 public class ExceptionHandlerMiddleware(ILogger<ExceptionHandlerMiddleware> logger) : IExceptionHandler
 {
     private readonly ILogger<ExceptionHandlerMiddleware> _logger = logger;

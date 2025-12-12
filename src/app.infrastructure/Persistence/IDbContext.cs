@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace app.infrastructure.Persistence;
+
 public interface IDbContext
 {
     DatabaseFacade Database { get; }

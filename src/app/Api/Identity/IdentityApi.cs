@@ -2,6 +2,7 @@ using app.business.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace app.Api.Identity;
+
 public static class IdentityApi
 {
     public static IEndpointRouteBuilder MapIdentityApi(this IEndpointRouteBuilder endpoints)

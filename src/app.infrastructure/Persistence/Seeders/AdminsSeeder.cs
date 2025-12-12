@@ -4,6 +4,7 @@ using EntityFrameworkCore.Seeder.Base;
 using Microsoft.AspNetCore.Identity;
 
 namespace app.infrastructure.Persistence.Seeders;
+
 public class AdminsSeeder(UserManager<User> userManager) : ISeeder
 {
     private readonly UserManager<User> _userManager = userManager;

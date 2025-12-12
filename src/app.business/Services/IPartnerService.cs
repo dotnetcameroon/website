@@ -4,6 +4,7 @@ using app.shared.Utilities;
 using ErrorOr;
 
 namespace app.business.Services;
+
 public interface IPartnerService
 {
     Task<ErrorOr<Partner>> GetAsync(Guid id, CancellationToken cancellationToken = default);

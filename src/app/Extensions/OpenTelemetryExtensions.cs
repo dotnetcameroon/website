@@ -5,6 +5,7 @@ using OpenTelemetry.Trace;
 using OpenTelemetry.Logs;
 
 namespace app.Extensions;
+
 public static class OpenTelemetryExtensions
 {
     public static WebApplicationBuilder WithOpenTelemetry(this WebApplicationBuilder builder)

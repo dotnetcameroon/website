@@ -2,6 +2,7 @@ using app.Notifications;
 using MediatR;
 
 namespace app.Middlewares;
+
 public class DatabaseCheckMiddleware(IPublisher publisher) : IMiddleware
 {
     private readonly IPublisher _publisher = publisher;

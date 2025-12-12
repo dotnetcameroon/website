@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Caching.Memory;
 
 namespace app.business.Services;
+
 public interface ICacheManager
 {
 

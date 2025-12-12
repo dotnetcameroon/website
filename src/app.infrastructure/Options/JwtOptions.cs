@@ -1,4 +1,5 @@
 namespace app.infrastructure.Options;
+
 public sealed class JwtOptions
 {
     public const string SectionName = "JwtOptions";
