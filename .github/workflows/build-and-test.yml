@@ -33,7 +33,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 9.x
+        dotnet-version: 10.x
 
     - name: Get Cached NuGet Packages
       uses: actions/cache@v4
