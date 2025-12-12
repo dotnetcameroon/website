@@ -91,6 +91,7 @@
     [Parameter]
     public List<Activity> Activities { get; set; } = [];
 
+    #pragma warning disable BL0008
     [SupplyParameterFromForm(FormName = "NewActivityForm")]
     private Model ActivityModel { get; set; } = new();
     private async Task Add()

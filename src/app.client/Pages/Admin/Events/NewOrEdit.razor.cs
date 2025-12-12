@@ -15,6 +15,7 @@ public partial class NewOrEdit
     [Parameter]
     public Guid? Id { get; set; }
 
+#pragma warning disable BL0008
     [SupplyParameterFromForm(FormName = "EventForm")]
     private EventModel EventModel { get; set; } = new();
 

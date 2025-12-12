@@ -105,6 +105,7 @@ else
     public string Search { get; set; } = string.Empty;
 
     [SupplyParameterFromForm(FormName = "SearchForm")]
+    #pragma warning disable BL0008
     private SearchModel SearchBarModel { get; set; } = new();
 
     [SupplyParameterFromForm(FormName = "PageSizeForm")]

@@ -25,6 +25,7 @@
     [Parameter]
     public Guid Id { get; set; }
 
+    #pragma warning disable BL0008
     [SupplyParameterFromForm]
     private DeleteModel Model { get; set; } = new();
 
