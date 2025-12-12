@@ -1,15 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Hangfire.MemoryStorage" />
-    <PackageReference Include="Microsoft.AspNetCore.Localization" />
-    <PackageReference Include="Microsoft.Extensions.Localization" />
     <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" />
