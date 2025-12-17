@@ -79,5 +79,10 @@
     private IStringLocalizer? _sharedLocalizer;
     private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
 
-    private List<FloatingNavBar.NavItem> navigationItems = [];
+    private List<FloatingNavBar.NavItem> navigationItems = new()
+    {
+        new FloatingNavBar.NavItem { Id = "speakers", LabelKey = "NetConf_2025_Nav_Speakers" },
+        new FloatingNavBar.NavItem { Id = "core-team", LabelKey = "NetConf_2025_Nav_CoreTeam" },
+        new FloatingNavBar.NavItem { Id = "sponsors", LabelKey = "NetConf_2025_Nav_Sponsors" }
+    };
 }
