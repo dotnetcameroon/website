@@ -745,4 +745,80 @@
     <value>TBD</value>
     <comment/>
   </data>
+  <data name="NetConf_2025_MustAttend_TitleHighlight" xml:space="preserve">
+    <value>Must-attend tech event</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_MustAttend_Title" xml:space="preserve">
+    <value>for the Microsoft Ecosystem in Cameroon</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_MustAttend_Description" xml:space="preserve">
+    <value>A unique gathering that brings together developers, IT professionals, and technology enthusiasts shaping the future of Microsoft technologies in Cameroon.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Location_Title" xml:space="preserve">
+    <value>Event Location</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Location_Address" xml:space="preserve">
+    <value>Bali, Douala, Cameroon</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Location_HowToGetThere_Title" xml:space="preserve">
+    <value>How to Get There</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Location_HowToGetThere_Description" xml:space="preserve">
+    <value>The Hotel Serena Palace is located in the heart of Bali, Douala's business district. It is easily accessible by taxi or personal vehicle. Free parking is available for attendees.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Location_Schedule_Title" xml:space="preserve">
+    <value>Event Schedule</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Location_Schedule_DateLabel" xml:space="preserve">
+    <value>Date:</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Location_Schedule_Date" xml:space="preserve">
+    <value>December 20, 2025</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Location_Schedule_TimeLabel" xml:space="preserve">
+    <value>Time:</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Location_Schedule_Time" xml:space="preserve">
+    <value>9:00 AM - 4 PM</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Location_Schedule_ArrivalNote" xml:space="preserve">
+    <value>Please arrive early to check in and network with fellow attendees.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_RenownedExperts_Title" xml:space="preserve">
+    <value>Renowned experts</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_RenownedExperts_Subtitle" xml:space="preserve">
+    <value>to inspire you</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_CoreTeam_Title" xml:space="preserve">
+    <value>Core team</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_CoreTeam_Description" xml:space="preserve">
+    <value>Meet the dedicated individuals behind .NET Cameroon, working tirelessly to build and nurture our vibrant developer community.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Sponsors_Title" xml:space="preserve">
+    <value>Sponsors</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Sponsors_Description" xml:space="preserve">
+    <value>Thank you to everyone who makes this event possible.</value>
+    <comment/>
+  </data>
 </root>
