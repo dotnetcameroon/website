@@ -12,7 +12,11 @@
         </p>
 
         <div class="max-w-4xl mx-auto">
-            @foreach (var session in Sessions)
+            @{
+                var sortedSessions = Sessions.OrderBy(s => s.Time).ToList();
+                var lastSession = sortedSessions.Last();
+            }
+            @foreach (var session in sortedSessions)
             {
                 <div class="flex gap-6 mb-8 group">
                     <!-- Time Column -->
@@ -26,7 +30,7 @@
                     <!-- Timeline Dot -->
                     <div class="flex-shrink-0 relative">
                         <div class="w-4 h-4 bg-secondary rounded-full mt-1.5 ring-4 ring-white group-hover:ring-secondary/20 transition-all"></div>
-                        @if (session != Sessions.Last())
+                        @if (session != lastSession)
                         {
                             <div class="absolute top-6 left-1/2 -translate-x-1/2 w-0.5 h-full bg-gray-300"></div>
                         }
@@ -80,26 +84,35 @@
     {
         new()
         {
-            Time = new TimeOnly(9, 0),
-            Duration = TimeSpan.FromMinutes(30),
-            Title = "Registration & Welcome Coffee",
-            Description = "Check-in, collect your badge, and enjoy some coffee while networking with fellow attendees.",
-            Type = SessionType.Break,
-            Speaker = null
-        },
-        new()
-        {
-            Time = new TimeOnly(9, 30),
-            Duration = TimeSpan.FromMinutes(45),
-            Title = "Opening Keynote",
-            Description = "Kickoff the conference with insights into the latest .NET innovations and the future of development in Cameroon.",
+            Time = new TimeOnly(9, 20),
+            Duration = TimeSpan.FromMinutes(35),
+            Title = "Afrique francophone : opportunités cachées et pourquoi il faut s'y intéresser",
+            Description = "Exploring the hidden opportunities in French-speaking Africa and why the tech community should pay attention to this emerging market.",
             Type = SessionType.Keynote,
-            Speaker = "TBD"
+            Speaker = "TIAKO TCHOUAMENI CEDRIC AIME"
         },
         new()
         {
-            Time = new TimeOnly(10, 15),
-            Duration = TimeSpan.FromMinutes(15),
+            Time = new TimeOnly(9, 55),
+            Duration = TimeSpan.FromMinutes(35),
+            Title = "What developers really need",
+            Description = "An insightful look into the real needs and challenges facing modern developers in Africa and how to address them.",
+            Type = SessionType.Keynote,
+            Speaker = "Valentine NGUEMNE"
+        },
+        new()
+        {
+            Time = new TimeOnly(10, 30),
+            Duration = TimeSpan.FromMinutes(20),
+            Title = "Moderniser son application .NET sur Google Cloud : entre migration rapide et refonte",
+            Description = "Learn strategies for modernizing .NET applications on Google Cloud, balancing quick migration versus complete refactoring.",
+            Type = SessionType.Talk,
+            Speaker = "NDJANA MENGUE JERRY DAVIS"
+        },
+        new()
+        {
+            Time = new TimeOnly(10, 50),
+            Duration = TimeSpan.FromMinutes(20),
             Title = "Coffee Break & Networking",
             Description = "Recharge with refreshments and connect with speakers and attendees.",
             Type = SessionType.Break,
@@ -107,25 +120,70 @@
         },
         new()
         {
-            Time = new TimeOnly(10, 30),
-            Duration = TimeSpan.FromMinutes(45),
-            Title = "Technical Session: Modern .NET Development",
-            Description = "Deep dive into modern .NET development practices, including .NET 9, C# 13, and best practices for building scalable applications.",
+            Time = new TimeOnly(11, 10),
+            Duration = TimeSpan.FromMinutes(25),
+            Title = "Où héberger une application .NET ? Le chemin qui mène (parfois) à AKS",
+            Description = "Navigate the decision-making process for hosting .NET applications and understand when Azure Kubernetes Service (AKS) is the right choice.",
             Type = SessionType.Talk,
-            Speaker = "TBD"
+            Speaker = "Younes DJEBOURRI"
         },
         new()
         {
-            Time = new TimeOnly(11, 15),
-            Duration = TimeSpan.FromMinutes(45),
-            Title = "Technical Session: Cloud & DevOps",
-            Description = "Learn about deploying .NET applications to the cloud with Azure, implementing CI/CD pipelines, and DevOps best practices.",
+            Time = new TimeOnly(11, 20),
+            Duration = TimeSpan.FromMinutes(15),
+            Title = "IDEM Sponsor Time",
+            Description = "Presentation from our sponsor IDEM, showcasing their solutions and opportunities.",
+            Type = SessionType.Sponsor,
+            Speaker = "Arolle AGUEKENG"
+        },
+        new()
+        {
+            Time = new TimeOnly(11, 35),
+            Duration = TimeSpan.FromMinutes(5),
+            Title = "MC Break",
+            Description = "Quick transition and announcements by the Master of Ceremony.",
+            Type = SessionType.MC,
+            Speaker = "Steve YONKEU"
+        },
+        new()
+        {
+            Time = new TimeOnly(11, 40),
+            Duration = TimeSpan.FromMinutes(20),
+            Title = "Awareness for Tech-newbies",
+            Description = "Essential awareness and guidance for newcomers entering the tech industry, covering fundamental concepts and best practices.",
             Type = SessionType.Talk,
-            Speaker = "TBD"
+            Speaker = "Alex Landry FOUTHE"
         },
         new()
         {
             Time = new TimeOnly(12, 0),
+            Duration = TimeSpan.FromMinutes(35),
+            Title = "Smart testing et automatisation avec playwright et l'IA",
+            Description = "Discover how to leverage Playwright and AI for intelligent test automation in modern web applications.",
+            Type = SessionType.Workshop,
+            Speaker = "Linda Mballa"
+        },
+        new()
+        {
+            Time = new TimeOnly(12, 15),
+            Duration = TimeSpan.FromMinutes(30),
+            Title = "Breaking time/Networking",
+            Description = "Networking break with the .NET Cameroon community. Perfect time to connect, share ideas, and build relationships.",
+            Type = SessionType.Break,
+            Speaker = "Team .Net Cameroon"
+        },
+        new()
+        {
+            Time = new TimeOnly(12, 45),
+            Duration = TimeSpan.FromMinutes(15),
+            Title = "Partner Time : Django/Python Cameroun",
+            Description = "Community partner presentation showcasing the Django/Python Cameroun community and collaboration opportunities.",
+            Type = SessionType.MC,
+            Speaker = "Steve YONKEU"
+        },
+        new()
+        {
+            Time = new TimeOnly(13, 0),
             Duration = TimeSpan.FromMinutes(60),
             Title = "Lunch Break",
             Description = "Enjoy a delicious meal and continue networking with the community.",
@@ -134,26 +192,62 @@
         },
         new()
         {
-            Time = new TimeOnly(13, 0),
-            Duration = TimeSpan.FromMinutes(45),
-            Title = "Workshop: Hands-on with .NET",
-            Description = "Interactive workshop where you'll build a real-world application using the latest .NET technologies.",
-            Type = SessionType.Workshop,
-            Speaker = "TBD"
-        },
-        new()
-        {
-            Time = new TimeOnly(13, 45),
-            Duration = TimeSpan.FromMinutes(45),
-            Title = "Panel Discussion: The Future of Tech in Cameroon",
-            Description = "Industry leaders discuss opportunities, challenges, and the path forward for technology and development in Cameroon.",
+            Time = new TimeOnly(14, 0),
+            Duration = TimeSpan.FromMinutes(25),
+            Title = "Construire des applications web modernes avec .NET 10 : du backend au frontend",
+            Description = "Build modern web applications with .NET 10, covering both backend and frontend development approaches.",
             Type = SessionType.Talk,
-            Speaker = "Multiple Speakers"
+            Speaker = "Marcelle TCHOUAMOUO"
         },
         new()
         {
-            Time = new TimeOnly(14, 30),
+            Time = new TimeOnly(14, 25),
+            Duration = TimeSpan.FromMinutes(25),
+            Title = "RAG + Azure : Transformer vos Données d'Entreprise en Connaissance Générative",
+            Description = "Transform your enterprise data into generative knowledge using Retrieval-Augmented Generation (RAG) with Azure services.",
+            Type = SessionType.Talk,
+            Speaker = "BONO Mbelle Aurelien"
+        },
+        new()
+        {
+            Time = new TimeOnly(14, 50),
+            Duration = TimeSpan.FromMinutes(25),
+            Title = "GitOps pour les équipes .NET : industrialiser le déploiement d'applications modernes sur Azure",
+            Description = "Industrialize deployment of modern .NET applications on Azure using GitOps practices and automation.",
+            Type = SessionType.Talk,
+            Speaker = "Cabrel Tchoffo"
+        },
+        new()
+        {
+            Time = new TimeOnly(15, 15),
+            Duration = TimeSpan.FromMinutes(10),
+            Title = "Coffee Break",
+            Description = "Quick refreshment break before the final sessions.",
+            Type = SessionType.Break,
+            Speaker = null
+        },
+        new()
+        {
+            Time = new TimeOnly(15, 25),
+            Duration = TimeSpan.FromMinutes(25),
+            Title = "Power Platform & Dataverse : catalyseurs de productivité et de transformation digitale en entreprise",
+            Description = "Discover how Power Platform and Dataverse can catalyze productivity and drive digital transformation in enterprises.",
+            Type = SessionType.Talk,
+            Speaker = "KEMMEGNE TOUNSI EMERICK JOVANE"
+        },
+        new()
+        {
+            Time = new TimeOnly(15, 50),
             Duration = TimeSpan.FromMinutes(30),
+            Title = "Vibe Coding et cybersécurité : accélérer le développement tout en réduisant les vulnérabilités",
+            Description = "Learn to accelerate development while reducing vulnerabilities through vibe coding practices and cybersecurity awareness.",
+            Type = SessionType.Workshop,
+            Speaker = "Claude NDA"
+        },
+        new()
+        {
+            Time = new TimeOnly(16, 20),
+            Duration = TimeSpan.FromMinutes(25),
             Title = "Closing Remarks & Networking",
             Description = "Wrap up the conference with final thoughts, prizes, and continued networking opportunities.",
             Type = SessionType.Break,
@@ -178,6 +272,8 @@
         SessionType.Talk => "bg-blue-100 text-blue-700",
         SessionType.Workshop => "bg-green-100 text-green-700",
         SessionType.Break => "bg-gray-100 text-gray-700",
+        SessionType.Sponsor => "bg-yellow-100 text-yellow-700",
+        SessionType.MC => "bg-pink-100 text-pink-700",
         _ => "bg-secondary/10 text-secondary"
     };
 
@@ -186,7 +282,9 @@
         Talk,
         Keynote,
         Workshop,
-        Break
+        Break,
+        Sponsor,
+        MC
     }
 
     private class ScheduleSession
