@@ -609,6 +609,10 @@
     <value>Planning</value>
     <comment/>
   </data>
+  <data name="NetConf_2025_Nav_Schedule" xml:space="preserve">
+    <value>Schedule</value>
+    <comment/>
+  </data>
   <data name="NetConf_2025_Nav_Speakers" xml:space="preserve">
     <value>Speakers</value>
     <comment/>
@@ -819,6 +823,138 @@
   </data>
   <data name="NetConf_2025_Sponsors_Description" xml:space="preserve">
     <value>Thank you to everyone who makes this event possible.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Title" xml:space="preserve">
+    <value>Conference</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_TitleHighlight" xml:space="preserve">
+    <value>Schedule</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Description" xml:space="preserve">
+    <value>A full day of engaging sessions, networking opportunities, and hands-on learning. Join us for an unforgettable experience!</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Footer" xml:space="preserve">
+    <value>Schedule is subject to change. We'll keep you updated with any modifications.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session1_Title" xml:space="preserve">
+    <value>Registration &amp; Welcome Coffee</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session1_Description" xml:space="preserve">
+    <value>Check-in, collect your badge, and enjoy some coffee while networking with fellow attendees.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session1_Type" xml:space="preserve">
+    <value>Networking</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session2_Title" xml:space="preserve">
+    <value>Opening Keynote</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session2_Description" xml:space="preserve">
+    <value>Kickoff the conference with insights into the latest .NET innovations and the future of development in Cameroon.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session2_Type" xml:space="preserve">
+    <value>Keynote</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session2_Speaker" xml:space="preserve">
+    <value>TBD</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session3_Title" xml:space="preserve">
+    <value>Coffee Break &amp; Networking</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session3_Description" xml:space="preserve">
+    <value>Recharge with refreshments and connect with speakers and attendees.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session4_Title" xml:space="preserve">
+    <value>Technical Session: Modern .NET Development</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session4_Description" xml:space="preserve">
+    <value>Deep dive into modern .NET development practices, including .NET 9, C# 13, and best practices for building scalable applications.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session4_Type" xml:space="preserve">
+    <value>Technical Talk</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session4_Speaker" xml:space="preserve">
+    <value>TBD</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session5_Title" xml:space="preserve">
+    <value>Technical Session: Cloud &amp; DevOps</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session5_Description" xml:space="preserve">
+    <value>Learn about deploying .NET applications to the cloud with Azure, implementing CI/CD pipelines, and DevOps best practices.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session5_Type" xml:space="preserve">
+    <value>Technical Talk</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session5_Speaker" xml:space="preserve">
+    <value>TBD</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session6_Title" xml:space="preserve">
+    <value>Lunch Break</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session6_Description" xml:space="preserve">
+    <value>Enjoy a delicious meal and continue networking with the community.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session7_Title" xml:space="preserve">
+    <value>Workshop: Hands-on with .NET</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session7_Description" xml:space="preserve">
+    <value>Interactive workshop where you'll build a real-world application using the latest .NET technologies.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session7_Type" xml:space="preserve">
+    <value>Workshop</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session7_Speaker" xml:space="preserve">
+    <value>TBD</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session8_Title" xml:space="preserve">
+    <value>Panel Discussion: The Future of Tech in Cameroon</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session8_Description" xml:space="preserve">
+    <value>Industry leaders discuss opportunities, challenges, and the path forward for technology and development in Cameroon.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session8_Type" xml:space="preserve">
+    <value>Panel</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session8_Speaker" xml:space="preserve">
+    <value>Multiple Speakers</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session9_Title" xml:space="preserve">
+    <value>Closing Remarks &amp; Networking</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session9_Description" xml:space="preserve">
+    <value>Wrap up the conference with final thoughts, prizes, and continued networking opportunities.</value>
     <comment/>
   </data>
 </root>

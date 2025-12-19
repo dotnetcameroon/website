@@ -50,6 +50,9 @@
     <!-- Why Attend Section -->
     <WhyAttendSection />
 
+    <!-- Schedule Section -->
+    <ScheduleSection />
+
     <!-- Immersive Day Section -->
     <ImmersiveDaySection />
 
@@ -81,6 +84,7 @@
 
     private List<FloatingNavBar.NavItem> navigationItems = new()
     {
+        new FloatingNavBar.NavItem { Id = "schedule", LabelKey = "NetConf_2025_Nav_Schedule" },
         new FloatingNavBar.NavItem { Id = "speakers", LabelKey = "NetConf_2025_Nav_Speakers" },
         new FloatingNavBar.NavItem { Id = "core-team", LabelKey = "NetConf_2025_Nav_CoreTeam" },
         new FloatingNavBar.NavItem { Id = "sponsors", LabelKey = "NetConf_2025_Nav_Sponsors" }

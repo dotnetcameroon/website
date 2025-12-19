@@ -609,6 +609,10 @@
     <value>Planning</value>
     <comment/>
   </data>
+  <data name="NetConf_2025_Nav_Schedule" xml:space="preserve">
+    <value>Programme</value>
+    <comment/>
+  </data>
   <data name="NetConf_2025_Nav_Speakers" xml:space="preserve">
     <value>Intervenants</value>
     <comment/>
@@ -819,6 +823,138 @@
   </data>
   <data name="NetConf_2025_Sponsors_Description" xml:space="preserve">
     <value>Merci à tous ceux qui rendent cet événement possible.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Title" xml:space="preserve">
+    <value>Programme de la</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_TitleHighlight" xml:space="preserve">
+    <value>Conférence</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Description" xml:space="preserve">
+    <value>Une journée complète de sessions captivantes, d'opportunités de réseautage et d'apprentissage pratique. Rejoignez-nous pour une expérience inoubliable !</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Footer" xml:space="preserve">
+    <value>Le programme est susceptible de changer. Nous vous tiendrons informés de toute modification.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session1_Title" xml:space="preserve">
+    <value>Inscription et café de bienvenue</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session1_Description" xml:space="preserve">
+    <value>Enregistrement, récupération de votre badge et dégustation d'un café tout en réseautant avec les autres participants.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session1_Type" xml:space="preserve">
+    <value>Réseautage</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session2_Title" xml:space="preserve">
+    <value>Keynote d'ouverture</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session2_Description" xml:space="preserve">
+    <value>Lancez la conférence avec des aperçus sur les dernières innovations .NET et l'avenir du développement au Cameroun.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session2_Type" xml:space="preserve">
+    <value>Keynote</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session2_Speaker" xml:space="preserve">
+    <value>À définir</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session3_Title" xml:space="preserve">
+    <value>Pause-café et réseautage</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session3_Description" xml:space="preserve">
+    <value>Rechargez vos batteries avec des rafraîchissements et connectez-vous avec les intervenants et participants.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session4_Title" xml:space="preserve">
+    <value>Session technique : Développement .NET moderne</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session4_Description" xml:space="preserve">
+    <value>Plongée en profondeur dans les pratiques modernes de développement .NET, incluant .NET 9, C# 13 et les meilleures pratiques pour créer des applications évolutives.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session4_Type" xml:space="preserve">
+    <value>Présentation technique</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session4_Speaker" xml:space="preserve">
+    <value>À définir</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session5_Title" xml:space="preserve">
+    <value>Session technique : Cloud et DevOps</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session5_Description" xml:space="preserve">
+    <value>Apprenez à déployer des applications .NET dans le cloud avec Azure, à implémenter des pipelines CI/CD et les meilleures pratiques DevOps.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session5_Type" xml:space="preserve">
+    <value>Présentation technique</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session5_Speaker" xml:space="preserve">
+    <value>À définir</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session6_Title" xml:space="preserve">
+    <value>Pause déjeuner</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session6_Description" xml:space="preserve">
+    <value>Profitez d'un délicieux repas et continuez à réseauter avec la communauté.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session7_Title" xml:space="preserve">
+    <value>Atelier : Pratique avec .NET</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session7_Description" xml:space="preserve">
+    <value>Atelier interactif où vous construirez une application réelle utilisant les dernières technologies .NET.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session7_Type" xml:space="preserve">
+    <value>Atelier</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session7_Speaker" xml:space="preserve">
+    <value>À définir</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session8_Title" xml:space="preserve">
+    <value>Table ronde : L'avenir de la tech au Cameroun</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session8_Description" xml:space="preserve">
+    <value>Les leaders de l'industrie discutent des opportunités, défis et de la voie à suivre pour la technologie et le développement au Cameroun.</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session8_Type" xml:space="preserve">
+    <value>Table ronde</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session8_Speaker" xml:space="preserve">
+    <value>Plusieurs intervenants</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session9_Title" xml:space="preserve">
+    <value>Remarques de clôture et réseautage</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Schedule_Session9_Description" xml:space="preserve">
+    <value>Terminez la conférence avec des réflexions finales, des prix et des opportunités de réseautage continues.</value>
     <comment/>
   </data>
 </root>
