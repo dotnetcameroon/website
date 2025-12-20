@@ -825,6 +825,14 @@
     <value>Merci à tous ceux qui rendent cet événement possible.</value>
     <comment/>
   </data>
+  <data name="NetConf_2025_Partners_Title" xml:space="preserve">
+    <value>Partenaires Communautaires</value>
+    <comment/>
+  </data>
+  <data name="NetConf_2025_Partners_Description" xml:space="preserve">
+    <value>Ensemble avec nos partenaires communautaires, nous construisons un écosystème technologique plus fort au Cameroun.</value>
+    <comment/>
+  </data>
   <data name="NetConf_2025_Schedule_Title" xml:space="preserve">
     <value>Programme de la</value>
     <comment/>

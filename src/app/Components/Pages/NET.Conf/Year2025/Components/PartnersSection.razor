@@ -1,0 +1,63 @@
+@using Microsoft.Extensions.Localization
+@inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
+
+@if (Partners.Length > 0)
+{
+    <section data-section-id="partners" class="bg-gray-50 py-16">
+        <div class="mx-auto container px-4">
+            <div class="mb-12 text-center">
+                <h2 class="heading heading-1 text-dark-purple mb-4">
+                    @SharedLocalizer["NetConf_2025_Partners_Title"]
+                </h2>
+                <p class="text-gray-600 font-light max-w-2xl mx-auto">
+                    @SharedLocalizer["NetConf_2025_Partners_Description"]
+                </p>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-8 lg:gap-12">
+                @foreach (var partner in Partners)
+                {
+                    <a href="@partner.WebsiteUrl"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="group transition-all duration-300"
+                       title="@partner.Name">
+                        <img src="@partner.LogoUrl"
+                             alt="@partner.Name"
+                             class="h-16 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300" />
+                    </a>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+@code {
+    private IStringLocalizer? _sharedLocalizer;
+    private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
+
+    private readonly Partner[] Partners =
+    [
+        new Partner(
+            Name: "DevGirls",
+            LogoUrl: "/assets/sponsors/devgirls.png",
+            WebsiteUrl: "https://www.linkedin.com/company/dev-girls-com/"
+        ),
+        new Partner(
+            Name: "Django Cameroon",
+            LogoUrl: "/assets/sponsors/django-cameroon.png",
+            WebsiteUrl: "https://djangocameroon.org"
+        ),
+        new Partner(
+            Name: "Techie Connect Brunch",
+            LogoUrl: "/assets/sponsors/tcb.png",
+            WebsiteUrl: ""
+        ),
+    ];
+
+    private record Partner(
+        string Name,
+        string LogoUrl,
+        string WebsiteUrl
+    );
+}
