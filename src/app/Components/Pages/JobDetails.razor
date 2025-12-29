@@ -147,49 +147,62 @@
                         
                         @if (!string.IsNullOrEmpty(_job.ApplicationUrl))
                         {
-                            <a href="@_job.ApplicationUrl" target="_blank" class="btn btn-primary w-full mb-4">
-                                <i class="fa-solid fa-external-link"></i> Apply Now
+                            <a href="@_job.ApplicationUrl" target="_blank" class="btn btn-primary w-full mb-6 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i> Apply Now
                             </a>
                         }
                         else if (!string.IsNullOrEmpty(_job.ContactEmail))
                         {
-                            <a href="mailto:@_job.ContactEmail" class="btn btn-primary w-full mb-4">
+                            <a href="mailto:@_job.ContactEmail" class="btn btn-primary w-full mb-6 flex items-center justify-center gap-2">
                                 <i class="fa-solid fa-envelope"></i> Send Application
                             </a>
                         }
 
-                        <div class="space-y-3 text-sm text-gray-600">
-                            <div class="flex items-center gap-2">
-                                <i class="fa-solid fa-calendar"></i>
-                                <span>Deadline: @_job.ApplicationDeadline</span>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-start gap-3 text-sm text-gray-700 bg-gray-50 p-3 rounded-lg">
+                                <i class="fa-solid fa-calendar text-primary mt-0.5"></i>
+                                <div>
+                                    <span class="font-semibold block">Application Deadline</span>
+                                    <span class="text-gray-600">@_job.ApplicationDeadline</span>
+                                </div>
                             </div>
                             @if (!string.IsNullOrEmpty(_job.ContactEmail))
                             {
-                                <div class="flex items-center gap-2">
-                                    <i class="fa-solid fa-envelope"></i>
-                                    <span>@_job.ContactEmail</span>
+                                <div class="flex items-start gap-3 text-sm text-gray-700 bg-gray-50 p-3 rounded-lg">
+                                    <i class="fa-solid fa-envelope text-primary mt-0.5"></i>
+                                    <div>
+                                        <span class="font-semibold block">Contact Email</span>
+                                        <a href="mailto:@_job.ContactEmail" class="text-primary hover:underline break-all">@_job.ContactEmail</a>
+                                    </div>
                                 </div>
                             }
                         </div>
 
                         <hr class="my-4">
 
-                        <div class="space-y-3">
-                            <button @onclick="ShareOnLinkedIn" class="btn btn-outline w-full text-left flex items-center gap-2">
-                                <i class="fa-brands fa-linkedin text-blue-600"></i> Share on LinkedIn
+                        <div class="mb-3">
+                            <span class="text-sm font-semibold text-gray-700 block mb-2">Share this opportunity</span>
+                        </div>
+
+                        <div class="space-y-2">
+                            <button @onclick="ShareOnLinkedIn" class="btn btn-outline w-full text-left flex items-center gap-2 hover:bg-blue-50">
+                                <i class="fa-brands fa-linkedin text-blue-600 text-lg"></i> 
+                                <span>Share on LinkedIn</span>
                             </button>
-                            <button @onclick="ShareOnTwitter" class="btn btn-outline w-full text-left flex items-center gap-2">
-                                <i class="fa-brands fa-twitter text-blue-400"></i> Share on Twitter
+                            <button @onclick="ShareOnTwitter" class="btn btn-outline w-full text-left flex items-center gap-2 hover:bg-blue-50">
+                                <i class="fa-brands fa-twitter text-blue-400 text-lg"></i> 
+                                <span>Share on Twitter</span>
                             </button>
-                            <button @onclick="CopyLink" class="btn btn-outline w-full text-left flex items-center gap-2">
-                                <i class="fa-solid fa-link"></i> Copy Link
+                            <button @onclick="CopyLink" class="btn btn-outline w-full text-left flex items-center gap-2 hover:bg-gray-50">
+                                <i class="fa-solid fa-link text-gray-600 text-lg"></i> 
+                                <span>Copy Link</span>
                             </button>
                         </div>
 
                         @if (_linkCopied)
                         {
-                            <div class="mt-3 p-2 bg-green-100 text-green-700 rounded text-sm text-center">
-                                <i class="fa-solid fa-check"></i> Link copied!
+                            <div class="mt-3 p-3 bg-green-50 border border-green-200 text-green-700 rounded-lg text-sm text-center animate-fade-in">
+                                <i class="fa-solid fa-check-circle"></i> Link copied to clipboard!
                             </div>
                         }
                     </div>
@@ -197,13 +210,15 @@
                     <!-- Company Info Card -->
                     <div class="bg-white rounded-lg shadow-md p-6">
                         <h3 class="heading heading-4 mb-4">About @_job.Company</h3>
-                        <p class="text-gray-700 text-sm mb-4">
+                        <p class="text-gray-700 text-sm mb-4 leading-relaxed">
                             @_job.CompanyDescription
                         </p>
                         @if (!string.IsNullOrEmpty(_job.CompanyWebsite))
                         {
-                            <a href="@_job.CompanyWebsite" target="_blank" class="text-primary hover:underline text-sm">
-                                <i class="fa-solid fa-globe"></i> Visit Website
+                            <a href="@_job.CompanyWebsite" target="_blank" class="inline-flex items-center gap-2 text-primary hover:text-primary-accentuation font-medium text-sm transition-colors">
+                                <i class="fa-solid fa-globe"></i> 
+                                <span>Visit Company Website</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                             </a>
                         }
                     </div>
