@@ -1,0 +1,398 @@
+@page "/jobs/{jobId}"
+@using Microsoft.Extensions.Localization
+@attribute [StreamRendering]
+@inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>@(_job?.Title ?? "Job Details") - .NET Cameroon</PageTitle>
+<HeadContent>
+    @if (_job is not null)
+    {
+        <meta name="description" content="@_job.Description">
+        <meta property="og:title" content="@_job.Title - @_job.Company">
+        <meta property="og:description" content="@_job.Description">
+        <meta property="og:image" content="https://dotnet.cm/assets/brand/logo.png">
+        <meta property="og:url" content="https://dotnet.cm/jobs/@JobId">
+    }
+</HeadContent>
+
+<div>
+    <NavBar />
+    
+    @if (_job is null)
+    {
+        <!-- Job Not Found -->
+        <section class="section container mx-auto px-4 text-center">
+            <div class="max-w-2xl mx-auto">
+                <i class="fa-solid fa-exclamation-circle text-6xl text-gray-400 mb-4"></i>
+                <h1 class="heading heading-1 mb-4">Job Not Found</h1>
+                <p class="text-gray-600 mb-8">
+                    Sorry, we couldn't find the job you're looking for. It may have been removed or the position has been filled.
+                </p>
+                <a href="/jobs" data-enhance-nav="false" class="btn btn-primary">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Jobs
+                </a>
+            </div>
+        </section>
+    }
+    else
+    {
+        <!-- Job Details -->
+        <section class="section container mx-auto px-4">
+            <!-- Back Button -->
+            <div class="mb-6">
+                <a href="/jobs" data-enhance-nav="false" class="text-primary hover:underline flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left"></i> Back to all jobs
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Main Content -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                        <!-- Header -->
+                        <div class="flex items-start justify-between mb-6">
+                            <div>
+                                <h1 class="heading heading-1 mb-2">@_job.Title</h1>
+                                <p class="text-xl text-gray-700 mb-2">@_job.Company</p>
+                                <div class="flex flex-wrap gap-4 text-gray-600">
+                                    <span><i class="fa-solid fa-location-dot"></i> @_job.Location</span>
+                                    <span><i class="fa-solid fa-briefcase"></i> @_job.Type</span>
+                                    <span><i class="fa-solid fa-clock"></i> Posted @_job.PostedDate</span>
+                                </div>
+                            </div>
+                            <span class="px-4 py-2 bg-green-100 text-green-700 rounded-lg text-sm font-semibold whitespace-nowrap">
+                                Active
+                            </span>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(_job.Salary))
+                        {
+                            <div class="mb-6 p-4 bg-blue-50 rounded-lg">
+                                <div class="flex items-center gap-2 text-primary">
+                                    <i class="fa-solid fa-money-bill text-xl"></i>
+                                    <span class="font-semibold text-lg">@_job.Salary</span>
+                                </div>
+                            </div>
+                        }
+
+                        <!-- Skills -->
+                        <div class="mb-6">
+                            <h3 class="heading heading-4 mb-3">Required Skills</h3>
+                            <div class="flex flex-wrap gap-2">
+                                @foreach (var skill in _job.Skills)
+                                {
+                                    <span class="px-4 py-2 bg-blue-100 text-primary font-medium rounded-lg">@skill</span>
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-6">
+                            <h3 class="heading heading-4 mb-3">Job Description</h3>
+                            <div class="prose max-w-none text-gray-700">
+                                @((MarkupString)_job.FullDescription)
+                            </div>
+                        </div>
+
+                        <!-- Responsibilities -->
+                        @if (_job.Responsibilities.Length > 0)
+                        {
+                            <div class="mb-6">
+                                <h3 class="heading heading-4 mb-3">Responsibilities</h3>
+                                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                    @foreach (var responsibility in _job.Responsibilities)
+                                    {
+                                        <li>@responsibility</li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+
+                        <!-- Requirements -->
+                        @if (_job.Requirements.Length > 0)
+                        {
+                            <div class="mb-6">
+                                <h3 class="heading heading-4 mb-3">Requirements</h3>
+                                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                    @foreach (var requirement in _job.Requirements)
+                                    {
+                                        <li>@requirement</li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+
+                        <!-- Benefits -->
+                        @if (_job.Benefits.Length > 0)
+                        {
+                            <div class="mb-6">
+                                <h3 class="heading heading-4 mb-3">Benefits</h3>
+                                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                    @foreach (var benefit in _job.Benefits)
+                                    {
+                                        <li>@benefit</li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="lg:col-span-1">
+                    <!-- Apply Card -->
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-6 sticky top-4">
+                        <h3 class="heading heading-4 mb-4">Apply for this position</h3>
+                        
+                        @if (!string.IsNullOrEmpty(_job.ApplicationUrl))
+                        {
+                            <a href="@_job.ApplicationUrl" target="_blank" class="btn btn-primary w-full mb-6 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i> Apply Now
+                            </a>
+                        }
+                        else if (!string.IsNullOrEmpty(_job.ContactEmail))
+                        {
+                            <a href="mailto:@_job.ContactEmail" class="btn btn-primary w-full mb-6 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-envelope"></i> Send Application
+                            </a>
+                        }
+
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-start gap-3 text-sm text-gray-700 bg-gray-50 p-3 rounded-lg">
+                                <i class="fa-solid fa-calendar text-primary mt-0.5"></i>
+                                <div>
+                                    <span class="font-semibold block">Application Deadline</span>
+                                    <span class="text-gray-600">@_job.ApplicationDeadline</span>
+                                </div>
+                            </div>
+                            @if (!string.IsNullOrEmpty(_job.ContactEmail))
+                            {
+                                <div class="flex items-start gap-3 text-sm text-gray-700 bg-gray-50 p-3 rounded-lg">
+                                    <i class="fa-solid fa-envelope text-primary mt-0.5"></i>
+                                    <div>
+                                        <span class="font-semibold block">Contact Email</span>
+                                        <a href="mailto:@_job.ContactEmail" class="text-primary hover:underline break-all">@_job.ContactEmail</a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="mb-3">
+                            <span class="text-sm font-semibold text-gray-700 block mb-2">Share this opportunity</span>
+                        </div>
+
+                        <div class="space-y-2">
+                            <button @onclick="ShareOnLinkedIn" class="btn btn-outline w-full text-left flex items-center gap-2 hover:bg-blue-50">
+                                <i class="fa-brands fa-linkedin text-blue-600 text-lg"></i> 
+                                <span>Share on LinkedIn</span>
+                            </button>
+                            <button @onclick="ShareOnTwitter" class="btn btn-outline w-full text-left flex items-center gap-2 hover:bg-blue-50">
+                                <i class="fa-brands fa-twitter text-blue-400 text-lg"></i> 
+                                <span>Share on Twitter</span>
+                            </button>
+                            <button @onclick="CopyLink" class="btn btn-outline w-full text-left flex items-center gap-2 hover:bg-gray-50">
+                                <i class="fa-solid fa-link text-gray-600 text-lg"></i> 
+                                <span>Copy Link</span>
+                            </button>
+                        </div>
+
+                        @if (_linkCopied)
+                        {
+                            <div class="mt-3 p-3 bg-green-50 border border-green-200 text-green-700 rounded-lg text-sm text-center animate-fade-in">
+                                <i class="fa-solid fa-check-circle"></i> Link copied to clipboard!
+                            </div>
+                        }
+                    </div>
+
+                    <!-- Company Info Card -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="heading heading-4 mb-4">About @_job.Company</h3>
+                        <p class="text-gray-700 text-sm mb-4 leading-relaxed">
+                            @_job.CompanyDescription
+                        </p>
+                        @if (!string.IsNullOrEmpty(_job.CompanyWebsite))
+                        {
+                            <a href="@_job.CompanyWebsite" target="_blank" class="inline-flex items-center gap-2 text-primary hover:text-primary-accentuation font-medium text-sm transition-colors">
+                                <i class="fa-solid fa-globe"></i> 
+                                <span>Visit Company Website</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Similar Jobs -->
+        <section class="bg-gray-50 py-16">
+            <div class="container mx-auto px-4">
+                <h2 class="heading heading-2 mb-8">Similar Opportunities</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @foreach (var similarJob in _similarJobs.Take(3))
+                    {
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all">
+                            <h4 class="font-bold text-lg mb-1">@similarJob.Title</h4>
+                            <p class="text-gray-600 text-sm mb-3">@similarJob.Company</p>
+                            <div class="flex items-center gap-4 text-sm text-gray-600 mb-4">
+                                <span><i class="fa-solid fa-location-dot"></i> @similarJob.Location</span>
+                            </div>
+                            <a href="/jobs/@similarJob.Id" data-enhance-nav="false" class="btn btn-outline w-full">
+                                View Details
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string JobId { get; set; } = "";
+
+    private IStringLocalizer? _sharedLocalizer;
+    private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
+
+    private bool _linkCopied = false;
+    private JobDetail? _job;
+    private JobSummary[] _similarJobs = [];
+
+    protected override void OnInitialized()
+    {
+        LoadJob();
+        LoadSimilarJobs();
+    }
+
+    private void LoadJob()
+    {
+        // Simuler le chargement d'une offre d'emploi
+        // En production, cela ferait un appel API
+        _job = new JobDetail
+        {
+            Id = JobId,
+            Title = ".NET Backend Developer",
+            Company = "Tech Company Ltd",
+            Type = "Full-time",
+            Location = "Douala, Cameroon",
+            PostedDate = "2 days ago",
+            Salary = "800,000 - 1,200,000 XAF/month",
+            Skills = ["C#", "ASP.NET Core", "SQL Server", "Azure", "REST APIs"],
+            Description = "Join our dynamic team as a .NET Backend Developer...",
+            FullDescription = @"
+                <p>We are seeking an experienced .NET Backend Developer to join our growing team in Douala. You will be responsible for developing and maintaining enterprise-level applications using modern .NET technologies.</p>
+                <p class='mt-4'>This is an excellent opportunity to work on challenging projects and grow your career in a supportive environment.</p>
+            ",
+            Responsibilities = [
+                "Design, develop, and maintain backend services using .NET Core",
+                "Write clean, scalable, and testable code",
+                "Collaborate with frontend developers and other team members",
+                "Participate in code reviews and technical discussions",
+                "Optimize application performance and scalability"
+            ],
+            Requirements = [
+                "3+ years of experience with C# and .NET Core",
+                "Strong understanding of RESTful APIs",
+                "Experience with SQL Server or PostgreSQL",
+                "Knowledge of Azure cloud services",
+                "Good communication skills in English or French"
+            ],
+            Benefits = [
+                "Competitive salary",
+                "Health insurance",
+                "Professional development opportunities",
+                "Flexible working hours",
+                "Remote work options"
+            ],
+            ApplicationUrl = "https://example.com/apply",
+            ContactEmail = "careers@techcompany.cm",
+            ApplicationDeadline = "December 31, 2024",
+            CompanyDescription = "Tech Company Ltd is a leading software development company in Cameroon, specializing in enterprise solutions.",
+            CompanyWebsite = "https://techcompany.cm"
+        };
+    }
+
+    private void LoadSimilarJobs()
+    {
+        _similarJobs = [
+            new JobSummary
+            {
+                Id = "2",
+                Title = "Full Stack .NET Developer",
+                Company = "Startup Inc",
+                Location = "Remote"
+            },
+            new JobSummary
+            {
+                Id = "3",
+                Title = "Senior .NET Architect",
+                Company = "Enterprise Solutions",
+                Location = "Yaoundé"
+            },
+            new JobSummary
+            {
+                Id = "4",
+                Title = ".NET Developer",
+                Company = "Digital Agency",
+                Location = "Douala"
+            }
+        ];
+    }
+
+    private void ShareOnLinkedIn()
+    {
+        var url = NavigationManager.Uri;
+        var shareUrl = $"https://www.linkedin.com/sharing/share-offsite/?url={Uri.EscapeDataString(url)}";
+        NavigationManager.NavigateTo(shareUrl, true);
+    }
+
+    private void ShareOnTwitter()
+    {
+        var url = NavigationManager.Uri;
+        var text = $"Check out this job opportunity: {_job?.Title} at {_job?.Company}";
+        var shareUrl = $"https://twitter.com/intent/tweet?url={Uri.EscapeDataString(url)}&text={Uri.EscapeDataString(text)}";
+        NavigationManager.NavigateTo(shareUrl, true);
+    }
+
+    private async Task CopyLink()
+    {
+        _linkCopied = true;
+        StateHasChanged();
+        await Task.Delay(3000);
+        _linkCopied = false;
+        StateHasChanged();
+    }
+
+    private class JobDetail
+    {
+        public string Id { get; set; } = "";
+        public string Title { get; set; } = "";
+        public string Company { get; set; } = "";
+        public string Type { get; set; } = "";
+        public string Location { get; set; } = "";
+        public string PostedDate { get; set; } = "";
+        public string Salary { get; set; } = "";
+        public string[] Skills { get; set; } = [];
+        public string Description { get; set; } = "";
+        public string FullDescription { get; set; } = "";
+        public string[] Responsibilities { get; set; } = [];
+        public string[] Requirements { get; set; } = [];
+        public string[] Benefits { get; set; } = [];
+        public string ApplicationUrl { get; set; } = "";
+        public string ContactEmail { get; set; } = "";
+        public string ApplicationDeadline { get; set; } = "";
+        public string CompanyDescription { get; set; } = "";
+        public string CompanyWebsite { get; set; } = "";
+    }
+
+    private class JobSummary
+    {
+        public string Id { get; set; } = "";
+        public string Title { get; set; } = "";
+        public string Company { get; set; } = "";
+        public string Location { get; set; } = "";
+    }
+}
