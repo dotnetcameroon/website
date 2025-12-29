@@ -277,7 +277,6 @@
         _errorMessage = "";
         _isSubmitting = true;
 
-        // Validation
         if (string.IsNullOrWhiteSpace(_formData.Company) ||
             string.IsNullOrWhiteSpace(_formData.Title) ||
             string.IsNullOrWhiteSpace(_formData.Description) ||
@@ -302,11 +301,7 @@
             return;
         }
 
-        // Simulate API call
         await Task.Delay(2000);
-
-        // En production, vous enverriez les données à votre API ici
-        // await JobService.SubmitJobAsync(_formData);
 
         _submitted = true;
         _isSubmitting = false;

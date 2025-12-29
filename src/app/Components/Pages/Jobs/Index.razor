@@ -70,7 +70,7 @@
             
             @if (!string.IsNullOrEmpty(_searchQuery) || !string.IsNullOrEmpty(_selectedLocation) || !string.IsNullOrEmpty(_selectedType))
             {
-                <div class="mt-4 flex items-center gap-2">
+                <div class="mt-4 flex items-center gap-2 flex-wrap">
                     <span class="text-sm text-gray-600">Active filters:</span>
                     @if (!string.IsNullOrEmpty(_searchQuery))
                     {
@@ -107,8 +107,205 @@
         </div>
     </section>
 
+    <!-- How It Works Section -->
+    <section class="section bg-gradient-to-br from-blue-50 to-indigo-50 py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="heading heading-2 mb-4">How It Works</h2>
+                <p class="text-gray-700 text-lg max-w-3xl mx-auto">
+                    Whether you're looking for your next opportunity or searching for talented .NET developers, 
+                    our platform makes the process simple and efficient.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+                <!-- For Job Seekers -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-primary">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center text-white text-xl font-bold shadow-lg">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <h3 class="heading heading-3 ml-4">For Job Seekers</h3>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <!-- Step 1 -->
+                        <div class="flex items-start group">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-primary to-blue-600 text-white rounded-full flex items-center justify-center font-bold shadow-md transition-transform group-hover:scale-110">
+                                1
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <h4 class="font-bold text-lg mb-2 text-gray-800">Browse Opportunities</h4>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Explore our curated list of .NET and software development jobs. Use filters to find positions that match your skills and preferences.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="flex items-start group">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-primary to-blue-600 text-white rounded-full flex items-center justify-center font-bold shadow-md transition-transform group-hover:scale-110">
+                                2
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <h4 class="font-bold text-lg mb-2 text-gray-800">Review Job Details</h4>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Click on any job to see complete information including responsibilities, requirements, salary range, and company details.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="flex items-start group">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-primary to-blue-600 text-white rounded-full flex items-center justify-center font-bold shadow-md transition-transform group-hover:scale-110">
+                                3
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <h4 class="font-bold text-lg mb-2 text-gray-800">Apply Directly</h4>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Submit your application through the provided email or external link. Each job posting includes clear application instructions and deadlines.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="flex items-start group">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-primary to-blue-600 text-white rounded-full flex items-center justify-center font-bold shadow-md transition-transform group-hover:scale-110">
+                                4
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <h4 class="font-bold text-lg mb-2 text-gray-800">Get Hired</h4>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Connect with employers and showcase your .NET expertise. Join our vibrant community of developers.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <div class="flex items-start text-sm bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                            <i class="fa-solid fa-lightbulb text-yellow-500 text-xl mr-3 flex-shrink-0 mt-0.5"></i>
+                            <span class="text-gray-700"><strong class="text-yellow-700">Tip:</strong> Join our Discord community to stay updated on the latest job opportunities and connect with other developers!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- For Employers -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-secondary">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-br from-secondary to-purple-600 rounded-full flex items-center justify-center text-white text-xl font-bold shadow-lg">
+                            <i class="fa-solid fa-building"></i>
+                        </div>
+                        <h3 class="heading heading-3 ml-4">For Employers</h3>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <!-- Step 1 -->
+                        <div class="flex items-start group">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-secondary to-purple-600 text-white rounded-full flex items-center justify-center font-bold shadow-md transition-transform group-hover:scale-110">
+                                1
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <h4 class="font-bold text-lg mb-2 text-gray-800">Post Your Job</h4>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Click on "Post a Job" and fill out our comprehensive form with your job details, requirements, and company information.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="flex items-start group">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-secondary to-purple-600 text-white rounded-full flex items-center justify-center font-bold shadow-md transition-transform group-hover:scale-110">
+                                2
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <h4 class="font-bold text-lg mb-2 text-gray-800">Review & Approval</h4>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Our team reviews your submission to ensure quality and relevance. This typically takes 24-48 hours.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="flex items-start group">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-secondary to-purple-600 text-white rounded-full flex items-center justify-center font-bold shadow-md transition-transform group-hover:scale-110">
+                                3
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <h4 class="font-bold text-lg mb-2 text-gray-800">Go Live</h4>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Once approved, your job posting goes live and is visible to thousands of skilled .NET developers in our community.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="flex items-start group">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-secondary to-purple-600 text-white rounded-full flex items-center justify-center font-bold shadow-md transition-transform group-hover:scale-110">
+                                4
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <h4 class="font-bold text-lg mb-2 text-gray-800">Receive Applications</h4>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Candidates apply directly through your provided contact method. Review applications and find your perfect match!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <div class="flex items-start text-sm bg-blue-50 p-4 rounded-lg border border-blue-200">
+                            <i class="fa-solid fa-rocket text-blue-500 text-xl mr-3 flex-shrink-0 mt-0.5"></i>
+                            <span class="text-gray-700"><strong class="text-blue-700">Bonus:</strong> Promoted jobs get featured placement for maximum visibility and reach!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action Banner -->
+            <div class="bg-gradient-to-r from-primary via-blue-600 to-secondary rounded-2xl shadow-2xl p-8 md:p-12 text-center text-white relative overflow-hidden">
+                <!-- Decorative Elements -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -mr-32 -mt-32"></div>
+                <div class="absolute bottom-0 left-0 w-48 h-48 bg-white opacity-5 rounded-full -ml-24 -mb-24"></div>
+                
+                <div class="relative z-10">
+                    <h3 class="heading heading-2 text-white mb-4">Ready to Get Started?</h3>
+                    <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+                        Join hundreds of .NET developers and leading companies connecting through our platform
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center mb-8">
+                        <a href="/jobs/submit" data-enhance-nav="false" class="btn bg-white text-primary hover:bg-gray-100 font-semibold px-8 py-3 rounded-lg shadow-lg transition-all hover:scale-105">
+                            <i class="fa-solid fa-briefcase"></i> Post a Job
+                        </a>
+                        <a href="#job-listings" class="btn border-2 border-white text-white hover:bg-white hover:text-primary font-semibold px-8 py-3 rounded-lg transition-all hover:scale-105">
+                            <i class="fa-solid fa-search"></i> Browse Jobs
+                        </a>
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-8 text-sm">
+                        <div class="flex items-center bg-white bg-opacity-10 px-4 py-2 rounded-full backdrop-blur-sm">
+                            <i class="fa-solid fa-check-circle mr-2"></i>
+                            <span>Free to Post</span>
+                        </div>
+                        <div class="flex items-center bg-white bg-opacity-10 px-4 py-2 rounded-full backdrop-blur-sm">
+                            <i class="fa-solid fa-check-circle mr-2"></i>
+                            <span>Quality Candidates</span>
+                        </div>
+                        <div class="flex items-center bg-white bg-opacity-10 px-4 py-2 rounded-full backdrop-blur-sm">
+                            <i class="fa-solid fa-check-circle mr-2"></i>
+                            <span>Fast Approval</span>
+                        </div>
+                        <div class="flex items-center bg-white bg-opacity-10 px-4 py-2 rounded-full backdrop-blur-sm">
+                            <i class="fa-solid fa-check-circle mr-2"></i>
+                            <span>Community Trusted</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Job Listings Section -->
-    <section class="section container mx-auto px-4">
+    <section id="job-listings" class="section container mx-auto px-4">
         <div class="mb-8 flex justify-between items-center">
             <div>
                 <h2 class="heading heading-2 mb-2">Latest Job Opportunities</h2>
@@ -325,7 +522,6 @@
 
     private void ApplyFilters()
     {
-        // Filters are applied automatically via FilteredJobs property
         StateHasChanged();
     }
 
