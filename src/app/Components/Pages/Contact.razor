@@ -1,0 +1,358 @@
+@page "/contact"
+@using Microsoft.Extensions.Localization
+@attribute [StreamRendering]
+@inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
+
+<PageTitle>Contact Us - .NET Cameroon</PageTitle>
+<HeadContent>
+    <meta name="description" content="Get in touch with .NET Cameroon community. We're here to help you connect, learn, and grow with us.">
+    <meta property="og:title" content="Contact Us - .NET Cameroon">
+    <meta property="og:description" content="Get in touch with .NET Cameroon community. Reach out for partnerships, speaking opportunities, or any questions.">
+    <meta property="og:image" content="https://dotnet.cm/assets/brand/logo.png">
+    <meta property="og:url" content="https://dotnet.cm/contact">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact Us - .NET Cameroon">
+    <meta name="twitter:description" content="Get in touch with .NET Cameroon community.">
+</HeadContent>
+
+<div>
+    <NavBar />
+    
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-primary to-secondary py-20">
+        <div class="container mx-auto px-4 py-16">
+            <div class="text-center text-white max-w-3xl mx-auto">
+                <h1 class="heading heading-1 text-white mb-4">Get in Touch</h1>
+                <p class="text-xl md:text-2xl mb-4">
+                    We'd love to hear from you! Whether you have questions, want to collaborate, or just want to say hello.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Cards Section -->
+    <section class="section container mx-auto px-4 -mt-12 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- Email Card -->
+            <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all">
+                <div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+                    <i class="fa-solid fa-envelope text-primary text-xl"></i>
+                </div>
+                <h3 class="heading heading-4 mb-2">Email Us</h3>
+                <p class="text-gray-600 text-sm mb-4">Send us an email and we'll respond as soon as possible.</p>
+                <a href="mailto:contact@dotnet.cm" class="text-primary hover:underline font-medium">
+                    contact@dotnet.cm
+                </a>
+            </div>
+
+            <!-- Location Card -->
+            <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all">
+                <div class="w-12 h-12 bg-secondary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+                    <i class="fa-solid fa-location-dot text-secondary text-xl"></i>
+                </div>
+                <h3 class="heading heading-4 mb-2">Location</h3>
+                <p class="text-gray-600 text-sm mb-4">Find us in Cameroon's tech hubs</p>
+                <p class="font-medium">Douala & Yaoundé</p>
+                <p class="text-gray-600 text-sm">Cameroon</p>
+            </div>
+
+            <!-- Social Card -->
+            <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all">
+                <div class="w-12 h-12 bg-tertiary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+                    <i class="fa-solid fa-users text-tertiary text-xl"></i>
+                </div>
+                <h3 class="heading heading-4 mb-2">Join Our Community</h3>
+                <p class="text-gray-600 text-sm mb-4">Connect with us on social platforms</p>
+                <div class="flex gap-3">
+                    <a href="https://discord.gg/npkCMRgqdm" target="_blank" class="w-8 h-8 bg-gray-100 hover:bg-primary hover:text-white rounded-full flex items-center justify-center transition-all" aria-label="Discord">
+                        <i class="fa-brands fa-discord"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/dotnetcameroon" target="_blank" class="w-8 h-8 bg-gray-100 hover:bg-primary hover:text-white rounded-full flex items-center justify-center transition-all" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/dotnetcameroon" target="_blank" class="w-8 h-8 bg-gray-100 hover:bg-primary hover:text-white rounded-full flex items-center justify-center transition-all" aria-label="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form & Info Section -->
+    <section class="section container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Contact Form -->
+            <div>
+                <h2 class="heading heading-2 mb-4">Send us a Message</h2>
+                <p class="text-gray-600 mb-6">
+                    Fill out the form below and we'll get back to you as soon as possible.
+                </p>
+
+                @if (_submitted)
+                {
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
+                        <i class="fa-solid fa-check-circle text-green-500 text-4xl mb-3"></i>
+                        <h3 class="heading heading-3 mb-2">Message Sent!</h3>
+                        <p class="text-gray-700 mb-4">
+                            Thank you for reaching out. We'll get back to you soon.
+                        </p>
+                        <button @onclick="ResetForm" class="btn btn-primary">
+                            Send Another Message
+                        </button>
+                    </div>
+                }
+                else
+                {
+                    <form @onsubmit="HandleSubmit" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Full Name <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" id="name" @bind="_formData.Name" required
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                                       placeholder="John Doe" />
+                            </div>
+
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Email <span class="text-red-500">*</span>
+                                </label>
+                                <input type="email" id="email" @bind="_formData.Email" required
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                                       placeholder="john@example.com" />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">
+                                Subject <span class="text-red-500">*</span>
+                            </label>
+                            <select id="subject" @bind="_formData.Subject" required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option value="">Select a subject...</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="speaking">Speaking Opportunity</option>
+                                <option value="sponsorship">Sponsorship</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+                                Message <span class="text-red-500">*</span>
+                            </label>
+                            <textarea id="message" @bind="_formData.Message" required rows="6"
+                                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                                      placeholder="Tell us how we can help you..."></textarea>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(_errorMessage))
+                        {
+                            <div class="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                                <i class="fa-solid fa-exclamation-circle"></i> @_errorMessage
+                            </div>
+                        }
+
+                        <button type="submit" class="btn btn-primary w-full md:w-auto" disabled="@_isSubmitting">
+                            @if (_isSubmitting)
+                            {
+                                <i class="fa-solid fa-spinner fa-spin"></i>
+                                <span>Sending...</span>
+                            }
+                            else
+                            {
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Send Message</span>
+                            }
+                        </button>
+                    </form>
+                }
+            </div>
+
+            <!-- Additional Info -->
+            <div>
+                <h2 class="heading heading-2 mb-4">Why Contact Us?</h2>
+                
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-primary bg-opacity-10 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-handshake text-primary"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-2">Partnership Opportunities</h3>
+                            <p class="text-gray-600 text-sm">
+                                Interested in collaborating with us? Let's explore how we can work together to grow the .NET community in Cameroon.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-secondary bg-opacity-10 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-microphone text-secondary"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-2">Speaking Opportunities</h3>
+                            <p class="text-gray-600 text-sm">
+                                Want to share your expertise at our events? We're always looking for passionate speakers to inspire our community.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-tertiary bg-opacity-10 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-star text-tertiary"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-2">Sponsorship</h3>
+                            <p class="text-gray-600 text-sm">
+                                Support our mission and gain visibility within Cameroon's growing .NET developer community.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-primary bg-opacity-10 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-question-circle text-primary"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-2">General Inquiries</h3>
+                            <p class="text-gray-600 text-sm">
+                                Have questions about our events, membership, or activities? We're here to help!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="mt-8 p-6 bg-gray-50 rounded-lg">
+                    <h3 class="heading heading-4 mb-4">Connect With Us</h3>
+                    <div class="space-y-3">
+                        <a href="https://discord.gg/npkCMRgqdm" target="_blank" class="flex items-center gap-3 text-gray-700 hover:text-primary transition-colors">
+                            <i class="fa-brands fa-discord text-xl w-6"></i>
+                            <span>Join our Discord</span>
+                        </a>
+                        <a href="https://www.linkedin.com/company/dotnetcameroon" target="_blank" class="flex items-center gap-3 text-gray-700 hover:text-primary transition-colors">
+                            <i class="fa-brands fa-linkedin text-xl w-6"></i>
+                            <span>Follow on LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/dotnetcameroon" target="_blank" class="flex items-center gap-3 text-gray-700 hover:text-primary transition-colors">
+                            <i class="fa-brands fa-github text-xl w-6"></i>
+                            <span>Check our GitHub</span>
+                        </a>
+                        <a href="https://chat.whatsapp.com/KlBkiJX85Y8KFS28tIm1UU" target="_blank" class="flex items-center gap-3 text-gray-700 hover:text-primary transition-colors">
+                            <i class="fa-brands fa-whatsapp text-xl w-6"></i>
+                            <span>Join WhatsApp Group</span>
+                        </a>
+                        <a href="https://t.me/+cjXkPqigrZNkNDE0" target="_blank" class="flex items-center gap-3 text-gray-700 hover:text-primary transition-colors">
+                            <i class="fa-brands fa-telegram text-xl w-6"></i>
+                            <span>Join Telegram Channel</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="bg-gray-50 py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="heading heading-2 text-center mb-8">Frequently Asked Questions</h2>
+                
+                <div class="space-y-4">
+                    <div class="bg-white rounded-lg p-6">
+                        <h3 class="font-bold mb-2">How can I become a member?</h3>
+                        <p class="text-gray-600 text-sm">
+                            Join our Discord or WhatsApp community to become an active member. Participate in our events, contribute to projects, and engage with fellow developers.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-6">
+                        <h3 class="font-bold mb-2">Are your events free?</h3>
+                        <p class="text-gray-600 text-sm">
+                            Most of our community events are free. Some special workshops or conferences may have a registration fee to cover venue and materials costs.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-6">
+                        <h3 class="font-bold mb-2">Can I propose a talk or workshop?</h3>
+                        <p class="text-gray-600 text-sm">
+                            Absolutely! We welcome proposals from community members. Use the contact form above with "Speaking Opportunity" as the subject.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-6">
+                        <h3 class="font-bold mb-2">How can my company sponsor .NET Cameroon?</h3>
+                        <p class="text-gray-600 text-sm">
+                            We offer various sponsorship packages. Contact us with "Sponsorship" as the subject, and we'll send you detailed information.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@code {
+    private IStringLocalizer? _sharedLocalizer;
+    private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
+
+    private bool _submitted = false;
+    private bool _isSubmitting = false;
+    private string _errorMessage = "";
+
+    private ContactFormData _formData = new();
+
+    private async Task HandleSubmit()
+    {
+        _errorMessage = "";
+        _isSubmitting = true;
+
+        // Validation
+        if (string.IsNullOrWhiteSpace(_formData.Name) ||
+            string.IsNullOrWhiteSpace(_formData.Email) ||
+            string.IsNullOrWhiteSpace(_formData.Subject) ||
+            string.IsNullOrWhiteSpace(_formData.Message))
+        {
+            _errorMessage = "Please fill in all required fields.";
+            _isSubmitting = false;
+            return;
+        }
+
+        // Simulate API call (2 seconds delay)
+        await Task.Delay(2000);
+
+        // TODO: In production, send email via API
+        // await ContactService.SendMessageAsync(_formData);
+
+        _submitted = true;
+        _isSubmitting = false;
+    }
+
+    private void ResetForm()
+    {
+        _formData = new ContactFormData();
+        _submitted = false;
+        _errorMessage = "";
+    }
+
+    private class ContactFormData
+    {
+        public string Name { get; set; } = "";
+        public string Email { get; set; } = "";
+        public string Subject { get; set; } = "";
+        public string Message { get; set; } = "";
+    }
+}
