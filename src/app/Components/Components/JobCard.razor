@@ -1,0 +1,90 @@
+@* Composant réutilisable pour afficher une carte d'offre d'emploi *@
+
+<div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all @AdditionalClasses">
+    <div class="flex items-start justify-between mb-4">
+        <div class="flex-1">
+            <h4 class="font-bold text-lg mb-1">@Title</h4>
+            <p class="text-gray-600 text-sm mb-2">@Company</p>
+        </div>
+        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs whitespace-nowrap ml-2">@Type</span>
+    </div>
+    
+    <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-4">
+        <span><i class="fa-solid fa-location-dot"></i> @Location</span>
+        <span><i class="fa-solid fa-clock"></i> @PostedDate</span>
+        @if (!string.IsNullOrEmpty(Salary))
+        {
+            <span><i class="fa-solid fa-money-bill"></i> @Salary</span>
+        }
+    </div>
+    
+    @if (Skills.Length > 0)
+    {
+        <div class="flex flex-wrap gap-2 mb-4">
+            @foreach (var skill in Skills.Take(MaxSkillsToShow))
+            {
+                <span class="px-2 py-1 bg-blue-100 text-primary text-xs rounded">@skill</span>
+            }
+            @if (Skills.Length > MaxSkillsToShow)
+            {
+                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">+@(Skills.Length - MaxSkillsToShow) more</span>
+            }
+        </div>
+    }
+    
+    @if (!string.IsNullOrEmpty(Description))
+    {
+        <p class="text-gray-700 text-sm mb-4 line-clamp-2">@Description</p>
+    }
+    
+    @if (!string.IsNullOrEmpty(JobUrl))
+    {
+        <a href="@JobUrl" data-enhance-nav="false" class="btn btn-outline w-full">
+            View Details
+        </a>
+    }
+    else if (OnClick.HasDelegate)
+    {
+        <button @onclick="OnClick" class="btn btn-outline w-full">
+            View Details
+        </button>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public string Title { get; set; } = "";
+
+    [Parameter, EditorRequired]
+    public string Company { get; set; } = "";
+
+    [Parameter]
+    public string Type { get; set; } = "Full-time";
+
+    [Parameter]
+    public string Location { get; set; } = "";
+
+    [Parameter]
+    public string PostedDate { get; set; } = "";
+
+    [Parameter]
+    public string Salary { get; set; } = "";
+
+    [Parameter]
+    public string[] Skills { get; set; } = [];
+
+    [Parameter]
+    public string Description { get; set; } = "";
+
+    [Parameter]
+    public string JobUrl { get; set; } = "";
+
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+
+    [Parameter]
+    public string AdditionalClasses { get; set; } = "";
+
+    [Parameter]
+    public int MaxSkillsToShow { get; set; } = 5;
+}
