@@ -3,6 +3,13 @@
 @attribute [StreamRendering]
 @inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
 @inject NavigationManager NavigationManager
+@inject IWebHostEnvironment Environment
+
+@if (!Environment.IsDevelopment())
+{
+    NavigationManager.NavigateTo("/", true);
+    return;
+}
 
 <PageTitle>@(_job?.Title ?? "Job Details") - .NET Cameroon</PageTitle>
 <HeadContent>
@@ -269,8 +276,6 @@
 
     private void LoadJob()
     {
-        // Simuler le chargement d'une offre d'emploi
-        // En production, cela ferait un appel API
         _job = new JobDetail
         {
             Id = JobId,
@@ -318,27 +323,9 @@
     private void LoadSimilarJobs()
     {
         _similarJobs = [
-            new JobSummary
-            {
-                Id = "2",
-                Title = "Full Stack .NET Developer",
-                Company = "Startup Inc",
-                Location = "Remote"
-            },
-            new JobSummary
-            {
-                Id = "3",
-                Title = "Senior .NET Architect",
-                Company = "Enterprise Solutions",
-                Location = "Yaoundé"
-            },
-            new JobSummary
-            {
-                Id = "4",
-                Title = ".NET Developer",
-                Company = "Digital Agency",
-                Location = "Douala"
-            }
+            new JobSummary { Id = "2", Title = "Full Stack .NET Developer", Company = "Startup Inc", Location = "Remote" },
+            new JobSummary { Id = "3", Title = "Senior .NET Architect", Company = "Enterprise Solutions", Location = "Yaoundé" },
+            new JobSummary { Id = "4", Title = ".NET Developer", Company = "Digital Agency", Location = "Douala" }
         ];
     }
 
