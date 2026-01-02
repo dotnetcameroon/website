@@ -3,6 +3,7 @@
 @using Microsoft.Extensions.Localization
 @inject IFeatureFlagService FeatureFlagService
 @inject IDevModeService DevModeService
+@inject IWebHostEnvironment Environment
 
 <header>
     <nav id="navbar" class="relative w-full z-50 bg-white shadow-sm">
@@ -35,13 +36,16 @@
                         </DropDownContent>
                     </DropDown>
                 </li>
-                <li>
-                    <NavLink href="/jobs" data-enhance-nav="false"
-                        class="text-gray-700 hover:text-gray-900 transition-colors font-medium flex items-center gap-2">
-                        Jobs
-                        <span class="text-[10px] py-1 px-2 rounded-full bg-primary text-white">Soon</span>
-                    </NavLink>
-                </li>
+                @if (Environment.IsDevelopment())
+                {
+                    <li>
+                        <NavLink href="/jobs" data-enhance-nav="false"
+                            class="text-gray-700 hover:text-gray-900 transition-colors font-medium flex items-center gap-2">
+                            Jobs
+                            <span class="text-[10px] py-1 px-2 rounded-full bg-primary text-white">Soon</span>
+                        </NavLink>
+                    </li>
+                }
                 @* <li>
                     <NavLink href="/about" data-enhance-nav="false"
                         class="text-gray-700 hover:text-gray-900 transition-colors font-medium">About us</NavLink>
@@ -96,11 +100,14 @@
                     <NavLink href="/dotnet-conf-2024" data-enhance-nav="false"
                         class="block pl-4 text-gray-600 hover:text-gray-900 transition-colors">.NET Conf 2024</NavLink>
                 </div>
-                <NavLink href="/jobs" data-enhance-nav="false"
-                    class="block text-gray-700 hover:text-gray-900 transition-colors font-medium flex items-center gap-2">
-                    Jobs
-                    <span class="text-[10px] py-1 px-2 rounded-full bg-primary text-white">Soon</span>
-                </NavLink>
+                @if (Environment.IsDevelopment())
+                {
+                    <NavLink href="/jobs" data-enhance-nav="false"
+                        class="block text-gray-700 hover:text-gray-900 transition-colors font-medium flex items-center gap-2">
+                        Jobs
+                        <span class="text-[10px] py-1 px-2 rounded-full bg-primary text-white">Soon</span>
+                    </NavLink>
+                }
                 @* <NavLink href="/about" data-enhance-nav="false"
                     class="block text-gray-700 hover:text-gray-900 transition-colors font-medium">About us</NavLink>
                 <NavLink href="/projects" data-enhance-nav="false"

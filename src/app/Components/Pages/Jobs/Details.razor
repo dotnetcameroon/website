@@ -3,6 +3,13 @@
 @attribute [StreamRendering]
 @inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
 @inject NavigationManager NavigationManager
+@inject IWebHostEnvironment Environment
+
+@if (!Environment.IsDevelopment())
+{
+    NavigationManager.NavigateTo("/", true);
+    return;
+}
 
 <PageTitle>@(_job?.Title ?? "Job Details") - .NET Cameroon</PageTitle>
 <HeadContent>
