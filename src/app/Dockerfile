@@ -24,9 +24,8 @@ COPY ["src/app/app.csproj", "source/app/"]
 
 RUN dotnet restore "source/app/app.csproj"
 
-# copy admin SPA package files and install dependencies first (cache layer)
+# copy admin SPA package.json and install dependencies (cache layer)
 COPY ["src/admin/package.json", "source/admin/"]
-COPY ["src/admin/package-lock.json", "source/admin/"]
 WORKDIR /source/source/admin
 RUN npm install
 WORKDIR /source
