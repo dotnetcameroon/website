@@ -1,5 +1,6 @@
+@page "/events/{EventId:guid}"
 @using app.business.Services
-@using app.client.Components
+@using app.Components.Components
 @using app.domain.Models.EventAggregate
 @inject IEventService EventService
 @inject NavigationManager NavigationManager

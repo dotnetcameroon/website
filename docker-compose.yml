@@ -21,6 +21,24 @@ services:
       timeout: 10s
       retries: 5
       start_period: 30s
+  dotnetcameroon.minio:
+    image: minio/minio:latest
+    container_name: dotnetcameroon.minio
+    environment:
+      MINIO_ROOT_USER: "minioadmin"
+      MINIO_ROOT_PASSWORD: "minioadmin"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio-data:/data
+    command: server /data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
   dotnetcameroon.dashboard:
     image: mcr.microsoft.com/dotnet/nightly/aspire-dashboard:latest
     container_name: dotnetcameroon.dashboard
@@ -31,3 +49,4 @@ services:
       - 18888:18888
 volumes:
   sqlserver-data:
+  minio-data:

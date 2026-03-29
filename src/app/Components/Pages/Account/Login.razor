@@ -1,7 +1,7 @@
 @page "/account/login"
 @using app.business.Services
 @layout BlankLayout
-@inject NavigationManager NavigationManager
+@inject IHttpContextAccessor HttpContextAccessor
 @inject IIdentityService IdentityService
 @inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
 
@@ -70,7 +70,7 @@
             ReturnUrl = DefaultReturnUrl;
         }
 
-        NavigationManager.NavigateTo(ReturnUrl, true);
+        HttpContextAccessor.HttpContext!.Response.Redirect(ReturnUrl);
     }
 
     class LoginModel

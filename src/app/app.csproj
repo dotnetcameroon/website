@@ -4,7 +4,6 @@
     <PackageReference Include="Hangfire.MemoryStorage" />
     <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" />
     <PackageReference Include="Hangfire" />
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" />
@@ -16,7 +15,13 @@
   <ItemGroup>
     <ProjectReference Include="..\dotnet-ef-seeder\dotnet-ef-seeder.csproj" />
     <ProjectReference Include="..\app.infrastructure\app.infrastructure.csproj" />
-    <ProjectReference Include="..\app.client\app.client.csproj" />
   </ItemGroup>
+
+  <Target Name="BuildSpa" BeforeTargets="Build">
+    <Exec Command="npm install" WorkingDirectory="../admin" Condition="'$(Configuration)' == 'Release'" />
+    <Exec Command="pnpm install --frozen-lockfile" WorkingDirectory="../admin" Condition="'$(Configuration)' != 'Release'" />
+    <Exec Command="npm run build" WorkingDirectory="../admin" Condition="'$(Configuration)' == 'Release'" />
+    <Exec Command="pnpm run build" WorkingDirectory="../admin" Condition="'$(Configuration)' != 'Release'" />
+  </Target>
 
 </Project>

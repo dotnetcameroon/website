@@ -1,3 +1,4 @@
+using app.Api.Admin;
 using app.Api.Culture;
 using app.Api.DebugMode;
 using app.Api.Identity;
@@ -10,7 +11,14 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Localization;
 using System.Globalization;
 
+using System.Text.Json.Serialization;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.ConfigureHttpJsonOptions(options =>
+{
+    options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
 
 // Add services to the container.
 builder.WithOpenTelemetry();
@@ -86,13 +94,15 @@ app.UseAntiforgery();
 // app.MapHangfireJobs();
 
 app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode()
-    .AddInteractiveWebAssemblyRenderMode()
-    .AddAdditionalAssemblies(typeof(app.client._Imports).Assembly);
+    .AddInteractiveServerRenderMode();
 
+app.MapAdminApi();
 app.MapProjectsApi();
 app.MapIdentityApi();
 app.MapDebugModeApi();
 app.MapCultureApi();
+
+// Serve React admin SPA — fallback for client-side routing
+app.MapFallbackToFile("/admin/{**path}", "admin/index.html");
 
 app.Run();
