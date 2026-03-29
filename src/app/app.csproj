@@ -17,4 +17,9 @@
     <ProjectReference Include="..\app.infrastructure\app.infrastructure.csproj" />
   </ItemGroup>
 
+  <Target Name="BuildSpa" BeforeTargets="Build">
+    <Exec Command="pnpm install --frozen-lockfile" WorkingDirectory="../admin" />
+    <Exec Command="pnpm run build" WorkingDirectory="../admin" />
+  </Target>
+
 </Project>
