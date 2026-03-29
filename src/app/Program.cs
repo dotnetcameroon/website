@@ -97,4 +97,7 @@ app.MapIdentityApi();
 app.MapDebugModeApi();
 app.MapCultureApi();
 
+// Serve React admin SPA — fallback for client-side routing
+app.MapFallbackToFile("/admin/{**path}", "admin/index.html");
+
 app.Run();
