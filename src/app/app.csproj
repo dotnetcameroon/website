@@ -18,8 +18,10 @@
   </ItemGroup>
 
   <Target Name="BuildSpa" BeforeTargets="Build">
-    <Exec Command="pnpm install --frozen-lockfile" WorkingDirectory="../admin" />
-    <Exec Command="pnpm run build" WorkingDirectory="../admin" />
+    <Exec Command="npm ci" WorkingDirectory="../admin" Condition="'$(Configuration)' == 'Release'" />
+    <Exec Command="pnpm install --frozen-lockfile" WorkingDirectory="../admin" Condition="'$(Configuration)' != 'Release'" />
+    <Exec Command="npm run build" WorkingDirectory="../admin" Condition="'$(Configuration)' == 'Release'" />
+    <Exec Command="pnpm run build" WorkingDirectory="../admin" Condition="'$(Configuration)' != 'Release'" />
   </Target>
 
 </Project>
