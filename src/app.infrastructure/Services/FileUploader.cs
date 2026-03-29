@@ -70,8 +70,11 @@ public class FileUploader(IMinioClient minioClient, IOptions<MinioOptions> optio
         if (!string.IsNullOrWhiteSpace(_options.PublicUrl))
             return $"{_options.PublicUrl.TrimEnd('/')}/{_options.BucketName}/{objectName}";
 
-        var scheme = _options.UseSsl ? "https" : "http";
-        return $"{scheme}://{_options.Endpoint}/{_options.BucketName}/{objectName}";
+        var endpoint = _options.PublicEndpoint.StartsWith("http://") || _options.PublicEndpoint.StartsWith("https://")
+            ? _options.PublicEndpoint
+            : $"{(_options.UseSsl ? "https" : "http")}://{_options.PublicEndpoint}";
+
+        return $"{endpoint.TrimEnd('/')}/{_options.BucketName}/{objectName}";
     }
 
     private static string GetContentType(string fileName)
