@@ -1,3 +1,4 @@
+using app.Api.Admin;
 using app.Api.Culture;
 using app.Api.DebugMode;
 using app.Api.Identity;
@@ -90,6 +91,7 @@ app.MapRazorComponents<App>()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(app.client._Imports).Assembly);
 
+app.MapAdminApi();
 app.MapProjectsApi();
 app.MapIdentityApi();
 app.MapDebugModeApi();
