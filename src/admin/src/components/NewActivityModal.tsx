@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { ActivityRequest } from '../api/types';
 import { X, Plus } from 'lucide-react';
+import { ImageUpload } from './ImageUpload';
 
 interface NewActivityModalProps {
   open: boolean;
@@ -18,14 +19,6 @@ export function NewActivityModal({ open, onClose, onAdd }: NewActivityModalProps
   const [hostImage, setHostImage] = useState('/assets/utils/avatar.png');
 
   if (!open) return null;
-
-  const handleHostImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => setHostImage(reader.result as string);
-    reader.readAsDataURL(file);
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -102,7 +95,13 @@ export function NewActivityModal({ open, onClose, onAdd }: NewActivityModalProps
 
           <div>
             <label className="label">Picture</label>
-            <input type="file" accept="image/*" onChange={handleHostImageChange} className="text-sm text-gray-500" />
+            <ImageUpload
+              value={hostImage === '/assets/utils/avatar.png' ? '' : hostImage}
+              onChange={setHostImage}
+              folder="hosts"
+              label="Upload host picture"
+              height="h-24"
+            />
           </div>
         </div>
 

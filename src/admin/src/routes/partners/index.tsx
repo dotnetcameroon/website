@@ -2,7 +2,8 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 import { usePartners, useCreatePartner, useDeletePartner } from '../../api/partners';
 import type { CreateOrUpdatePartnerRequest } from '../../api/types';
-import { Plus, Trash2, ExternalLink, Handshake, Loader2, X, Upload } from 'lucide-react';
+import { Plus, Trash2, ExternalLink, Handshake, Loader2, X } from 'lucide-react';
+import { ImageUpload } from '../../components/ImageUpload';
 
 export const Route = createFileRoute('/partners/')({
   component: PartnersPage,
@@ -30,13 +31,6 @@ function PartnersPage() {
     });
   };
 
-  const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => setLogo(reader.result as string);
-    reader.readAsDataURL(file);
-  };
 
   return (
     <div className="max-w-4xl">
@@ -68,18 +62,13 @@ function PartnersPage() {
           </div>
           <div>
             <label className="label">Logo</label>
-            {logo ? (
-              <div className="flex items-center gap-3">
-                <img src={logo} alt="Preview" className="h-10 object-contain" />
-                <button type="button" onClick={() => setLogo('')} className="text-xs text-gray-400 hover:text-red-500 cursor-pointer">Remove</button>
-              </div>
-            ) : (
-              <label className="flex items-center gap-3 px-4 py-3 border-2 border-dashed border-gray-200 rounded-lg cursor-pointer hover:border-primary/40 hover:bg-primary/5 transition-colors">
-                <Upload size={16} className="text-gray-300" />
-                <span className="text-sm text-gray-400">Upload logo</span>
-                <input type="file" accept="image/*" onChange={handleLogoChange} className="hidden" />
-              </label>
-            )}
+            <ImageUpload
+              value={logo}
+              onChange={setLogo}
+              folder="partners"
+              label="Upload logo"
+              height="h-24"
+            />
           </div>
           <div className="flex justify-end">
             <button type="submit" disabled={createPartner.isPending} className="btn btn-primary btn-sm">

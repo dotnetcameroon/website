@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Minio;
 
 namespace app.Extensions;
 
@@ -53,6 +54,16 @@ public static class Extensions
         services.AddCacheManager();
         services.AddSingleton<CacheManager>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        // MinIO
+        var minioOptions = configuration.GetSection(MinioOptions.SectionName).Get<MinioOptions>() ?? new MinioOptions();
+        services.Configure<MinioOptions>(configuration.GetSection(MinioOptions.SectionName));
+        services.AddSingleton<IMinioClient>(_ =>
+            new MinioClient()
+                .WithEndpoint(minioOptions.Endpoint)
+                .WithCredentials(minioOptions.AccessKey, minioOptions.SecretKey)
+                .WithSSL(minioOptions.UseSsl)
+                .Build());
+
         services.AddScoped<IFileUploader, FileUploader>();
         services.AddScoped<IFileManager, FileManager>();
         services.AddScoped<IEventService, EventService>();

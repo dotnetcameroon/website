@@ -19,10 +19,10 @@ import {
   RotateCcw,
   Plus,
   Trash2,
-  Upload,
   Loader2,
   X,
 } from 'lucide-react';
+import { ImageUpload } from './ImageUpload';
 
 interface EventFormProps {
   eventId?: string;
@@ -80,14 +80,6 @@ export function EventForm({ eventId }: EventFormProps) {
       })),
     );
   }, [existingEvent]);
-
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => setImageUrl(reader.result as string);
-    reader.readAsDataURL(file);
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -314,24 +306,13 @@ export function EventForm({ eventId }: EventFormProps) {
         {/* Cover Image */}
         <section className="card p-6 space-y-4">
           <h2 className="text-sm font-semibold text-gray-800">Cover Image</h2>
-          {imageUrl ? (
-            <div className="relative group">
-              <img src={imageUrl} alt="Cover" className="w-full h-52 object-cover rounded-lg" />
-              <button
-                type="button"
-                onClick={() => setImageUrl('')}
-                className="absolute top-2 right-2 p-1.5 bg-black/50 rounded-lg text-white opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
-              >
-                <X size={14} />
-              </button>
-            </div>
-          ) : (
-            <label className="flex flex-col items-center justify-center h-40 border-2 border-dashed border-gray-200 rounded-lg cursor-pointer hover:border-primary/40 hover:bg-primary/5 transition-colors">
-              <Upload size={24} className="text-gray-300" />
-              <span className="text-sm text-gray-400 mt-2">Click to upload cover image</span>
-              <input type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
-            </label>
-          )}
+          <ImageUpload
+            value={imageUrl}
+            onChange={setImageUrl}
+            folder="events"
+            label="Click to upload cover image"
+            height="h-52"
+          />
         </section>
 
         {/* Partners */}

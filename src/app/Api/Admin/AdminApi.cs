@@ -15,6 +15,7 @@ public static class AdminApi
         group.MapAdminEventsApi();
         group.MapAdminPartnersApi();
         group.MapAdminAppsApi();
+        group.MapAdminFilesApi();
 
         return endpoints;
     }
