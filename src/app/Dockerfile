@@ -1,6 +1,13 @@
 # Learn about building .NET container images:
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/README.md
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+
+# Install Node.js for building the React admin SPA
+RUN apt-get update && apt-get install -y curl \
+    && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /source
 
 # copy central package management files first
@@ -16,6 +23,13 @@ COPY ["src/app.infrastructure/app.infrastructure.csproj", "source/app.infrastruc
 COPY ["src/app/app.csproj", "source/app/"]
 
 RUN dotnet restore "source/app/app.csproj"
+
+# copy admin SPA package files and install dependencies first (cache layer)
+COPY ["src/admin/package.json", "source/admin/"]
+COPY ["src/admin/package-lock.json", "source/admin/"]
+WORKDIR /source/source/admin
+RUN npm install
+WORKDIR /source
 
 COPY ./src .
 WORKDIR "/source/app/"
