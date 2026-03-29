@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { useRegisterApp } from '../../api/apps';
+import { ArrowLeft, Copy, Check, AlertTriangle, Loader2 } from 'lucide-react';
 
 export const Route = createFileRoute('/apps/register')({
   component: RegisterAppPage,
@@ -28,15 +29,17 @@ function RegisterAppPage() {
     <div className="max-w-lg">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-heading font-bold">Register Application</h1>
-        <Link to="/apps" className="btn btn-outline text-sm">
+        <Link to="/apps" className="btn btn-outline text-sm inline-flex items-center gap-1.5">
+          <ArrowLeft size={14} />
           Back
         </Link>
       </div>
 
       {registerApp.data ? (
         <div className="bg-white rounded-xl border border-gray-200 p-5 space-y-4">
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-            <p className="text-sm font-medium text-yellow-800">
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 flex items-start gap-3">
+            <AlertTriangle size={18} className="text-amber-600 mt-0.5 shrink-0" />
+            <p className="text-sm font-medium text-amber-800">
               Save the client secret now — you won't be able to see it again.
             </p>
           </div>
@@ -52,13 +55,26 @@ function RegisterAppPage() {
               <code className="flex-1 px-3 py-2 bg-gray-50 rounded-lg text-sm break-all">
                 {registerApp.data.clientSecret}
               </code>
-              <button onClick={handleCopy} className="btn btn-outline text-sm !py-2">
-                {copied ? 'Copied!' : 'Copy'}
+              <button
+                onClick={handleCopy}
+                className="btn btn-outline text-sm !py-2 inline-flex items-center gap-1.5 shrink-0"
+              >
+                {copied ? (
+                  <>
+                    <Check size={14} className="text-green-600" />
+                    Copied!
+                  </>
+                ) : (
+                  <>
+                    <Copy size={14} />
+                    Copy
+                  </>
+                )}
               </button>
             </div>
           </div>
 
-          <Link to="/apps" className="btn btn-primary inline-block text-center">
+          <Link to="/apps" className="btn btn-primary inline-flex items-center justify-center gap-2 text-center w-full">
             Done
           </Link>
         </div>
@@ -76,9 +92,16 @@ function RegisterAppPage() {
           <button
             type="submit"
             disabled={registerApp.isPending}
-            className="btn btn-primary"
+            className="btn btn-primary inline-flex items-center gap-2"
           >
-            {registerApp.isPending ? 'Registering...' : 'Register'}
+            {registerApp.isPending ? (
+              <>
+                <Loader2 size={16} className="animate-spin" />
+                Registering...
+              </>
+            ) : (
+              'Register'
+            )}
           </button>
         </form>
       )}

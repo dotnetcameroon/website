@@ -11,6 +11,19 @@ import type {
   EventStatus,
   PartnerResponse,
 } from '../api/types';
+import {
+  ArrowLeft,
+  Save,
+  Send,
+  XCircle,
+  RotateCcw,
+  Plus,
+  Trash2,
+  ImageIcon,
+  Users,
+  ListTodo,
+  Loader2,
+} from 'lucide-react';
 
 interface EventFormProps {
   eventId?: string;
@@ -119,7 +132,11 @@ export function EventForm({ eventId }: EventFormProps) {
   const selectedPartners = allPartners?.filter((p: PartnerResponse) => selectedPartnerIds.includes(p.id)) ?? [];
 
   if (isEdit && loadingEvent) {
-    return <div className="text-center py-12 text-gray-500">Loading...</div>;
+    return (
+      <div className="flex items-center justify-center py-16 text-gray-400">
+        <Loader2 size={24} className="animate-spin" />
+      </div>
+    );
   }
 
   return (
@@ -129,30 +146,34 @@ export function EventForm({ eventId }: EventFormProps) {
           {isEdit ? 'Edit Event' : 'New Event'}
         </h1>
         <div className="flex gap-2">
-          <button onClick={() => navigate({ to: '/' })} className="btn btn-outline text-sm">
+          <button onClick={() => navigate({ to: '/' })} className="btn btn-outline text-sm inline-flex items-center gap-1.5">
+            <ArrowLeft size={14} />
             Discard
           </button>
           {isEdit && status === 'Draft' && (
             <button
               onClick={() => publishEvent.mutate(eventId!, { onSuccess: () => navigate({ to: '/' }) })}
-              className="btn btn-primary text-sm"
+              className="btn btn-primary text-sm inline-flex items-center gap-1.5"
             >
+              <Send size={14} />
               Publish
             </button>
           )}
           {isEdit && (status === 'ComingSoon' || status === 'Passed') && (
             <button
               onClick={() => cancelEvent.mutate(eventId!, { onSuccess: () => navigate({ to: '/' }) })}
-              className="btn btn-danger text-sm"
+              className="btn btn-danger text-sm inline-flex items-center gap-1.5"
             >
+              <XCircle size={14} />
               Cancel Event
             </button>
           )}
           {isEdit && status === 'Cancelled' && (
             <button
               onClick={() => publishEvent.mutate(eventId!, { onSuccess: () => navigate({ to: '/' }) })}
-              className="btn btn-primary text-sm"
+              className="btn btn-primary text-sm inline-flex items-center gap-1.5"
             >
+              <RotateCcw size={14} />
               Re-Publish
             </button>
           )}
@@ -267,7 +288,10 @@ export function EventForm({ eventId }: EventFormProps) {
 
           {/* Partners */}
           <div className="bg-white rounded-xl border border-gray-200 p-5">
-            <h3 className="text-sm font-medium text-gray-700 mb-3">Partners</h3>
+            <h3 className="text-sm font-medium text-gray-700 mb-3 flex items-center gap-2">
+              <Users size={16} className="text-gray-400" />
+              Partners
+            </h3>
             <select onChange={handlePartnerSelect} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm mb-3">
               <option value="">Select a partner...</option>
               {allPartners
@@ -278,14 +302,14 @@ export function EventForm({ eventId }: EventFormProps) {
             </select>
             <div className="flex flex-wrap gap-2">
               {selectedPartners.map((p: PartnerResponse) => (
-                <span key={p.id} className="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 rounded-full text-xs">
+                <span key={p.id} className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-gray-100 rounded-full text-xs">
                   {p.name}
                   <button
                     type="button"
                     onClick={() => setSelectedPartnerIds(selectedPartnerIds.filter((id) => id !== p.id))}
                     className="text-gray-400 hover:text-red-500 cursor-pointer"
                   >
-                    &times;
+                    <XCircle size={13} />
                   </button>
                 </span>
               ))}
@@ -295,13 +319,17 @@ export function EventForm({ eventId }: EventFormProps) {
           {/* Activities */}
           <div className="bg-white rounded-xl border border-gray-200 p-5">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-sm font-medium text-gray-700">Activities</h3>
+              <h3 className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                <ListTodo size={16} className="text-gray-400" />
+                Activities
+              </h3>
               <button
                 type="button"
                 onClick={() => setShowActivityModal(true)}
-                className="btn btn-outline text-xs !px-3 !py-1.5"
+                className="btn btn-outline text-xs !px-3 !py-1.5 inline-flex items-center gap-1"
               >
-                + New Activity
+                <Plus size={13} />
+                New Activity
               </button>
             </div>
             {activities.length === 0 ? (
@@ -319,9 +347,10 @@ export function EventForm({ eventId }: EventFormProps) {
                     <button
                       type="button"
                       onClick={() => setActivities(activities.filter((_, j) => j !== i))}
-                      className="text-red-500 hover:text-red-700 text-xs cursor-pointer"
+                      className="p-1.5 rounded-md text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
+                      title="Remove activity"
                     >
-                      Remove
+                      <Trash2 size={14} />
                     </button>
                   </div>
                 ))}
@@ -333,9 +362,17 @@ export function EventForm({ eventId }: EventFormProps) {
         {/* Right column */}
         <div className="space-y-4">
           <div className="bg-white rounded-xl border border-gray-200 p-5">
-            <h3 className="text-sm font-medium text-gray-700 mb-3">Cover Image</h3>
-            {imageUrl && (
+            <h3 className="text-sm font-medium text-gray-700 mb-3 flex items-center gap-2">
+              <ImageIcon size={16} className="text-gray-400" />
+              Cover Image
+            </h3>
+            {imageUrl ? (
               <img src={imageUrl} alt="Cover" className="w-full h-40 object-cover rounded-lg mb-3" />
+            ) : (
+              <div className="w-full h-40 bg-gray-50 rounded-lg mb-3 flex flex-col items-center justify-center text-gray-300">
+                <ImageIcon size={32} strokeWidth={1.2} />
+                <span className="text-xs mt-1">No image</span>
+              </div>
             )}
             <input type="file" accept="image/*" onChange={handleImageChange} className="text-sm" />
           </div>
@@ -343,9 +380,19 @@ export function EventForm({ eventId }: EventFormProps) {
           <button
             type="submit"
             disabled={createEvent.isPending || updateEvent.isPending}
-            className="btn btn-secondary w-full"
+            className="btn btn-secondary w-full inline-flex items-center justify-center gap-2"
           >
-            {createEvent.isPending || updateEvent.isPending ? 'Saving...' : 'Save'}
+            {createEvent.isPending || updateEvent.isPending ? (
+              <>
+                <Loader2 size={16} className="animate-spin" />
+                Saving...
+              </>
+            ) : (
+              <>
+                <Save size={16} />
+                Save
+              </>
+            )}
           </button>
         </div>
       </form>

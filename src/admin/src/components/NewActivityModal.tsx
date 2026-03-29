@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { ActivityRequest } from '../api/types';
+import { X, Plus } from 'lucide-react';
 
 interface NewActivityModalProps {
   open: boolean;
@@ -51,7 +52,16 @@ export function NewActivityModal({ open, onClose, onAdd }: NewActivityModalProps
         onSubmit={handleSubmit}
         className="bg-white rounded-xl p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto"
       >
-        <h3 className="text-lg font-heading font-bold mb-4">New Activity</h3>
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-heading font-bold">New Activity</h3>
+          <button
+            type="button"
+            onClick={onClose}
+            className="p-1.5 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer"
+          >
+            <X size={18} />
+          </button>
+        </div>
 
         <div className="space-y-3">
           <div>
@@ -132,7 +142,8 @@ export function NewActivityModal({ open, onClose, onAdd }: NewActivityModalProps
           <button type="button" onClick={onClose} className="btn btn-outline text-sm">
             Cancel
           </button>
-          <button type="submit" className="btn btn-primary text-sm">
+          <button type="submit" className="btn btn-primary text-sm inline-flex items-center gap-1.5">
+            <Plus size={14} />
             Add Activity
           </button>
         </div>

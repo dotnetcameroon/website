@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 import { usePartners, useCreatePartner, useDeletePartner } from '../../api/partners';
 import type { CreateOrUpdatePartnerRequest } from '../../api/types';
+import { Plus, Trash2, ExternalLink, Handshake, Loader2, X } from 'lucide-react';
 
 export const Route = createFileRoute('/partners/')({
   component: PartnersPage,
@@ -41,8 +42,21 @@ function PartnersPage() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-heading font-bold">Partners</h1>
-        <button onClick={() => setShowForm(!showForm)} className="btn btn-primary">
-          {showForm ? 'Cancel' : 'Add Partner'}
+        <button
+          onClick={() => setShowForm(!showForm)}
+          className={`btn ${showForm ? 'btn-outline' : 'btn-primary'} inline-flex items-center gap-2`}
+        >
+          {showForm ? (
+            <>
+              <X size={16} />
+              Cancel
+            </>
+          ) : (
+            <>
+              <Plus size={16} />
+              Add Partner
+            </>
+          )}
         </button>
       </div>
 
@@ -71,16 +85,32 @@ function PartnersPage() {
               className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
             />
           </div>
-          <button type="submit" disabled={createPartner.isPending} className="btn btn-secondary text-sm">
-            {createPartner.isPending ? 'Saving...' : 'Save Partner'}
+          <button
+            type="submit"
+            disabled={createPartner.isPending}
+            className="btn btn-secondary text-sm inline-flex items-center gap-2"
+          >
+            {createPartner.isPending ? (
+              <>
+                <Loader2 size={14} className="animate-spin" />
+                Saving...
+              </>
+            ) : (
+              'Save Partner'
+            )}
           </button>
         </form>
       )}
 
       {isLoading ? (
-        <div className="text-center py-12 text-gray-500">Loading...</div>
+        <div className="flex items-center justify-center py-16 text-gray-400">
+          <Loader2 size={24} className="animate-spin" />
+        </div>
       ) : !partners?.length ? (
-        <div className="text-center py-12 text-gray-500">No partners yet.</div>
+        <div className="flex flex-col items-center justify-center py-16 text-gray-400">
+          <Handshake size={40} strokeWidth={1.2} />
+          <p className="mt-3 text-sm">No partners yet.</p>
+        </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {partners.map((p) => (
@@ -90,7 +120,8 @@ function PartnersPage() {
               )}
               <p className="font-medium text-sm">{p.name}</p>
               {p.website && (
-                <a href={p.website} target="_blank" rel="noreferrer" className="text-xs text-secondary hover:underline">
+                <a href={p.website} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs text-secondary hover:underline">
+                  <ExternalLink size={12} />
                   {p.website}
                 </a>
               )}
@@ -100,8 +131,9 @@ function PartnersPage() {
                     deletePartner.mutate(p.id);
                   }
                 }}
-                className="text-xs text-red-500 hover:text-red-700 cursor-pointer"
+                className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-red-600 transition-colors cursor-pointer"
               >
+                <Trash2 size={12} />
                 Delete
               </button>
             </div>
