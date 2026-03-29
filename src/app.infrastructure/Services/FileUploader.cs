@@ -67,9 +67,6 @@ public class FileUploader(IMinioClient minioClient, IOptions<MinioOptions> optio
 
     private string BuildPublicUrl(string objectName)
     {
-        if (!string.IsNullOrWhiteSpace(_options.PublicUrl))
-            return $"{_options.PublicUrl.TrimEnd('/')}/{_options.BucketName}/{objectName}";
-
         var endpoint = _options.PublicEndpoint.StartsWith("http://") || _options.PublicEndpoint.StartsWith("https://")
             ? _options.PublicEndpoint
             : $"{(_options.UseSsl ? "https" : "http")}://{_options.PublicEndpoint}";

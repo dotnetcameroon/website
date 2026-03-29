@@ -9,5 +9,4 @@ public sealed class MinioOptions
     public string SecretKey { get; init; } = "minioadmin";
     public string BucketName { get; init; } = "uploads";
     public bool UseSsl { get; init; } = false;
-    public string PublicUrl { get; init; } = "";
 }
