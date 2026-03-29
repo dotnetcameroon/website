@@ -4,7 +4,6 @@
     <PackageReference Include="Hangfire.MemoryStorage" />
     <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" />
     <PackageReference Include="Hangfire" />
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" />
@@ -16,7 +15,6 @@
   <ItemGroup>
     <ProjectReference Include="..\dotnet-ef-seeder\dotnet-ef-seeder.csproj" />
     <ProjectReference Include="..\app.infrastructure\app.infrastructure.csproj" />
-    <ProjectReference Include="..\app.client\app.client.csproj" />
   </ItemGroup>
 
 </Project>

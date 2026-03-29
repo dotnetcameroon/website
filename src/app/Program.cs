@@ -87,9 +87,7 @@ app.UseAntiforgery();
 // app.MapHangfireJobs();
 
 app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode()
-    .AddInteractiveWebAssemblyRenderMode()
-    .AddAdditionalAssemblies(typeof(app.client._Imports).Assembly);
+    .AddInteractiveServerRenderMode();
 
 app.MapAdminApi();
 app.MapProjectsApi();

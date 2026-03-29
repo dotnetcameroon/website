@@ -406,37 +406,6 @@
   @apply md:text-3xl;
 }
 
-/* Sidebar */
-
-#sidebar.collapsed .nav-text {
-  display: none;
-}
-
-#sidebar.collapsed .sidebar-link {
-  @apply text-center;
-}
-
-#sidebar.collapsed {
-  @apply p-2 pt-24 w-auto;
-}
-
-#sidebar.collapsed .toggle {
-  @apply -rotate-90;
-}
-
-.sidebar-link.active {
-  @apply bg-white;
-}
-
-#activity-popup {
-  @apply opacity-0 -z-10 transition-all;
-}
-
-#activity-popup.active {
-  @apply opacity-100 z-10 transition-all;
-}
-
-
 /* .NET Conf */
 
 @media (min-width: 768px) {

@@ -30,8 +30,7 @@ public static class Extensions
         IHostEnvironment environment)
     {
         services.AddRazorComponents()
-            .AddInteractiveServerComponents()
-            .AddInteractiveWebAssemblyComponents();
+            .AddInteractiveServerComponents();
 
         if (environment.IsProduction())
         {

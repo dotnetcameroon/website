@@ -1,7 +1,6 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/app.business/app.business.csproj" />
-    <Project Path="src/app.client/app.client.csproj" />
     <Project Path="src/app.domain/app.domain.csproj" />
     <Project Path="src/app.infrastructure/app.infrastructure.csproj" />
     <Project Path="src/app.shared/app.shared.csproj" />

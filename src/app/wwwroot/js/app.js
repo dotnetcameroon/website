@@ -41,53 +41,8 @@ function hideBackToTop() {
   navbar.classList.remove("active");
 }
 
-function toggleExpand() {
-  const sidebar = document.getElementById("sidebar");
-  sidebar.classList.toggle("collapsed");
-}
-
-function onPageSizeSelected() {
-  const submitButton = document.getElementById("page-size-submit");
-  submitButton.click();
-}
-
-function toggleActivityPopup() {
-  const popup = document.getElementById("activity-popup");
-  const body = document.getElementById("body");
-  popup.classList.toggle("active");
-  body.scrollTo(0, 0);
-}
-
-function adjustTextareaHeight(id) {
-  const textarea = document.getElementById(id);
-  textarea.style.height = "auto";
-  textarea.style.height = textarea.scrollHeight + "px";
-}
-
-function saveDraft() {
-  try {
-    const form = document.getElementById("event-form");
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    form.submit();
-  } catch (error) {
-    console.error("An error occurred while publishing the event:", error);
-    window.location.href = "/errors";
-  }
-}
-
 function backToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-function copySecretToClipboard() {
-  const secret = document.getElementById("secret");
-  const secret_button = document.getElementById("secret-button");
-  navigator.clipboard.writeText(secret.value);
-  secret_button.innerHTML = `<i class="fa-solid fa-check"></i>`;
 }
 
 function showDotnetSessions() {
