@@ -1,135 +1,280 @@
-import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
-import { useState } from 'react';
-import { useEvents, useDeleteEvent } from '../api/events';
-import { Pagination } from '../components/Pagination';
-import type { EventStatus } from '../api/types';
-import { Plus, Search, Pencil, Trash2, Calendar, Loader2 } from 'lucide-react';
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { useEvents } from '../api/events';
+import { usePartners } from '../api/partners';
+import { useApps } from '../api/apps';
+import type { EventStatus, EventType } from '../api/types';
+import {
+  Calendar,
+  Handshake,
+  KeyRound,
+  TrendingUp,
+  ArrowRight,
+  Loader2,
+} from 'lucide-react';
+import {
+  PieChart,
+  Pie,
+  Cell,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts';
 
 export const Route = createFileRoute('/')({
-  component: EventsListPage,
+  component: DashboardPage,
 });
 
-const statusColors: Record<EventStatus, string> = {
-  Draft: 'bg-gray-100 text-gray-600',
-  ComingSoon: 'bg-emerald-50 text-emerald-700',
-  Passed: 'bg-blue-50 text-blue-700',
-  Cancelled: 'bg-red-50 text-red-700',
+const STATUS_COLORS: Record<EventStatus, string> = {
+  Draft: '#94a3b8',
+  ComingSoon: '#10b981',
+  Passed: '#3b82f6',
+  Cancelled: '#ef4444',
 };
 
-function EventsListPage() {
-  const [page, setPage] = useState(1);
-  const [search, setSearch] = useState('');
-  const [searchInput, setSearchInput] = useState('');
-  const { data, isLoading } = useEvents(page, 10, search || undefined);
-  const deleteEvent = useDeleteEvent();
-  const navigate = useNavigate();
+const TYPE_COLORS: Record<EventType, string> = {
+  Conference: '#512bd4',
+  Webinar: '#0a855f',
+  Meetup: '#e1a325',
+  Workshop: '#3b82f6',
+};
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSearch(searchInput);
-    setPage(1);
-  };
+function DashboardPage() {
+  const { data: eventsData, isLoading: loadingEvents } = useEvents(1, 100);
+  const { data: partners, isLoading: loadingPartners } = usePartners();
+  const { data: appsData, isLoading: loadingApps } = useApps(1, 100);
+
+  const events = eventsData?.items ?? [];
+  const upcoming = events.filter((e) => e.status === 'ComingSoon');
+  const totalPartners = partners?.length ?? 0;
+  const totalApps = appsData?.items.length ?? 0;
+
+  const isLoading = loadingEvents || loadingPartners || loadingApps;
+
+  // Charts data
+  const statusData = (['Draft', 'ComingSoon', 'Passed', 'Cancelled'] as EventStatus[])
+    .map((status) => ({
+      name: status === 'ComingSoon' ? 'Upcoming' : status,
+      value: events.filter((e) => e.status === status).length,
+      color: STATUS_COLORS[status],
+    }))
+    .filter((d) => d.value > 0);
+
+  const typeData = (['Conference', 'Webinar', 'Meetup', 'Workshop'] as EventType[])
+    .map((type) => ({
+      name: type,
+      count: events.filter((e) => e.type === type).length,
+      fill: TYPE_COLORS[type],
+    }))
+    .filter((d) => d.count > 0);
+
+  const recentEvents = [...events]
+    .sort((a, b) => new Date(b.schedule.start).getTime() - new Date(a.schedule.start).getTime())
+    .slice(0, 5);
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-64 text-gray-400">
+        <Loader2 size={24} className="animate-spin" />
+      </div>
+    );
+  }
 
   return (
-    <div>
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-heading font-bold">Events</h1>
-        <Link to="/events/new" className="btn btn-primary inline-flex items-center gap-2">
-          <Plus size={16} />
-          New Event
-        </Link>
+    <div className="max-w-6xl space-y-8">
+      <div>
+        <h1 className="text-2xl font-heading font-bold text-gray-900">Dashboard</h1>
+        <p className="text-sm text-gray-500 mt-1">Overview of your community activity</p>
       </div>
 
-      <form onSubmit={handleSearch} className="mb-4 flex gap-2">
-        <div className="relative flex-1">
-          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Search events..."
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
-          />
-        </div>
-        <button type="submit" className="btn btn-outline text-sm !py-2 inline-flex items-center gap-1.5">
-          <Search size={14} />
-          Search
-        </button>
-      </form>
+      {/* Stats */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <StatCard
+          label="Total Events"
+          value={events.length}
+          icon={Calendar}
+          color="bg-primary-light text-primary"
+        />
+        <StatCard
+          label="Upcoming"
+          value={upcoming.length}
+          icon={TrendingUp}
+          color="bg-emerald-50 text-emerald-600"
+        />
+        <StatCard
+          label="Partners"
+          value={totalPartners}
+          icon={Handshake}
+          color="bg-violet-50 text-violet-600"
+        />
+        <StatCard
+          label="Applications"
+          value={totalApps}
+          icon={KeyRound}
+          color="bg-amber-50 text-amber-600"
+        />
+      </div>
 
-      {isLoading ? (
-        <div className="flex items-center justify-center py-16 text-gray-400">
-          <Loader2 size={24} className="animate-spin" />
-        </div>
-      ) : !data?.items.length ? (
-        <div className="flex flex-col items-center justify-center py-16 text-gray-400">
-          <Calendar size={40} strokeWidth={1.2} />
-          <p className="mt-3 text-sm">No events found.</p>
-        </div>
-      ) : (
-        <>
-          <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-gray-200 bg-gray-50/80">
-                  <th className="text-left px-4 py-3 font-medium text-gray-500 text-xs uppercase tracking-wider">Date</th>
-                  <th className="text-left px-4 py-3 font-medium text-gray-500 text-xs uppercase tracking-wider">Title</th>
-                  <th className="text-left px-4 py-3 font-medium text-gray-500 text-xs uppercase tracking-wider">Status</th>
-                  <th className="text-right px-4 py-3 font-medium text-gray-500 text-xs uppercase tracking-wider">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.items.map((event) => (
-                  <tr key={event.id} className="border-b border-gray-100 last:border-0 hover:bg-gray-50/50 transition-colors">
-                    <td className="px-4 py-3 text-gray-500">
-                      {new Date(event.schedule.start).toLocaleDateString()}
-                    </td>
-                    <td className="px-4 py-3 font-medium">{event.title}</td>
-                    <td className="px-4 py-3">
-                      <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColors[event.status]}`}>
-                        {event.status}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3 text-right">
-                      <div className="flex items-center justify-end gap-1">
-                        <Link
-                          to="/events/$id/edit"
-                          params={{ id: event.id }}
-                          className="p-1.5 rounded-md text-gray-400 hover:text-secondary hover:bg-secondary/10 transition-colors"
-                          title="Edit"
-                        >
-                          <Pencil size={15} />
-                        </Link>
-                        <button
-                          onClick={() => {
-                            if (confirm('Delete this event?')) {
-                              deleteEvent.mutate(event.id, {
-                                onSuccess: () => navigate({ to: '/' }),
-                              });
-                            }
-                          }}
-                          className="p-1.5 rounded-md text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
-                          title="Delete"
-                        >
-                          <Trash2 size={15} />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
+      {/* Charts */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Events by status */}
+        <div className="card p-6">
+          <h2 className="text-sm font-semibold text-gray-800 mb-4">Events by Status</h2>
+          {statusData.length === 0 ? (
+            <p className="text-sm text-gray-400 py-8 text-center">No events yet</p>
+          ) : (
+            <div className="flex items-center gap-6">
+              <ResponsiveContainer width="50%" height={180}>
+                <PieChart>
+                  <Pie
+                    data={statusData}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={45}
+                    outerRadius={75}
+                    dataKey="value"
+                    strokeWidth={2}
+                    stroke="#fff"
+                  >
+                    {statusData.map((entry, i) => (
+                      <Cell key={i} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip
+                    contentStyle={{
+                      fontSize: 12,
+                      borderRadius: 8,
+                      border: '1px solid #e5e7eb',
+                      boxShadow: '0 4px 6px -1px rgba(0,0,0,.06)',
+                    }}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+              <div className="space-y-2.5">
+                {statusData.map((entry) => (
+                  <div key={entry.name} className="flex items-center gap-2.5">
+                    <div
+                      className="size-2.5 rounded-full"
+                      style={{ backgroundColor: entry.color }}
+                    />
+                    <span className="text-xs text-gray-600">{entry.name}</span>
+                    <span className="text-xs font-semibold text-gray-800">{entry.value}</span>
+                  </div>
                 ))}
-              </tbody>
-            </table>
-          </div>
+              </div>
+            </div>
+          )}
+        </div>
 
-          <Pagination
-            page={data.pageNumber}
-            totalPages={data.totalPages}
-            hasPrevious={data.hasPreviousPage}
-            hasNext={data.hasNextPage}
-            onPageChange={setPage}
-          />
-        </>
-      )}
+        {/* Events by type */}
+        <div className="card p-6">
+          <h2 className="text-sm font-semibold text-gray-800 mb-4">Events by Type</h2>
+          {typeData.length === 0 ? (
+            <p className="text-sm text-gray-400 py-8 text-center">No events yet</p>
+          ) : (
+            <ResponsiveContainer width="100%" height={180}>
+              <BarChart data={typeData} barSize={32}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                <XAxis dataKey="name" tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
+                <YAxis allowDecimals={false} tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
+                <Tooltip
+                  contentStyle={{
+                    fontSize: 12,
+                    borderRadius: 8,
+                    border: '1px solid #e5e7eb',
+                    boxShadow: '0 4px 6px -1px rgba(0,0,0,.06)',
+                  }}
+                />
+                <Bar dataKey="count" radius={[4, 4, 0, 0]}>
+                  {typeData.map((entry, i) => (
+                    <Cell key={i} fill={entry.fill} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          )}
+        </div>
+      </div>
+
+      {/* Recent events */}
+      <div className="card">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+          <h2 className="text-sm font-semibold text-gray-800">Recent Events</h2>
+          <Link to="/events" className="text-xs text-primary hover:text-primary-dark font-medium flex items-center gap-1 transition-colors">
+            View all
+            <ArrowRight size={12} />
+          </Link>
+        </div>
+        {recentEvents.length === 0 ? (
+          <p className="text-sm text-gray-400 py-10 text-center">No events yet</p>
+        ) : (
+          <div className="divide-y divide-gray-100">
+            {recentEvents.map((event) => (
+              <div key={event.id} className="flex items-center justify-between px-6 py-3.5">
+                <div className="flex items-center gap-4">
+                  <div className="text-center w-11">
+                    <p className="text-[10px] text-gray-400 uppercase leading-none">
+                      {new Date(event.schedule.start).toLocaleDateString('en', { month: 'short' })}
+                    </p>
+                    <p className="text-lg font-heading font-bold text-gray-800 leading-tight">
+                      {new Date(event.schedule.start).getDate()}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-800">{event.title}</p>
+                    <p className="text-xs text-gray-400 mt-0.5">
+                      {event.type} &middot; {event.hostingModel}
+                    </p>
+                  </div>
+                </div>
+                <StatusBadge status={event.status} />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
+  );
+}
+
+function StatCard({
+  label,
+  value,
+  icon: Icon,
+  color,
+}: {
+  label: string;
+  value: number;
+  icon: React.ComponentType<{ size?: number }>;
+  color: string;
+}) {
+  return (
+    <div className="card p-5 flex items-start gap-4">
+      <div className={`size-10 rounded-lg flex items-center justify-center ${color}`}>
+        <Icon size={20} />
+      </div>
+      <div>
+        <p className="text-2xl font-heading font-bold text-gray-900">{value}</p>
+        <p className="text-xs text-gray-500 mt-0.5">{label}</p>
+      </div>
+    </div>
+  );
+}
+
+const badgeClass: Record<EventStatus, string> = {
+  Draft: 'badge-draft',
+  ComingSoon: 'badge-coming-soon',
+  Passed: 'badge-passed',
+  Cancelled: 'badge-cancelled',
+};
+
+function StatusBadge({ status }: { status: EventStatus }) {
+  return (
+    <span className={`badge ${badgeClass[status]}`}>
+      {status === 'ComingSoon' ? 'Upcoming' : status}
+    </span>
   );
 }

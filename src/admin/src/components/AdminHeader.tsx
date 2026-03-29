@@ -1,30 +1,24 @@
 import { useAuthMe } from '../api/auth';
-import { LogOut, User } from 'lucide-react';
+import { LogOut, CircleUser } from 'lucide-react';
 
 export function AdminHeader() {
   const { data: user } = useAuthMe();
 
   return (
-    <header className="h-14 border-b border-gray-200 bg-white flex items-center justify-between px-6">
-      <div className="flex items-center gap-3">
-        <a href="/" className="flex items-center gap-2 text-primary font-heading font-bold text-lg">
-          .NET Cameroon
-        </a>
-        <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full font-medium">Admin</span>
-      </div>
-      <div className="flex items-center gap-4">
+    <header className="h-14 border-b border-gray-200/80 bg-white flex items-center justify-between px-6">
+      <div />
+      <div className="flex items-center gap-5">
         {user && (
-          <span className="flex items-center gap-1.5 text-sm text-gray-600">
-            <User size={14} />
-            {user.email}
-          </span>
+          <div className="flex items-center gap-2">
+            <CircleUser size={18} className="text-gray-400" />
+            <span className="text-sm text-gray-600">{user.email}</span>
+          </div>
         )}
         <a
           href="/account/logout"
-          className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-red-600 transition-colors"
+          className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-red-500 transition-colors"
         >
-          <LogOut size={14} />
-          Logout
+          <LogOut size={15} />
         </a>
       </div>
     </header>

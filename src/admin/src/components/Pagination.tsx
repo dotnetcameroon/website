@@ -12,25 +12,23 @@ export function Pagination({ page, totalPages, hasPrevious, hasNext, onPageChang
   if (totalPages <= 1) return null;
 
   return (
-    <div className="flex items-center justify-between mt-4">
-      <span className="text-sm text-gray-500">
+    <div className="flex items-center justify-between mt-5">
+      <span className="text-xs text-gray-400">
         Page {page} of {totalPages}
       </span>
       <div className="flex gap-1">
         <button
           onClick={() => onPageChange(page - 1)}
           disabled={!hasPrevious}
-          className="btn btn-outline text-sm !px-3 !py-1.5 disabled:opacity-40 disabled:cursor-not-allowed inline-flex items-center gap-1"
+          className="btn btn-outline btn-sm !px-2.5 disabled:opacity-30 disabled:cursor-not-allowed"
         >
           <ChevronLeft size={14} />
-          Previous
         </button>
         <button
           onClick={() => onPageChange(page + 1)}
           disabled={!hasNext}
-          className="btn btn-outline text-sm !px-3 !py-1.5 disabled:opacity-40 disabled:cursor-not-allowed inline-flex items-center gap-1"
+          className="btn btn-outline btn-sm !px-2.5 disabled:opacity-30 disabled:cursor-not-allowed"
         >
-          Next
           <ChevronRight size={14} />
         </button>
       </div>

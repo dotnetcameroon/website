@@ -19,10 +19,9 @@ import {
   RotateCcw,
   Plus,
   Trash2,
-  ImageIcon,
-  Users,
-  ListTodo,
+  Upload,
   Loader2,
+  X,
 } from 'lucide-react';
 
 interface EventFormProps {
@@ -43,7 +42,6 @@ export function EventForm({ eventId }: EventFormProps) {
   const publishEvent = usePublishEvent();
   const cancelEvent = useCancelEvent();
 
-  // Form state
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState('');
@@ -59,7 +57,6 @@ export function EventForm({ eventId }: EventFormProps) {
   const [showActivityModal, setShowActivityModal] = useState(false);
   const [status, setStatus] = useState<EventStatus>('Draft');
 
-  // Populate form when editing
   useEffect(() => {
     if (!existingEvent) return;
     setTitle(existingEvent.title);
@@ -94,7 +91,6 @@ export function EventForm({ eventId }: EventFormProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     const data: CreateOrUpdateEventRequest = {
       title,
       description,
@@ -114,10 +110,9 @@ export function EventForm({ eventId }: EventFormProps) {
       activities,
       partnerIds: selectedPartnerIds,
     };
-
     const mutation = isEdit ? updateEvent : createEvent;
     mutation.mutate(data, {
-      onSuccess: () => navigate({ to: '/' }),
+      onSuccess: () => navigate({ to: '/events' }),
     });
   };
 
@@ -130,30 +125,47 @@ export function EventForm({ eventId }: EventFormProps) {
   };
 
   const selectedPartners = allPartners?.filter((p: PartnerResponse) => selectedPartnerIds.includes(p.id)) ?? [];
+  const isSaving = createEvent.isPending || updateEvent.isPending;
 
   if (isEdit && loadingEvent) {
     return (
-      <div className="flex items-center justify-center py-16 text-gray-400">
+      <div className="flex items-center justify-center h-48 text-gray-400">
         <Loader2 size={24} className="animate-spin" />
       </div>
     );
   }
 
   return (
-    <div>
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-heading font-bold">
-          {isEdit ? 'Edit Event' : 'New Event'}
-        </h1>
-        <div className="flex gap-2">
-          <button onClick={() => navigate({ to: '/' })} className="btn btn-outline text-sm inline-flex items-center gap-1.5">
-            <ArrowLeft size={14} />
-            Discard
+    <div className="max-w-4xl">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => navigate({ to: '/events' })}
+            className="p-2 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
+          >
+            <ArrowLeft size={20} />
           </button>
+          <div>
+            <h1 className="text-2xl font-heading font-bold text-gray-900">
+              {isEdit ? 'Edit Event' : 'New Event'}
+            </h1>
+            {isEdit && (
+              <span className={`badge mt-1 ${
+                status === 'Draft' ? 'badge-draft' :
+                status === 'ComingSoon' ? 'badge-coming-soon' :
+                status === 'Passed' ? 'badge-passed' : 'badge-cancelled'
+              }`}>
+                {status === 'ComingSoon' ? 'Upcoming' : status}
+              </span>
+            )}
+          </div>
+        </div>
+        <div className="flex gap-2">
           {isEdit && status === 'Draft' && (
             <button
-              onClick={() => publishEvent.mutate(eventId!, { onSuccess: () => navigate({ to: '/' }) })}
-              className="btn btn-primary text-sm inline-flex items-center gap-1.5"
+              onClick={() => publishEvent.mutate(eventId!, { onSuccess: () => navigate({ to: '/events' }) })}
+              className="btn btn-primary btn-sm"
             >
               <Send size={14} />
               Publish
@@ -161,8 +173,8 @@ export function EventForm({ eventId }: EventFormProps) {
           )}
           {isEdit && (status === 'ComingSoon' || status === 'Passed') && (
             <button
-              onClick={() => cancelEvent.mutate(eventId!, { onSuccess: () => navigate({ to: '/' }) })}
-              className="btn btn-danger text-sm inline-flex items-center gap-1.5"
+              onClick={() => cancelEvent.mutate(eventId!, { onSuccess: () => navigate({ to: '/events' }) })}
+              className="btn btn-danger btn-sm"
             >
               <XCircle size={14} />
               Cancel Event
@@ -170,8 +182,8 @@ export function EventForm({ eventId }: EventFormProps) {
           )}
           {isEdit && status === 'Cancelled' && (
             <button
-              onClick={() => publishEvent.mutate(eventId!, { onSuccess: () => navigate({ to: '/' }) })}
-              className="btn btn-primary text-sm inline-flex items-center gap-1.5"
+              onClick={() => publishEvent.mutate(eventId!, { onSuccess: () => navigate({ to: '/events' }) })}
+              className="btn btn-primary btn-sm"
             >
               <RotateCcw size={14} />
               Re-Publish
@@ -180,209 +192,229 @@ export function EventForm({ eventId }: EventFormProps) {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left column */}
-        <div className="lg:col-span-2 space-y-4">
-          <div className="bg-white rounded-xl border border-gray-200 p-5 space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Basic Info */}
+        <section className="card p-6 space-y-5">
+          <h2 className="text-sm font-semibold text-gray-800">Event Details</h2>
+
+          <div>
+            <label className="label">Title</label>
+            <input
+              required
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="e.g. .NET Conf Cameroon 2026"
+              className="input"
+            />
+          </div>
+
+          <div>
+            <label className="label">Description</label>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              rows={4}
+              placeholder="Describe the event..."
+              className="input resize-y"
+            />
+          </div>
+
+          <div>
+            <label className="label">Registration Link</label>
+            <input
+              type="url"
+              value={registrationLink}
+              onChange={(e) => setRegistrationLink(e.target.value)}
+              placeholder="https://..."
+              className="input"
+            />
+          </div>
+
+          <div>
+            <label className="label">Location</label>
+            <input
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              placeholder="Optional — e.g. Douala, Cameroon"
+              className="input"
+            />
+          </div>
+        </section>
+
+        {/* Schedule & Classification */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <section className="card p-6 space-y-5">
+            <h2 className="text-sm font-semibold text-gray-800">Schedule</h2>
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+              <label className="label">Start Date & Time</label>
               <input
+                type="datetime-local"
                 required
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+                className="input"
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
-              <textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                rows={5}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 resize-y"
-              />
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
+            {!isAllDay && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Start</label>
+                <label className="label">End Date & Time</label>
                 <input
                   type="datetime-local"
-                  required
-                  value={startDate}
-                  onChange={(e) => setStartDate(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                  className="input"
                 />
               </div>
-              {!isAllDay && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">End</label>
-                  <input
-                    type="datetime-local"
-                    value={endDate}
-                    onChange={(e) => setEndDate(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
-                  />
-                </div>
-              )}
-            </div>
+            )}
 
-            <label className="flex items-center gap-2 text-sm">
+            <label className="flex items-center gap-2.5 text-sm text-gray-600 cursor-pointer select-none">
               <input
                 type="checkbox"
                 checked={isAllDay}
                 onChange={(e) => setIsAllDay(e.target.checked)}
-                className="rounded"
+                className="size-4 rounded border-gray-300 text-primary focus:ring-primary/30"
               />
-              All day event
+              All-day event
             </label>
+          </section>
+
+          <section className="card p-6 space-y-5">
+            <h2 className="text-sm font-semibold text-gray-800">Classification</h2>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Registration Link</label>
-              <input
-                type="url"
-                value={registrationLink}
-                onChange={(e) => setRegistrationLink(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
-              />
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
-                <select
-                  value={eventType}
-                  onChange={(e) => setEventType(e.target.value as EventType)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
-                >
-                  {eventTypes.map((t) => (
-                    <option key={t} value={t}>{t}</option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Hosting Model</label>
-                <select
-                  value={hostingModel}
-                  onChange={(e) => setHostingModel(e.target.value as EventHostingModel)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
-                >
-                  {hostingModels.map((m) => (
-                    <option key={m} value={m}>{m}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
-              <input
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                placeholder="Optional"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
-              />
-            </div>
-          </div>
-
-          {/* Partners */}
-          <div className="bg-white rounded-xl border border-gray-200 p-5">
-            <h3 className="text-sm font-medium text-gray-700 mb-3 flex items-center gap-2">
-              <Users size={16} className="text-gray-400" />
-              Partners
-            </h3>
-            <select onChange={handlePartnerSelect} className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm mb-3">
-              <option value="">Select a partner...</option>
-              {allPartners
-                ?.filter((p: PartnerResponse) => !selectedPartnerIds.includes(p.id))
-                .map((p: PartnerResponse) => (
-                  <option key={p.id} value={p.id}>{p.name}</option>
+              <label className="label">Event Type</label>
+              <select
+                value={eventType}
+                onChange={(e) => setEventType(e.target.value as EventType)}
+                className="input"
+              >
+                {eventTypes.map((t) => (
+                  <option key={t} value={t}>{t}</option>
                 ))}
-            </select>
+              </select>
+            </div>
+
+            <div>
+              <label className="label">Hosting Model</label>
+              <select
+                value={hostingModel}
+                onChange={(e) => setHostingModel(e.target.value as EventHostingModel)}
+                className="input"
+              >
+                {hostingModels.map((m) => (
+                  <option key={m} value={m}>{m === 'InPerson' ? 'In Person' : m}</option>
+                ))}
+              </select>
+            </div>
+          </section>
+        </div>
+
+        {/* Cover Image */}
+        <section className="card p-6 space-y-4">
+          <h2 className="text-sm font-semibold text-gray-800">Cover Image</h2>
+          {imageUrl ? (
+            <div className="relative group">
+              <img src={imageUrl} alt="Cover" className="w-full h-52 object-cover rounded-lg" />
+              <button
+                type="button"
+                onClick={() => setImageUrl('')}
+                className="absolute top-2 right-2 p-1.5 bg-black/50 rounded-lg text-white opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+              >
+                <X size={14} />
+              </button>
+            </div>
+          ) : (
+            <label className="flex flex-col items-center justify-center h-40 border-2 border-dashed border-gray-200 rounded-lg cursor-pointer hover:border-primary/40 hover:bg-primary/5 transition-colors">
+              <Upload size={24} className="text-gray-300" />
+              <span className="text-sm text-gray-400 mt-2">Click to upload cover image</span>
+              <input type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
+            </label>
+          )}
+        </section>
+
+        {/* Partners */}
+        <section className="card p-6 space-y-4">
+          <h2 className="text-sm font-semibold text-gray-800">Partners</h2>
+          <select onChange={handlePartnerSelect} className="input">
+            <option value="">Select a partner to add...</option>
+            {allPartners
+              ?.filter((p: PartnerResponse) => !selectedPartnerIds.includes(p.id))
+              .map((p: PartnerResponse) => (
+                <option key={p.id} value={p.id}>{p.name}</option>
+              ))}
+          </select>
+          {selectedPartners.length > 0 && (
             <div className="flex flex-wrap gap-2">
               {selectedPartners.map((p: PartnerResponse) => (
-                <span key={p.id} className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-gray-100 rounded-full text-xs">
+                <span
+                  key={p.id}
+                  className="inline-flex items-center gap-1.5 pl-3 pr-1.5 py-1.5 bg-gray-100 rounded-lg text-xs font-medium text-gray-700"
+                >
                   {p.name}
                   <button
                     type="button"
                     onClick={() => setSelectedPartnerIds(selectedPartnerIds.filter((id) => id !== p.id))}
-                    className="text-gray-400 hover:text-red-500 cursor-pointer"
+                    className="p-0.5 rounded hover:bg-gray-200 text-gray-400 hover:text-red-500 transition-colors cursor-pointer"
                   >
-                    <XCircle size={13} />
+                    <X size={13} />
                   </button>
                 </span>
               ))}
             </div>
-          </div>
+          )}
+        </section>
 
-          {/* Activities */}
-          <div className="bg-white rounded-xl border border-gray-200 p-5">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-sm font-medium text-gray-700 flex items-center gap-2">
-                <ListTodo size={16} className="text-gray-400" />
-                Activities
-              </h3>
-              <button
-                type="button"
-                onClick={() => setShowActivityModal(true)}
-                className="btn btn-outline text-xs !px-3 !py-1.5 inline-flex items-center gap-1"
-              >
-                <Plus size={13} />
-                New Activity
-              </button>
-            </div>
-            {activities.length === 0 ? (
-              <p className="text-sm text-gray-400">No activities yet.</p>
-            ) : (
-              <div className="space-y-2">
-                {activities.map((a, i) => (
-                  <div key={i} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <div>
-                      <p className="text-sm font-medium">{a.title}</p>
-                      <p className="text-xs text-gray-500">
-                        {a.schedule.start} - {a.schedule.end} | {a.host.name}
-                      </p>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setActivities(activities.filter((_, j) => j !== i))}
-                      className="p-1.5 rounded-md text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
-                      title="Remove activity"
-                    >
-                      <Trash2 size={14} />
-                    </button>
+        {/* Activities */}
+        <section className="card p-6 space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-gray-800">Activities</h2>
+            <button
+              type="button"
+              onClick={() => setShowActivityModal(true)}
+              className="btn btn-outline btn-sm"
+            >
+              <Plus size={14} />
+              Add
+            </button>
+          </div>
+          {activities.length === 0 ? (
+            <p className="text-sm text-gray-400 py-4 text-center">No activities added yet</p>
+          ) : (
+            <div className="space-y-2">
+              {activities.map((a, i) => (
+                <div key={i} className="flex items-center justify-between p-3.5 bg-gray-50 rounded-lg">
+                  <div>
+                    <p className="text-sm font-medium text-gray-800">{a.title}</p>
+                    <p className="text-xs text-gray-400 mt-0.5">
+                      {a.schedule.start} – {a.schedule.end} &middot; {a.host.name}
+                    </p>
                   </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
+                  <button
+                    type="button"
+                    onClick={() => setActivities(activities.filter((_, j) => j !== i))}
+                    className="p-2 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors cursor-pointer"
+                  >
+                    <Trash2 size={14} />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
 
-        {/* Right column */}
-        <div className="space-y-4">
-          <div className="bg-white rounded-xl border border-gray-200 p-5">
-            <h3 className="text-sm font-medium text-gray-700 mb-3 flex items-center gap-2">
-              <ImageIcon size={16} className="text-gray-400" />
-              Cover Image
-            </h3>
-            {imageUrl ? (
-              <img src={imageUrl} alt="Cover" className="w-full h-40 object-cover rounded-lg mb-3" />
-            ) : (
-              <div className="w-full h-40 bg-gray-50 rounded-lg mb-3 flex flex-col items-center justify-center text-gray-300">
-                <ImageIcon size={32} strokeWidth={1.2} />
-                <span className="text-xs mt-1">No image</span>
-              </div>
-            )}
-            <input type="file" accept="image/*" onChange={handleImageChange} className="text-sm" />
-          </div>
-
+        {/* Submit */}
+        <div className="flex items-center justify-end gap-3 pt-2">
           <button
-            type="submit"
-            disabled={createEvent.isPending || updateEvent.isPending}
-            className="btn btn-secondary w-full inline-flex items-center justify-center gap-2"
+            type="button"
+            onClick={() => navigate({ to: '/events' })}
+            className="btn btn-outline"
           >
-            {createEvent.isPending || updateEvent.isPending ? (
+            Cancel
+          </button>
+          <button type="submit" disabled={isSaving} className="btn btn-primary">
+            {isSaving ? (
               <>
                 <Loader2 size={16} className="animate-spin" />
                 Saving...
@@ -390,7 +422,7 @@ export function EventForm({ eventId }: EventFormProps) {
             ) : (
               <>
                 <Save size={16} />
-                Save
+                {isEdit ? 'Update Event' : 'Create Event'}
               </>
             )}
           </button>

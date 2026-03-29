@@ -13,39 +13,46 @@ function AppsListPage() {
   const { data, isLoading } = useApps(page, 10);
 
   return (
-    <div>
+    <div className="max-w-4xl">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-heading font-bold">External Applications</h1>
-        <Link to="/apps/register" className="btn btn-primary inline-flex items-center gap-2">
+        <div>
+          <h1 className="text-2xl font-heading font-bold text-gray-900">Applications</h1>
+          <p className="text-sm text-gray-500 mt-1">Manage external API access</p>
+        </div>
+        <Link to="/apps/register" className="btn btn-primary">
           <Plus size={16} />
           Register App
         </Link>
       </div>
 
       {isLoading ? (
-        <div className="flex items-center justify-center py-16 text-gray-400">
+        <div className="flex items-center justify-center h-48 text-gray-400">
           <Loader2 size={24} className="animate-spin" />
         </div>
       ) : !data?.items.length ? (
-        <div className="flex flex-col items-center justify-center py-16 text-gray-400">
-          <KeyRound size={40} strokeWidth={1.2} />
-          <p className="mt-3 text-sm">No applications found.</p>
+        <div className="card flex flex-col items-center justify-center py-20 text-gray-400">
+          <KeyRound size={36} strokeWidth={1.2} />
+          <p className="mt-3 text-sm">No applications registered</p>
+          <Link to="/apps/register" className="btn btn-primary btn-sm mt-4">
+            <Plus size={14} />
+            Register your first app
+          </Link>
         </div>
       ) : (
         <>
-          <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <div className="card overflow-hidden">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-gray-200 bg-gray-50/80">
-                  <th className="text-left px-4 py-3 font-medium text-gray-500 text-xs uppercase tracking-wider">Application Name</th>
-                  <th className="text-left px-4 py-3 font-medium text-gray-500 text-xs uppercase tracking-wider">Application ID</th>
+                <tr className="border-b border-gray-100 bg-gray-50/60">
+                  <th className="text-left px-5 py-3 section-title text-[11px]">Application Name</th>
+                  <th className="text-left px-5 py-3 section-title text-[11px]">Application ID</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="divide-y divide-gray-100">
                 {data.items.map((app) => (
-                  <tr key={app.id} className="border-b border-gray-100 last:border-0 hover:bg-gray-50/50 transition-colors">
-                    <td className="px-4 py-3 font-medium">{app.clientName}</td>
-                    <td className="px-4 py-3 text-gray-500 font-mono text-xs">{app.id}</td>
+                  <tr key={app.id} className="hover:bg-gray-50/50 transition-colors">
+                    <td className="px-5 py-3.5 font-medium text-gray-800">{app.clientName}</td>
+                    <td className="px-5 py-3.5 text-gray-400 font-mono text-xs">{app.id}</td>
                   </tr>
                 ))}
               </tbody>

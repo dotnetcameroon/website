@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PartnersIndexRouteImport } from './routes/partners/index'
+import { Route as EventsIndexRouteImport } from './routes/events/index'
 import { Route as AppsIndexRouteImport } from './routes/apps/index'
 import { Route as EventsNewRouteImport } from './routes/events/new'
 import { Route as AppsRegisterRouteImport } from './routes/apps/register'
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const PartnersIndexRoute = PartnersIndexRouteImport.update({
   id: '/partners/',
   path: '/partners/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsIndexRoute = EventsIndexRouteImport.update({
+  id: '/events/',
+  path: '/events/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppsIndexRoute = AppsIndexRouteImport.update({
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/apps/register': typeof AppsRegisterRoute
   '/events/new': typeof EventsNewRoute
   '/apps/': typeof AppsIndexRoute
+  '/events/': typeof EventsIndexRoute
   '/partners/': typeof PartnersIndexRoute
   '/events/$id/edit': typeof EventsIdEditRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/apps/register': typeof AppsRegisterRoute
   '/events/new': typeof EventsNewRoute
   '/apps': typeof AppsIndexRoute
+  '/events': typeof EventsIndexRoute
   '/partners': typeof PartnersIndexRoute
   '/events/$id/edit': typeof EventsIdEditRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/apps/register': typeof AppsRegisterRoute
   '/events/new': typeof EventsNewRoute
   '/apps/': typeof AppsIndexRoute
+  '/events/': typeof EventsIndexRoute
   '/partners/': typeof PartnersIndexRoute
   '/events/$id/edit': typeof EventsIdEditRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/apps/register'
     | '/events/new'
     | '/apps/'
+    | '/events/'
     | '/partners/'
     | '/events/$id/edit'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/apps/register'
     | '/events/new'
     | '/apps'
+    | '/events'
     | '/partners'
     | '/events/$id/edit'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/apps/register'
     | '/events/new'
     | '/apps/'
+    | '/events/'
     | '/partners/'
     | '/events/$id/edit'
   fileRoutesById: FileRoutesById
@@ -104,6 +116,7 @@ export interface RootRouteChildren {
   AppsRegisterRoute: typeof AppsRegisterRoute
   EventsNewRoute: typeof EventsNewRoute
   AppsIndexRoute: typeof AppsIndexRoute
+  EventsIndexRoute: typeof EventsIndexRoute
   PartnersIndexRoute: typeof PartnersIndexRoute
   EventsIdEditRoute: typeof EventsIdEditRoute
 }
@@ -122,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/partners'
       fullPath: '/partners/'
       preLoaderRoute: typeof PartnersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events/': {
+      id: '/events/'
+      path: '/events'
+      fullPath: '/events/'
+      preLoaderRoute: typeof EventsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/apps/': {
@@ -160,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   AppsRegisterRoute: AppsRegisterRoute,
   EventsNewRoute: EventsNewRoute,
   AppsIndexRoute: AppsIndexRoute,
+  EventsIndexRoute: EventsIndexRoute,
   PartnersIndexRoute: PartnersIndexRoute,
   EventsIdEditRoute: EventsIdEditRoute,
 }
