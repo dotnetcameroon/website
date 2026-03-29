@@ -6,6 +6,9 @@
 # Generated css
 src/app/wwwroot/app.css
 
+# React admin build output
+src/app/wwwroot/admin/
+
 # secret files
 secrets/
 hangfire.db*

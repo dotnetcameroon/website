@@ -1,0 +1,62 @@
+@import 'tailwindcss';
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-xs: 450px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  --color-primary: #0a855f;
+  --color-primary-dark: #0a855f;
+  --color-primary-accentuation: #0aa072;
+
+  --color-dark-purple: #1f143b;
+
+  --color-secondary: #512bd4;
+  --color-secondary-dark: #3b12c8;
+  --color-secondary-accentuation: #7352e7;
+
+  --color-tertiary: #e1a325;
+  --color-tertiary-dark: #b79918;
+  --color-tertiary-accentuation: #f9d32c;
+
+  --font-heading: Space Grotesk, 'sans-serif';
+  --font-special: Lexend;
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+    font-family: Lexend, 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 300;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-6 py-3 transition-all rounded-xl cursor-pointer text-sm font-medium;
+  }
+
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-accentuation active:bg-primary text-white;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary hover:bg-secondary-accentuation active:bg-secondary text-white;
+  }
+
+  .btn-outline {
+    @apply border border-gray-300 bg-transparent hover:bg-gray-50 text-dark-purple;
+  }
+
+  .btn-danger {
+    @apply bg-red-600 hover:bg-red-700 active:bg-red-800 text-white;
+  }
+}
