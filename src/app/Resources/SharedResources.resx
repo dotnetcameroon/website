@@ -965,4 +965,241 @@
     <value>Wrap up the conference with final thoughts, prizes, and continued networking opportunities.</value>
     <comment/>
   </data>
+  <!-- Navigation -->
+  <data name="Nav_About" xml:space="preserve">
+    <value>About</value>
+    <comment/>
+  </data>
+  <!-- Home hero badges & scroll -->
+  <data name="Hero_Badge" xml:space="preserve">
+    <value>Active community • 1 100+ members</value>
+    <comment/>
+  </data>
+  <data name="Hero_Scroll" xml:space="preserve">
+    <value>Scroll</value>
+    <comment/>
+  </data>
+  <data name="WhatWeDo_Badge" xml:space="preserve">
+    <value>Our activities</value>
+    <comment/>
+  </data>
+  <data name="Membership_Badge" xml:space="preserve">
+    <value>Join us</value>
+    <comment/>
+  </data>
+  <data name="Projects_Badge" xml:space="preserve">
+    <value>Open source</value>
+    <comment/>
+  </data>
+  <!-- Sponsors / Partners -->
+  <data name="Sponsors_Badge" xml:space="preserve">
+    <value>Our partners</value>
+    <comment/>
+  </data>
+  <data name="Sponsors_JoinUs" xml:space="preserve">
+    <value>Want to support the .NET community in Cameroon?</value>
+    <comment/>
+  </data>
+  <data name="Sponsors_BecomePartner" xml:space="preserve">
+    <value>Become a partner</value>
+    <comment/>
+  </data>
+  <!-- About Page -->
+  <data name="About_PageTitle" xml:space="preserve">
+    <value>.NET Cameroon 🇨🇲 | About us</value>
+    <comment/>
+  </data>
+  <data name="About_MetaDescription" xml:space="preserve">
+    <value>Learn about the .NET Cameroon community — our story, our mission, and the partners who help us grow the local .NET ecosystem.</value>
+    <comment/>
+  </data>
+  <data name="About_Hero_Badge" xml:space="preserve">
+    <value>About .NET Cameroon</value>
+    <comment/>
+  </data>
+  <data name="About_Hero_Title" xml:space="preserve">
+    <value>Empowering the &lt;span class="text-primary"&gt;.NET&lt;/span&gt; community in Cameroon 🇨🇲</value>
+    <comment/>
+  </data>
+  <data name="About_Hero_Subtitle" xml:space="preserve">
+    <value>We are a passionate group of developers, students, and tech enthusiasts committed to making .NET accessible, relevant, and impactful across Cameroon and beyond.</value>
+    <comment/>
+  </data>
+  <data name="About_Story_Badge" xml:space="preserve">
+    <value>Our story</value>
+    <comment/>
+  </data>
+  <data name="About_Story_Title" xml:space="preserve">
+    <value>How it all started</value>
+    <comment/>
+  </data>
+  <data name="About_Story_Paragraph1" xml:space="preserve">
+    <value>It all began on September 5th, 2023, when &lt;a href="https://djoufson.com" target="_blank" rel="noopener" class="text-primary font-semibold hover:underline"&gt;Djoufson Che&lt;/a&gt; created a small WhatsApp group with a simple idea: share his passion for .NET and show that it's a powerful, practical technology well-suited to local needs in Cameroon.</value>
+    <comment/>
+  </data>
+  <data name="About_Story_Paragraph2" xml:space="preserve">
+    <value>He soon teamed up with &lt;a href="https://www.jaures.me" target="_blank" rel="noopener" class="text-primary font-semibold hover:underline"&gt;Jaures Beinjamin&lt;/a&gt; and &lt;a href="https://www.linkedin.com/in/septime-lowe-b59513136/" target="_blank" rel="noopener" class="text-primary font-semibold hover:underline"&gt;Septime Lowe&lt;/a&gt;, and together they started organizing the community at a higher level — hosting events, conferences, and meetups, both online and across the country.</value>
+    <comment/>
+  </data>
+  <data name="About_Story_Paragraph3" xml:space="preserve">
+    <value>Today, the .NET Cameroon community counts more than 1,100 active members and is still growing strong, bringing together developers, students, and tech enthusiasts who share a love for building with .NET.</value>
+    <comment/>
+  </data>
+  <data name="About_Stats_Founded" xml:space="preserve">
+    <value>Founded</value>
+    <comment/>
+  </data>
+  <data name="About_Mission_Badge" xml:space="preserve">
+    <value>Our mission</value>
+    <comment/>
+  </data>
+  <data name="About_Mission_Title" xml:space="preserve">
+    <value>What drives us forward</value>
+    <comment/>
+  </data>
+  <data name="About_Mission_Intro" xml:space="preserve">
+    <value>Our mission is to grow a thriving, inclusive, and open .NET ecosystem in Cameroon — one developer, one event, one project at a time.</value>
+    <comment/>
+  </data>
+  <data name="About_Mission_1_Title" xml:space="preserve">
+    <value>Promote the .NET ecosystem</value>
+    <comment/>
+  </data>
+  <data name="About_Mission_1_Description" xml:space="preserve">
+    <value>Promote the wide range of tools and libraries available to .NET developers through NuGet.org, GitHub, and other platforms.</value>
+    <comment/>
+  </data>
+  <data name="About_Mission_2_Title" xml:space="preserve">
+    <value>Advocate for open source</value>
+    <comment/>
+  </data>
+  <data name="About_Mission_2_Description" xml:space="preserve">
+    <value>Advocate for the needs of .NET open source developers within the local and global community.</value>
+    <comment/>
+  </data>
+  <data name="About_Mission_3_Title" xml:space="preserve">
+    <value>Evangelize .NET</value>
+    <comment/>
+  </data>
+  <data name="About_Mission_3_Description" xml:space="preserve">
+    <value>Share the benefits of the .NET platform with a wider community of developers, students, and tech enthusiasts.</value>
+    <comment/>
+  </data>
+  <data name="About_Mission_4_Title" xml:space="preserve">
+    <value>Embrace open source</value>
+    <comment/>
+  </data>
+  <data name="About_Mission_4_Description" xml:space="preserve">
+    <value>Promote the benefits of the open source model to developers who are already using .NET in their daily work.</value>
+    <comment/>
+  </data>
+  <data name="About_Mission_5_Title" xml:space="preserve">
+    <value>Support member projects</value>
+    <comment/>
+  </data>
+  <data name="About_Mission_5_Description" xml:space="preserve">
+    <value>Offer administrative support, visibility, and mentorship for projects built by members of our community.</value>
+    <comment/>
+  </data>
+  <data name="About_Mission_6_Title" xml:space="preserve">
+    <value>Empower community events</value>
+    <comment/>
+  </data>
+  <data name="About_Mission_6_Description" xml:space="preserve">
+    <value>Support .NET community events with sponsorship, speakers, and quality content across the country.</value>
+    <comment/>
+  </data>
+  <data name="About_Values_Badge" xml:space="preserve">
+    <value>Our values</value>
+    <comment/>
+  </data>
+  <data name="About_Values_Title" xml:space="preserve">
+    <value>What we believe in</value>
+    <comment/>
+  </data>
+  <data name="About_Value_Passion_Title" xml:space="preserve">
+    <value>Passion</value>
+    <comment/>
+  </data>
+  <data name="About_Value_Passion_Description" xml:space="preserve">
+    <value>We love what we do and it shows in every event, talk and line of code we share.</value>
+    <comment/>
+  </data>
+  <data name="About_Value_Collaboration_Title" xml:space="preserve">
+    <value>Collaboration</value>
+    <comment/>
+  </data>
+  <data name="About_Value_Collaboration_Description" xml:space="preserve">
+    <value>We grow together, helping each other build better skills and better projects.</value>
+    <comment/>
+  </data>
+  <data name="About_Value_Learning_Title" xml:space="preserve">
+    <value>Learning</value>
+    <comment/>
+  </data>
+  <data name="About_Value_Learning_Description" xml:space="preserve">
+    <value>We're always curious, always learning, and always sharing what we discover.</value>
+    <comment/>
+  </data>
+  <data name="About_Value_Impact_Title" xml:space="preserve">
+    <value>Impact</value>
+    <comment/>
+  </data>
+  <data name="About_Value_Impact_Description" xml:space="preserve">
+    <value>We build for the continent, with solutions that truly solve local problems.</value>
+    <comment/>
+  </data>
+  <data name="About_CTA_Title" xml:space="preserve">
+    <value>Ready to join the movement?</value>
+    <comment/>
+  </data>
+  <data name="About_CTA_Description" xml:space="preserve">
+    <value>Connect with hundreds of passionate .NET developers across Cameroon. Share, learn, build — and grow with us.</value>
+    <comment/>
+  </data>
+  <data name="About_CTA_Join" xml:space="preserve">
+    <value>Join the community</value>
+    <comment/>
+  </data>
+  <data name="About_CTA_Contact" xml:space="preserve">
+    <value>Contact us</value>
+    <comment/>
+  </data>
+  <!-- Founders -->
+  <data name="About_Founders_Badge" xml:space="preserve">
+    <value>Meet the founders</value>
+    <comment/>
+  </data>
+  <data name="About_Founders_Title" xml:space="preserve">
+    <value>The people behind .NET Cameroon</value>
+    <comment/>
+  </data>
+  <data name="About_Founders_Intro" xml:space="preserve">
+    <value>A small team of passionate developers who turned a simple idea into a thriving community.</value>
+    <comment/>
+  </data>
+  <data name="About_Founder_Djoufson_Role" xml:space="preserve">
+    <value>Founder &amp; Lead</value>
+    <comment/>
+  </data>
+  <data name="About_Founder_Djoufson_Bio" xml:space="preserve">
+    <value>Software engineer and .NET enthusiast, Djoufson started the community in 2023 with a simple goal: share his knowledge and prove that .NET has a bright future in Cameroon. He now leads the community's vision and technical initiatives.</value>
+    <comment/>
+  </data>
+  <data name="About_Founder_Jaures_Role" xml:space="preserve">
+    <value>Co-founder</value>
+    <comment/>
+  </data>
+  <data name="About_Founder_Jaures_Bio" xml:space="preserve">
+    <value>Developer, content creator and community builder, Jaures joined early on to help structure and grow .NET Cameroon. He plays a key role in organizing events and engaging members across the country.</value>
+    <comment/>
+  </data>
+  <data name="About_Founder_Septime_Role" xml:space="preserve">
+    <value>Co-founder</value>
+    <comment/>
+  </data>
+  <data name="About_Founder_Septime_Bio" xml:space="preserve">
+    <value>Passionate about the .NET ecosystem and community building, Septime co-leads the community's strategy and helps drive partnerships, events, and member support across Cameroon.</value>
+    <comment/>
+  </data>
 </root>
