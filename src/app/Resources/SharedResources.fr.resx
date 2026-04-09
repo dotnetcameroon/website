@@ -1165,4 +1165,41 @@
     <value>Nous contacter</value>
     <comment/>
   </data>
+  <!-- Founders -->
+  <data name="About_Founders_Badge" xml:space="preserve">
+    <value>Les fondateurs</value>
+    <comment/>
+  </data>
+  <data name="About_Founders_Title" xml:space="preserve">
+    <value>Les visages derrière .NET Cameroon</value>
+    <comment/>
+  </data>
+  <data name="About_Founders_Intro" xml:space="preserve">
+    <value>Une petite équipe de développeurs passionnés qui ont transformé une idée simple en une communauté dynamique.</value>
+    <comment/>
+  </data>
+  <data name="About_Founder_Djoufson_Role" xml:space="preserve">
+    <value>Fondateur &amp; Lead</value>
+    <comment/>
+  </data>
+  <data name="About_Founder_Djoufson_Bio" xml:space="preserve">
+    <value>Ingénieur logiciel et passionné de .NET, Djoufson a lancé la communauté en 2023 avec un objectif simple : partager ses connaissances et démontrer que .NET a un bel avenir au Cameroun. Il pilote aujourd'hui la vision et les initiatives techniques de la communauté.</value>
+    <comment/>
+  </data>
+  <data name="About_Founder_Jaures_Role" xml:space="preserve">
+    <value>Co-fondateur</value>
+    <comment/>
+  </data>
+  <data name="About_Founder_Jaures_Bio" xml:space="preserve">
+    <value>Développeur, créateur de contenu et bâtisseur de communautés, Jaures a rejoint très tôt l'aventure pour aider à structurer et faire grandir .NET Cameroon. Il joue un rôle clé dans l'organisation des événements et l'engagement des membres à travers le pays.</value>
+    <comment/>
+  </data>
+  <data name="About_Founder_Septime_Role" xml:space="preserve">
+    <value>Co-fondateur</value>
+    <comment/>
+  </data>
+  <data name="About_Founder_Septime_Bio" xml:space="preserve">
+    <value>Passionné par l'écosystème .NET et la construction de communautés, Septime co-pilote la stratégie de la communauté et contribue aux partenariats, événements et au soutien des membres à travers le Cameroun.</value>
+    <comment/>
+  </data>
 </root>

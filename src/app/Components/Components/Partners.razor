@@ -11,7 +11,7 @@
             <p class="text-gray-600">@SharedLocalizer["Sponsors_Description"]</p>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-center">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 items-center max-w-4xl mx-auto">
             @foreach (var partner in _partners)
             {
                 <a data-enhance-nav="false" href="@partner.Url" target="_blank" rel="noopener"
@@ -48,8 +48,6 @@
         new(".NET Foundation", "/assets/sponsors/dotnetfondation.webp", "https://dotnetfoundation.org"),
         new("Packt", "/assets/sponsors/packt.svg", "https://www.packtpub.com/"),
         new("Microsoft PowerPlatform Cameroun", "/assets/sponsors/Microsoft_PowerPlateform_Cameroun-removebg-preview.png", "https://www.linkedin.com/company/communaut%C3%A9-microsoft-powerplatform"),
-        new("Examboot", "/assets/sponsors/examboot.jpg", "https://examboot.net/"),
-        new("Itia Consulting", "/assets/sponsors/itia-removebg-preview.png", "https://itia-consulting.com"),
         new("Proditech", "/assets/sponsors/proditech.png", "https://proditech-digital.com"),
     ];
 }
