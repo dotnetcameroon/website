@@ -972,7 +972,7 @@
   </data>
   <!-- Home hero badges & scroll -->
   <data name="Hero_Badge" xml:space="preserve">
-    <value>Active community • 600+ members</value>
+    <value>Active community • 1 100+ members</value>
     <comment/>
   </data>
   <data name="Hero_Scroll" xml:space="preserve">
@@ -1034,15 +1034,15 @@
     <comment/>
   </data>
   <data name="About_Story_Paragraph1" xml:space="preserve">
-    <value>It all began on September 5th, 2023, when Djoufson Che created a small WhatsApp group with a simple idea: share his passion for .NET and show that it's a powerful, practical technology well-suited to local needs in Cameroon.</value>
+    <value>It all began on September 5th, 2023, when &lt;a href="https://djoufson.com" target="_blank" rel="noopener" class="text-primary font-semibold hover:underline"&gt;Djoufson Che&lt;/a&gt; created a small WhatsApp group with a simple idea: share his passion for .NET and show that it's a powerful, practical technology well-suited to local needs in Cameroon.</value>
     <comment/>
   </data>
   <data name="About_Story_Paragraph2" xml:space="preserve">
-    <value>He soon teamed up with Jaures Beinjamin and Septime Lowe, and together they started organizing the community at a higher level — hosting events, conferences, and meetups, both online and across the country.</value>
+    <value>He soon teamed up with &lt;a href="https://www.jaures.me" target="_blank" rel="noopener" class="text-primary font-semibold hover:underline"&gt;Jaures Beinjamin&lt;/a&gt; and &lt;a href="https://www.linkedin.com/in/septime-lowe-b59513136/" target="_blank" rel="noopener" class="text-primary font-semibold hover:underline"&gt;Septime Lowe&lt;/a&gt;, and together they started organizing the community at a higher level — hosting events, conferences, and meetups, both online and across the country.</value>
     <comment/>
   </data>
   <data name="About_Story_Paragraph3" xml:space="preserve">
-    <value>Today, the .NET Cameroon community counts more than 600 active members and is still growing strong, bringing together developers, students, and tech enthusiasts who share a love for building with .NET.</value>
+    <value>Today, the .NET Cameroon community counts more than 1,100 active members and is still growing strong, bringing together developers, students, and tech enthusiasts who share a love for building with .NET.</value>
     <comment/>
   </data>
   <data name="About_Stats_Founded" xml:space="preserve">

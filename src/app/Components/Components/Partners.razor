@@ -21,23 +21,10 @@
                 </a>
             }
         </div>
-
-        @if (ShowBecomePartner)
-        {
-            <div class="text-center mt-12">
-                <p class="text-gray-600 mb-4">@SharedLocalizer["Sponsors_JoinUs"]</p>
-                <a data-enhance-nav="false" href="/contact" class="btn btn-outline-primary inline-block">
-                    @SharedLocalizer["Sponsors_BecomePartner"]
-                </a>
-            </div>
-        }
     </div>
 </section>
 
 @code {
-    [Parameter]
-    public bool ShowBecomePartner { get; set; } = true;
-
     private IStringLocalizer? _sharedLocalizer;
     private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
 
