@@ -1,0 +1,223 @@
+@page "/about"
+@using Microsoft.Extensions.Localization
+@attribute [StreamRendering]
+@inject IStringLocalizerFactory LocalizerFactory
+
+<PageTitle>@SharedLocalizer["About_PageTitle"]</PageTitle>
+<HeadContent>
+    <meta name="description" content="@SharedLocalizer["About_MetaDescription"]">
+    <meta property="og:title" content="@SharedLocalizer["About_PageTitle"]">
+    <meta property="og:description" content="@SharedLocalizer["About_MetaDescription"]">
+    <meta property="og:image" content="https://dotnet.cm/assets/brand/logo.png">
+    <meta property="og:url" content="https://dotnet.cm/about">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@SharedLocalizer["About_PageTitle"]">
+    <meta name="twitter:description" content="@SharedLocalizer["About_MetaDescription"]">
+</HeadContent>
+
+<div>
+    <NavBar />
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-secondary via-secondary-dark to-dark-purple">
+        <div class="absolute inset-0 opacity-20 bg-[url(/assets/featured/pattern.png)] bg-repeat"></div>
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-tertiary/20 rounded-full blur-3xl"></div>
+
+        <div class="relative z-10 container mx-auto px-4 py-24 md:py-32">
+            <div class="max-w-3xl mx-auto text-center">
+                <span class="inline-block px-4 py-1 bg-white/10 backdrop-blur text-white rounded-full text-sm font-semibold mb-6 border border-white/20">
+                    @SharedLocalizer["About_Hero_Badge"]
+                </span>
+                <h1 class="heading text-white font-bold text-4xl md:text-6xl leading-tight mb-6">
+                    @((MarkupString)SharedLocalizer["About_Hero_Title"].Value)
+                </h1>
+                <p class="text-white/90 text-lg md:text-xl leading-relaxed">
+                    @SharedLocalizer["About_Hero_Subtitle"]
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="relative">
+        <div class="section container mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="relative">
+                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-primary/10 rounded-2xl -z-10"></div>
+                    <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-secondary/10 rounded-2xl -z-10"></div>
+                    <img src="@Assets["/assets/activities/activity-2.jpeg"]"
+                        alt=".NET Cameroon community event"
+                        class="rounded-2xl shadow-xl w-full object-cover aspect-[4/3]" />
+                </div>
+                <div>
+                    <span class="inline-block px-4 py-1 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
+                        @SharedLocalizer["About_Story_Badge"]
+                    </span>
+                    <h2 class="heading heading-1 mb-6">@SharedLocalizer["About_Story_Title"]</h2>
+                    <div class="space-y-4 text-gray-700 leading-relaxed">
+                        <p>@SharedLocalizer["About_Story_Paragraph1"]</p>
+                        <p>@SharedLocalizer["About_Story_Paragraph2"]</p>
+                        <p>@SharedLocalizer["About_Story_Paragraph3"]</p>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4 mt-8 pt-8 border-t border-gray-100">
+                        <div>
+                            <div class="heading heading-2 text-primary mb-1">600+</div>
+                            <p class="text-sm text-gray-600">@SharedLocalizer["Membership_Stats_Members"]</p>
+                        </div>
+                        <div>
+                            <div class="heading heading-2 text-secondary mb-1">60+</div>
+                            <p class="text-sm text-gray-600">@SharedLocalizer["Membership_Stats_Events"]</p>
+                        </div>
+                        <div>
+                            <div class="heading heading-2 text-tertiary mb-1">2023</div>
+                            <p class="text-sm text-gray-600">@SharedLocalizer["About_Stats_Founded"]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Mission Section -->
+    <section class="bg-gradient-to-b from-gray-50 to-white">
+        <div class="section container mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="inline-block px-4 py-1 bg-secondary/10 text-secondary rounded-full text-sm font-semibold mb-4">
+                    @SharedLocalizer["About_Mission_Badge"]
+                </span>
+                <h2 class="heading heading-1 mb-4">@SharedLocalizer["About_Mission_Title"]</h2>
+                <p class="text-gray-600">@SharedLocalizer["About_Mission_Intro"]</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="group bg-white p-8 rounded-2xl border border-gray-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-box-open text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="heading heading-4 mb-3">@SharedLocalizer["About_Mission_1_Title"]</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">@SharedLocalizer["About_Mission_1_Description"]</p>
+                </div>
+
+                <div class="group bg-white p-8 rounded-2xl border border-gray-100 hover:border-secondary/30 hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-secondary/10 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-bullhorn text-secondary text-2xl"></i>
+                    </div>
+                    <h3 class="heading heading-4 mb-3">@SharedLocalizer["About_Mission_2_Title"]</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">@SharedLocalizer["About_Mission_2_Description"]</p>
+                </div>
+
+                <div class="group bg-white p-8 rounded-2xl border border-gray-100 hover:border-tertiary/30 hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-tertiary/10 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-lightbulb text-tertiary text-2xl"></i>
+                    </div>
+                    <h3 class="heading heading-4 mb-3">@SharedLocalizer["About_Mission_3_Title"]</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">@SharedLocalizer["About_Mission_3_Description"]</p>
+                </div>
+
+                <div class="group bg-white p-8 rounded-2xl border border-gray-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-code-branch text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="heading heading-4 mb-3">@SharedLocalizer["About_Mission_4_Title"]</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">@SharedLocalizer["About_Mission_4_Description"]</p>
+                </div>
+
+                <div class="group bg-white p-8 rounded-2xl border border-gray-100 hover:border-secondary/30 hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-secondary/10 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-people-group text-secondary text-2xl"></i>
+                    </div>
+                    <h3 class="heading heading-4 mb-3">@SharedLocalizer["About_Mission_5_Title"]</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">@SharedLocalizer["About_Mission_5_Description"]</p>
+                </div>
+
+                <div class="group bg-white p-8 rounded-2xl border border-gray-100 hover:border-tertiary/30 hover:shadow-xl transition-all duration-300">
+                    <div class="w-14 h-14 bg-tertiary/10 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-calendar-check text-tertiary text-2xl"></i>
+                    </div>
+                    <h3 class="heading heading-4 mb-3">@SharedLocalizer["About_Mission_6_Title"]</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">@SharedLocalizer["About_Mission_6_Description"]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section>
+        <div class="section container mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="inline-block px-4 py-1 bg-tertiary/10 text-tertiary rounded-full text-sm font-semibold mb-4">
+                    @SharedLocalizer["About_Values_Badge"]
+                </span>
+                <h2 class="heading heading-1 mb-4">@SharedLocalizer["About_Values_Title"]</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 mx-auto bg-gradient-to-br from-primary to-primary-accentuation rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+                        <i class="fa-solid fa-heart text-white text-2xl"></i>
+                    </div>
+                    <h3 class="heading heading-5 mb-2">@SharedLocalizer["About_Value_Passion_Title"]</h3>
+                    <p class="text-gray-600 text-sm">@SharedLocalizer["About_Value_Passion_Description"]</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 mx-auto bg-gradient-to-br from-secondary to-secondary-accentuation rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+                        <i class="fa-solid fa-handshake text-white text-2xl"></i>
+                    </div>
+                    <h3 class="heading heading-5 mb-2">@SharedLocalizer["About_Value_Collaboration_Title"]</h3>
+                    <p class="text-gray-600 text-sm">@SharedLocalizer["About_Value_Collaboration_Description"]</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 mx-auto bg-gradient-to-br from-tertiary to-tertiary-accentuation rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+                        <i class="fa-solid fa-graduation-cap text-white text-2xl"></i>
+                    </div>
+                    <h3 class="heading heading-5 mb-2">@SharedLocalizer["About_Value_Learning_Title"]</h3>
+                    <p class="text-gray-600 text-sm">@SharedLocalizer["About_Value_Learning_Description"]</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="w-16 h-16 mx-auto bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+                        <i class="fa-solid fa-globe-africa text-white text-2xl"></i>
+                    </div>
+                    <h3 class="heading heading-5 mb-2">@SharedLocalizer["About_Value_Impact_Title"]</h3>
+                    <p class="text-gray-600 text-sm">@SharedLocalizer["About_Value_Impact_Description"]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <Partners ShowBecomePartner="false" />
+
+    <!-- CTA Section -->
+    <section class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary-accentuation to-secondary"></div>
+        <div class="absolute inset-0 opacity-10 bg-[url(/assets/featured/pattern.png)] bg-repeat"></div>
+
+        <div class="relative z-10 container mx-auto px-4 py-20 text-center">
+            <h2 class="heading text-white font-bold text-3xl md:text-5xl mb-4">
+                @SharedLocalizer["About_CTA_Title"]
+            </h2>
+            <p class="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+                @SharedLocalizer["About_CTA_Description"]
+            </p>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a data-enhance-nav="false" href="https://chat.whatsapp.com/KlBkiJX85Y8KFS28tIm1UU" target="_blank"
+                    class="btn btn-outline-white inline-flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    @SharedLocalizer["About_CTA_Join"]
+                </a>
+                <a data-enhance-nav="false" href="/contact" class="btn bg-white text-secondary hover:bg-gray-100 inline-flex items-center gap-2">
+                    <i class="fa-solid fa-envelope"></i>
+                    @SharedLocalizer["About_CTA_Contact"]
+                </a>
+            </div>
+        </div>
+    </section>
+</div>
+
+@code {
+    private IStringLocalizer? _sharedLocalizer;
+    private IStringLocalizer SharedLocalizer => _sharedLocalizer ??= LocalizerFactory.Create("SharedResources", "app");
+}
