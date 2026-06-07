@@ -92,6 +92,21 @@
   }
 }
 
+/* Eyebrow label — small uppercase tracked text used above section headings
+   instead of loud pill badges. Pair with a leading dot for color accent. */
+.eyebrow {
+  @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em];
+}
+
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+}
+
 /* Headings */
 .heading {
   @apply font-heading;
@@ -488,25 +503,3 @@
   }
 }
 
-.banner-shine::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    115deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.55) 50%,
-    transparent 70%
-  );
-  transform: translateX(-100%);
-  animation: banner-shine 4.5s ease-in-out 1s infinite;
-}
-
-@keyframes banner-shine {
-  0% {
-    transform: translateX(-100%);
-  }
-  60%, 100% {
-    transform: translateX(100%);
-  }
-}

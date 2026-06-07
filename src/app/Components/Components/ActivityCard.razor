@@ -1,18 +1,23 @@
-<div class="rounded-lg overflow-hidden shadow w-[350px]">
-    <img src="@ImageName" alt=".NET Cameroon @Title" class="h-[200px] w-full object-cover">
-    <div class="p-6 h-[150px]">
-        <h2 class="heading heading-3 text-secondary">@Title</h2>
-        <p>@Description</p>
+<article class="group bg-white rounded-xl overflow-hidden border border-gray-200/70 hover:border-gray-300 transition-colors flex flex-col h-full">
+    <div class="aspect-[16/10] overflow-hidden bg-gray-100">
+        <img src="@ImageName" alt=".NET Cameroon @Title"
+             class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
     </div>
-    <div class="p-6 h-[100px]">
-        @if(!string.IsNullOrWhiteSpace(Link) && !string.IsNullOrWhiteSpace(LinkText))
+    <div class="p-6 flex flex-col flex-1">
+        <h3 class="heading font-semibold text-lg text-dark-purple">@Title</h3>
+        <p class="text-gray-600 text-sm leading-relaxed mt-2 flex-1">@Description</p>
+        @if (!string.IsNullOrWhiteSpace(Link) && !string.IsNullOrWhiteSpace(LinkText))
         {
-            <a href="@Link" target="_blank" class="link link-secondary">@LinkText</a>
+            <a href="@Link" target="_blank"
+               class="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-secondary hover:text-secondary-accentuation transition-colors w-fit">
+                @LinkText
+                <i class="ph ph-arrow-up-right text-sm"></i>
+            </a>
         }
     </div>
-</div>
+</article>
 
-@code{
+@code {
     [Parameter]
     public string Title { get; set; } = string.Empty;
 

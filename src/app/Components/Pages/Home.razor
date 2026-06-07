@@ -31,123 +31,118 @@
 </HeadContent>
 
 <div>
-    <!-- Hero Section -->
-    <section class="relative h-[100svh] bg-[url(/assets/featured/carousel-1.png)] bg-cover bg-center bg-fixed">
+    <!-- Hero -->
+    <section class="relative min-h-[92svh] bg-[url(/assets/featured/carousel-1.png)] bg-cover bg-center">
         <NavBar Type=@NavType.Transparent />
-        <div class="absolute z-10 top-0 left-0 w-full h-full bg-gradient-to-r from-black/90 via-black/60 to-black/20"></div>
-        <div class="absolute z-10 top-0 left-0 w-full h-full bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+        <div class="absolute inset-0 z-10 bg-gradient-to-br from-dark-purple/95 via-dark-purple/75 to-dark-purple/40"></div>
 
-        <div id="home" class="relative z-20 h-full container mx-auto p-8">
-            <div class="lg:w-2/3 h-full flex flex-col justify-center md:gap-6 gap-4 md:translate-y-[-40px] translate-y-[-30px]">
-                <div class="flex justify-center md:justify-start">
-                    <span class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white text-sm font-semibold">
-                        <span class="relative flex h-2 w-2">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                        </span>
-                        @SharedLocalizer["Hero_Badge"]
+        <div id="home" class="relative z-20 container mx-auto px-6 lg:px-8 pt-16 pb-24 lg:pt-24 lg:pb-32 min-h-[80svh] flex flex-col justify-center">
+            <div class="max-w-3xl">
+                <span class="eyebrow text-primary-accentuation">
+                    <span class="relative flex size-1.5">
+                        <span class="absolute inset-0 rounded-full bg-primary-accentuation opacity-60 animate-ping"></span>
+                        <span class="relative size-1.5 rounded-full bg-primary-accentuation"></span>
                     </span>
-                </div>
-                <h1 class="text-white text-center md:text-start heading font-bold text-5xl md:text-7xl md:leading-[80px]">
+                    @SharedLocalizer["Hero_Badge"]
+                </span>
+                <h1 class="text-white heading font-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight mt-6">
                     @((MarkupString)SharedLocalizer["Hero_Title"].Value)
                 </h1>
-                <p class="text-white/90 text-center md:text-start leading-[35px] md:text-lg max-w-2xl">@SharedLocalizer["Hero_Description"]</p>
-                <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                <p class="text-white/75 text-base lg:text-lg leading-relaxed max-w-2xl mt-6">
+                    @SharedLocalizer["Hero_Description"]
+                </p>
+                <div class="flex flex-wrap gap-3 mt-10">
                     <a data-enhance-nav="false" href="/about" class="btn btn-primary inline-flex items-center gap-2">
                         @SharedLocalizer["Hero_LearnMore"]
                         <i class="ph ph-arrow-right text-base"></i>
                     </a>
-                    <a data-enhance-nav="false" href="https://chat.whatsapp.com/KlBkiJX85Y8KFS28tIm1UU" target="_blank" class="btn btn-outline-white inline-flex items-center gap-2">
+                    <a data-enhance-nav="false" href="https://chat.whatsapp.com/KlBkiJX85Y8KFS28tIm1UU" target="_blank"
+                       class="btn bg-white/5 backdrop-blur-sm border border-white/20 text-white hover:bg-white/10 hover:border-white/30 inline-flex items-center gap-2">
                         <i class="ph-fill ph-whatsapp-logo text-xl"></i>
                         @SharedLocalizer["Hero_JoinUs"]
                     </a>
                 </div>
 
-                <!-- Quick Stats -->
-                <div class="hidden md:flex gap-8 mt-8 pt-8 border-t border-white/20 max-w-2xl">
+                <!-- Quick stats — restrained, no big numbers shouting -->
+                <dl class="hidden md:grid grid-cols-3 gap-8 mt-16 pt-8 border-t border-white/10 max-w-xl">
                     <div>
-                        <div class="text-white heading font-bold text-3xl">1 100+</div>
-                        <div class="text-white/70 text-sm">@SharedLocalizer["Membership_Stats_Members"]</div>
+                        <dt class="text-white/50 text-[11px] uppercase tracking-widest">@SharedLocalizer["Membership_Stats_Members"]</dt>
+                        <dd class="text-white heading font-semibold text-2xl tabular-nums mt-1.5">1 100+</dd>
                     </div>
                     <div>
-                        <div class="text-white heading font-bold text-3xl">60+</div>
-                        <div class="text-white/70 text-sm">@SharedLocalizer["Membership_Stats_Events"]</div>
+                        <dt class="text-white/50 text-[11px] uppercase tracking-widest">@SharedLocalizer["Membership_Stats_Events"]</dt>
+                        <dd class="text-white heading font-semibold text-2xl tabular-nums mt-1.5">60+</dd>
                     </div>
                     <div>
-                        <div class="text-white heading font-bold text-3xl">6+</div>
-                        <div class="text-white/70 text-sm">@((MarkupString)SharedLocalizer["Membership_Stats_Projects"].Value)</div>
+                        <dt class="text-white/50 text-[11px] uppercase tracking-widest">@((MarkupString)SharedLocalizer["Membership_Stats_Projects"].Value)</dt>
+                        <dd class="text-white heading font-semibold text-2xl tabular-nums mt-1.5">6+</dd>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Scroll indicator -->
-        <div class="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
-            <div class="flex flex-col items-center gap-2 text-white/70 animate-bounce">
-                <span class="text-xs uppercase tracking-widest">@SharedLocalizer["Hero_Scroll"]</span>
-                <i class="ph ph-caret-down text-base"></i>
+                </dl>
             </div>
         </div>
     </section>
 
     <!-- What we do -->
-    <section class="bg-gradient-to-b from-white to-gray-50">
-        <div class="section container mx-auto">
-            <div class="text-center max-w-2xl mx-auto mb-14">
-                <span class="inline-block px-4 py-1 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
-                    @SharedLocalizer["WhatWeDo_Badge"]
-                </span>
-                <h2 class="heading heading-1">@SharedLocalizer["WhatWeDo_Title"]</h2>
-                <p class="text-gray-600">@SharedLocalizer["WhatWeDo_Description"]</p>
+    <section class="bg-white">
+        <div class="container mx-auto px-6 lg:px-8 py-24 lg:py-32">
+            <div class="max-w-2xl mb-16">
+                <span class="eyebrow text-primary">@SharedLocalizer["WhatWeDo_Badge"]</span>
+                <h2 class="heading heading-1 mt-4">@SharedLocalizer["WhatWeDo_Title"]</h2>
+                <p class="text-gray-600 mt-4 leading-relaxed">@SharedLocalizer["WhatWeDo_Description"]</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                <ActivityCard ImageName="@Assets["/assets/activities/activity-1.jpg"]" Title="@SharedLocalizer["Activity_LiveCoding_Title"]"
-                    Description="@SharedLocalizer["Activity_LiveCoding_Description"]" />
-                <ActivityCard ImageName="@Assets["/assets/activities/activity-2.jpeg"]" Title="@SharedLocalizer["Activity_Conferences_Title"]"
-                    Description="@SharedLocalizer["Activity_Conferences_Description"]" />
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <ActivityCard ImageName="@Assets["/assets/activities/activity-1.jpg"]"
+                              Title="@SharedLocalizer["Activity_LiveCoding_Title"]"
+                              Description="@SharedLocalizer["Activity_LiveCoding_Description"]" />
+                <ActivityCard ImageName="@Assets["/assets/activities/activity-2.jpeg"]"
+                              Title="@SharedLocalizer["Activity_Conferences_Title"]"
+                              Description="@SharedLocalizer["Activity_Conferences_Description"]" />
                 <ActivityCard ImageName="@Assets["/assets/activities/activity-3.png"]"
-                    Link="https://github.com/dotnetcameroon" LinkText="@SharedLocalizer["Activity_VisitGitHub"]" Title="@SharedLocalizer["Activity_OpenSource_Title"]"
-                    Description="@SharedLocalizer["Activity_OpenSource_Description"]" />
+                              Link="https://github.com/dotnetcameroon"
+                              LinkText="@SharedLocalizer["Activity_VisitGitHub"]"
+                              Title="@SharedLocalizer["Activity_OpenSource_Title"]"
+                              Description="@SharedLocalizer["Activity_OpenSource_Description"]" />
             </div>
         </div>
     </section>
 
-    <!-- About / Membership -->
-    <section class="relative bg-[url(/assets/activities/membership.jpeg)] bg-cover bg-center bg-no-repeat">
-        <div class="absolute z-10 top-0 left-0 w-full h-full bg-gradient-to-r from-secondary via-secondary/90 to-secondary/60"></div>
-        <div class="relative z-20 section container mx-auto">
+    <!-- Membership -->
+    <section class="relative overflow-hidden bg-dark-purple">
+        <div class="absolute inset-0 bg-[url(/assets/activities/membership.jpeg)] bg-cover bg-center opacity-25"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-dark-purple via-dark-purple/95 to-secondary/70"></div>
+        <div class="relative container mx-auto px-6 lg:px-8 py-24 lg:py-32">
             <div class="max-w-3xl">
-                <span class="inline-block px-4 py-1 bg-white/15 backdrop-blur text-white rounded-full text-sm font-semibold mb-4 border border-white/20">
-                    @SharedLocalizer["Membership_Badge"]
-                </span>
-                <h2 class="heading heading-1 text-white">@SharedLocalizer["Membership_Title"]</h2>
-                <p class="md:w-4/5 text-white/90 leading-relaxed">@SharedLocalizer["Membership_Description"]</p>
+                <span class="eyebrow text-white/60">@SharedLocalizer["Membership_Badge"]</span>
+                <h2 class="heading heading-1 text-white mt-4">@SharedLocalizer["Membership_Title"]</h2>
+                <p class="text-white/75 leading-relaxed max-w-2xl mt-4">@SharedLocalizer["Membership_Description"]</p>
 
-                <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <div class="bg-white/10 backdrop-blur rounded-2xl p-5 border border-white/20">
-                        <div class="heading text-white font-bold text-3xl md:text-4xl">1 100+</div>
-                        <p class="text-white/80 text-sm mt-1">@((MarkupString)SharedLocalizer["Membership_Stats_Members"].Value)</p>
+                <dl class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10">
+                    <div class="border-l border-white/15 pl-5">
+                        <dt class="text-white/60 text-[11px] uppercase tracking-widest">@((MarkupString)SharedLocalizer["Membership_Stats_Members"].Value)</dt>
+                        <dd class="text-white heading font-semibold text-3xl md:text-4xl tabular-nums mt-2">1 100+</dd>
                     </div>
-                    <div class="bg-white/10 backdrop-blur rounded-2xl p-5 border border-white/20">
-                        <div class="heading text-white font-bold text-3xl md:text-4xl">4 000+</div>
-                        <p class="text-white/80 text-sm mt-1">@((MarkupString)SharedLocalizer["Membership_Stats_Followers"].Value)</p>
+                    <div class="border-l border-white/15 pl-5">
+                        <dt class="text-white/60 text-[11px] uppercase tracking-widest">@((MarkupString)SharedLocalizer["Membership_Stats_Followers"].Value)</dt>
+                        <dd class="text-white heading font-semibold text-3xl md:text-4xl tabular-nums mt-2">4 000+</dd>
                     </div>
-                    <div class="bg-white/10 backdrop-blur rounded-2xl p-5 border border-white/20">
-                        <div class="heading text-white font-bold text-3xl md:text-4xl">60+</div>
-                        <p class="text-white/80 text-sm mt-1">@SharedLocalizer["Membership_Stats_Events"]</p>
+                    <div class="border-l border-white/15 pl-5">
+                        <dt class="text-white/60 text-[11px] uppercase tracking-widest">@SharedLocalizer["Membership_Stats_Events"]</dt>
+                        <dd class="text-white heading font-semibold text-3xl md:text-4xl tabular-nums mt-2">60+</dd>
                     </div>
-                    <div class="bg-white/10 backdrop-blur rounded-2xl p-5 border border-white/20">
-                        <div class="heading text-white font-bold text-3xl md:text-4xl">6+</div>
-                        <p class="text-white/80 text-sm mt-1">@((MarkupString)SharedLocalizer["Membership_Stats_Projects"].Value)</p>
+                    <div class="border-l border-white/15 pl-5">
+                        <dt class="text-white/60 text-[11px] uppercase tracking-widest">@((MarkupString)SharedLocalizer["Membership_Stats_Projects"].Value)</dt>
+                        <dd class="text-white heading font-semibold text-3xl md:text-4xl tabular-nums mt-2">6+</dd>
                     </div>
-                </div>
+                </dl>
 
-                <div class="mt-8 flex flex-wrap gap-4">
-                    <a data-enhance-nav="false" href="https://chat.whatsapp.com/KlBkiJX85Y8KFS28tIm1UU" target="_blank" class="btn btn-outline-white inline-flex items-center gap-2">
+                <div class="mt-12 flex flex-wrap gap-3">
+                    <a data-enhance-nav="false" href="https://chat.whatsapp.com/KlBkiJX85Y8KFS28tIm1UU" target="_blank"
+                       class="btn bg-white text-dark-purple hover:bg-white/90 inline-flex items-center gap-2">
                         <i class="ph-fill ph-whatsapp-logo text-xl"></i>
                         @SharedLocalizer["Membership_BecomeMember"]
                     </a>
-                    <a data-enhance-nav="false" href="/about" class="btn bg-white/10 backdrop-blur border border-white/20 text-white hover:bg-white/20 inline-flex items-center gap-2">
+                    <a data-enhance-nav="false" href="/about"
+                       class="btn bg-white/5 backdrop-blur-sm border border-white/20 text-white hover:bg-white/10 hover:border-white/30 inline-flex items-center gap-2">
                         @SharedLocalizer["Hero_LearnMore"]
                         <i class="ph ph-arrow-right text-base"></i>
                     </a>
@@ -160,48 +155,46 @@
     <Partners />
 
     <!-- Projects -->
-    @if(_projects.Length > 0)
+    @if (_projects.Length > 0)
     {
-        <section class="bg-gray-50">
-            <div class="section container mx-auto">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <span class="inline-block px-4 py-1 bg-secondary/10 text-secondary rounded-full text-sm font-semibold mb-4">
-                        @SharedLocalizer["Projects_Badge"]
-                    </span>
-                    <h2 class="heading heading-1">@SharedLocalizer["Projects_Title"]</h2>
-                    <p class="text-gray-600">@SharedLocalizer["Projects_Description"]</p>
+        <section class="bg-gray-50/50 border-t border-gray-100">
+            <div class="container mx-auto px-6 lg:px-8 py-24 lg:py-32">
+                <div class="max-w-2xl mb-16">
+                    <span class="eyebrow text-secondary">@SharedLocalizer["Projects_Badge"]</span>
+                    <h2 class="heading heading-1 mt-4">@SharedLocalizer["Projects_Title"]</h2>
+                    <p class="text-gray-600 mt-4 leading-relaxed">@SharedLocalizer["Projects_Description"]</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                     @foreach (var project in _projects)
                     {
-                        <div class="group bg-white rounded-2xl p-6 border border-gray-100 hover:border-primary/30 hover:shadow-xl transition-all duration-300 flex flex-col">
+                        <article class="group bg-white rounded-xl p-6 border border-gray-200/70 hover:border-gray-300 transition-colors flex flex-col">
                             <div class="flex-1">
-                                <h3 class="heading heading-5 text-dark-purple group-hover:text-primary transition-colors">@project.Title</h3>
-                                <p class="text-gray-600 line-clamp-3 text-sm mt-2 mb-4">@project.Description</p>
+                                <h3 class="heading font-semibold text-lg text-dark-purple group-hover:text-primary transition-colors">@project.Title</h3>
+                                <p class="text-gray-600 line-clamp-3 text-sm mt-2.5 leading-relaxed">@project.Description</p>
 
-                                <div class="flex flex-wrap gap-2">
+                                <div class="flex flex-wrap gap-1.5 mt-5">
                                     @foreach (var tech in project.Technologies.Split(','))
                                     {
-                                        <span class="text-xs px-2 py-1 rounded-md bg-secondary/10 text-secondary font-semibold">#@tech.Trim()</span>
+                                        <span class="text-[11px] px-2 py-0.5 rounded-md bg-gray-100 text-gray-700 font-medium tracking-tight">@tech.Trim()</span>
                                     }
                                 </div>
                             </div>
 
-                            <div class="flex flex-wrap gap-3 mt-4 pt-4 border-t border-gray-100">
-                                @if(!string.IsNullOrWhiteSpace(project.Github))
+                            <div class="flex items-center gap-4 mt-6 pt-5 border-t border-gray-100">
+                                @if (!string.IsNullOrWhiteSpace(project.Github))
                                 {
-                                    <a href="@project.Github" title="@project.Title github" class="text-gray-500 hover:text-primary transition-all" target="_blank" aria-label="@($"{project.Title} GitHub")">
-                                        <i class="ph-fill ph-github-logo text-xl"></i>
+                                    <a href="@project.Github" title="@project.Title github" class="text-gray-400 hover:text-dark-purple transition-colors" target="_blank" aria-label="@($"{project.Title} GitHub")">
+                                        <i class="ph-fill ph-github-logo text-lg"></i>
                                     </a>
                                 }
-                                @if(!string.IsNullOrWhiteSpace(project.Website))
+                                @if (!string.IsNullOrWhiteSpace(project.Website))
                                 {
-                                    <a href="@project.Website" title="@project.Title website" class="text-gray-500 hover:text-primary transition-all" target="_blank" aria-label="@($"{project.Title} website")">
-                                        <i class="ph ph-globe text-xl"></i>
+                                    <a href="@project.Website" title="@project.Title website" class="text-gray-400 hover:text-dark-purple transition-colors" target="_blank" aria-label="@($"{project.Title} website")">
+                                        <i class="ph ph-globe text-lg"></i>
                                     </a>
                                 }
                             </div>
-                        </div>
+                        </article>
                     }
                 </div>
             </div>

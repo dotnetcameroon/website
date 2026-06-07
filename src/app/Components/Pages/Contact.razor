@@ -18,334 +18,286 @@
 
 <div>
     <NavBar />
-    
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-primary to-secondary py-20">
-        <div class="container mx-auto px-4 py-16">
-            <div class="text-center text-white max-w-3xl mx-auto">
-                <h1 class="heading heading-1 text-white mb-4">Get in Touch</h1>
-                <p class="text-xl md:text-2xl mb-4">
-                    We'd love to hear from you! Whether you have questions, want to collaborate, or just want to say hello.
+
+    <!-- Page header -->
+    <section class="bg-dark-purple relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-dark-purple via-secondary/30 to-dark-purple"></div>
+        <div class="relative container mx-auto px-6 lg:px-8 py-20 lg:py-28">
+            <div class="max-w-3xl">
+                <span class="eyebrow text-white/60">Contact</span>
+                <h1 class="text-white heading font-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight mt-6">
+                    Let's talk.
+                </h1>
+                <p class="text-white/75 text-base lg:text-lg leading-relaxed max-w-2xl mt-6">
+                    Questions, partnerships, speaking, sponsorship — drop us a line. We typically reply within a couple of days.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Contact Cards Section -->
-    <section class="section container mx-auto px-4 -mt-12 relative z-10">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <!-- Email Card -->
-            <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all">
-                <div class="w-12 h-12 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
-                    <i class="fa-solid fa-envelope text-primary text-xl"></i>
-                </div>
-                <h3 class="heading heading-4 mb-2">Email Us</h3>
-                <p class="text-gray-600 text-sm mb-4">Send us an email and we'll respond as soon as possible.</p>
-                <a href="mailto:contact@dotnet.cm" class="text-primary hover:underline font-medium">
-                    contact@dotnet.cm
-                </a>
-            </div>
-
-            <!-- Location Card -->
-            <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all">
-                <div class="w-12 h-12 bg-secondary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
-                    <i class="fa-solid fa-location-dot text-secondary text-xl"></i>
-                </div>
-                <h3 class="heading heading-4 mb-2">Location</h3>
-                <p class="text-gray-600 text-sm mb-4">Find us in Cameroon's tech hubs</p>
-                <p class="font-medium">Douala & Yaoundé</p>
-                <p class="text-gray-600 text-sm">Cameroon</p>
-            </div>
-
-            <!-- Social Card -->
-            <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all">
-                <div class="w-12 h-12 bg-tertiary bg-opacity-10 rounded-full flex items-center justify-center mb-4">
-                    <i class="fa-solid fa-users text-tertiary text-xl"></i>
-                </div>
-                <h3 class="heading heading-4 mb-2">Join Our Community</h3>
-                <p class="text-gray-600 text-sm mb-4">Connect with us on social platforms</p>
-                <div class="flex gap-3">
-                    <a href="https://discord.gg/npkCMRgqdm" target="_blank" class="w-8 h-8 bg-gray-100 hover:bg-primary hover:text-white rounded-full flex items-center justify-center transition-all" aria-label="Discord">
-                        <i class="fa-brands fa-discord"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/company/dotnetcameroon" target="_blank" class="w-8 h-8 bg-gray-100 hover:bg-primary hover:text-white rounded-full flex items-center justify-center transition-all" aria-label="LinkedIn">
-                        <i class="fa-brands fa-linkedin"></i>
-                    </a>
-                    <a href="https://github.com/dotnetcameroon" target="_blank" class="w-8 h-8 bg-gray-100 hover:bg-primary hover:text-white rounded-full flex items-center justify-center transition-all" aria-label="GitHub">
-                        <i class="fa-brands fa-github"></i>
+    <!-- Direct contact strip -->
+    <section class="bg-white border-b border-gray-100">
+        <div class="container mx-auto px-6 lg:px-8 py-10 lg:py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-gray-200/70 border border-gray-200/70 rounded-xl overflow-hidden">
+                <div class="bg-white p-6">
+                    <div class="inline-flex items-center justify-center size-10 rounded-lg bg-primary/10 text-primary">
+                        <i class="ph ph-envelope text-lg"></i>
+                    </div>
+                    <h3 class="heading font-semibold text-sm text-dark-purple mt-4">Email</h3>
+                    <a href="mailto:contact@dotnet.cm" class="text-secondary hover:text-secondary-accentuation transition-colors text-sm mt-1 inline-block">
+                        contact@dotnet.cm
                     </a>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Form & Info Section -->
-    <section class="section container mx-auto px-4">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <!-- Contact Form -->
-            <div>
-                <h2 class="heading heading-2 mb-4">Send us a Message</h2>
-                <p class="text-gray-600 mb-6">
-                    Fill out the form below and we'll get back to you as soon as possible.
-                </p>
-
-                @if (_submitted)
-                {
-                    <div class="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
-                        <i class="fa-solid fa-check-circle text-green-500 text-4xl mb-3"></i>
-                        <h3 class="heading heading-3 mb-2">Message Sent!</h3>
-                        <p class="text-gray-700 mb-4">
-                            Thank you for reaching out. We'll get back to you soon.
-                        </p>
-                        <button @onclick="ResetForm" class="btn btn-primary">
-                            Send Another Message
-                        </button>
+                <div class="bg-white p-6">
+                    <div class="inline-flex items-center justify-center size-10 rounded-lg bg-secondary/10 text-secondary">
+                        <i class="ph ph-map-pin text-lg"></i>
                     </div>
-                }
-                else
-                {
-                    <form @onsubmit="HandleSubmit" class="space-y-4">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
-                                    Full Name <span class="text-red-500">*</span>
-                                </label>
-                                <input type="text" id="name" @bind="_formData.Name" required
-                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                                       placeholder="John Doe" />
-                            </div>
-
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                                    Email <span class="text-red-500">*</span>
-                                </label>
-                                <input type="email" id="email" @bind="_formData.Email" required
-                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                                       placeholder="john@example.com" />
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">
-                                Subject <span class="text-red-500">*</span>
-                            </label>
-                            <select id="subject" @bind="_formData.Subject" required
-                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                                <option value="">Select a subject...</option>
-                                <option value="general">General Inquiry</option>
-                                <option value="partnership">Partnership Opportunity</option>
-                                <option value="speaking">Speaking Opportunity</option>
-                                <option value="sponsorship">Sponsorship</option>
-                                <option value="feedback">Feedback</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
-                                Message <span class="text-red-500">*</span>
-                            </label>
-                            <textarea id="message" @bind="_formData.Message" required rows="6"
-                                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                                      placeholder="Tell us how we can help you..."></textarea>
-                        </div>
-
-                        @if (!string.IsNullOrEmpty(_errorMessage))
-                        {
-                            <div class="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
-                                <i class="fa-solid fa-exclamation-circle"></i> @_errorMessage
-                            </div>
-                        }
-
-                        <button type="submit" class="btn btn-primary w-full md:w-auto" disabled="@_isSubmitting">
-                            @if (_isSubmitting)
-                            {
-                                <i class="fa-solid fa-spinner fa-spin"></i>
-                                <span>Sending...</span>
-                            }
-                            else
-                            {
-                                <i class="fa-solid fa-paper-plane"></i>
-                                <span>Send Message</span>
-                            }
-                        </button>
-                    </form>
-                }
-            </div>
-
-            <!-- Additional Info -->
-            <div>
-                <h2 class="heading heading-2 mb-4">Why Contact Us?</h2>
-                
-                <div class="space-y-6">
-                    <div class="flex gap-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-10 h-10 bg-primary bg-opacity-10 rounded-lg flex items-center justify-center">
-                                <i class="fa-solid fa-handshake text-primary"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="font-bold mb-2">Partnership Opportunities</h3>
-                            <p class="text-gray-600 text-sm">
-                                Interested in collaborating with us? Let's explore how we can work together to grow the .NET community in Cameroon.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="flex gap-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-10 h-10 bg-secondary bg-opacity-10 rounded-lg flex items-center justify-center">
-                                <i class="fa-solid fa-microphone text-secondary"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="font-bold mb-2">Speaking Opportunities</h3>
-                            <p class="text-gray-600 text-sm">
-                                Want to share your expertise at our events? We're always looking for passionate speakers to inspire our community.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="flex gap-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-10 h-10 bg-tertiary bg-opacity-10 rounded-lg flex items-center justify-center">
-                                <i class="fa-solid fa-star text-tertiary"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="font-bold mb-2">Sponsorship</h3>
-                            <p class="text-gray-600 text-sm">
-                                Support our mission and gain visibility within Cameroon's growing .NET developer community.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="flex gap-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-10 h-10 bg-primary bg-opacity-10 rounded-lg flex items-center justify-center">
-                                <i class="fa-solid fa-question-circle text-primary"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="font-bold mb-2">General Inquiries</h3>
-                            <p class="text-gray-600 text-sm">
-                                Have questions about our events, membership, or activities? We're here to help!
-                            </p>
-                        </div>
-                    </div>
+                    <h3 class="heading font-semibold text-sm text-dark-purple mt-4">Location</h3>
+                    <p class="text-gray-600 text-sm mt-1">Douala & Yaoundé, Cameroon</p>
                 </div>
-
-                <!-- Social Links -->
-                <div class="mt-8 p-6 bg-gradient-to-br from-primary to-secondary rounded-xl shadow-lg">
-                    <h3 class="heading heading-4 mb-2 text-white">Connect With Us</h3>
-                    <p class="text-white text-opacity-90 text-sm mb-6">Join our vibrant community on your favorite platform</p>
-                    
-                    <div class="space-y-3">
-                        <a href="https://discord.gg/npkCMRgqdm" target="_blank" 
-                           class="flex items-center gap-3 bg-white bg-opacity-10 hover:bg-opacity-20 text-white p-4 rounded-lg transition-all group backdrop-blur-sm">
-                            <div class="w-10 h-10 bg-white bg-opacity-20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <i class="fa-brands fa-discord text-xl"></i>
-                            </div>
-                            <div class="flex-1">
-                                <div class="font-semibold">Discord Community</div>
-                                <div class="text-sm text-white text-opacity-80">Join our Discord server</div>
-                            </div>
-                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-
-                        <a href="https://www.linkedin.com/company/dotnetcameroon" target="_blank" 
-                           class="flex items-center gap-3 bg-white bg-opacity-10 hover:bg-opacity-20 text-white p-4 rounded-lg transition-all group backdrop-blur-sm">
-                            <div class="w-10 h-10 bg-white bg-opacity-20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <i class="fa-brands fa-linkedin text-xl"></i>
-                            </div>
-                            <div class="flex-1">
-                                <div class="font-semibold">LinkedIn</div>
-                                <div class="text-sm text-white text-opacity-80">Follow our company page</div>
-                            </div>
-                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-
-                        <a href="https://github.com/dotnetcameroon" target="_blank" 
-                           class="flex items-center gap-3 bg-white bg-opacity-10 hover:bg-opacity-20 text-white p-4 rounded-lg transition-all group backdrop-blur-sm">
-                            <div class="w-10 h-10 bg-white bg-opacity-20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <i class="fa-brands fa-github text-xl"></i>
-                            </div>
-                            <div class="flex-1">
-                                <div class="font-semibold">GitHub</div>
-                                <div class="text-sm text-white text-opacity-80">Check our open source projects</div>
-                            </div>
-                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-
-                        <a href="https://chat.whatsapp.com/KlBkiJX85Y8KFS28tIm1UU" target="_blank" 
-                           class="flex items-center gap-3 bg-white bg-opacity-10 hover:bg-opacity-20 text-white p-4 rounded-lg transition-all group backdrop-blur-sm">
-                            <div class="w-10 h-10 bg-white bg-opacity-20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <i class="fa-brands fa-whatsapp text-xl"></i>
-                            </div>
-                            <div class="flex-1">
-                                <div class="font-semibold">WhatsApp</div>
-                                <div class="text-sm text-white text-opacity-80">Join our WhatsApp group</div>
-                            </div>
-                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-
-                        <a href="https://t.me/+cjXkPqigrZNkNDE0" target="_blank" 
-                           class="flex items-center gap-3 bg-white bg-opacity-10 hover:bg-opacity-20 text-white p-4 rounded-lg transition-all group backdrop-blur-sm">
-                            <div class="w-10 h-10 bg-white bg-opacity-20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <i class="fa-brands fa-telegram text-xl"></i>
-                            </div>
-                            <div class="flex-1">
-                                <div class="font-semibold">Telegram</div>
-                                <div class="text-sm text-white text-opacity-80">Join our Telegram channel</div>
-                            </div>
-                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                        </a>
+                <div class="bg-white p-6">
+                    <div class="inline-flex items-center justify-center size-10 rounded-lg bg-tertiary/10 text-tertiary">
+                        <i class="ph ph-users-three text-lg"></i>
                     </div>
-
-                    <div class="mt-6 pt-6 border-t border-white border-opacity-20 text-center">
-                        <p class="text-white text-opacity-90 text-sm">
-                            <i class="fa-solid fa-users"></i> Join <span class="font-bold">600+</span> developers in our community
-                        </p>
+                    <h3 class="heading font-semibold text-sm text-dark-purple mt-4">Community</h3>
+                    <div class="flex items-center gap-2 mt-2">
+                        <a href="https://discord.gg/npkCMRgqdm" target="_blank"
+                           class="inline-flex items-center justify-center size-8 rounded-md bg-gray-50 hover:bg-gray-100 border border-gray-200/70 text-gray-600 hover:text-dark-purple transition-colors"
+                           aria-label="Discord">
+                            <i class="ph-fill ph-discord-logo text-sm"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/dotnetcameroon" target="_blank"
+                           class="inline-flex items-center justify-center size-8 rounded-md bg-gray-50 hover:bg-gray-100 border border-gray-200/70 text-gray-600 hover:text-dark-purple transition-colors"
+                           aria-label="LinkedIn">
+                            <i class="ph-fill ph-linkedin-logo text-sm"></i>
+                        </a>
+                        <a href="https://github.com/dotnetcameroon" target="_blank"
+                           class="inline-flex items-center justify-center size-8 rounded-md bg-gray-50 hover:bg-gray-100 border border-gray-200/70 text-gray-600 hover:text-dark-purple transition-colors"
+                           aria-label="GitHub">
+                            <i class="ph-fill ph-github-logo text-sm"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="bg-gray-50 py-16">
-        <div class="container mx-auto px-4">
+    <!-- Form + Why contact us -->
+    <section class="bg-white">
+        <div class="container mx-auto px-6 lg:px-8 py-20 lg:py-24">
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
+                <!-- Form -->
+                <div class="lg:col-span-3">
+                    <span class="eyebrow text-primary">Message us</span>
+                    <h2 class="heading heading-1 mt-4">Send a message</h2>
+                    <p class="text-gray-600 leading-relaxed mt-4">
+                        Fill in the form and we'll get back to you shortly.
+                    </p>
+
+                    @if (_submitted)
+                    {
+                        <div class="mt-10 rounded-xl border border-gray-200/70 bg-gray-50/50 p-8 text-center">
+                            <div class="inline-flex items-center justify-center size-12 rounded-full bg-primary/10 text-primary">
+                                <i class="ph ph-check text-2xl"></i>
+                            </div>
+                            <h3 class="heading font-semibold text-lg text-dark-purple mt-5">Message sent</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mt-3 max-w-md mx-auto">
+                                Thanks for reaching out — we'll be in touch soon.
+                            </p>
+                            <button @onclick="ResetForm" class="btn btn-outline mt-6">
+                                Send another
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <form @onsubmit="HandleSubmit" class="mt-10 space-y-5">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1.5">Full name <span class="text-red-500">*</span></label>
+                                    <input type="text" id="name" @bind="_formData.Name" required
+                                           class="w-full px-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors"
+                                           placeholder="Your name" />
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">Email <span class="text-red-500">*</span></label>
+                                    <input type="email" id="email" @bind="_formData.Email" required
+                                           class="w-full px-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors"
+                                           placeholder="you@example.com" />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-700 mb-1.5">Subject <span class="text-red-500">*</span></label>
+                                <select id="subject" @bind="_formData.Subject" required
+                                        class="w-full px-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors">
+                                    <option value="">Select a subject</option>
+                                    <option value="general">General inquiry</option>
+                                    <option value="partnership">Partnership</option>
+                                    <option value="speaking">Speaking opportunity</option>
+                                    <option value="sponsorship">Sponsorship</option>
+                                    <option value="feedback">Feedback</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1.5">Message <span class="text-red-500">*</span></label>
+                                <textarea id="message" @bind="_formData.Message" required rows="6"
+                                          class="w-full px-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors"
+                                          placeholder="Tell us how we can help..."></textarea>
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(_errorMessage))
+                            {
+                                <div class="flex items-start gap-2 p-3 rounded-lg bg-red-50/70 border border-red-200 text-red-700 text-sm">
+                                    <i class="ph ph-warning-circle text-base shrink-0 mt-0.5"></i>
+                                    <span>@_errorMessage</span>
+                                </div>
+                            }
+
+                            <button type="submit" class="btn btn-primary inline-flex items-center justify-center gap-2" disabled="@_isSubmitting">
+                                @if (_isSubmitting)
+                                {
+                                    <i class="ph ph-spinner-gap text-base animate-spin"></i>
+                                    <span>Sending…</span>
+                                }
+                                else
+                                {
+                                    <i class="ph ph-paper-plane-tilt text-base"></i>
+                                    <span>Send message</span>
+                                }
+                            </button>
+                        </form>
+                    }
+                </div>
+
+                <!-- Why contact us -->
+                <aside class="lg:col-span-2">
+                    <span class="eyebrow text-secondary">Reasons to reach out</span>
+                    <h2 class="heading heading-2 mt-3">Why contact us</h2>
+
+                    <div class="mt-8 space-y-6">
+                        <div class="flex gap-4">
+                            <div class="shrink-0 inline-flex items-center justify-center size-10 rounded-lg bg-primary/10 text-primary">
+                                <i class="ph-duotone ph-handshake text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="heading font-semibold text-sm text-dark-purple">Partnership</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed mt-1.5">
+                                    Let's explore how we can grow the .NET community together.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="shrink-0 inline-flex items-center justify-center size-10 rounded-lg bg-secondary/10 text-secondary">
+                                <i class="ph-duotone ph-microphone-stage text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="heading font-semibold text-sm text-dark-purple">Speaking</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed mt-1.5">
+                                    Share your expertise at our meetups and conferences.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="shrink-0 inline-flex items-center justify-center size-10 rounded-lg bg-tertiary/10 text-tertiary">
+                                <i class="ph-duotone ph-star text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="heading font-semibold text-sm text-dark-purple">Sponsorship</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed mt-1.5">
+                                    Support our mission and reach our developer audience.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="shrink-0 inline-flex items-center justify-center size-10 rounded-lg bg-primary/10 text-primary">
+                                <i class="ph-duotone ph-question text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="heading font-semibold text-sm text-dark-purple">General questions</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed mt-1.5">
+                                    Anything about events, membership, or activities.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Community channels -->
+                    <div class="mt-10 rounded-xl border border-gray-200/70 overflow-hidden bg-white">
+                        <div class="px-5 py-4 border-b border-gray-100">
+                            <h3 class="heading font-semibold text-sm text-dark-purple">Join our community</h3>
+                        </div>
+                        <div class="divide-y divide-gray-100">
+                            <a href="https://discord.gg/npkCMRgqdm" target="_blank"
+                               class="flex items-center gap-3 p-4 hover:bg-gray-50/60 transition-colors group">
+                                <span class="inline-flex items-center justify-center size-9 rounded-lg bg-gray-100 text-gray-700">
+                                    <i class="ph-fill ph-discord-logo text-base"></i>
+                                </span>
+                                <span class="flex-1 text-sm font-medium text-dark-purple">Discord</span>
+                                <i class="ph ph-arrow-up-right text-gray-300 group-hover:text-dark-purple transition-colors text-sm"></i>
+                            </a>
+                            <a href="https://chat.whatsapp.com/KlBkiJX85Y8KFS28tIm1UU" target="_blank"
+                               class="flex items-center gap-3 p-4 hover:bg-gray-50/60 transition-colors group">
+                                <span class="inline-flex items-center justify-center size-9 rounded-lg bg-gray-100 text-gray-700">
+                                    <i class="ph-fill ph-whatsapp-logo text-base"></i>
+                                </span>
+                                <span class="flex-1 text-sm font-medium text-dark-purple">WhatsApp</span>
+                                <i class="ph ph-arrow-up-right text-gray-300 group-hover:text-dark-purple transition-colors text-sm"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/company/dotnetcameroon" target="_blank"
+                               class="flex items-center gap-3 p-4 hover:bg-gray-50/60 transition-colors group">
+                                <span class="inline-flex items-center justify-center size-9 rounded-lg bg-gray-100 text-gray-700">
+                                    <i class="ph-fill ph-linkedin-logo text-base"></i>
+                                </span>
+                                <span class="flex-1 text-sm font-medium text-dark-purple">LinkedIn</span>
+                                <i class="ph ph-arrow-up-right text-gray-300 group-hover:text-dark-purple transition-colors text-sm"></i>
+                            </a>
+                            <a href="https://t.me/+cjXkPqigrZNkNDE0" target="_blank"
+                               class="flex items-center gap-3 p-4 hover:bg-gray-50/60 transition-colors group">
+                                <span class="inline-flex items-center justify-center size-9 rounded-lg bg-gray-100 text-gray-700">
+                                    <i class="ph-fill ph-telegram-logo text-base"></i>
+                                </span>
+                                <span class="flex-1 text-sm font-medium text-dark-purple">Telegram</span>
+                                <i class="ph ph-arrow-up-right text-gray-300 group-hover:text-dark-purple transition-colors text-sm"></i>
+                            </a>
+                            <a href="https://github.com/dotnetcameroon" target="_blank"
+                               class="flex items-center gap-3 p-4 hover:bg-gray-50/60 transition-colors group">
+                                <span class="inline-flex items-center justify-center size-9 rounded-lg bg-gray-100 text-gray-700">
+                                    <i class="ph-fill ph-github-logo text-base"></i>
+                                </span>
+                                <span class="flex-1 text-sm font-medium text-dark-purple">GitHub</span>
+                                <i class="ph ph-arrow-up-right text-gray-300 group-hover:text-dark-purple transition-colors text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-gray-50/50 border-t border-gray-100">
+        <div class="container mx-auto px-6 lg:px-8 py-20 lg:py-24">
             <div class="max-w-3xl mx-auto">
-                <h2 class="heading heading-2 text-center mb-8">Frequently Asked Questions</h2>
-                
-                <div class="space-y-4">
-                    <div class="bg-white rounded-lg p-6">
-                        <h3 class="font-bold mb-2">How can I become a member?</h3>
-                        <p class="text-gray-600 text-sm">
-                            Join our Discord or WhatsApp community to become an active member. Participate in our events, contribute to projects, and engage with fellow developers.
-                        </p>
-                    </div>
+                <div class="text-center">
+                    <span class="eyebrow text-secondary justify-center">FAQ</span>
+                    <h2 class="heading heading-1 mt-4">Frequently asked</h2>
+                </div>
 
-                    <div class="bg-white rounded-lg p-6">
-                        <h3 class="font-bold mb-2">Are your events free?</h3>
-                        <p class="text-gray-600 text-sm">
-                            Most of our community events are free. Some special workshops or conferences may have a registration fee to cover venue and materials costs.
-                        </p>
-                    </div>
-
-                    <div class="bg-white rounded-lg p-6">
-                        <h3 class="font-bold mb-2">Can I propose a talk or workshop?</h3>
-                        <p class="text-gray-600 text-sm">
-                            Absolutely! We welcome proposals from community members. Use the contact form above with "Speaking Opportunity" as the subject.
-                        </p>
-                    </div>
-
-                    <div class="bg-white rounded-lg p-6">
-                        <h3 class="font-bold mb-2">How can my company sponsor .NET Cameroon?</h3>
-                        <p class="text-gray-600 text-sm">
-                            We offer various sponsorship packages. Contact us with "Sponsorship" as the subject, and we'll send you detailed information.
-                        </p>
-                    </div>
+                <div class="mt-12 divide-y divide-gray-200/70 bg-white rounded-xl border border-gray-200/70">
+                    @foreach (var faq in _faqs)
+                    {
+                        <details class="group p-6 [&_summary::-webkit-details-marker]:hidden">
+                            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
+                                <h3 class="heading font-semibold text-base text-dark-purple">@faq.Question</h3>
+                                <i class="ph ph-plus text-base text-gray-400 group-open:hidden"></i>
+                                <i class="ph ph-minus text-base text-gray-400 hidden group-open:inline"></i>
+                            </summary>
+                            <p class="text-gray-600 text-sm leading-relaxed mt-3">@faq.Answer</p>
+                        </details>
+                    }
                 </div>
             </div>
         </div>
@@ -362,12 +314,25 @@
 
     private ContactFormData _formData = new();
 
+    private record Faq(string Question, string Answer);
+
+    private readonly Faq[] _faqs =
+    [
+        new("How can I become a member?",
+            "Join our Discord or WhatsApp community to become an active member. Participate in events, contribute to projects, and engage with fellow developers."),
+        new("Are your events free?",
+            "Most of our community events are free. Some special workshops or conferences may have a registration fee to cover venue and material costs."),
+        new("Can I propose a talk or workshop?",
+            "Absolutely. We welcome proposals from community members — use the form above with \"Speaking opportunity\" as the subject."),
+        new("How can my company sponsor .NET Cameroon?",
+            "We offer several sponsorship packages. Contact us with \"Sponsorship\" as the subject and we'll send detailed information."),
+    ];
+
     private async Task HandleSubmit()
     {
         _errorMessage = "";
         _isSubmitting = true;
 
-        // Validation
         if (string.IsNullOrWhiteSpace(_formData.Name) ||
             string.IsNullOrWhiteSpace(_formData.Email) ||
             string.IsNullOrWhiteSpace(_formData.Subject) ||
@@ -378,11 +343,7 @@
             return;
         }
 
-        // Simulate API call (2 seconds delay)
         await Task.Delay(2000);
-
-        // TODO: In production, send email via API
-        // await ContactService.SendMessageAsync(_formData);
 
         _submitted = true;
         _isSubmitting = false;

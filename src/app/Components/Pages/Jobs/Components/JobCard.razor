@@ -1,55 +1,65 @@
 @* Reusable Job Card Component *@
 
-<div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all @AdditionalClasses">
-    <div class="flex items-start justify-between mb-4">
-        <div class="flex-1">
-            <h4 class="font-bold text-lg mb-1">@Title</h4>
-            <p class="text-gray-600 text-sm mb-2">@Company</p>
+<article class="group bg-white rounded-xl p-6 border border-gray-200/70 hover:border-gray-300 transition-colors flex flex-col h-full @AdditionalClasses">
+    <div class="flex items-start justify-between gap-3">
+        <div class="flex-1 min-w-0">
+            <h3 class="heading font-semibold text-base text-dark-purple group-hover:text-secondary transition-colors line-clamp-2">@Title</h3>
+            <p class="text-gray-500 text-sm mt-1 truncate">@Company</p>
         </div>
-        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs whitespace-nowrap ml-2">@Type</span>
+        <span class="shrink-0 text-[11px] uppercase tracking-wider font-semibold text-gray-500 bg-gray-100 px-2 py-1 rounded-md whitespace-nowrap">@Type</span>
     </div>
-    
-    <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-4">
-        <span><i class="fa-solid fa-location-dot"></i> @Location</span>
-        <span><i class="fa-solid fa-clock"></i> @PostedDate</span>
+
+    <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500 mt-3">
+        @if (!string.IsNullOrEmpty(Location))
+        {
+            <span class="inline-flex items-center gap-1.5"><i class="ph ph-map-pin text-sm"></i>@Location</span>
+        }
+        @if (!string.IsNullOrEmpty(PostedDate))
+        {
+            <span class="inline-flex items-center gap-1.5"><i class="ph ph-clock text-sm"></i>@PostedDate</span>
+        }
         @if (!string.IsNullOrEmpty(Salary))
         {
-            <span><i class="fa-solid fa-money-bill"></i> @Salary</span>
+            <span class="inline-flex items-center gap-1.5"><i class="ph ph-currency-circle-dollar text-sm"></i>@Salary</span>
         }
     </div>
-    
+
+    @if (!string.IsNullOrEmpty(Description))
+    {
+        <p class="text-gray-600 text-sm leading-relaxed line-clamp-2 mt-4 flex-1">@Description</p>
+    }
+
     @if (Skills.Length > 0)
     {
-        <div class="flex flex-wrap gap-2 mb-4">
+        <div class="flex flex-wrap gap-1.5 mt-4">
             @foreach (var skill in Skills.Take(MaxSkillsToShow))
             {
-                <span class="px-2 py-1 bg-blue-100 text-primary text-xs rounded">@skill</span>
+                <span class="text-[11px] px-2 py-0.5 rounded-md bg-gray-100 text-gray-700 font-medium tracking-tight">@skill</span>
             }
             @if (Skills.Length > MaxSkillsToShow)
             {
-                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">+@(Skills.Length - MaxSkillsToShow) more</span>
+                <span class="text-[11px] px-2 py-0.5 rounded-md text-gray-500 font-medium">+@(Skills.Length - MaxSkillsToShow)</span>
             }
         </div>
     }
-    
-    @if (!string.IsNullOrEmpty(Description))
-    {
-        <p class="text-gray-700 text-sm mb-4 line-clamp-2">@Description</p>
-    }
-    
+
     @if (!string.IsNullOrEmpty(JobUrl))
     {
-        <a href="@JobUrl" data-enhance-nav="false" class="btn btn-outline w-full">
-            View Details
+        <a href="@JobUrl" data-enhance-nav="false"
+           class="mt-6 pt-5 border-t border-gray-100 inline-flex items-center justify-between text-sm font-medium text-secondary hover:text-secondary-accentuation transition-colors">
+            View details
+            <i class="ph ph-arrow-right text-sm"></i>
         </a>
     }
     else if (OnClick.HasDelegate)
     {
-        <button @onclick="OnClick" class="btn btn-outline w-full">
-            View Details
+        <button @onclick="OnClick"
+                class="mt-6 pt-5 border-t border-gray-100 inline-flex items-center justify-between text-sm font-medium text-secondary hover:text-secondary-accentuation transition-colors cursor-pointer">
+            View details
+            <i class="ph ph-arrow-right text-sm"></i>
         </button>
     }
-</div>
+</article>
 
 @code {
     [Parameter, EditorRequired]

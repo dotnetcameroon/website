@@ -18,253 +18,225 @@
 
 <div>
     <NavBar />
-    
-    <section class="section container mx-auto px-4">
-        <div class="max-w-3xl mx-auto">
-            <!-- Header -->
-            <div class="mb-8">
-                <a href="/jobs" data-enhance-nav="false" class="text-primary hover:underline flex items-center gap-2 mb-4">
-                    <i class="fa-solid fa-arrow-left"></i> Back to jobs
+
+    <section class="bg-white">
+        <div class="container mx-auto px-6 lg:px-8 py-12 lg:py-16">
+            <div class="max-w-3xl mx-auto">
+                <a href="/jobs" data-enhance-nav="false"
+                   class="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-dark-purple transition-colors">
+                    <i class="ph ph-arrow-left text-sm"></i>
+                    All jobs
                 </a>
-                <h1 class="heading heading-1 mb-4">Post a Job Opportunity</h1>
-                <p class="text-gray-600">
-                    Fill out the form below to post your job opportunity. All submissions will be reviewed before publication.
-                </p>
-            </div>
 
-            @if (_submitted)
-            {
-                <!-- Success Message -->
-                <div class="bg-green-50 border border-green-200 rounded-lg p-8 text-center">
-                    <i class="fa-solid fa-check-circle text-6xl text-green-500 mb-4"></i>
-                    <h2 class="heading heading-2 mb-4">Job Submitted Successfully!</h2>
-                    <p class="text-gray-700 mb-6">
-                        Thank you for submitting your job opportunity. Our team will review it and publish it shortly.
-                        You will receive a confirmation email once it's live.
+                <div class="mt-8">
+                    <span class="eyebrow text-primary">New posting</span>
+                    <h1 class="heading font-bold text-3xl lg:text-4xl text-dark-purple tracking-tight leading-tight mt-4">Post a role</h1>
+                    <p class="text-gray-600 leading-relaxed mt-3 max-w-2xl">
+                        Fill in the details below. Submissions are reviewed within 24–48 hours before publication.
                     </p>
-                    <div class="flex gap-4 justify-center">
-                        <a href="/jobs" data-enhance-nav="false" class="btn btn-primary">
-                            View All Jobs
-                        </a>
-                        <button @onclick="ResetForm" class="btn btn-secondary">
-                            Submit Another Job
-                        </button>
-                    </div>
                 </div>
-            }
-            else
-            {
-                <!-- Job Submission Form -->
-                <form @onsubmit="HandleSubmit" class="bg-white rounded-lg shadow-md p-6">
-                    <!-- Company Information -->
-                    <div class="mb-8">
-                        <h3 class="heading heading-3 mb-4">Company Information</h3>
-                        
-                        <div class="mb-4">
-                            <label for="company" class="block text-sm font-medium text-gray-700 mb-2">
-                                Company Name <span class="text-red-500">*</span>
-                            </label>
-                            <input type="text" id="company" @bind="_formData.Company" required
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                                   placeholder="e.g., Tech Company Ltd" />
-                        </div>
 
-                        <div class="mb-4">
-                            <label for="companyWebsite" class="block text-sm font-medium text-gray-700 mb-2">
-                                Company Website
-                            </label>
-                            <input type="url" id="companyWebsite" @bind="_formData.CompanyWebsite"
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                                   placeholder="https://example.com" />
+                @if (_submitted)
+                {
+                    <div class="mt-12 rounded-xl border border-gray-200/70 bg-gray-50/50 p-10 lg:p-12 text-center">
+                        <div class="inline-flex items-center justify-center size-12 rounded-full bg-primary/10 text-primary">
+                            <i class="ph ph-check text-2xl"></i>
                         </div>
-
-                        <div class="mb-4">
-                            <label for="companyDescription" class="block text-sm font-medium text-gray-700 mb-2">
-                                Company Description <span class="text-red-500">*</span>
-                            </label>
-                            <textarea id="companyDescription" @bind="_formData.CompanyDescription" required rows="3"
-                                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                                      placeholder="Brief description of your company..."></textarea>
+                        <h2 class="heading font-semibold text-xl text-dark-purple mt-5">Submitted</h2>
+                        <p class="text-gray-600 text-sm leading-relaxed mt-3 max-w-md mx-auto">
+                            Your job has been submitted for review. You'll get an email confirmation once it's published.
+                        </p>
+                        <div class="flex flex-wrap gap-2 justify-center mt-6">
+                            <a href="/jobs" data-enhance-nav="false" class="btn btn-primary inline-flex items-center gap-2">
+                                View all jobs
+                                <i class="ph ph-arrow-right text-base"></i>
+                            </a>
+                            <button @onclick="ResetForm" class="btn btn-outline">
+                                Submit another
+                            </button>
                         </div>
                     </div>
+                }
+                else
+                {
+                    <form @onsubmit="HandleSubmit" class="mt-12 space-y-10">
+                        <!-- Company -->
+                        <fieldset class="space-y-5">
+                            <legend class="eyebrow text-secondary">Company</legend>
 
-                    <!-- Job Details -->
-                    <div class="mb-8">
-                        <h3 class="heading heading-3 mb-4">Job Details</h3>
-                        
-                        <div class="mb-4">
-                            <label for="title" class="block text-sm font-medium text-gray-700 mb-2">
-                                Job Title <span class="text-red-500">*</span>
-                            </label>
-                            <input type="text" id="title" @bind="_formData.Title" required
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                                   placeholder="e.g., Senior .NET Developer" />
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                             <div>
-                                <label for="location" class="block text-sm font-medium text-gray-700 mb-2">
-                                    Location <span class="text-red-500">*</span>
-                                </label>
-                                <select id="location" @bind="_formData.Location" required
-                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                                    <option value="">Select location...</option>
-                                    <option value="douala">Douala</option>
-                                    <option value="yaounde">Yaoundé</option>
-                                    <option value="bamenda">Bamenda</option>
-                                    <option value="garoua">Garoua</option>
-                                    <option value="remote">Remote (Cameroon)</option>
-                                    <option value="remote-international">Remote (International)</option>
-                                </select>
+                                <label for="company" class="block text-sm font-medium text-gray-700 mb-1.5">Company name <span class="text-red-500">*</span></label>
+                                <input type="text" id="company" @bind="_formData.Company" required
+                                       class="w-full px-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors"
+                                       placeholder="Tech Company Ltd" />
                             </div>
 
                             <div>
-                                <label for="type" class="block text-sm font-medium text-gray-700 mb-2">
-                                    Job Type <span class="text-red-500">*</span>
-                                </label>
-                                <select id="type" @bind="_formData.Type" required
-                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                                    <option value="">Select type...</option>
-                                    <option value="full-time">Full-time</option>
-                                    <option value="part-time">Part-time</option>
-                                    <option value="contract">Contract</option>
-                                    <option value="freelance">Freelance</option>
-                                    <option value="internship">Internship</option>
-                                </select>
+                                <label for="companyWebsite" class="block text-sm font-medium text-gray-700 mb-1.5">Website</label>
+                                <input type="url" id="companyWebsite" @bind="_formData.CompanyWebsite"
+                                       class="w-full px-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors"
+                                       placeholder="https://example.com" />
+                            </div>
+
+                            <div>
+                                <label for="companyDescription" class="block text-sm font-medium text-gray-700 mb-1.5">Description <span class="text-red-500">*</span></label>
+                                <textarea id="companyDescription" @bind="_formData.CompanyDescription" required rows="3"
+                                          class="w-full px-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors"
+                                          placeholder="A short blurb about what your company does..."></textarea>
+                            </div>
+                        </fieldset>
+
+                        <!-- Role -->
+                        <fieldset class="space-y-5">
+                            <legend class="eyebrow text-primary">The role</legend>
+
+                            <div>
+                                <label for="title" class="block text-sm font-medium text-gray-700 mb-1.5">Job title <span class="text-red-500">*</span></label>
+                                <input type="text" id="title" @bind="_formData.Title" required
+                                       class="w-full px-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors"
+                                       placeholder="Senior .NET Developer" />
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="location" class="block text-sm font-medium text-gray-700 mb-1.5">Location <span class="text-red-500">*</span></label>
+                                    <select id="location" @bind="_formData.Location" required
+                                            class="w-full px-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors">
+                                        <option value="">Select location</option>
+                                        <option value="douala">Douala</option>
+                                        <option value="yaounde">Yaoundé</option>
+                                        <option value="bamenda">Bamenda</option>
+                                        <option value="garoua">Garoua</option>
+                                        <option value="remote">Remote (Cameroon)</option>
+                                        <option value="remote-international">Remote (International)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="type" class="block text-sm font-medium text-gray-700 mb-1.5">Type <span class="text-red-500">*</span></label>
+                                    <select id="type" @bind="_formData.Type" required
+                                            class="w-full px-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors">
+                                        <option value="">Select type</option>
+                                        <option value="full-time">Full-time</option>
+                                        <option value="part-time">Part-time</option>
+                                        <option value="contract">Contract</option>
+                                        <option value="freelance">Freelance</option>
+                                        <option value="internship">Internship</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="salary" class="block text-sm font-medium text-gray-700 mb-1.5">Salary range</label>
+                                <input type="text" id="salary" @bind="_formData.Salary"
+                                       class="w-full px-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors"
+                                       placeholder="800k – 1.2M XAF or Competitive" />
+                            </div>
+
+                            <div>
+                                <label for="description" class="block text-sm font-medium text-gray-700 mb-1.5">Description <span class="text-red-500">*</span></label>
+                                <textarea id="description" @bind="_formData.Description" required rows="5"
+                                          class="w-full px-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors"
+                                          placeholder="Detailed description of the position..."></textarea>
+                                <p class="text-xs text-gray-500 mt-1.5">Minimum 100 characters.</p>
+                            </div>
+
+                            <div>
+                                <label for="skills" class="block text-sm font-medium text-gray-700 mb-1.5">Required skills <span class="text-red-500">*</span></label>
+                                <input type="text" id="skills" @bind="_formData.Skills" required
+                                       class="w-full px-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors"
+                                       placeholder="C#, ASP.NET Core, SQL Server, Azure" />
+                                <p class="text-xs text-gray-500 mt-1.5">Separate skills with commas.</p>
+                            </div>
+
+                            <div>
+                                <label for="responsibilities" class="block text-sm font-medium text-gray-700 mb-1.5">Responsibilities <span class="text-red-500">*</span></label>
+                                <textarea id="responsibilities" @bind="_formData.Responsibilities" required rows="4"
+                                          class="w-full px-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors"
+                                          placeholder="- Design and develop backend services&#10;- Write clean, testable code"></textarea>
+                                <p class="text-xs text-gray-500 mt-1.5">One per line.</p>
+                            </div>
+
+                            <div>
+                                <label for="requirements" class="block text-sm font-medium text-gray-700 mb-1.5">Requirements <span class="text-red-500">*</span></label>
+                                <textarea id="requirements" @bind="_formData.Requirements" required rows="4"
+                                          class="w-full px-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors"
+                                          placeholder="- 3+ years of experience with .NET&#10;- Strong understanding of RESTful APIs"></textarea>
+                                <p class="text-xs text-gray-500 mt-1.5">One per line.</p>
+                            </div>
+
+                            <div>
+                                <label for="benefits" class="block text-sm font-medium text-gray-700 mb-1.5">Benefits</label>
+                                <textarea id="benefits" @bind="_formData.Benefits" rows="3"
+                                          class="w-full px-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors"
+                                          placeholder="- Competitive salary&#10;- Health insurance"></textarea>
+                                <p class="text-xs text-gray-500 mt-1.5">One per line. Optional.</p>
+                            </div>
+                        </fieldset>
+
+                        <!-- Application -->
+                        <fieldset class="space-y-5">
+                            <legend class="eyebrow text-tertiary">How to apply</legend>
+
+                            <div>
+                                <label for="contactEmail" class="block text-sm font-medium text-gray-700 mb-1.5">Contact email <span class="text-red-500">*</span></label>
+                                <input type="email" id="contactEmail" @bind="_formData.ContactEmail" required
+                                       class="w-full px-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors"
+                                       placeholder="careers@company.com" />
+                            </div>
+
+                            <div>
+                                <label for="applicationUrl" class="block text-sm font-medium text-gray-700 mb-1.5">Application URL</label>
+                                <input type="url" id="applicationUrl" @bind="_formData.ApplicationUrl"
+                                       class="w-full px-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors"
+                                       placeholder="https://company.com/careers/apply" />
+                                <p class="text-xs text-gray-500 mt-1.5">If you have an online application form.</p>
+                            </div>
+
+                            <div>
+                                <label for="deadline" class="block text-sm font-medium text-gray-700 mb-1.5">Deadline <span class="text-red-500">*</span></label>
+                                <input type="text" id="deadline" @bind="_formData.Deadline" required
+                                       class="w-full px-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors"
+                                       placeholder="December 31, 2024" />
+                            </div>
+                        </fieldset>
+
+                        <!-- Terms + submit -->
+                        <div class="pt-8 border-t border-gray-100 space-y-5">
+                            <label class="flex items-start gap-2.5">
+                                <input type="checkbox" @bind="_formData.AcceptTerms" required class="mt-0.5" />
+                                <span class="text-sm text-gray-700 leading-relaxed">
+                                    I accept the <a href="/terms" class="text-secondary hover:text-secondary-accentuation transition-colors underline">terms and conditions</a>
+                                    and confirm that all information provided is accurate. <span class="text-red-500">*</span>
+                                </span>
+                            </label>
+
+                            @if (!string.IsNullOrEmpty(_errorMessage))
+                            {
+                                <div class="flex items-start gap-2 p-3 rounded-lg bg-red-50/70 border border-red-200 text-red-700 text-sm">
+                                    <i class="ph ph-warning-circle text-base shrink-0 mt-0.5"></i>
+                                    <span>@_errorMessage</span>
+                                </div>
+                            }
+
+                            <div class="flex flex-wrap gap-3">
+                                <button type="submit" class="btn btn-primary inline-flex items-center justify-center gap-2 flex-1 sm:flex-initial" disabled="@_isSubmitting">
+                                    @if (_isSubmitting)
+                                    {
+                                        <i class="ph ph-spinner-gap text-base animate-spin"></i>
+                                        <span>Submitting…</span>
+                                    }
+                                    else
+                                    {
+                                        <i class="ph ph-paper-plane-tilt text-base"></i>
+                                        <span>Submit for review</span>
+                                    }
+                                </button>
+                                <a href="/jobs" data-enhance-nav="false" class="btn btn-outline">Cancel</a>
                             </div>
                         </div>
-
-                        <div class="mb-4">
-                            <label for="salary" class="block text-sm font-medium text-gray-700 mb-2">
-                                Salary Range
-                            </label>
-                            <input type="text" id="salary" @bind="_formData.Salary"
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                                   placeholder="e.g., 800k - 1.2M XAF or Competitive" />
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="description" class="block text-sm font-medium text-gray-700 mb-2">
-                                Job Description <span class="text-red-500">*</span>
-                            </label>
-                            <textarea id="description" @bind="_formData.Description" required rows="5"
-                                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                                      placeholder="Detailed description of the position..."></textarea>
-                            <p class="text-sm text-gray-500 mt-1">Minimum 100 characters</p>
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="skills" class="block text-sm font-medium text-gray-700 mb-2">
-                                Required Skills <span class="text-red-500">*</span>
-                            </label>
-                            <input type="text" id="skills" @bind="_formData.Skills" required
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                                   placeholder="C#, ASP.NET Core, SQL Server, Azure..." />
-                            <p class="text-sm text-gray-500 mt-1">Separate skills with commas</p>
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="responsibilities" class="block text-sm font-medium text-gray-700 mb-2">
-                                Responsibilities <span class="text-red-500">*</span>
-                            </label>
-                            <textarea id="responsibilities" @bind="_formData.Responsibilities" required rows="4"
-                                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                                      placeholder="- Design and develop backend services&#10;- Write clean, testable code&#10;- Collaborate with team members..."></textarea>
-                            <p class="text-sm text-gray-500 mt-1">One responsibility per line</p>
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="requirements" class="block text-sm font-medium text-gray-700 mb-2">
-                                Requirements <span class="text-red-500">*</span>
-                            </label>
-                            <textarea id="requirements" @bind="_formData.Requirements" required rows="4"
-                                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                                      placeholder="- 3+ years of experience with .NET&#10;- Strong understanding of RESTful APIs&#10;- Experience with SQL Server..."></textarea>
-                            <p class="text-sm text-gray-500 mt-1">One requirement per line</p>
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="benefits" class="block text-sm font-medium text-gray-700 mb-2">
-                                Benefits
-                            </label>
-                            <textarea id="benefits" @bind="_formData.Benefits" rows="3"
-                                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                                      placeholder="- Competitive salary&#10;- Health insurance&#10;- Remote work options..."></textarea>
-                            <p class="text-sm text-gray-500 mt-1">One benefit per line (optional)</p>
-                        </div>
-                    </div>
-
-                    <!-- Application Information -->
-                    <div class="mb-8">
-                        <h3 class="heading heading-3 mb-4">Application Information</h3>
-                        
-                        <div class="mb-4">
-                            <label for="contactEmail" class="block text-sm font-medium text-gray-700 mb-2">
-                                Contact Email <span class="text-red-500">*</span>
-                            </label>
-                            <input type="email" id="contactEmail" @bind="_formData.ContactEmail" required
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                                   placeholder="careers@company.com" />
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="applicationUrl" class="block text-sm font-medium text-gray-700 mb-2">
-                                Application URL (Optional)
-                            </label>
-                            <input type="url" id="applicationUrl" @bind="_formData.ApplicationUrl"
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                                   placeholder="https://company.com/careers/apply" />
-                            <p class="text-sm text-gray-500 mt-1">If you have an online application form</p>
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="deadline" class="block text-sm font-medium text-gray-700 mb-2">
-                                Application Deadline <span class="text-red-500">*</span>
-                            </label>
-                            <input type="text" id="deadline" @bind="_formData.Deadline" required
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                                   placeholder="e.g., December 31, 2024" />
-                        </div>
-                    </div>
-
-                    <!-- Terms and Conditions -->
-                    <div class="mb-6">
-                        <label class="flex items-start gap-2">
-                            <input type="checkbox" @bind="_formData.AcceptTerms" required class="mt-1" />
-                            <span class="text-sm text-gray-700">
-                                I accept the <a href="/terms" class="text-primary hover:underline">terms and conditions</a> 
-                                and confirm that all information provided is accurate. <span class="text-red-500">*</span>
-                            </span>
-                        </label>
-                    </div>
-
-                    @if (!string.IsNullOrEmpty(_errorMessage))
-                    {
-                        <div class="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
-                            <i class="fa-solid fa-exclamation-circle"></i> @_errorMessage
-                        </div>
-                    }
-
-                    <!-- Submit Button -->
-                    <div class="flex gap-4">
-                        <button type="submit" class="btn btn-primary flex-1" disabled="@_isSubmitting">
-                            @if (_isSubmitting)
-                            {
-                                <i class="fa-solid fa-spinner fa-spin"></i>
-                                <span>Submitting...</span>
-                            }
-                            else
-                            {
-                                <i class="fa-solid fa-paper-plane"></i>
-                                <span>Submit Job</span>
-                            }
-                        </button>
-                        <a href="/jobs" data-enhance-nav="false" class="btn btn-outline">
-                            Cancel
-                        </a>
-                    </div>
-                </form>
-            }
+                    </form>
+                }
+            </div>
         </div>
     </section>
 </div>
