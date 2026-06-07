@@ -3,10 +3,49 @@ services:
     image: djoufson/dotnetcameroon
     restart: unless-stopped
     container_name: dotnetcameroon
+    depends_on:
+      dotnetcameroon.sqlserver:
+        condition: service_healthy
+      dotnetcameroon.minio:
+        condition: service_healthy
     environment:
-      OTEL_EXPORTER_OTLP_ENDPOINT: http://localhost:18889
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
+
+      # --- Connection strings (nested config via __ separator) ---
+      ConnectionStrings__SqlServer: "${AZURE_SQLSERVER_WEBSITE_DATABASE}"
+      ConnectionStrings__Npgsql: "${AZURE_POSTGRES_WEBSITE_DATABASE}"
+      ConnectionStrings__Sqlite: "${SQLITE_CONNECTION:-Data Source=/app/data/projects.db;}"
+      ConnectionStrings__HangfireSqlite: "Data Source=/app/data/hangfire.db;"
+
+      # --- Cookie auth ---
+      CookiesOptions__Issuer: "${COOKIES_ISSUER}"
+      CookiesOptions__LoginPath: "${COOKIES_LOGINPATH:-/login}"
+      CookiesOptions__LogoutPath: "${COOKIES_LOGOUTPATH:-/logout}"
+      CookiesOptions__AccessDeniedPath: "${COOKIES_ACCESSDENIEDPATH:-/access-denied}"
+      CookiesOptions__ExpirationInDays: "${COOKIES_EXPIRATIONINDAYS:-30}"
+
+      # --- JWT (external API auth) ---
+      JwtOptions__Issuer: "${JWT_ISSUER:-DotnetCameroon}"
+      JwtOptions__Audience: "${JWT_AUDIENCE:-DotnetCameroon}"
+      JwtOptions__Secret: "${JWT_SECRET}"
+      JwtOptions__ExpirationInMinutes: "${JWT_EXPIRATION_IN_MINUTES:-60}"
+
+      # --- MinIO (object storage) ---
+      Minio__Endpoint: "${MINIO_ENDPOINT:-minio:9000}"
+      Minio__PublicEndpoint: "${MINIO_PUBLICENDPOINT}"
+      Minio__AccessKey: "${MINIO_ACCESSKEY}"
+      Minio__SecretKey: "${MINIO_SECRETKEY}"
+      Minio__BucketName: "${MINIO_BUCKETNAME:-uploads}"
+      Minio__UseSsl: "false"
+
+      # --- Observability ---
+      ApplicationInsights__InstrumentationKey: "${AZURE_APPINSIGHTS_INSTRUMENTAL_KEY}"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "${OTEL_EXPORTER_OTLP_ENDPOINT:-http://localhost:18889}"
     ports:
       - "${APP_PORT:-5000}:8080"
+    volumes:
+      - app-data:/app/data
   dotnetcameroon.sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: dotnetcameroon.sqlserver
@@ -20,9 +59,19 @@ services:
       - "${MSSQL_PORT:-1433}:1433"
     volumes:
       - sqlserver-data:/var/opt/mssql
+    healthcheck:
+      test: [
+        "CMD-SHELL",
+        "/opt/mssql-tools18/bin/sqlcmd -S localhost -U SA -P \"$$MSSQL_SA_PASSWORD\" -Q 'SELECT 1' -C || exit 1"
+      ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
   dotnetcameroon.minio:
     image: minio/minio:latest
     container_name: dotnetcameroon.minio
+    hostname: minio
     environment:
       MINIO_ROOT_USER: "${MINIO_ROOT_USER}"
       MINIO_ROOT_PASSWORD: "${MINIO_ROOT_PASSWORD}"
@@ -41,3 +90,4 @@ services:
 volumes:
   sqlserver-data:
   minio-data:
+  app-data:
