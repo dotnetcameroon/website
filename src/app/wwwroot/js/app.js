@@ -21,11 +21,22 @@ window.addEventListener("scroll", (e) => {
 
 function collapseNavbar() {
   const navbar = document.getElementById("navbar");
+  const bannerStack = document.getElementById("banner-stack");
+  if (bannerStack) bannerStack.classList.remove("scrolled");
+  document.documentElement.style.setProperty("--banner-stack-height", "0px");
   navbar.classList.remove("scrolled");
 }
 
 function expandNavbar() {
   const navbar = document.getElementById("navbar");
+  const bannerStack = document.getElementById("banner-stack");
+  if (bannerStack) {
+    document.documentElement.style.setProperty(
+      "--banner-stack-height",
+      `${bannerStack.offsetHeight}px`,
+    );
+    bannerStack.classList.add("scrolled");
+  }
   navbar.classList.remove("scrolled");
   navbar.classList.add("scrolled");
 }
@@ -44,6 +55,44 @@ function hideBackToTop() {
 function backToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
+(function initBanners() {
+  const STORAGE_KEY = "dismissed-banners";
+  function dismissed() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    } catch {
+      return [];
+    }
+  }
+  function remember(id) {
+    const list = dismissed();
+    if (!list.includes(id)) list.push(id);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+  }
+  function apply() {
+    const stack = document.getElementById("banner-stack");
+    if (!stack) return;
+    const ids = dismissed();
+    stack.querySelectorAll("[data-banner-id]").forEach((el) => {
+      const id = el.getAttribute("data-banner-id");
+      if (ids.includes(id)) el.remove();
+    });
+    stack.querySelectorAll(".banner-dismiss").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const banner = e.currentTarget.closest("[data-banner-id]");
+        if (!banner) return;
+        remember(banner.getAttribute("data-banner-id"));
+        banner.remove();
+      });
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", apply);
+  } else {
+    apply();
+  }
+})();
 
 function showDotnetSessions() {
   const dotnet = document.getElementById("dotnet-sessions");

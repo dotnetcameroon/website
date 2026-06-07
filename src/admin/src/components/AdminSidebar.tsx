@@ -4,12 +4,14 @@ import {
   Calendar,
   Handshake,
   KeyRound,
+  Megaphone,
 } from 'lucide-react';
 
 const navItems = [
   { to: '/', label: 'Dashboard', icon: LayoutDashboard, exact: true },
   { to: '/events', label: 'Events', icon: Calendar, exact: false },
   { to: '/partners', label: 'Partners', icon: Handshake, exact: false },
+  { to: '/banners', label: 'Banners', icon: Megaphone, exact: false },
   { to: '/apps', label: 'Applications', icon: KeyRound, exact: false },
 ] as const;
 

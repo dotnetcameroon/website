@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using app.infrastructure.Persistence;
 
@@ -12,9 +13,11 @@ using app.infrastructure.Persistence;
 namespace app.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260607083704_Add Banners Table")]
+    partial class AddBannersTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -216,22 +219,6 @@ namespace app.Migrations
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("SubtitleEn")
-                        .HasMaxLength(80)
-                        .HasColumnType("nvarchar(80)");
-
-                    b.Property<string>("SubtitleFr")
-                        .HasMaxLength(80)
-                        .HasColumnType("nvarchar(80)");
-
-                    b.Property<string>("TitleEn")
-                        .HasMaxLength(120)
-                        .HasColumnType("nvarchar(120)");
-
-                    b.Property<string>("TitleFr")
-                        .HasMaxLength(120)
-                        .HasColumnType("nvarchar(120)");
 
                     b.Property<int>("Variant")
                         .HasColumnType("int");

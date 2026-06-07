@@ -67,6 +67,7 @@ public static class Extensions
         services.AddScoped<IFileUploader, FileUploader>();
         services.AddScoped<IFileManager, FileManager>();
         services.AddScoped<IEventService, EventService>();
+        services.AddScoped<IBannerService, BannerService>();
         services.AddScoped<ITokenProvider, TokenProvider>();
         services.AddScoped<IProjectService, ProjectService>();
         services.AddScoped<IFileDownloader, FileDownloader>();

@@ -12,10 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PartnersIndexRouteImport } from './routes/partners/index'
 import { Route as EventsIndexRouteImport } from './routes/events/index'
+import { Route as BannersIndexRouteImport } from './routes/banners/index'
 import { Route as AppsIndexRouteImport } from './routes/apps/index'
 import { Route as EventsNewRouteImport } from './routes/events/new'
+import { Route as BannersNewRouteImport } from './routes/banners/new'
 import { Route as AppsRegisterRouteImport } from './routes/apps/register'
 import { Route as EventsIdEditRouteImport } from './routes/events/$id.edit'
+import { Route as BannersIdEditRouteImport } from './routes/banners/$id.edit'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -32,6 +35,11 @@ const EventsIndexRoute = EventsIndexRouteImport.update({
   path: '/events/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BannersIndexRoute = BannersIndexRouteImport.update({
+  id: '/banners/',
+  path: '/banners/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppsIndexRoute = AppsIndexRouteImport.update({
   id: '/apps/',
   path: '/apps/',
@@ -40,6 +48,11 @@ const AppsIndexRoute = AppsIndexRouteImport.update({
 const EventsNewRoute = EventsNewRouteImport.update({
   id: '/events/new',
   path: '/events/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BannersNewRoute = BannersNewRouteImport.update({
+  id: '/banners/new',
+  path: '/banners/new',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppsRegisterRoute = AppsRegisterRouteImport.update({
@@ -52,33 +65,47 @@ const EventsIdEditRoute = EventsIdEditRouteImport.update({
   path: '/events/$id/edit',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BannersIdEditRoute = BannersIdEditRouteImport.update({
+  id: '/banners/$id/edit',
+  path: '/banners/$id/edit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/apps/register': typeof AppsRegisterRoute
+  '/banners/new': typeof BannersNewRoute
   '/events/new': typeof EventsNewRoute
   '/apps/': typeof AppsIndexRoute
+  '/banners/': typeof BannersIndexRoute
   '/events/': typeof EventsIndexRoute
   '/partners/': typeof PartnersIndexRoute
+  '/banners/$id/edit': typeof BannersIdEditRoute
   '/events/$id/edit': typeof EventsIdEditRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/apps/register': typeof AppsRegisterRoute
+  '/banners/new': typeof BannersNewRoute
   '/events/new': typeof EventsNewRoute
   '/apps': typeof AppsIndexRoute
+  '/banners': typeof BannersIndexRoute
   '/events': typeof EventsIndexRoute
   '/partners': typeof PartnersIndexRoute
+  '/banners/$id/edit': typeof BannersIdEditRoute
   '/events/$id/edit': typeof EventsIdEditRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/apps/register': typeof AppsRegisterRoute
+  '/banners/new': typeof BannersNewRoute
   '/events/new': typeof EventsNewRoute
   '/apps/': typeof AppsIndexRoute
+  '/banners/': typeof BannersIndexRoute
   '/events/': typeof EventsIndexRoute
   '/partners/': typeof PartnersIndexRoute
+  '/banners/$id/edit': typeof BannersIdEditRoute
   '/events/$id/edit': typeof EventsIdEditRoute
 }
 export interface FileRouteTypes {
@@ -86,38 +113,50 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/apps/register'
+    | '/banners/new'
     | '/events/new'
     | '/apps/'
+    | '/banners/'
     | '/events/'
     | '/partners/'
+    | '/banners/$id/edit'
     | '/events/$id/edit'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/apps/register'
+    | '/banners/new'
     | '/events/new'
     | '/apps'
+    | '/banners'
     | '/events'
     | '/partners'
+    | '/banners/$id/edit'
     | '/events/$id/edit'
   id:
     | '__root__'
     | '/'
     | '/apps/register'
+    | '/banners/new'
     | '/events/new'
     | '/apps/'
+    | '/banners/'
     | '/events/'
     | '/partners/'
+    | '/banners/$id/edit'
     | '/events/$id/edit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppsRegisterRoute: typeof AppsRegisterRoute
+  BannersNewRoute: typeof BannersNewRoute
   EventsNewRoute: typeof EventsNewRoute
   AppsIndexRoute: typeof AppsIndexRoute
+  BannersIndexRoute: typeof BannersIndexRoute
   EventsIndexRoute: typeof EventsIndexRoute
   PartnersIndexRoute: typeof PartnersIndexRoute
+  BannersIdEditRoute: typeof BannersIdEditRoute
   EventsIdEditRoute: typeof EventsIdEditRoute
 }
 
@@ -144,6 +183,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/banners/': {
+      id: '/banners/'
+      path: '/banners'
+      fullPath: '/banners/'
+      preLoaderRoute: typeof BannersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/apps/': {
       id: '/apps/'
       path: '/apps'
@@ -156,6 +202,13 @@ declare module '@tanstack/react-router' {
       path: '/events/new'
       fullPath: '/events/new'
       preLoaderRoute: typeof EventsNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/banners/new': {
+      id: '/banners/new'
+      path: '/banners/new'
+      fullPath: '/banners/new'
+      preLoaderRoute: typeof BannersNewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/apps/register': {
@@ -172,16 +225,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventsIdEditRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/banners/$id/edit': {
+      id: '/banners/$id/edit'
+      path: '/banners/$id/edit'
+      fullPath: '/banners/$id/edit'
+      preLoaderRoute: typeof BannersIdEditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppsRegisterRoute: AppsRegisterRoute,
+  BannersNewRoute: BannersNewRoute,
   EventsNewRoute: EventsNewRoute,
   AppsIndexRoute: AppsIndexRoute,
+  BannersIndexRoute: BannersIndexRoute,
   EventsIndexRoute: EventsIndexRoute,
   PartnersIndexRoute: PartnersIndexRoute,
+  BannersIdEditRoute: BannersIdEditRoute,
   EventsIdEditRoute: EventsIdEditRoute,
 }
 export const routeTree = rootRouteImport
