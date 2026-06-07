@@ -100,6 +100,39 @@ export interface CreateOrUpdatePartnerRequest {
   website: string;
 }
 
+// Banners
+export type BannerVariant = 'Announcement' | 'Advertisement' | 'Promo' | 'Event' | 'Maintenance';
+
+export interface BannerResponse {
+  id: string;
+  messageEn: string;
+  messageFr: string;
+  variant: BannerVariant;
+  startDate: string;
+  endDate: string;
+  link: string | null;
+  linkLabelEn: string | null;
+  linkLabelFr: string | null;
+  dismissible: boolean;
+  priority: number;
+  isEnabled: boolean;
+  createdAt: string;
+}
+
+export interface CreateOrUpdateBannerRequest {
+  messageEn: string;
+  messageFr: string;
+  variant: BannerVariant;
+  startDate: string;
+  endDate: string;
+  link: string | null;
+  linkLabelEn: string | null;
+  linkLabelFr: string | null;
+  dismissible: boolean;
+  priority: number;
+  isEnabled: boolean;
+}
+
 // External Apps
 export interface AppSummary {
   id: string;

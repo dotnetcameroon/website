@@ -45,6 +45,44 @@ function backToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+(function initBanners() {
+  const STORAGE_KEY = "dismissed-banners";
+  function dismissed() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    } catch {
+      return [];
+    }
+  }
+  function remember(id) {
+    const list = dismissed();
+    if (!list.includes(id)) list.push(id);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+  }
+  function apply() {
+    const stack = document.getElementById("banner-stack");
+    if (!stack) return;
+    const ids = dismissed();
+    stack.querySelectorAll("[data-banner-id]").forEach((el) => {
+      const id = el.getAttribute("data-banner-id");
+      if (ids.includes(id)) el.remove();
+    });
+    stack.querySelectorAll(".banner-dismiss").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const banner = e.currentTarget.closest("[data-banner-id]");
+        if (!banner) return;
+        remember(banner.getAttribute("data-banner-id"));
+        banner.remove();
+      });
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", apply);
+  } else {
+    apply();
+  }
+})();
+
 function showDotnetSessions() {
   const dotnet = document.getElementById("dotnet-sessions");
   const microsoft = document.getElementById("microsoft-sessions");

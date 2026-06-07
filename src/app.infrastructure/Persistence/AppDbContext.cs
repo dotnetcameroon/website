@@ -1,3 +1,4 @@
+using app.domain.Models.BannerAggregate;
 using app.domain.Models.Common;
 using app.domain.Models.EventAggregate;
 using app.domain.Models.EventAggregate.Entities;
@@ -15,6 +16,7 @@ public sealed partial class AppDbContext(
     private readonly DomainEventsInterceptor _domainEventsInterceptor = domainEventsInterceptor;
     public DbSet<Event> Events { get; set; }
     public DbSet<Partner> Partners { get; set; }
+    public DbSet<Banner> Banners { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

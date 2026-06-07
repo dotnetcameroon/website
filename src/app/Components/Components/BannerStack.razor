@@ -1,0 +1,86 @@
+@using app.business.Services
+@using app.domain.Models.BannerAggregate.Enums
+@using BannerEntity = app.domain.Models.BannerAggregate.Banner
+@inject IBannerService BannerService
+
+@if (_banners.Length > 0)
+{
+    <div id="banner-stack" class="w-full flex flex-col">
+        @foreach (var banner in _banners)
+        {
+            var textColor = VariantTextClass(banner.Variant);
+            <div class="banner @VariantBgClass(banner.Variant) @textColor flex items-center gap-3 px-4 py-2.5 text-sm"
+                 data-banner-id="@banner.Id"
+                 data-banner-dismissible="@(banner.Dismissible.ToString().ToLowerInvariant())">
+                <i class="@VariantIcon(banner.Variant) @textColor text-base shrink-0"></i>
+                <div class="flex-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center">
+                    <span class="@textColor">@Message(banner)</span>
+                    @if (!string.IsNullOrWhiteSpace(banner.Link))
+                    {
+                        <a href="@banner.Link" target="_blank" rel="noreferrer"
+                           class="@textColor font-medium underline hover:no-underline whitespace-nowrap">
+                            @(LinkLabel(banner) ?? "Learn more")
+                            <i class="ph ph-arrow-up-right @textColor text-xs"></i>
+                        </a>
+                    }
+                </div>
+                @if (banner.Dismissible)
+                {
+                    <button type="button" class="banner-dismiss shrink-0 rounded-full p-1 hover:bg-black/10 transition-colors cursor-pointer"
+                            aria-label="Dismiss">
+                        <i class="ph ph-x @textColor text-base"></i>
+                    </button>
+                }
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private BannerEntity[] _banners = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        _banners = await BannerService.GetActiveAsync();
+    }
+
+    private static string Message(BannerEntity b) =>
+        System.Globalization.CultureInfo.CurrentCulture.Name == "fr-FR"
+            ? b.MessageFr
+            : b.MessageEn;
+
+    private static string? LinkLabel(BannerEntity b) =>
+        System.Globalization.CultureInfo.CurrentCulture.Name == "fr-FR"
+            ? b.LinkLabelFr
+            : b.LinkLabelEn;
+
+    private static string VariantBgClass(BannerVariant v) => v switch
+    {
+        BannerVariant.Announcement => "bg-secondary",
+        BannerVariant.Advertisement => "bg-tertiary",
+        BannerVariant.Promo => "bg-primary",
+        BannerVariant.Event => "bg-dark-purple",
+        BannerVariant.Maintenance => "bg-amber-500",
+        _ => "bg-secondary",
+    };
+
+    private static string VariantTextClass(BannerVariant v) => v switch
+    {
+        BannerVariant.Announcement => "text-white",
+        BannerVariant.Advertisement => "text-dark-purple",
+        BannerVariant.Promo => "text-white",
+        BannerVariant.Event => "text-white",
+        BannerVariant.Maintenance => "text-dark-purple",
+        _ => "text-white",
+    };
+
+    private static string VariantIcon(BannerVariant v) => v switch
+    {
+        BannerVariant.Announcement => "ph-fill ph-megaphone",
+        BannerVariant.Advertisement => "ph-fill ph-sparkle",
+        BannerVariant.Promo => "ph-fill ph-tag",
+        BannerVariant.Event => "ph-fill ph-calendar-star",
+        BannerVariant.Maintenance => "ph-fill ph-wrench",
+        _ => "ph-fill ph-megaphone",
+    };
+}
