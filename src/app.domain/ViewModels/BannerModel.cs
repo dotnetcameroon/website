@@ -4,6 +4,10 @@ namespace app.domain.ViewModels;
 
 public class BannerModel
 {
+    public string? TitleEn { get; set; }
+    public string? TitleFr { get; set; }
+    public string? SubtitleEn { get; set; }
+    public string? SubtitleFr { get; set; }
     public string MessageEn { get; set; } = string.Empty;
     public string MessageFr { get; set; } = string.Empty;
     public BannerVariant Variant { get; set; }

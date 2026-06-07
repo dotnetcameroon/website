@@ -4,6 +4,10 @@ namespace app.Api.Admin.Dtos;
 
 public record BannerResponse(
     Guid Id,
+    string? TitleEn,
+    string? TitleFr,
+    string? SubtitleEn,
+    string? SubtitleFr,
     string MessageEn,
     string MessageFr,
     BannerVariant Variant,
@@ -18,6 +22,10 @@ public record BannerResponse(
     DateTime CreatedAt);
 
 public record CreateOrUpdateBannerRequest(
+    string? TitleEn,
+    string? TitleFr,
+    string? SubtitleEn,
+    string? SubtitleFr,
     string MessageEn,
     string MessageFr,
     BannerVariant Variant,

@@ -8,6 +8,10 @@ public sealed class Banner : Entity<Guid>, IAggregateRoot
 {
     private readonly List<IDomainEvent> _domainEvents = [];
 
+    public string? TitleEn { get; private set; }
+    public string? TitleFr { get; private set; }
+    public string? SubtitleEn { get; private set; }
+    public string? SubtitleFr { get; private set; }
     public string MessageEn { get; private set; } = string.Empty;
     public string MessageFr { get; private set; } = string.Empty;
     public BannerVariant Variant { get; private set; }
@@ -24,6 +28,10 @@ public sealed class Banner : Entity<Guid>, IAggregateRoot
 
     private Banner(
         Guid id,
+        string? titleEn,
+        string? titleFr,
+        string? subtitleEn,
+        string? subtitleFr,
         string messageEn,
         string messageFr,
         BannerVariant variant,
@@ -37,6 +45,10 @@ public sealed class Banner : Entity<Guid>, IAggregateRoot
         bool isEnabled,
         DateTime createdAt) : base(id)
     {
+        TitleEn = titleEn;
+        TitleFr = titleFr;
+        SubtitleEn = subtitleEn;
+        SubtitleFr = subtitleFr;
         MessageEn = messageEn;
         MessageFr = messageFr;
         Variant = variant;
@@ -69,6 +81,10 @@ public sealed class Banner : Entity<Guid>, IAggregateRoot
     {
         return new Banner(
             Guid.NewGuid(),
+            model.TitleEn,
+            model.TitleFr,
+            model.SubtitleEn,
+            model.SubtitleFr,
             model.MessageEn,
             model.MessageFr,
             model.Variant,
@@ -85,6 +101,10 @@ public sealed class Banner : Entity<Guid>, IAggregateRoot
 
     public void Update(BannerModel model)
     {
+        TitleEn = model.TitleEn;
+        TitleFr = model.TitleFr;
+        SubtitleEn = model.SubtitleEn;
+        SubtitleFr = model.SubtitleFr;
         MessageEn = model.MessageEn;
         MessageFr = model.MessageFr;
         Variant = model.Variant;

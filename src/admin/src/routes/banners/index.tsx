@@ -75,8 +75,13 @@ function BannersListPage() {
                   const active = isActiveNow(b.startDate, b.endDate, b.isEnabled);
                   return (
                     <tr key={b.id} className="hover:bg-gray-50/50 transition-colors">
-                      <td className="px-5 py-3.5 font-medium text-gray-800 max-w-md truncate">
-                        {b.messageEn}
+                      <td className="px-5 py-3.5 max-w-md">
+                        {b.titleEn && (
+                          <div className="font-semibold text-gray-900 truncate">{b.titleEn}</div>
+                        )}
+                        <div className={`${b.titleEn ? 'text-xs text-gray-500' : 'font-medium text-gray-800'} truncate`}>
+                          {b.messageEn}
+                        </div>
                       </td>
                       <td className="px-5 py-3.5">
                         <span className={variantBadge[b.variant]}>{b.variant}</span>

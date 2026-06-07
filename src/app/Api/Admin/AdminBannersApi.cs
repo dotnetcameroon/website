@@ -89,6 +89,10 @@ public static class AdminBannersApi
 
     private static BannerResponse MapToResponse(Banner b) => new(
         b.Id,
+        b.TitleEn,
+        b.TitleFr,
+        b.SubtitleEn,
+        b.SubtitleFr,
         b.MessageEn,
         b.MessageFr,
         b.Variant,
@@ -104,6 +108,10 @@ public static class AdminBannersApi
 
     private static BannerModel MapToModel(CreateOrUpdateBannerRequest r) => new()
     {
+        TitleEn = r.TitleEn,
+        TitleFr = r.TitleFr,
+        SubtitleEn = r.SubtitleEn,
+        SubtitleFr = r.SubtitleFr,
         MessageEn = r.MessageEn,
         MessageFr = r.MessageFr,
         Variant = r.Variant,

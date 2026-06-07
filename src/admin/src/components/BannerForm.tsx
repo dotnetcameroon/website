@@ -24,6 +24,10 @@ export function BannerForm({ bannerId }: BannerFormProps) {
   const createBanner = useCreateBanner();
   const updateBanner = useUpdateBanner(bannerId ?? '');
 
+  const [titleEn, setTitleEn] = useState('');
+  const [titleFr, setTitleFr] = useState('');
+  const [subtitleEn, setSubtitleEn] = useState('');
+  const [subtitleFr, setSubtitleFr] = useState('');
   const [messageEn, setMessageEn] = useState('');
   const [messageFr, setMessageFr] = useState('');
   const [variant, setVariant] = useState<BannerVariant>('Announcement');
@@ -38,6 +42,10 @@ export function BannerForm({ bannerId }: BannerFormProps) {
 
   useEffect(() => {
     if (!existing) return;
+    setTitleEn(existing.titleEn ?? '');
+    setTitleFr(existing.titleFr ?? '');
+    setSubtitleEn(existing.subtitleEn ?? '');
+    setSubtitleFr(existing.subtitleFr ?? '');
     setMessageEn(existing.messageEn);
     setMessageFr(existing.messageFr);
     setVariant(existing.variant);
@@ -54,6 +62,10 @@ export function BannerForm({ bannerId }: BannerFormProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const data: CreateOrUpdateBannerRequest = {
+      titleEn: titleEn.trim() || null,
+      titleFr: titleFr.trim() || null,
+      subtitleEn: subtitleEn.trim() || null,
+      subtitleFr: subtitleFr.trim() || null,
       messageEn,
       messageFr,
       variant,
@@ -107,7 +119,59 @@ export function BannerForm({ bannerId }: BannerFormProps) {
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="card p-6 space-y-4">
-          <h2 className="text-sm font-semibold text-gray-800">Content</h2>
+          <div>
+            <h2 className="text-sm font-semibold text-gray-800">Headline (optional)</h2>
+            <p className="text-xs text-gray-500 mt-0.5">
+              If set, the banner uses the rich layout (title + subtitle + message + CTA).
+              Leave empty for a compact single-line banner.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="label">Title (English)</label>
+              <input
+                value={titleEn}
+                onChange={(e) => setTitleEn(e.target.value)}
+                maxLength={120}
+                className="input"
+                placeholder="AI Skills Fest"
+              />
+            </div>
+            <div>
+              <label className="label">Title (Français)</label>
+              <input
+                value={titleFr}
+                onChange={(e) => setTitleFr(e.target.value)}
+                maxLength={120}
+                className="input"
+                placeholder="Festival des compétences IA"
+              />
+            </div>
+            <div>
+              <label className="label">Subtitle (English)</label>
+              <input
+                value={subtitleEn}
+                onChange={(e) => setSubtitleEn(e.target.value)}
+                maxLength={80}
+                className="input"
+                placeholder="June 8-12, 2026"
+              />
+            </div>
+            <div>
+              <label className="label">Subtitle (Français)</label>
+              <input
+                value={subtitleFr}
+                onChange={(e) => setSubtitleFr(e.target.value)}
+                maxLength={80}
+                className="input"
+                placeholder="8-12 juin 2026"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="card p-6 space-y-4">
+          <h2 className="text-sm font-semibold text-gray-800">Message</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="label">Message (English)</label>
@@ -118,7 +182,7 @@ export function BannerForm({ bannerId }: BannerFormProps) {
                 rows={3}
                 maxLength={500}
                 className="input"
-                placeholder="Short message shown to English visitors"
+                placeholder="Build your AI skills with chances to earn prizes and certification vouchers"
               />
             </div>
             <div>
@@ -130,7 +194,7 @@ export function BannerForm({ bannerId }: BannerFormProps) {
                 rows={3}
                 maxLength={500}
                 className="input"
-                placeholder="Message court affiché aux visiteurs francophones"
+                placeholder="Développez vos compétences en IA avec des prix et bons à gagner"
               />
             </div>
           </div>

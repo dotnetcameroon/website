@@ -105,6 +105,10 @@ export type BannerVariant = 'Announcement' | 'Advertisement' | 'Promo' | 'Event'
 
 export interface BannerResponse {
   id: string;
+  titleEn: string | null;
+  titleFr: string | null;
+  subtitleEn: string | null;
+  subtitleFr: string | null;
   messageEn: string;
   messageFr: string;
   variant: BannerVariant;
@@ -120,6 +124,10 @@ export interface BannerResponse {
 }
 
 export interface CreateOrUpdateBannerRequest {
+  titleEn: string | null;
+  titleFr: string | null;
+  subtitleEn: string | null;
+  subtitleFr: string | null;
   messageEn: string;
   messageFr: string;
   variant: BannerVariant;
