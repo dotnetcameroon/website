@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "src/**"
+      - "docker-compose.prod.yml"
       - ".github/workflows/main_deploy.yml"
 
 concurrency:
@@ -25,50 +26,83 @@ jobs:
       - name: Generate CSS
         run: npm install && npm run tailwind
 
-      - name: App Settings Variable Substitution
-        uses: microsoft/variable-substitution@v1
-        with:
-          files: './src/app/appsettings.Production.json'
-        env:
-          ConnectionStrings.SqlServer: ${{ secrets.AZURE_SQLSERVER_WEBSITE_DATABASE }}
-          ConnectionStrings.Npgsql: ${{ secrets.AZURE_POSTGRES_WEBSITE_DATABASE }}
-          ConnectionStrings.Sqlite: ${{ secrets.SQLITE_CONNECTION }}
-          CookiesOptions.Issuer: ${{ secrets.COOKIES_ISSUER}}
-          CookiesOptions.LoginPath: ${{ secrets.COOKIES_LOGINPATH}}
-          CookiesOptions.LogoutPath: ${{ secrets.COOKIES_LOGOUTPATH}}
-          CookiesOptions.AccessDeniedPath: ${{ secrets.COOKIES_ACCESSDENIEDPATH}}
-          CookiesOptions.ExpirationInDays: ${{ secrets.COOKIES_EXPIRATIONINDAYS}}
-          JwtOptions.Issuer: ${{ secrets.JWT_ISSUER}}
-          JwtOptions.Audience: ${{ secrets.JWT_AUDIENCE}}
-          JwtOptions.Secret: ${{ secrets.JWT_SECRET}}
-          JwtOptions.ExpirationInMinutes: ${{ secrets.JWT_EXPIRATION_IN_MINUTES}}
-          ApplicationInsights.InstrumentationKey: ${{ secrets.AZURE_APPINSIGHTS_INSTRUMENTAL_KEY}}
-          Minio.Endpoint: ${{ secrets.MINIO_ENDPOINT}}
-          Minio.PublicEndpoint: ${{ secrets.MINIO_PUBLICENDPOINT}}
-          Minio.AccessKey: ${{ secrets.MINIO_ACCESSKEY}}
-          Minio.SecretKey: ${{ secrets.MINIO_SECRETKEY}}
-          Minio.BucketName: ${{ secrets.MINIO_BUCKETNAME}}
-
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push Docker images
+      - name: Build and push Docker image
         run: |
           docker build -t djoufson/dotnetcameroon -f ./src/app/Dockerfile .
           docker push djoufson/dotnetcameroon:latest
 
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
+        env:
+          # --- VPS / Docker Hub access ---
+          PROJECT_PATH: ${{ secrets.PROJECT_PATH }}
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          # --- .NET runtime config (consumed by docker-compose.prod.yml) ---
+          AZURE_SQLSERVER_WEBSITE_DATABASE: ${{ secrets.AZURE_SQLSERVER_WEBSITE_DATABASE }}
+          AZURE_POSTGRES_WEBSITE_DATABASE: ${{ secrets.AZURE_POSTGRES_WEBSITE_DATABASE }}
+          SQLITE_CONNECTION: ${{ secrets.SQLITE_CONNECTION }}
+          COOKIES_ISSUER: ${{ secrets.COOKIES_ISSUER }}
+          COOKIES_LOGINPATH: ${{ secrets.COOKIES_LOGINPATH }}
+          COOKIES_LOGOUTPATH: ${{ secrets.COOKIES_LOGOUTPATH }}
+          COOKIES_ACCESSDENIEDPATH: ${{ secrets.COOKIES_ACCESSDENIEDPATH }}
+          COOKIES_EXPIRATIONINDAYS: ${{ secrets.COOKIES_EXPIRATIONINDAYS }}
+          JWT_ISSUER: ${{ secrets.JWT_ISSUER }}
+          JWT_AUDIENCE: ${{ secrets.JWT_AUDIENCE }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          JWT_EXPIRATION_IN_MINUTES: ${{ secrets.JWT_EXPIRATION_IN_MINUTES }}
+          AZURE_APPINSIGHTS_INSTRUMENTAL_KEY: ${{ secrets.AZURE_APPINSIGHTS_INSTRUMENTAL_KEY }}
+          MINIO_ENDPOINT: ${{ secrets.MINIO_ENDPOINT }}
+          MINIO_PUBLICENDPOINT: ${{ secrets.MINIO_PUBLICENDPOINT }}
+          MINIO_ACCESSKEY: ${{ secrets.MINIO_ACCESSKEY }}
+          MINIO_SECRETKEY: ${{ secrets.MINIO_SECRETKEY }}
+          MINIO_BUCKETNAME: ${{ secrets.MINIO_BUCKETNAME }}
+          # --- Container init secrets (must exist as GitHub Secrets) ---
+          MSSQL_SA_PASSWORD: ${{ secrets.MSSQL_SA_PASSWORD }}
+          MINIO_ROOT_USER: ${{ secrets.MINIO_ROOT_USER }}
+          MINIO_ROOT_PASSWORD: ${{ secrets.MINIO_ROOT_PASSWORD }}
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.VPS_SSH_KEY }}
           port: ${{ secrets.VPS_PORT }}
+          envs: PROJECT_PATH,DOCKERHUB_USERNAME,DOCKERHUB_TOKEN,AZURE_SQLSERVER_WEBSITE_DATABASE,AZURE_POSTGRES_WEBSITE_DATABASE,SQLITE_CONNECTION,COOKIES_ISSUER,COOKIES_LOGINPATH,COOKIES_LOGOUTPATH,COOKIES_ACCESSDENIEDPATH,COOKIES_EXPIRATIONINDAYS,JWT_ISSUER,JWT_AUDIENCE,JWT_SECRET,JWT_EXPIRATION_IN_MINUTES,AZURE_APPINSIGHTS_INSTRUMENTAL_KEY,MINIO_ENDPOINT,MINIO_PUBLICENDPOINT,MINIO_ACCESSKEY,MINIO_SECRETKEY,MINIO_BUCKETNAME,MSSQL_SA_PASSWORD,MINIO_ROOT_USER,MINIO_ROOT_PASSWORD
           script: |
-            cd ${{ secrets.PROJECT_PATH }}
-            docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+            set -e
+            cd "$PROJECT_PATH"
+            umask 077
+            cat > .env <<ENV_EOF
+            # Written by GitHub Actions main_deploy.yml. Do not edit by hand;
+            # re-run the deploy workflow to refresh. Non-sensitive defaults
+            # (ports, MSSQL_PID, etc.) come from docker-compose.prod.yml fallbacks.
+            MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD}
+            MINIO_ROOT_USER=${MINIO_ROOT_USER}
+            MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
+            AZURE_SQLSERVER_WEBSITE_DATABASE=${AZURE_SQLSERVER_WEBSITE_DATABASE}
+            AZURE_POSTGRES_WEBSITE_DATABASE=${AZURE_POSTGRES_WEBSITE_DATABASE}
+            SQLITE_CONNECTION=${SQLITE_CONNECTION}
+            COOKIES_ISSUER=${COOKIES_ISSUER}
+            COOKIES_LOGINPATH=${COOKIES_LOGINPATH}
+            COOKIES_LOGOUTPATH=${COOKIES_LOGOUTPATH}
+            COOKIES_ACCESSDENIEDPATH=${COOKIES_ACCESSDENIEDPATH}
+            COOKIES_EXPIRATIONINDAYS=${COOKIES_EXPIRATIONINDAYS}
+            JWT_ISSUER=${JWT_ISSUER}
+            JWT_AUDIENCE=${JWT_AUDIENCE}
+            JWT_SECRET=${JWT_SECRET}
+            JWT_EXPIRATION_IN_MINUTES=${JWT_EXPIRATION_IN_MINUTES}
+            AZURE_APPINSIGHTS_INSTRUMENTAL_KEY=${AZURE_APPINSIGHTS_INSTRUMENTAL_KEY}
+            MINIO_ENDPOINT=${MINIO_ENDPOINT}
+            MINIO_PUBLICENDPOINT=${MINIO_PUBLICENDPOINT}
+            MINIO_ACCESSKEY=${MINIO_ACCESSKEY}
+            MINIO_SECRETKEY=${MINIO_SECRETKEY}
+            MINIO_BUCKETNAME=${MINIO_BUCKETNAME}
+            ENV_EOF
+            docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_TOKEN"
             docker compose -f docker-compose.prod.yml pull
             docker compose -f docker-compose.prod.yml up -d --force-recreate
