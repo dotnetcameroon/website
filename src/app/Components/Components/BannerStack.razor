@@ -5,32 +5,48 @@
 
 @if (_banners.Length > 0)
 {
-    <div id="banner-stack" class="w-full flex flex-col">
+    <div id="banner-stack" class="w-full flex flex-col shadow-lg shadow-black/5">
         @foreach (var banner in _banners)
         {
             var textColor = VariantTextClass(banner.Variant);
-            <div class="banner @VariantBgClass(banner.Variant) @textColor flex items-center gap-3 px-4 py-2.5 text-sm"
+            var ctaClass = VariantCtaClass(banner.Variant);
+            var isLight = IsLightBanner(banner.Variant);
+            <div class="banner @VariantBgClass(banner.Variant) @textColor relative overflow-hidden"
                  data-banner-id="@banner.Id"
                  data-banner-dismissible="@(banner.Dismissible.ToString().ToLowerInvariant())">
-                <i class="@VariantIcon(banner.Variant) @textColor text-base shrink-0"></i>
-                <div class="flex-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center">
-                    <span class="@textColor">@Message(banner)</span>
-                    @if (!string.IsNullOrWhiteSpace(banner.Link))
+                <div class="pointer-events-none absolute inset-0 opacity-40">
+                    <div class="absolute -top-16 -right-16 w-56 h-56 rounded-full @(isLight ? "bg-white/40" : "bg-white/15") blur-3xl"></div>
+                    <div class="absolute -bottom-16 left-1/3 w-48 h-48 rounded-full @(isLight ? "bg-white/30" : "bg-white/10") blur-3xl"></div>
+                </div>
+                @if (banner.Variant == BannerVariant.Advertisement)
+                {
+                    <div class="banner-shine pointer-events-none absolute inset-0"></div>
+                }
+                <div class="relative max-w-7xl mx-auto flex items-center gap-3 px-4 sm:px-6 py-2.5 sm:py-3">
+                    <span class="@VariantBadgeClass(banner.Variant) inline-flex shrink-0 items-center justify-center size-8 rounded-full ring-1 backdrop-blur-sm">
+                        <i class="@VariantIcon(banner.Variant) @textColor text-[15px]"></i>
+                    </span>
+                    <div class="flex-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center">
+                        <span class="@textColor text-[13px] sm:text-sm font-medium tracking-tight leading-snug">
+                            @Message(banner)
+                        </span>
+                        @if (!string.IsNullOrWhiteSpace(banner.Link))
+                        {
+                            <a href="@banner.Link" target="_blank" rel="noreferrer"
+                               class="@ctaClass @textColor inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] sm:text-xs font-semibold uppercase tracking-wider transition-all">
+                                @(LinkLabel(banner) ?? "Learn more")
+                                <i class="ph ph-arrow-up-right @textColor text-[11px]"></i>
+                            </a>
+                        }
+                    </div>
+                    @if (banner.Dismissible)
                     {
-                        <a href="@banner.Link" target="_blank" rel="noreferrer"
-                           class="@textColor font-medium underline hover:no-underline whitespace-nowrap">
-                            @(LinkLabel(banner) ?? "Learn more")
-                            <i class="ph ph-arrow-up-right @textColor text-xs"></i>
-                        </a>
+                        <button type="button" class="banner-dismiss shrink-0 rounded-full p-1.5 @(isLight ? "hover:bg-black/10" : "hover:bg-white/15") opacity-70 hover:opacity-100 transition-all cursor-pointer"
+                                aria-label="Dismiss">
+                            <i class="ph ph-x @textColor text-sm"></i>
+                        </button>
                     }
                 </div>
-                @if (banner.Dismissible)
-                {
-                    <button type="button" class="banner-dismiss shrink-0 rounded-full p-1 hover:bg-black/10 transition-colors cursor-pointer"
-                            aria-label="Dismiss">
-                        <i class="ph ph-x @textColor text-base"></i>
-                    </button>
-                }
             </div>
         }
     </div>
@@ -56,11 +72,11 @@
 
     private static string VariantBgClass(BannerVariant v) => v switch
     {
-        BannerVariant.Announcement => "bg-secondary",
-        BannerVariant.Advertisement => "bg-tertiary",
-        BannerVariant.Promo => "bg-primary",
-        BannerVariant.Event => "bg-dark-purple",
-        BannerVariant.Maintenance => "bg-amber-500",
+        BannerVariant.Announcement => "bg-gradient-to-r from-secondary via-secondary-accentuation to-secondary",
+        BannerVariant.Advertisement => "bg-gradient-to-r from-tertiary via-tertiary-accentuation to-tertiary",
+        BannerVariant.Promo => "bg-gradient-to-r from-primary via-primary-accentuation to-primary",
+        BannerVariant.Event => "bg-gradient-to-r from-dark-purple via-secondary to-dark-purple",
+        BannerVariant.Maintenance => "bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400",
         _ => "bg-secondary",
     };
 
@@ -73,6 +89,17 @@
         BannerVariant.Maintenance => "text-dark-purple",
         _ => "text-white",
     };
+
+    private static string VariantCtaClass(BannerVariant v) => IsLightBanner(v)
+        ? "bg-dark-purple/10 hover:bg-dark-purple/20"
+        : "bg-white/15 hover:bg-white/25 backdrop-blur-sm";
+
+    private static string VariantBadgeClass(BannerVariant v) => IsLightBanner(v)
+        ? "bg-dark-purple/10 ring-dark-purple/15"
+        : "bg-white/15 ring-white/25";
+
+    private static bool IsLightBanner(BannerVariant v) =>
+        v == BannerVariant.Advertisement || v == BannerVariant.Maintenance;
 
     private static string VariantIcon(BannerVariant v) => v switch
     {

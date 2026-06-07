@@ -443,3 +443,46 @@
 .tabs .tab.active{
   @apply text-secondary border-b-2 border-secondary hover:border-secondary-accentuation hover:text-secondary-accentuation;
 }
+
+/* Banners */
+.banner {
+  animation: banner-slide-down 360ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.banner + .banner {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+@keyframes banner-slide-down {
+  from {
+    transform: translateY(-12px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.banner-shine::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  animation: banner-shine 4.5s ease-in-out 1s infinite;
+}
+
+@keyframes banner-shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  60%, 100% {
+    transform: translateX(100%);
+  }
+}
