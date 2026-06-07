@@ -37,6 +37,34 @@ jobs:
           docker build -t djoufson/dotnetcameroon -f ./src/app/Dockerfile .
           docker push djoufson/dotnetcameroon:latest
 
+      - name: Clean stale files on VPS
+        uses: appleboy/ssh-action@master
+        env:
+          PROJECT_PATH: ${{ secrets.PROJECT_PATH }}
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          envs: PROJECT_PATH
+          # Removes both files even if they were created by a different user
+          # in a previous manual setup. rm needs write access to the parent
+          # directory, not the file itself, so this works as long as the SSH
+          # user owns $PROJECT_PATH.
+          script: |
+            cd "$PROJECT_PATH"
+            rm -f .env docker-compose.prod.yml
+
+      - name: Copy compose file to VPS
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          source: docker-compose.prod.yml
+          target: ${{ secrets.PROJECT_PATH }}
+
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
         env:
@@ -77,9 +105,6 @@ jobs:
             set -e
             cd "$PROJECT_PATH"
             umask 077
-            # Remove any stale .env (possibly owned by another user from a
-            # previous manual setup) before rewriting from secrets.
-            rm -f .env
             cat > .env <<ENV_EOF
             # Written by GitHub Actions main_deploy.yml. Do not edit by hand;
             # re-run the deploy workflow to refresh. Non-sensitive defaults
