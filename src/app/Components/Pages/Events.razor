@@ -28,90 +28,129 @@
 </HeadContent>
 
 <NavBar />
-<Banner Title="Events" Description="Discover, Connect, and Grow with our upcoming Events."
-    BackgroundImage="carousel-2.png" />
 
-<!-- Up coming events -->
+<!-- Page Header -->
+<section class="bg-dark-purple relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-dark-purple via-secondary/30 to-dark-purple"></div>
+    <div class="relative container mx-auto px-6 lg:px-8 py-20 lg:py-28">
+        <div class="max-w-3xl">
+            <span class="eyebrow text-white/60">Events</span>
+            <h1 class="text-white heading font-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight mt-6">
+                Discover, connect, and grow.
+            </h1>
+            <p class="text-white/75 text-base lg:text-lg leading-relaxed max-w-2xl mt-6">
+                Explore our upcoming meetups and conferences — and revisit the moments that shaped our community.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Upcoming events -->
 @if (_upcomingEvents.Length > 0)
 {
-    <section>
-    <div class="container mx-auto p-4 section flex flex-col items-start">
-        <h1 class="heading heading-1">Get in touch with our up coming events</h1>
-        <p class="md:w-2/3">Stay ahead in the .NET world by joining our upcoming events. From hands-on workshops to
-            networking meetups, these events are your chance to learn, connect, and grow with our community.</p>
-        <div class="w-full md:relative flex flex-col md:flex-row gap-4 mt-4">
-            @foreach (var (item, i) in _upcomingEvents.Select((item, index) => (item, index + 1)))
-                {
-                    <div class="event-card event-card-@i relative h-[500px] flex items-end p-8 overflow-hidden">
-                        <img class="block event-background absolute top-0 left-0 w-full h-ful" src="@item.ImageUrl"
-                            alt="@item.Title" />
-                        <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40"></div>
-                        <div class="event-container relative z-10 flex flex-col gap-6 items-start overflow-y-hidden">
-                            <div class="event-text">
-                                <h2 class="heading heading-5 md:heading-3 text-white bg-primary p-4 w-fit">@item.Title</h2>
-                                <p
-                                    class="event-card-description font-special text-white text-2xl font-bold text-ellipsis line-clamp-3">
-                                    @item.Description</p>
-                                <p class="text-white font-bold">@item.Schedule.Start.ToCustomDateString()</p>
-                            </div>
-                            <div class="event-actions flex gap-4 md:translate-y-full md:opacity-0 flex-wrap">
-                                @if (!string.IsNullOrWhiteSpace(item.RegistrationLink))
-                                {
-                                    <a href="@item.RegistrationLink" target="_blank" class="btn btn-primary">Register</a>
-                                }
-                                <a href="/events/@item.Id" data-enhance-nav="false" class="btn btn-secondary">Learn more <i
-                                        class="fa-solid fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                }
+    <section class="bg-white">
+        <div class="container mx-auto px-6 lg:px-8 py-24 lg:py-32">
+            <div class="flex items-end justify-between flex-wrap gap-4 mb-12">
+                <div class="max-w-2xl">
+                    <span class="eyebrow text-primary">Upcoming</span>
+                    <h2 class="heading heading-1 mt-4">What's next</h2>
+                    <p class="text-gray-600 mt-4 leading-relaxed">
+                        Join us at one of our upcoming events to learn, network, and grow with the community.
+                    </p>
+                </div>
                 <a data-enhance-nav="false" href="/events/search"
-                    class="hidden self-center md:flex flex-col w-16 h-16 rounded-full items-center border-2 border-black justify-center hover:bg-black hover:text-white bg-opacity-75 hover:bg-opacity-100 transition-all">
-                    All
-                    <i class="fa-solid fa-arrow-right"></i>
+                   class="hidden md:inline-flex items-center gap-1.5 text-sm font-medium text-secondary hover:text-secondary-accentuation transition-colors">
+                    View all
+                    <i class="ph ph-arrow-right text-sm"></i>
                 </a>
             </div>
-            @if (_upcomingEvents.Length > 0)
-            {
-                <a data-enhance-nav="false" href="/" class="link link-secondary mt-4 md:hidden self-center">View all</a>
-            }
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                @foreach (var item in _upcomingEvents)
+                {
+                    <article class="group bg-white rounded-xl overflow-hidden border border-gray-200/70 hover:border-gray-300 transition-colors flex flex-col">
+                        <div class="aspect-[16/9] overflow-hidden bg-gray-100">
+                            <img src="@item.ImageUrl" alt="@item.Title"
+                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
+                        </div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <span class="eyebrow text-primary">@item.Schedule.Start.ToCustomDateString()</span>
+                            <h3 class="heading font-semibold text-xl text-dark-purple mt-3">@item.Title</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed line-clamp-3 mt-2 flex-1">@item.Description</p>
+                            <div class="flex flex-wrap gap-3 mt-6 pt-5 border-t border-gray-100">
+                                @if (!string.IsNullOrWhiteSpace(item.RegistrationLink))
+                                {
+                                    <a href="@item.RegistrationLink" target="_blank" class="btn btn-primary inline-flex items-center gap-2">
+                                        Register
+                                        <i class="ph ph-arrow-up-right text-base"></i>
+                                    </a>
+                                }
+                                <a href="/events/@item.Id" data-enhance-nav="false"
+                                   class="btn btn-outline inline-flex items-center gap-2">
+                                    Learn more
+                                    <i class="ph ph-arrow-right text-base"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                }
+            </div>
+
+            <a data-enhance-nav="false" href="/events/search"
+               class="md:hidden mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-secondary hover:text-secondary-accentuation transition-colors">
+                View all events
+                <i class="ph ph-arrow-right text-sm"></i>
+            </a>
         </div>
     </section>
-
 }
+
 <!-- Previous events -->
-<section>
-    <div class="container mx-auto p-4 section">
-        <h1 class="heading heading-1">Take a look at our previous events</h1>
-        <p class="md:w-2/3">Revisit the highlights of our past events. Explore our archive to relive the learning,
-            collaboration, and innovation that have shaped our community's journey.</p>
-        <div class="mt-7 flex flex-col gap-6 md:gap-16">
-            @if (_previousEvents.Length > 0)
-            {
+<section class="bg-gray-50/50 border-t border-gray-100">
+    <div class="container mx-auto px-6 lg:px-8 py-24 lg:py-32">
+        <div class="max-w-2xl mb-12">
+            <span class="eyebrow text-secondary">Archive</span>
+            <h2 class="heading heading-1 mt-4">Past events</h2>
+            <p class="text-gray-600 mt-4 leading-relaxed">
+                Revisit our previous meetups and conferences — the learning, collaboration, and the people who joined us.
+            </p>
+        </div>
+
+        @if (_previousEvents.Length > 0)
+        {
+            <div class="divide-y divide-gray-200/70 border-y border-gray-200/70 bg-white rounded-xl">
                 @foreach (var item in _previousEvents)
                 {
-                    <div class="past-event-card flex flex-col md:flex-row gap-4">
-                        <h2 class="heading heading-3 md:hidden">@item.Title</h2>
-                        <img src="@item.ImageUrl" alt="@item.Title" class="block h-[200px] w-full md:w-[400px] object-cover">
-                        <div class="flex flex-col items-start md:w-[calc(100%-400px)]">
-                            <h2 class="heading heading-3 hidden md:block">@item.Title</h2>
-                            <p class="bg-secondary bg-opacity-60 text-white px-2 py-1 text-xs rounded-xl">
-                                @item.Schedule.Start.ToCustomDateString() | @item.HostingModel.ToFriendlyString()</p>
-                            <p class="mt-2 text-ellipsis line-clamp-3">
-                                @item.Description
-                            </p>
-                            <a data-enhance-nav="false" href="/events/@item.Id" class="btn btn-primary mt-2">Read more <i
-                                    class="fa-solid fa-arrow-right"></i></a>
+                    <article class="group p-6 lg:p-8 flex flex-col md:flex-row gap-6 transition-colors hover:bg-gray-50/60">
+                        <div class="md:w-64 shrink-0 aspect-[16/10] md:aspect-[4/3] overflow-hidden rounded-lg bg-gray-100">
+                            <img src="@item.ImageUrl" alt="@item.Title"
+                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
                         </div>
-                    </div>
+                        <div class="flex-1 flex flex-col">
+                            <div class="flex flex-wrap items-center gap-3">
+                                <span class="eyebrow text-secondary">@item.Schedule.Start.ToCustomDateString()</span>
+                                <span class="text-gray-300">·</span>
+                                <span class="text-xs text-gray-500 font-medium">@item.HostingModel.ToFriendlyString()</span>
+                            </div>
+                            <h3 class="heading font-semibold text-xl text-dark-purple mt-3 group-hover:text-secondary transition-colors">@item.Title</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed line-clamp-3 mt-2 flex-1">@item.Description</p>
+                            <a data-enhance-nav="false" href="/events/@item.Id"
+                               class="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-secondary hover:text-secondary-accentuation transition-colors w-fit">
+                                Read more
+                                <i class="ph ph-arrow-right text-sm"></i>
+                            </a>
+                        </div>
+                    </article>
                 }
-            }
-            else
-            {
-                <p class="heading heading-3"><i class="fa-regular fa-face-frown"></i> There is unfortunately nothing to show
-                    !</p>
-            }
-        </div>
+            </div>
+        }
+        else
+        {
+            <div class="rounded-xl border border-dashed border-gray-300 bg-white p-16 text-center">
+                <i class="ph ph-calendar-x text-3xl text-gray-300"></i>
+                <p class="mt-3 text-sm text-gray-500">There is nothing to show yet.</p>
+            </div>
+        }
     </div>
 </section>
 

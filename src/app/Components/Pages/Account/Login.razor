@@ -7,37 +7,86 @@
 
 <PageTitle>@L["PageTitle_Login"]</PageTitle>
 
-<div class="h-[100svh] flex">
-    <div class="relative hidden md:flex md:flex-col items-start md:w-1/2 bg-primary p-12 bg-[url('/assets/featured/carousel-3.png')] bg-bottom bg-cover bg-no-repeat">
-        <div class="absolute z-10 top-0 left-0 w-full h-full bg-gradient-to-r from-black to-transparent opacity-70"></div>
-        <a data-enhance-nav="false" href="/" class="relative z-10">
-            <img src="@Assets["/assets/brand/logo.png"]" alt=".NET Cameroon logo" class="w-[100px]">
+<div class="min-h-[100svh] flex bg-white">
+    <!-- Visual side -->
+    <div class="relative hidden md:flex md:flex-col items-start justify-between md:w-1/2 p-12 bg-dark-purple overflow-hidden">
+        <div class="absolute inset-0 bg-[url('/assets/featured/carousel-3.png')] bg-cover bg-bottom opacity-30"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-dark-purple via-dark-purple/95 to-secondary/40"></div>
+
+        <a data-enhance-nav="false" href="/" class="relative">
+            <img src="@Assets["/assets/brand/logo.png"]" alt=".NET Cameroon logo" class="w-14">
         </a>
+        <div class="relative max-w-md">
+            <span class="eyebrow text-white/60">Admin</span>
+            <h2 class="heading text-white font-bold text-3xl lg:text-4xl leading-tight tracking-tight mt-5">
+                Sign in to manage the .NET Cameroon community.
+            </h2>
+            <p class="text-white/70 text-sm leading-relaxed mt-4">
+                Events, banners, partners and more — all in one place.
+            </p>
+        </div>
+        <p class="relative text-white/40 text-xs">© .NET Cameroon</p>
     </div>
-    <div class="w-full md:w-1/2 flex items-center justify-center p-8 md:p-12">
-        <div class="flex flex-col gap-6 w-[400px] p-4">
-            <img src="@Assets["/assets/brand/logo-rounded.png"]" alt=".NET Cameroon logo" class="block justify-self-center self-center my-4 size-20"/>
-            <div>
-                <h1 class="heading heading-1 text-center">@L["Login_Welcome"]</h1>
-                <p class="text-center text-gray-500">@L["Login_Subtitle"]</p>
-                <ul>
-                    @foreach(var message in _errorMessages)
-                    {
-                        <li class="text-red-400 list-disc">@message</li>
-                    }
-                </ul>
-            </div>
-            <EditForm class="flex flex-col gap-4" OnValidSubmit="@HandleLogin" Model="@Model" FormName="login-form">
-                <label for="email-input" class="flex items-center px-4 gap-1 border border-gray-400 rounded-lg">
-                    <i class="fa-regular fa-envelope"></i>
-                    <InputText class="p-2 w-full" id="email-input" @bind-Value="@Model.Email" title="email" required type="email" placeholder="@L["Login_EmailPlaceholder"]"/>
-                </label>
-                <label for="password-input" class="flex items-center px-4 gap-1 border border-gray-400 rounded-lg">
-                    <i class="fa-solid fa-lock"></i>
-                    <InputText class="p-2 w-full" id="password-input" @bind-Value="@Model.Password" title="password" required type="password" placeholder="@L["Login_PasswordPlaceholder"]"/>
-                </label>
-                <button class="btn btn-primary center mt-6" type="submit">@L["Login_Button"]</button>
-                <a data-enhance-nav="false" href="/" class="link link-secondary text-center"><i class="fa-solid fa-arrow-left"></i> @L["Login_BackToHome"]</a>
+
+    <!-- Form side -->
+    <div class="w-full md:w-1/2 flex items-center justify-center p-6 md:p-12">
+        <div class="w-full max-w-sm">
+            <a data-enhance-nav="false" href="/" class="md:hidden inline-flex items-center mb-8">
+                <img src="@Assets["/assets/brand/logo-rounded.png"]" alt=".NET Cameroon logo" class="size-12" />
+            </a>
+
+            <span class="eyebrow text-primary">Welcome back</span>
+            <h1 class="heading font-bold text-2xl lg:text-3xl text-dark-purple tracking-tight leading-tight mt-3">
+                @L["Login_Welcome"]
+            </h1>
+            <p class="text-gray-500 text-sm leading-relaxed mt-2">@L["Login_Subtitle"]</p>
+
+            @if (_errorMessages.Length > 0)
+            {
+                <div class="mt-6 flex items-start gap-2 p-3 rounded-lg bg-red-50/70 border border-red-200 text-red-700 text-sm">
+                    <i class="ph ph-warning-circle text-base shrink-0 mt-0.5"></i>
+                    <ul class="space-y-1">
+                        @foreach (var message in _errorMessages)
+                        {
+                            <li>@message</li>
+                        }
+                    </ul>
+                </div>
+            }
+
+            <EditForm class="mt-8 space-y-4" OnValidSubmit="@HandleLogin" Model="@Model" FormName="login-form">
+                <div>
+                    <label for="email-input" class="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
+                    <div class="relative">
+                        <i class="ph ph-envelope absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-base"></i>
+                        <InputText
+                            class="w-full pl-10 pr-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors"
+                            id="email-input" @bind-Value="@Model.Email" title="email" required type="email"
+                            placeholder="@L["Login_EmailPlaceholder"]" />
+                    </div>
+                </div>
+
+                <div>
+                    <label for="password-input" class="block text-sm font-medium text-gray-700 mb-1.5">Password</label>
+                    <div class="relative">
+                        <i class="ph ph-lock absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-base"></i>
+                        <InputText
+                            class="w-full pl-10 pr-3.5 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors"
+                            id="password-input" @bind-Value="@Model.Password" title="password" required type="password"
+                            placeholder="@L["Login_PasswordPlaceholder"]" />
+                    </div>
+                </div>
+
+                <button class="btn btn-primary w-full inline-flex items-center justify-center gap-2 mt-2" type="submit">
+                    @L["Login_Button"]
+                    <i class="ph ph-arrow-right text-base"></i>
+                </button>
+
+                <a data-enhance-nav="false" href="/"
+                   class="block text-center text-sm text-gray-500 hover:text-dark-purple transition-colors mt-4">
+                    <i class="ph ph-arrow-left text-sm align-middle"></i>
+                    <span class="align-middle">@L["Login_BackToHome"]</span>
+                </a>
             </EditForm>
         </div>
     </div>
@@ -51,21 +100,21 @@
     [SupplyParameterFromForm]
     private LoginModel Model { get; set; } = new();
     private string[] _errorMessages = [];
-    
+
     private Microsoft.Extensions.Localization.IStringLocalizer? _localizer;
     private Microsoft.Extensions.Localization.IStringLocalizer L => _localizer ??= LocalizerFactory.Create("SharedResources", "app");
-    
+
     private async Task HandleLogin()
     {
         var userResult = await IdentityService.LoginAsync(Model.Email, Model.Password);
         Model.Password = string.Empty;
-        if(userResult.IsError)
+        if (userResult.IsError)
         {
             _errorMessages = userResult.Errors.Select(e => e.Description).ToArray();
             return;
         }
 
-        if(string.IsNullOrWhiteSpace(ReturnUrl))
+        if (string.IsNullOrWhiteSpace(ReturnUrl))
         {
             ReturnUrl = DefaultReturnUrl;
         }

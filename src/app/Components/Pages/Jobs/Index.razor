@@ -1,5 +1,6 @@
 @page "/jobs"
 @using Microsoft.Extensions.Localization
+@using app.Components.Pages.Jobs.Components
 @attribute [StreamRendering]
 @inject Microsoft.Extensions.Localization.IStringLocalizerFactory LocalizerFactory
 @inject NavigationManager NavigationManager
@@ -26,87 +27,100 @@
 
 <div>
     <NavBar />
-    
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-primary to-secondary py-20">
-        <div class="container mx-auto px-4 py-16">
-            <div class="text-center text-white">
-                <h1 class="heading heading-1 text-white mb-4">Find Your Next Opportunity</h1>
-                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-                    Discover .NET and software development jobs in Cameroon and worldwide
-                </p>
-                <a href="/jobs/submit" data-enhance-nav="false" class="btn btn-outline-white">
-                    <i class="fa-solid fa-plus"></i> Post a Job
+
+    <!-- Page header -->
+    <section class="bg-dark-purple relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-dark-purple via-secondary/30 to-dark-purple"></div>
+        <div class="relative container mx-auto px-6 lg:px-8 py-20 lg:py-28">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+                <div class="max-w-2xl">
+                    <span class="eyebrow text-white/60">Careers</span>
+                    <h1 class="text-white heading font-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight mt-6">
+                        Find your next .NET role.
+                    </h1>
+                    <p class="text-white/75 text-base lg:text-lg leading-relaxed max-w-xl mt-6">
+                        Roles posted by companies hiring .NET developers across Cameroon and remote.
+                    </p>
+                </div>
+                <a href="/jobs/submit" data-enhance-nav="false"
+                   class="btn bg-white text-dark-purple hover:bg-white/90 inline-flex items-center gap-2 shrink-0">
+                    <i class="ph ph-plus text-base"></i>
+                    Post a job
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Search and Filter Section -->
-    <section class="bg-white shadow-md -mt-8 relative z-10">
-        <div class="container mx-auto px-4 py-6">
-            <div class="flex flex-col md:flex-row gap-4">
-                <div class="flex-1">
-                    <input type="text" 
+    <!-- Search & filters -->
+    <section class="bg-white border-b border-gray-100">
+        <div class="container mx-auto px-6 lg:px-8 py-6">
+            <div class="flex flex-col lg:flex-row gap-3">
+                <div class="relative flex-1">
+                    <i class="ph ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-base"></i>
+                    <input type="text"
                            @bind="_searchQuery"
                            @bind:event="oninput"
-                           placeholder="Search jobs by title, skills, or company..." 
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                           placeholder="Search by title, skill, or company"
+                           class="w-full pl-10 pr-4 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors" />
                 </div>
-                <div class="flex flex-col md:flex-row gap-4">
-                    <select @bind="_selectedLocation" class="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                        <option value="">All Locations</option>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <select @bind="_selectedLocation"
+                            class="px-3 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors">
+                        <option value="">All locations</option>
                         <option value="douala">Douala</option>
                         <option value="yaounde">Yaoundé</option>
                         <option value="remote">Remote</option>
                         <option value="international">International</option>
                     </select>
-                    <select @bind="_selectedType" class="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                        <option value="">All Types</option>
+                    <select @bind="_selectedType"
+                            class="px-3 py-2.5 text-sm bg-gray-50/70 border border-gray-200 rounded-lg focus:outline-none focus:border-secondary focus:bg-white focus:ring-2 focus:ring-secondary/15 transition-colors">
+                        <option value="">All types</option>
                         <option value="full-time">Full-time</option>
                         <option value="part-time">Part-time</option>
                         <option value="contract">Contract</option>
                         <option value="freelance">Freelance</option>
                         <option value="internship">Internship</option>
                     </select>
-                    <button @onclick="ApplyFilters" class="btn btn-primary whitespace-nowrap">
-                        <i class="fa-solid fa-search"></i> Search
+                    <button @onclick="ApplyFilters"
+                            class="btn btn-primary inline-flex items-center gap-2 whitespace-nowrap">
+                        <i class="ph ph-magnifying-glass text-base"></i>
+                        Search
                     </button>
                 </div>
             </div>
-            
-            @if (!string.IsNullOrEmpty(_searchQuery) || !string.IsNullOrEmpty(_selectedLocation) || !string.IsNullOrEmpty(_selectedType))
+
+            @if (HasActiveFilters)
             {
                 <div class="mt-4 flex items-center gap-2 flex-wrap">
-                    <span class="text-sm text-gray-600">Active filters:</span>
+                    <span class="text-xs text-gray-500 uppercase tracking-wider font-semibold">Filters</span>
                     @if (!string.IsNullOrEmpty(_searchQuery))
                     {
-                        <span class="px-3 py-1 bg-primary text-white rounded-full text-xs flex items-center gap-2">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-gray-100 text-gray-700 rounded-md text-xs">
                             "@_searchQuery"
-                            <button @onclick="() => ClearFilter(nameof(_searchQuery))" class="hover:bg-white hover:text-primary rounded-full">
-                                <i class="fa-solid fa-times"></i>
+                            <button @onclick="() => ClearFilter(nameof(_searchQuery))" class="text-gray-400 hover:text-dark-purple transition-colors cursor-pointer" aria-label="Clear search">
+                                <i class="ph ph-x text-xs"></i>
                             </button>
                         </span>
                     }
                     @if (!string.IsNullOrEmpty(_selectedLocation))
                     {
-                        <span class="px-3 py-1 bg-primary text-white rounded-full text-xs flex items-center gap-2">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-gray-100 text-gray-700 rounded-md text-xs">
                             @_selectedLocation
-                            <button @onclick="() => ClearFilter(nameof(_selectedLocation))" class="hover:bg-white hover:text-primary rounded-full">
-                                <i class="fa-solid fa-times"></i>
+                            <button @onclick="() => ClearFilter(nameof(_selectedLocation))" class="text-gray-400 hover:text-dark-purple transition-colors cursor-pointer" aria-label="Clear location">
+                                <i class="ph ph-x text-xs"></i>
                             </button>
                         </span>
                     }
                     @if (!string.IsNullOrEmpty(_selectedType))
                     {
-                        <span class="px-3 py-1 bg-primary text-white rounded-full text-xs flex items-center gap-2">
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-gray-100 text-gray-700 rounded-md text-xs">
                             @_selectedType
-                            <button @onclick="() => ClearFilter(nameof(_selectedType))" class="hover:bg-white hover:text-primary rounded-full">
-                                <i class="fa-solid fa-times"></i>
+                            <button @onclick="() => ClearFilter(nameof(_selectedType))" class="text-gray-400 hover:text-dark-purple transition-colors cursor-pointer" aria-label="Clear type">
+                                <i class="ph ph-x text-xs"></i>
                             </button>
                         </span>
                     }
-                    <button @onclick="ClearAllFilters" class="text-sm text-primary hover:underline ml-2">
+                    <button @onclick="ClearAllFilters" class="text-xs text-secondary hover:text-secondary-accentuation transition-colors font-medium cursor-pointer">
                         Clear all
                     </button>
                 </div>
@@ -114,330 +128,136 @@
         </div>
     </section>
 
-    <!-- How It Works Section -->
-    <section class="section bg-gradient-to-br from-blue-50 to-indigo-50 py-16">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="heading heading-2 mb-4">How It Works</h2>
-                <p class="text-gray-700 text-lg max-w-3xl mx-auto">
-                    Whether you're looking for your next opportunity or searching for talented .NET developers, 
-                    our platform makes the process simple and efficient.
+    <!-- Job listings -->
+    <section id="job-listings" class="bg-white">
+        <div class="container mx-auto px-6 lg:px-8 py-16 lg:py-20">
+            <div class="flex items-end justify-between gap-4 mb-8">
+                <div>
+                    <h2 class="heading font-bold text-2xl text-dark-purple">Latest openings</h2>
+                    <p class="text-sm text-gray-500 mt-1.5 tabular-nums">@FilteredJobs.Length position@(FilteredJobs.Length != 1 ? "s" : "")</p>
+                </div>
+                <div class="flex gap-1 bg-gray-100/80 p-1 rounded-lg">
+                    <button @onclick="() => _viewMode = ViewMode.Grid"
+                            class="p-1.5 rounded-md transition-colors cursor-pointer @(_viewMode == ViewMode.Grid ? "bg-white text-dark-purple shadow-sm" : "text-gray-400 hover:text-gray-600")"
+                            aria-label="Grid view">
+                        <i class="ph ph-grid-four text-base"></i>
+                    </button>
+                    <button @onclick="() => _viewMode = ViewMode.List"
+                            class="p-1.5 rounded-md transition-colors cursor-pointer @(_viewMode == ViewMode.List ? "bg-white text-dark-purple shadow-sm" : "text-gray-400 hover:text-gray-600")"
+                            aria-label="List view">
+                        <i class="ph ph-list text-base"></i>
+                    </button>
+                </div>
+            </div>
+
+            @if (FilteredJobs.Length == 0)
+            {
+                <div class="rounded-xl border border-dashed border-gray-300 bg-gray-50/50 p-12 lg:p-16 text-center max-w-2xl mx-auto">
+                    <i class="ph ph-briefcase text-3xl text-gray-300"></i>
+                    <h3 class="heading font-semibold text-lg text-dark-purple mt-4">Job board coming soon</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mt-3">
+                        We're building a job board to connect .NET developers with opportunities in Cameroon and beyond.
+                        Meanwhile, join the community to stay updated on new openings.
+                    </p>
+                    <div class="flex flex-wrap gap-2 justify-center mt-6">
+                        <a href="https://discord.gg/npkCMRgqdm" target="_blank"
+                           class="btn btn-primary inline-flex items-center gap-2">
+                            <i class="ph-fill ph-discord-logo text-base"></i>
+                            Join Discord
+                        </a>
+                        <a href="https://www.linkedin.com/company/dotnetcameroon" target="_blank"
+                           class="btn btn-outline inline-flex items-center gap-2">
+                            <i class="ph-fill ph-linkedin-logo text-base"></i>
+                            Follow on LinkedIn
+                        </a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="@(_viewMode == ViewMode.Grid ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" : "flex flex-col gap-3")">
+                    @foreach (var job in FilteredJobs)
+                    {
+                        <JobCard Title="@job.Title"
+                                 Company="@job.Company"
+                                 Type="@job.Type"
+                                 Location="@job.Location"
+                                 PostedDate="@job.PostedDate"
+                                 Salary="@job.Salary"
+                                 Skills="@job.Skills"
+                                 Description="@job.Description"
+                                 JobUrl="@($"/jobs/{job.Id}")" />
+                    }
+                </div>
+            }
+        </div>
+    </section>
+
+    <!-- How it works (condensed) -->
+    <section class="bg-gray-50/50 border-t border-gray-100">
+        <div class="container mx-auto px-6 lg:px-8 py-24 lg:py-32">
+            <div class="max-w-2xl mb-14">
+                <span class="eyebrow text-secondary">How it works</span>
+                <h2 class="heading heading-1 mt-4">A simple flow on both sides.</h2>
+                <p class="text-gray-600 mt-4 leading-relaxed">
+                    Whether you're searching for your next role or looking to hire, the path is straightforward.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-                <!-- For Job Seekers -->
-                <div class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-primary">
-                    <div class="flex items-center mb-6">
-                        <div class="w-14 h-14 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center text-white text-xl font-bold shadow-lg">
-                            <i class="fa-solid fa-user-tie"></i>
-                        </div>
-                        <h3 class="heading heading-3 ml-4">For Job Seekers</h3>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                <!-- For job seekers -->
+                <div class="bg-white rounded-xl border border-gray-200/70 p-8">
+                    <div class="flex items-center gap-3">
+                        <span class="inline-flex items-center justify-center size-9 rounded-lg bg-primary/10 text-primary">
+                            <i class="ph-duotone ph-user-focus text-lg"></i>
+                        </span>
+                        <h3 class="heading font-semibold text-lg text-dark-purple">For developers</h3>
                     </div>
-                    
-                    <div class="space-y-6">
-                        <!-- Step 1 -->
-                        <div class="flex items-start group">
-                            <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-primary to-blue-600 text-white rounded-full flex items-center justify-center font-bold shadow-md transition-transform group-hover:scale-110">
-                                1
-                            </div>
-                            <div class="ml-4 flex-1">
-                                <h4 class="font-bold text-lg mb-2 text-gray-800">Browse Opportunities</h4>
-                                <p class="text-gray-600 leading-relaxed">
-                                    Explore our curated list of .NET and software development jobs. Use filters to find positions that match your skills and preferences.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Step 2 -->
-                        <div class="flex items-start group">
-                            <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-primary to-blue-600 text-white rounded-full flex items-center justify-center font-bold shadow-md transition-transform group-hover:scale-110">
-                                2
-                            </div>
-                            <div class="ml-4 flex-1">
-                                <h4 class="font-bold text-lg mb-2 text-gray-800">Review Job Details</h4>
-                                <p class="text-gray-600 leading-relaxed">
-                                    Click on any job to see complete information including responsibilities, requirements, salary range, and company details.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Step 3 -->
-                        <div class="flex items-start group">
-                            <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-primary to-blue-600 text-white rounded-full flex items-center justify-center font-bold shadow-md transition-transform group-hover:scale-110">
-                                3
-                            </div>
-                            <div class="ml-4 flex-1">
-                                <h4 class="font-bold text-lg mb-2 text-gray-800">Apply Directly</h4>
-                                <p class="text-gray-600 leading-relaxed">
-                                    Submit your application through the provided email or external link. Each job posting includes clear application instructions and deadlines.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Step 4 -->
-                        <div class="flex items-start group">
-                            <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-primary to-blue-600 text-white rounded-full flex items-center justify-center font-bold shadow-md transition-transform group-hover:scale-110">
-                                4
-                            </div>
-                            <div class="ml-4 flex-1">
-                                <h4 class="font-bold text-lg mb-2 text-gray-800">Get Hired</h4>
-                                <p class="text-gray-600 leading-relaxed">
-                                    Connect with employers and showcase your .NET expertise. Join our vibrant community of developers.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-8 pt-6 border-t border-gray-200">
-                        <div class="flex items-start text-sm bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                            <i class="fa-solid fa-lightbulb text-yellow-500 text-xl mr-3 flex-shrink-0 mt-0.5"></i>
-                            <span class="text-gray-700"><strong class="text-yellow-700">Tip:</strong> Join our Discord community to stay updated on the latest job opportunities and connect with other developers!</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- For Employers -->
-                <div class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-secondary">
-                    <div class="flex items-center mb-6">
-                        <div class="w-14 h-14 bg-gradient-to-br from-secondary to-purple-600 rounded-full flex items-center justify-center text-white text-xl font-bold shadow-lg">
-                            <i class="fa-solid fa-building"></i>
-                        </div>
-                        <h3 class="heading heading-3 ml-4">For Employers</h3>
-                    </div>
-                    
-                    <div class="space-y-6">
-                        <!-- Step 1 -->
-                        <div class="flex items-start group">
-                            <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-secondary to-purple-600 text-white rounded-full flex items-center justify-center font-bold shadow-md transition-transform group-hover:scale-110">
-                                1
-                            </div>
-                            <div class="ml-4 flex-1">
-                                <h4 class="font-bold text-lg mb-2 text-gray-800">Post Your Job</h4>
-                                <p class="text-gray-600 leading-relaxed">
-                                    Click on "Post a Job" and fill out our comprehensive form with your job details, requirements, and company information.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Step 2 -->
-                        <div class="flex items-start group">
-                            <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-secondary to-purple-600 text-white rounded-full flex items-center justify-center font-bold shadow-md transition-transform group-hover:scale-110">
-                                2
-                            </div>
-                            <div class="ml-4 flex-1">
-                                <h4 class="font-bold text-lg mb-2 text-gray-800">Review & Approval</h4>
-                                <p class="text-gray-600 leading-relaxed">
-                                    Our team reviews your submission to ensure quality and relevance. This typically takes 24-48 hours.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Step 3 -->
-                        <div class="flex items-start group">
-                            <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-secondary to-purple-600 text-white rounded-full flex items-center justify-center font-bold shadow-md transition-transform group-hover:scale-110">
-                                3
-                            </div>
-                            <div class="ml-4 flex-1">
-                                <h4 class="font-bold text-lg mb-2 text-gray-800">Go Live</h4>
-                                <p class="text-gray-600 leading-relaxed">
-                                    Once approved, your job posting goes live and is visible to thousands of skilled .NET developers in our community.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Step 4 -->
-                        <div class="flex items-start group">
-                            <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-secondary to-purple-600 text-white rounded-full flex items-center justify-center font-bold shadow-md transition-transform group-hover:scale-110">
-                                4
-                            </div>
-                            <div class="ml-4 flex-1">
-                                <h4 class="font-bold text-lg mb-2 text-gray-800">Receive Applications</h4>
-                                <p class="text-gray-600 leading-relaxed">
-                                    Candidates apply directly through your provided contact method. Review applications and find your perfect match!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-8 pt-6 border-t border-gray-200">
-                        <div class="flex items-start text-sm bg-blue-50 p-4 rounded-lg border border-blue-200">
-                            <i class="fa-solid fa-rocket text-blue-500 text-xl mr-3 flex-shrink-0 mt-0.5"></i>
-                            <span class="text-gray-700"><strong class="text-blue-700">Bonus:</strong> Promoted jobs get featured placement for maximum visibility and reach!</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Call to Action Banner -->
-            <div class="bg-gradient-to-r from-primary via-blue-600 to-secondary rounded-2xl shadow-2xl p-8 md:p-12 text-center text-white relative overflow-hidden">
-                <!-- Decorative Elements -->
-                <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -mr-32 -mt-32"></div>
-                <div class="absolute bottom-0 left-0 w-48 h-48 bg-white opacity-5 rounded-full -ml-24 -mb-24"></div>
-                
-                <div class="relative z-10">
-                    <h3 class="heading heading-2 text-white mb-4">Ready to Get Started?</h3>
-                    <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-                        Join hundreds of .NET developers and leading companies connecting through our platform
-                    </p>
-                    <div class="flex flex-wrap gap-4 justify-center mb-8">
-                        <a href="/jobs/submit" data-enhance-nav="false" class="btn bg-white text-primary hover:bg-gray-100 font-semibold px-8 py-3 rounded-lg shadow-lg transition-all hover:scale-105">
-                            <i class="fa-solid fa-briefcase"></i> Post a Job
-                        </a>
-                        <a href="#job-listings" class="btn border-2 border-white text-white hover:bg-white hover:text-primary font-semibold px-8 py-3 rounded-lg transition-all hover:scale-105">
-                            <i class="fa-solid fa-search"></i> Browse Jobs
-                        </a>
-                    </div>
-                    <div class="flex flex-wrap justify-center gap-8 text-sm">
-                        <div class="flex items-center bg-white bg-opacity-10 px-4 py-2 rounded-full backdrop-blur-sm">
-                            <i class="fa-solid fa-check-circle mr-2"></i>
-                            <span>Free to Post</span>
-                        </div>
-                        <div class="flex items-center bg-white bg-opacity-10 px-4 py-2 rounded-full backdrop-blur-sm">
-                            <i class="fa-solid fa-check-circle mr-2"></i>
-                            <span>Quality Candidates</span>
-                        </div>
-                        <div class="flex items-center bg-white bg-opacity-10 px-4 py-2 rounded-full backdrop-blur-sm">
-                            <i class="fa-solid fa-check-circle mr-2"></i>
-                            <span>Fast Approval</span>
-                        </div>
-                        <div class="flex items-center bg-white bg-opacity-10 px-4 py-2 rounded-full backdrop-blur-sm">
-                            <i class="fa-solid fa-check-circle mr-2"></i>
-                            <span>Community Trusted</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Job Listings Section -->
-    <section id="job-listings" class="section container mx-auto px-4">
-        <div class="mb-8 flex justify-between items-center">
-            <div>
-                <h2 class="heading heading-2 mb-2">Latest Job Opportunities</h2>
-                <p class="text-gray-600">@FilteredJobs.Length position@(FilteredJobs.Length != 1 ? "s" : "") found</p>
-            </div>
-            <div class="flex gap-2">
-                <button @onclick="() => _viewMode = ViewMode.Grid" 
-                        class="p-2 @(_viewMode == ViewMode.Grid ? "text-primary" : "text-gray-400") hover:text-primary">
-                    <i class="fa-solid fa-th-large"></i>
-                </button>
-                <button @onclick="() => _viewMode = ViewMode.List" 
-                        class="p-2 @(_viewMode == ViewMode.List ? "text-primary" : "text-gray-400") hover:text-primary">
-                    <i class="fa-solid fa-list"></i>
-                </button>
-            </div>
-        </div>
-
-        @if (FilteredJobs.Length == 0)
-        {
-            <!-- Coming Soon Message -->
-            <div class="bg-blue-50 border border-blue-200 rounded-lg p-8 text-center">
-                <div class="max-w-2xl mx-auto">
-                    <i class="fa-solid fa-briefcase text-6xl text-primary mb-4"></i>
-                    <h3 class="heading heading-3 mb-4">Job Board Coming Soon</h3>
-                    <p class="text-gray-700 mb-6">
-                        We're currently building our job board to connect talented .NET developers with amazing opportunities. 
-                        In the meantime, join our community to stay updated on job openings shared by our members.
-                    </p>
-                    <div class="flex flex-wrap gap-4 justify-center">
-                        <a href="https://discord.gg/npkCMRgqdm" target="_blank" class="btn btn-primary">
-                            <i class="fa-brands fa-discord"></i> Join Discord
-                        </a>
-                        <a href="https://www.linkedin.com/company/dotnetcameroon" target="_blank" class="btn btn-secondary">
-                            <i class="fa-brands fa-linkedin"></i> Follow on LinkedIn
-                        </a>
-                    </div>
-                </div>
-            </div>
-        }
-        else
-        {
-            <!-- Job Cards -->
-            <div class="@(_viewMode == ViewMode.Grid ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" : "flex flex-col") gap-6">
-                @foreach (var job in FilteredJobs)
-                {
-                    <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all">
-                        <div class="flex items-start justify-between mb-4">
-                            <div class="flex-1">
-                                <h4 class="font-bold text-lg mb-1">@job.Title</h4>
-                                <p class="text-gray-600 text-sm mb-2">@job.Company</p>
-                            </div>
-                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs whitespace-nowrap ml-2">@job.Type</span>
-                        </div>
-                        <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-4">
-                            <span><i class="fa-solid fa-location-dot"></i> @job.Location</span>
-                            <span><i class="fa-solid fa-clock"></i> @job.PostedDate</span>
-                            @if (!string.IsNullOrEmpty(job.Salary))
-                            {
-                                <span><i class="fa-solid fa-money-bill"></i> @job.Salary</span>
-                            }
-                        </div>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            @foreach (var skill in job.Skills)
-                            {
-                                <span class="px-2 py-1 bg-blue-100 text-primary text-xs rounded">@skill</span>
-                            }
-                        </div>
-                        <p class="text-gray-700 text-sm mb-4 line-clamp-2">@job.Description</p>
-                        <a href="/jobs/@job.Id" data-enhance-nav="false" class="btn btn-outline w-full">
-                            View Details
-                        </a>
-                    </div>
-                }
-            </div>
-        }
-
-        <!-- Sample Job Cards (for demonstration) -->
-        @if (_exampleJobs.Length > 0)
-        {
-            <div class="mt-12">
-                <h3 class="heading heading-3 mb-6">How It Will Work</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    @foreach (var example in _exampleJobs)
-                    {
-                        <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all opacity-50">
-                            <div class="flex items-start justify-between mb-4">
+                    <ol class="mt-6 space-y-5">
+                        @foreach (var (step, i) in _seekerSteps.Select((s, i) => (s, i + 1)))
+                        {
+                            <li class="flex items-start gap-4">
+                                <span class="shrink-0 size-7 rounded-md bg-gray-100 text-dark-purple text-xs font-semibold inline-flex items-center justify-center tabular-nums">@i</span>
                                 <div>
-                                    <h4 class="font-bold text-lg mb-1">@example.Title</h4>
-                                    <p class="text-gray-600 text-sm">@example.Company</p>
+                                    <h4 class="font-semibold text-sm text-dark-purple">@step.Title</h4>
+                                    <p class="text-gray-600 text-sm leading-relaxed mt-1">@step.Body</p>
                                 </div>
-                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs">@example.Type</span>
-                            </div>
-                            <div class="flex items-center gap-4 text-sm text-gray-600 mb-4">
-                                <span><i class="fa-solid fa-location-dot"></i> @example.Location</span>
-                                <span><i class="fa-solid fa-clock"></i> @example.PostedDate</span>
-                            </div>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                @foreach (var skill in example.Skills)
-                                {
-                                    <span class="px-2 py-1 bg-blue-100 text-primary text-xs rounded">@skill</span>
-                                }
-                            </div>
-                            <p class="text-gray-700 text-sm mb-4 line-clamp-2">@example.Description</p>
-                            <button class="btn btn-outline w-full" disabled>View Details</button>
-                        </div>
-                    }
+                            </li>
+                        }
+                    </ol>
+                </div>
+
+                <!-- For employers -->
+                <div class="bg-white rounded-xl border border-gray-200/70 p-8">
+                    <div class="flex items-center gap-3">
+                        <span class="inline-flex items-center justify-center size-9 rounded-lg bg-secondary/10 text-secondary">
+                            <i class="ph-duotone ph-buildings text-lg"></i>
+                        </span>
+                        <h3 class="heading font-semibold text-lg text-dark-purple">For employers</h3>
+                    </div>
+                    <ol class="mt-6 space-y-5">
+                        @foreach (var (step, i) in _employerSteps.Select((s, i) => (s, i + 1)))
+                        {
+                            <li class="flex items-start gap-4">
+                                <span class="shrink-0 size-7 rounded-md bg-gray-100 text-dark-purple text-xs font-semibold inline-flex items-center justify-center tabular-nums">@i</span>
+                                <div>
+                                    <h4 class="font-semibold text-sm text-dark-purple">@step.Title</h4>
+                                    <p class="text-gray-600 text-sm leading-relaxed mt-1">@step.Body</p>
+                                </div>
+                            </li>
+                        }
+                    </ol>
                 </div>
             </div>
-        }
-    </section>
 
-    <!-- Call to Action Section -->
-    <section class="bg-gray-50 py-16">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="heading heading-2 mb-4">Are You Hiring?</h2>
-            <p class="text-gray-700 mb-8 max-w-2xl mx-auto">
-                If you're looking to hire talented .NET developers, reach out to us. 
-                We can help you connect with skilled professionals from our community.
-            </p>
-            <div class="flex flex-wrap gap-4 justify-center">
-                <a href="/jobs/submit" data-enhance-nav="false" class="btn btn-primary">
-                    <i class="fa-solid fa-plus"></i> Post a Job
+            <div class="mt-12 flex flex-wrap items-center gap-3">
+                <a href="/jobs/submit" data-enhance-nav="false" class="btn btn-primary inline-flex items-center gap-2">
+                    <i class="ph ph-plus text-base"></i>
+                    Post a job
                 </a>
-                <a href="/contact" data-enhance-nav="false" class="btn btn-secondary">
-                    <i class="fa-solid fa-envelope"></i> Contact Us
+                <a href="#job-listings" class="btn btn-outline inline-flex items-center gap-2">
+                    <i class="ph ph-magnifying-glass text-base"></i>
+                    Browse roles
                 </a>
             </div>
         </div>
@@ -453,11 +273,30 @@
     private string _selectedType = "";
     private ViewMode _viewMode = ViewMode.Grid;
 
-    private enum ViewMode
-    {
-        Grid,
-        List
-    }
+    private bool HasActiveFilters =>
+        !string.IsNullOrEmpty(_searchQuery) ||
+        !string.IsNullOrEmpty(_selectedLocation) ||
+        !string.IsNullOrEmpty(_selectedType);
+
+    private enum ViewMode { Grid, List }
+
+    private record StepItem(string Title, string Body);
+
+    private readonly StepItem[] _seekerSteps =
+    [
+        new("Browse openings", "Use filters to narrow down roles by location, type, and required skills."),
+        new("Review the details", "Open any listing for full description, requirements, salary range, and company info."),
+        new("Apply directly", "Each posting includes the employer's contact method or external application link."),
+        new("Stay connected", "Join the community to hear about new roles as they're posted."),
+    ];
+
+    private readonly StepItem[] _employerSteps =
+    [
+        new("Submit a posting", "Fill in the role details, requirements, and how candidates should reach you."),
+        new("Quality review", "We review submissions within 24–48 hours to keep the bar high."),
+        new("Goes live", "Once approved, your role is visible to thousands of .NET developers."),
+        new("Receive applications", "Candidates reach out through your preferred channel."),
+    ];
 
     private class JobExample
     {
@@ -527,24 +366,15 @@
         })
         .ToArray();
 
-    private void ApplyFilters()
-    {
-        StateHasChanged();
-    }
+    private void ApplyFilters() => StateHasChanged();
 
     private void ClearFilter(string filterName)
     {
         switch (filterName)
         {
-            case nameof(_searchQuery):
-                _searchQuery = "";
-                break;
-            case nameof(_selectedLocation):
-                _selectedLocation = "";
-                break;
-            case nameof(_selectedType):
-                _selectedType = "";
-                break;
+            case nameof(_searchQuery): _searchQuery = ""; break;
+            case nameof(_selectedLocation): _selectedLocation = ""; break;
+            case nameof(_selectedType): _selectedType = ""; break;
         }
         StateHasChanged();
     }
