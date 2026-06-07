@@ -17,15 +17,9 @@
             <div class="banner @VariantBgClass(banner.Variant) @textColor relative overflow-hidden"
                  data-banner-id="@banner.Id"
                  data-banner-dismissible="@(banner.Dismissible.ToString().ToLowerInvariant())">
-                <div class="pointer-events-none absolute inset-0 opacity-40">
-                    <div class="absolute -top-20 -right-20 w-72 h-72 rounded-full @(isLight ? "bg-white/40" : "bg-white/15") blur-3xl"></div>
-                    <div class="absolute -bottom-20 left-1/4 w-56 h-56 rounded-full @(isLight ? "bg-white/30" : "bg-white/10") blur-3xl"></div>
-                    <div class="absolute top-1/2 -translate-y-1/2 left-[55%] w-44 h-44 rounded-full @(isLight ? "bg-white/20" : "bg-white/8") blur-2xl"></div>
+                <div class="pointer-events-none absolute inset-0 opacity-25">
+                    <div class="absolute -top-16 -right-16 w-56 h-56 rounded-full @(isLight ? "bg-white/30" : "bg-white/10") blur-3xl"></div>
                 </div>
-                @if (banner.Variant == BannerVariant.Advertisement)
-                {
-                    <div class="banner-shine pointer-events-none absolute inset-0"></div>
-                }
                 @if (hasTitle)
                 {
                     @* Rich layout: title + subtitle | message | CTA | dismiss *@
