@@ -77,6 +77,9 @@ jobs:
             set -e
             cd "$PROJECT_PATH"
             umask 077
+            # Remove any stale .env (possibly owned by another user from a
+            # previous manual setup) before rewriting from secrets.
+            rm -f .env
             cat > .env <<ENV_EOF
             # Written by GitHub Actions main_deploy.yml. Do not edit by hand;
             # re-run the deploy workflow to refresh. Non-sensitive defaults
@@ -103,6 +106,7 @@ jobs:
             MINIO_SECRETKEY=${MINIO_SECRETKEY}
             MINIO_BUCKETNAME=${MINIO_BUCKETNAME}
             ENV_EOF
+            chmod 600 .env
             docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_TOKEN"
             docker compose -f docker-compose.prod.yml pull
             docker compose -f docker-compose.prod.yml up -d --force-recreate
