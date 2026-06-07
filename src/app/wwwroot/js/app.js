@@ -21,11 +21,22 @@ window.addEventListener("scroll", (e) => {
 
 function collapseNavbar() {
   const navbar = document.getElementById("navbar");
+  const bannerStack = document.getElementById("banner-stack");
+  if (bannerStack) bannerStack.classList.remove("scrolled");
+  document.documentElement.style.setProperty("--banner-stack-height", "0px");
   navbar.classList.remove("scrolled");
 }
 
 function expandNavbar() {
   const navbar = document.getElementById("navbar");
+  const bannerStack = document.getElementById("banner-stack");
+  if (bannerStack) {
+    document.documentElement.style.setProperty(
+      "--banner-stack-height",
+      `${bannerStack.offsetHeight}px`,
+    );
+    bannerStack.classList.add("scrolled");
+  }
   navbar.classList.remove("scrolled");
   navbar.classList.add("scrolled");
 }
